@@ -2,7 +2,7 @@
 {
 	public class ElementalSystemDrop
 	{
-		public ElementalSystemTypes Type;
 		public float                Amount;
+		public ElementalSystemTypes Type;
 	}
 }
