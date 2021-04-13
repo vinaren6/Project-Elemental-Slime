@@ -21,13 +21,9 @@ namespace _Project.Scripts.Player
             SetIsometricReferences();
         }
 
-        private void Update()
-        {
-            GetInput();
-        }
-        
         private void FixedUpdate()
         {
+            GetInput();
             MovePlayer();
         }
         
