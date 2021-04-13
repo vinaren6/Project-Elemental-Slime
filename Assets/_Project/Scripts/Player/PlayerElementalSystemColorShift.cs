@@ -6,7 +6,7 @@ namespace _Project.Scripts.Player
 {
 	public class PlayerElementalSystemColorShift : MonoBehaviour
 	{
-		[SerializeField] private PlayerElementalSystemTypeCurrent type;
+		[SerializeField] private ElementalSystemTypeCurrent type;
 
 		private Renderer _renderer;
 		private void     Start() => _renderer = gameObject.GetComponent<Renderer>();

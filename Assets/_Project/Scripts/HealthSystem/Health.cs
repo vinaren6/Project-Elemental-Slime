@@ -6,10 +6,10 @@ namespace _Project.Scripts.HealthSystem
 {
 	public class Health : MonoBehaviour, IHealth
 	{
-		[SerializeField] private PlayerElementalSystemTypeCurrent type;
-		[SerializeField] private float                            maxHitPoints;
-		public                   UnityEvent                       onDeath;
-		public                   float                            HitPoints { get; set; }
+		[SerializeField] private ElementalSystemTypeCurrent type;
+		[SerializeField] private float                      maxHitPoints;
+		public                   UnityEvent                 onDeath;
+		public                   float                      HitPoints { get; set; }
 
 		public float MaxHitPoints {
 			get => maxHitPoints;
