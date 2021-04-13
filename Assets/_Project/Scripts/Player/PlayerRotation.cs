@@ -16,8 +16,7 @@ namespace _Project.Scripts.Player
         private void Update()
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (plane.Raycast(ray, out float enter)) 
-            {
+            if (plane.Raycast(ray, out float enter)) {
                 Vector3 mousePosition = ray.GetPoint(enter);
                 Vector3 playerPosition = plane.ClosestPointOnPlane(transform.position);
                 transform.rotation = Quaternion.LookRotation(mousePosition - playerPosition);

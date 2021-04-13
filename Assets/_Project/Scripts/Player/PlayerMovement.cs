@@ -4,12 +4,12 @@ namespace _Project.Scripts.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Movement Configuration")]
-        [SerializeField] private float movementSpeed = 0.25f;
-        
+        [Header("Movement Configuration")] [SerializeField]
+        private float movementSpeed = 0.25f;
+
         private Rigidbody rb;
-        private float horizontalInput;
         private float verticalInput;
+        private float horizontalInput;
 
         private Camera mainCamera;
         private Vector3 forward, right;
@@ -26,7 +26,7 @@ namespace _Project.Scripts.Player
             GetInput();
             MovePlayer();
         }
-        
+
         private void SetIsometricReferences()
         {
             forward = mainCamera.transform.forward;
@@ -45,15 +45,10 @@ namespace _Project.Scripts.Player
         {
             if (horizontalInput == 0 && verticalInput == 0)
                 return;
-            
             Vector3 rightMovement = right * horizontalInput;
             Vector3 upMovement = forward * verticalInput;
             Vector3 movementDirection = Vector3.Normalize(rightMovement + upMovement);
             rb.MovePosition(rb.position + movementDirection * movementSpeed);
-            // transform.forward = movementDirection; // See PlayerRotation
-            
-            // Smoother with Time.deltaTime according to Doc??
-            // rb.MovePosition(rb.position + heading * (Time.deltaTime * movementSpeed));
         }
     }
 }
