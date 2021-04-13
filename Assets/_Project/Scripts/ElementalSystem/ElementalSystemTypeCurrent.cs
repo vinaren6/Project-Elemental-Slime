@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace _Project.Scripts.ElementalSystem
 {
-	public class PlayerElementalSystemTypeCurrent : MonoBehaviour
+	public class ElementalSystemTypeCurrent : MonoBehaviour
 	{
 		[SerializeField] private ElementalSystemTypes type;
 		public                   UnityEvent           onElementTypeChange;
