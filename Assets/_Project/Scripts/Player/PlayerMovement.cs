@@ -5,7 +5,7 @@ namespace _Project.Scripts.Player
 	public class PlayerMovement : MonoBehaviour
 	{
 		[Header("Movement Configuration")]
-		[SerializeField] private float movementSpeed = 0.25f;
+		[SerializeField] private float movementSpeed = 1.0f;
 		
 		private Rigidbody _rb;
 		private float     _verticalInput;
@@ -44,10 +44,10 @@ namespace _Project.Scripts.Player
 		{
 			if (_horizontalInput == 0 && _verticalInput == 0)
 				return;
-			Vector3 rightMovement     = _right   * _horizontalInput;
 			Vector3 upMovement        = _forward * _verticalInput;
-			Vector3 movementDirection = Vector3.Normalize(rightMovement + upMovement);
-			_rb.MovePosition(_rb.position + movementDirection * movementSpeed);
+			Vector3 rightMovement     = _right   * _horizontalInput;
+			Vector3 movementDirection = (upMovement + rightMovement).normalized;
+			_rb.MovePosition(_rb.position + movementDirection * (Time.deltaTime * movementSpeed));
 		}
 	}
 }
