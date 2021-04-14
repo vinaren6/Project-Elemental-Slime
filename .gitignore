@@ -6,6 +6,7 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 Assets/AssetStoreTools*
+.idea/
 
 # Visual Studio cache directory
 .vs/
