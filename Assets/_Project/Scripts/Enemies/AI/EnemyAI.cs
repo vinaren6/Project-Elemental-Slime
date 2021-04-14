@@ -82,9 +82,9 @@ namespace _Project.Scripts.Enemies.AI
 				case State.Hunt:
 					if (!_target) return;
 					Vector3 direction = (_target.position - transform.position).normalized;
-					_rb.MovePosition(_rb.position + direction * (Time.deltaTime * huntSpeed));
+					_rb.MovePosition(_rb.position + direction * (Time.fixedDeltaTime * huntSpeed));
 					Quaternion rotation = Quaternion.LookRotation(direction);
-					transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+					transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.fixedDeltaTime * rotationSpeed);
 					break;
 				case State.Attack:
 					break;

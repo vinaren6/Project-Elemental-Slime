@@ -47,7 +47,7 @@ namespace _Project.Scripts.Player
 			Vector3 upMovement        = _forward * _verticalInput;
 			Vector3 rightMovement     = _right   * _horizontalInput;
 			Vector3 movementDirection = (upMovement + rightMovement).normalized;
-			_rb.MovePosition(_rb.position + movementDirection * (Time.deltaTime * movementSpeed));
+			_rb.MovePosition(_rb.position + movementDirection * (Time.fixedDeltaTime * movementSpeed));
 		}
 	}
 }
