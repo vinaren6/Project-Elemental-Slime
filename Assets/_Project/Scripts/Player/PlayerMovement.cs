@@ -4,7 +4,7 @@ namespace _Project.Scripts.Player
 {
 	public class PlayerMovement : MonoBehaviour
 	{
-		[Header("Movement Configuration")]
+		[Header("PLAYER SETTINGS:")]
 		[SerializeField] private float movementSpeed = 1.0f;
 		
 		private Rigidbody _rb;
