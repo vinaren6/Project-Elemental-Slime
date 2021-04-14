@@ -40,8 +40,9 @@ namespace _Project.Scripts.Player
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.CompareTag("Drop"))
-				_pickups[(int) other.GetComponent<ElementalSystemTypeCurrent>().Type]++;
+			if (!other.CompareTag("Drop")) return;
+			_pickups[(int) other.GetComponent<ElementalSystemTypeCurrent>().Type]++;
+			Destroy(other.gameObject);
 		}
 	}
 }
