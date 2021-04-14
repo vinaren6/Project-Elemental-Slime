@@ -8,11 +8,11 @@ namespace _Project.Scripts.Audio
 
         #region IAudio Interface
 
-        public void PlaySFX()
+        public void PlaySFX(AudioClip audioClip)
         {
         }
 
-        public void PlayBGM()
+        public void PlayBGM(AudioClip audioClip)
         {
         }
 

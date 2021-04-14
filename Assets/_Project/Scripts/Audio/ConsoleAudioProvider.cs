@@ -8,12 +8,12 @@ namespace _Project.Scripts.Audio
 
         #region IAudio Interface
 
-        public void PlaySFX()
+        public void PlaySFX(AudioClip audioClip)
         {
-            Debug.Log($"{nameof(PlaySFX)}");
+            Debug.Log($"{nameof(PlaySFX)} - {audioClip.name}");
         }
 
-        public void PlayBGM()
+        public void PlayBGM(AudioClip audioClip)
         {
             Debug.Log($"{nameof(PlayBGM)}");
         }
