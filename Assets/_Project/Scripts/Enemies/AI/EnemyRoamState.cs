@@ -31,7 +31,6 @@ namespace _Project.Scripts.Enemies.AI
 			if (Vector3.Distance(_transform.position, _nextRoamTargetPosition) < 1.25f) {
 				_nextRoamTargetPosition = GetNewRoamTargetPosition();
 			}
-
 			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f) {
 				_roamTargetPosition = _nextRoamTargetPosition;
 			}
