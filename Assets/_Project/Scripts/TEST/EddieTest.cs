@@ -7,7 +7,7 @@ namespace _Project.Scripts.TEST
     {
         private void Start()
         {
-            // Debug.Log($"Game.IsPaused: {ServiceLocator.Game.IsPaused}");
+            Debug.Log($"Game.IsPaused: {ServiceLocator.Game.IsPaused}");
         }
     }
 }

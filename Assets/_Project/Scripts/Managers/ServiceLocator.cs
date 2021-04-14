@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Audio;
+using UnityEngine;
 
 namespace _Project.Scripts.Managers
 {
@@ -20,9 +21,10 @@ namespace _Project.Scripts.Managers
 
         #region Start Methods
 
-        public static void Initialize(GameManager game)
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        public static void Initialize()
         {
-            _game = game;
+            _game = new GameManager();
             _audio = new NullAudioProvider();
         }
 

@@ -1,15 +1,13 @@
-﻿using UnityEngine;
-
-namespace _Project.Scripts.Managers
+﻿namespace _Project.Scripts.Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager
     {
         #region Variables
 
         private bool _isPaused;
-        
+
         #region Properties
-        
+
         public bool IsPaused => _isPaused;
 
         #endregion
@@ -18,9 +16,8 @@ namespace _Project.Scripts.Managers
 
         #region Start Methods
 
-        private void Awake()
+        public GameManager()
         {
-            ServiceLocator.Initialize(this);
         }
 
         #endregion
