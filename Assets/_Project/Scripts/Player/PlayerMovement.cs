@@ -1,3 +1,4 @@
+using _Project.Scripts.Managers;
 using UnityEngine;
 
 namespace _Project.Scripts.Player
