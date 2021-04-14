@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Player
 {
-	public class PlayerMovement : MonoBehaviour
+	public class Player : MonoBehaviour
 	{
 		[Header("PLAYER SETTINGS:")]
 		[SerializeField] private float movementSpeed = 1.0f;
