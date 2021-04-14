@@ -1,0 +1,115 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "5c58458f-0ffd-4094-a7c2-a11d8b4e5ee3",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Element Controls",
+            "id": "c377f6cc-11c0-4623-b480-11fab26fc4a6",
+            "actions": [
+                {
+                    "name": "Earth",
+                    "type": "Button",
+                    "id": "7886949f-63bc-47f9-aa76-95d75516073e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Wind",
+                    "type": "Button",
+                    "id": "d7286acd-55dd-41b9-a76a-4d944fdbbd78",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Water",
+                    "type": "Button",
+                    "id": "b6dc9eec-0359-4954-ab2a-0adac9d3cb28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "e4097151-1694-4d74-84d2-7dabf3a8655c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Base",
+                    "type": "Button",
+                    "id": "0f4e9e67-f86a-49c2-a550-d2592c06631f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "625951f3-0715-4547-b3c5-db5e09ac265f",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Earth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "177c1de3-e33a-4f73-b29a-e32844a200bc",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3fd388a2-f9aa-47c9-a083-870613582147",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d8389bf-9a52-4d71-8e7e-2739a103e9e5",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8f6d7b0-a1d6-499f-a010-61f0deabe6ec",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Base",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
