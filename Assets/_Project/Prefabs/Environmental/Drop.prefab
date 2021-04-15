@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5622412576094577305
+--- !u!1 &3151312261388913989
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,81 +8,65 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5622412576094577302}
-  - component: {fileID: 5622412576094577301}
-  - component: {fileID: 5622412576094577300}
-  - component: {fileID: 5622412576094577303}
-  - component: {fileID: 3471685507713538616}
+  - component: {fileID: 2622984683948004600}
+  - component: {fileID: 824585338437737307}
+  - component: {fileID: 4252898550931282016}
+  - component: {fileID: 1221062719986085116}
   m_Layer: 6
-  m_Name: Drop
+  m_Name: Sprite
   m_TagString: Drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5622412576094577302
+--- !u!4 &2622984683948004600
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5622412576094577305}
-  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_GameObject: {fileID: 3151312261388913989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5622412576094577302}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
---- !u!114 &5622412576094577301
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824585338437737307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5622412576094577305}
+  m_GameObject: {fileID: 3151312261388913989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 93c8af15e8a54a23bb0f4e2c5aad002d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
-  onElementTypeChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5622412576094577300}
-        m_TargetAssemblyTypeName: _Project.Scripts.Player.ElementalSystemColorShift,
-          Assembly-CSharp
-        m_MethodName: StartColorShift
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5622412576094577300
+  strenght: 0.05
+  speed: 2
+--- !u!114 &4252898550931282016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5622412576094577305}
+  m_GameObject: {fileID: 3151312261388913989}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 5622412576094577301}
---- !u!212 &5622412576094577303
+--- !u!212 &1221062719986085116
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5622412576094577305}
+  m_GameObject: {fileID: 3151312261388913989}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -127,6 +111,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5622412576094577305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5622412576094577302}
+  - component: {fileID: 5622412576094577301}
+  - component: {fileID: 3471685507713538616}
+  m_Layer: 6
+  m_Name: Drop
+  m_TagString: Drop
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5622412576094577302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622412576094577305}
+  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_Children:
+  - {fileID: 2622984683948004600}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!114 &5622412576094577301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622412576094577305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  onElementTypeChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4252898550931282016}
+        m_TargetAssemblyTypeName: _Project.Scripts.ElementalSystem.ElementalSystemColorShift,
+          Assembly-CSharp
+        m_MethodName: StartColorShift
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &3471685507713538616
 SphereCollider:
   m_ObjectHideFlags: 0
