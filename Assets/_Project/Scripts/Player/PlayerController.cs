@@ -6,18 +6,21 @@ namespace _Project.Scripts.Player
     {
         [Header("PLAYER SETTINGS:")] [SerializeField]
         private float movementSpeed = 0.2f;
-
+        private float attackRate = 0.5f;
+        
         private Camera _camera;
 
         private PlayerInputHandler _inputHandler;
         private PlayerAim _playerAim;
         private PlayerMovement _playerMovement;
+        private PlayerShootProjectiles _shootProjectiles;
 
         private void Awake()
         {
             _inputHandler = GetComponent<PlayerInputHandler>();
             _playerAim = GetComponent<PlayerAim>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _shootProjectiles = GetComponent<PlayerShootProjectiles>();
         }
 
         private void Start()
@@ -33,6 +36,11 @@ namespace _Project.Scripts.Player
         private void FixedUpdate()
         {
             _playerMovement.Move(_inputHandler, movementSpeed);
+
+            if (_inputHandler.FireInput)
+            {
+                _shootProjectiles.Fire(attackRate);
+            }
         }
     }
 }

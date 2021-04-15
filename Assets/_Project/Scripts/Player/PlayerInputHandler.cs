@@ -9,11 +9,11 @@ namespace _Project.Scripts.Player
 	public class PlayerInputHandler : MonoBehaviour
 	{
 		private PlayerInput _gameplay;
+		private PlayerController _playerController;
 		
 		public Vector3 MoveDirection { get; private set; }
 		public Vector2 AimDirection  { get; private set; }
-		public bool    AttackInput        { get; private set; }
-		public bool    AttackInputStop    { get; private set; }
+		public bool    FireInput        { get; private set; }
 
 		private void Awake()
 		{
@@ -26,26 +26,23 @@ namespace _Project.Scripts.Player
 			MoveDirection = new Vector3(moveDirection.x, 0, moveDirection.y);
 		}
 
-		public void OnAttackInput(InputAction.CallbackContext attackAction)
+		private void OnFireInput(InputAction.CallbackContext fireAction)
 		{
-			if (attackAction.started) {
-				AttackInput     = true;
-				AttackInputStop = false;
-			}
-
-			if (attackAction.canceled) { AttackInputStop = true; }
+			if (fireAction.started) { FireInput = true; }
+			if (fireAction.canceled) { FireInput = false; }
 		}
 
-		public void UseAttackInput() => AttackInput = false;
-		
 		private void SetupInputListeners()
 		{
 			_gameplay                                      =  GetComponent<PlayerInput>();
+			_playerController = GetComponent<PlayerController>();
 			
-			_gameplay.actions.FindAction("Move").performed += OnMoveInput;
+			_gameplay.actions.FindAction("Move").performed += OnMoveInput; 
 			_gameplay.actions.FindAction("Move").canceled  += OnMoveInput;
 			_gameplay.actions.FindAction("Aim").performed  += ctx => AimDirection = ctx.ReadValue<Vector2>();
 			_gameplay.actions.FindAction("Aim").canceled   += ctx => AimDirection = ctx.ReadValue<Vector2>();
+			_gameplay.actions.FindAction("Fire").started += OnFireInput;
+			_gameplay.actions.FindAction("Fire").canceled  += OnFireInput;
 		}
 		
 		private void OnEnable()
