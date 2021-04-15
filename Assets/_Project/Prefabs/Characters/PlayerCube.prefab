@@ -18,7 +18,9 @@ GameObject:
   - component: {fileID: 721889729854220462}
   - component: {fileID: 721889729854220433}
   - component: {fileID: 721889729854220432}
-  m_Layer: 0
+  - component: {fileID: 7398852164926300467}
+  - component: {fileID: 1346920458396491193}
+  m_Layer: 7
   m_Name: PlayerCube
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -270,6 +272,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 1
+--- !u!114 &7398852164926300467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721889729854220435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  onElementTypeChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1346920458396491193}
+        m_TargetAssemblyTypeName: _Project.Scripts.ElementalSystem.ElementalSystemColorShift,
+          Assembly-CSharp
+        m_MethodName: StartColorShift
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1346920458396491193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721889729854220435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: 7398852164926300467}
 --- !u!1 &963799655787696657
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,9 +326,9 @@ GameObject:
   - component: {fileID: 963799655787696653}
   - component: {fileID: 963799655787696652}
   - component: {fileID: 963799655787696659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963799656147077831}
   - component: {fileID: 963799656147077824}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Player
   m_Icon: {fileID: 0}
