@@ -6,7 +6,8 @@ namespace _Project.Scripts.Player
     {
         [Header("PLAYER SETTINGS:")] [SerializeField]
         private float movementSpeed = 0.2f;
-        private float attackRate = 0.5f;
+        [SerializeField] private float attackRate = 0.5f;
+        [SerializeField] private float projectileSpeed = 1f;
         
         private Camera _camera;
 
@@ -39,7 +40,7 @@ namespace _Project.Scripts.Player
 
             if (_inputHandler.FireInput)
             {
-                _shootProjectiles.Fire(attackRate);
+                _shootProjectiles.Fire(transform, attackRate, projectileSpeed);
             }
         }
     }
