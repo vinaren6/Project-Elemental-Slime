@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Enemies.AI
 {
@@ -13,30 +14,35 @@ namespace _Project.Scripts.Enemies.AI
 		public EnemyAttackState AttackState { get; private set; }
 		public EnemyDeathState  DeathState  { get; private set; }
 
-		public float     moveSpeed     = 1f;
-		public float     rotationSpeed = 2.5f;
-		public float     attackRate    = 1f;
-		public Transform player;
-		public Rigidbody rb;
+		public  float        moveSpeed     = 1f;
+		public  float        rotationSpeed = 2.5f;
+		public  float        attackRate    = 1f;
+		public  Transform    target;
+		private Rigidbody   _rb;
+		private NavMeshAgent _navMeshAgent;
 
 		private bool _hasDetectedPlayer;
+
+		public Rigidbody Rb => _rb;
+		public NavMeshAgent NavMeshAgent { get => _navMeshAgent; set => _navMeshAgent = value; }
 
 		private void Awake()
 		{
 			StateMachine = new EnemyStateMachine();
-
-			RoamState   = new EnemyRoamState(this, StateMachine);
-			DetectState = new EnemyDetectState(this, StateMachine);
-			HuntState   = new EnemyHuntState(this, StateMachine);
-			AttackState = new EnemyAttackState(this, StateMachine);
-			DeathState  = new EnemyDeathState(this, StateMachine);
+			RoamState    = new EnemyRoamState(this, StateMachine);
+			DetectState  = new EnemyDetectState(this, StateMachine);
+			HuntState    = new EnemyHuntState(this, StateMachine);
+			AttackState  = new EnemyAttackState(this, StateMachine);
+			DeathState   = new EnemyDeathState(this, StateMachine);
+			StateMachine.Initialize(RoamState);
+			
+			_rb           = GetComponent<Rigidbody>();
+			_navMeshAgent = GetComponent<NavMeshAgent>();
 		}
 
 		private void Start()
 		{
-			player = GameObject.FindWithTag("Player").transform;
-			rb     = GetComponent<Rigidbody>();
-			StateMachine.Initialize(RoamState);
+			target       = GameObject.FindWithTag("Player").transform;
 		}
 
 		private void Update() { StateMachine.CurrentState.LogicUpdate(); }
@@ -56,7 +62,7 @@ namespace _Project.Scripts.Enemies.AI
 		private IEnumerator PlayerDetection()
 		{
 			//_rb.velocity       = Vector3.zero;
-			transform.rotation = Quaternion.LookRotation((player.position - transform.position).normalized);
+			transform.rotation = Quaternion.LookRotation((target.position - transform.position).normalized);
 			yield return new WaitForSeconds(0.4f);
 			float time     = 0;
 			float duration = 0.1f;
