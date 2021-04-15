@@ -33,7 +33,7 @@ namespace _Project.Scripts.Player
 
 		private void Switch(int type)
 		{
-			if (_pickups[type] < requiredElementsToChange && type != 5) return;
+			if (_pickups[type] < requiredElementsToChange && type != 4) return;
 			_pickups[type]   -= requiredElementsToChange;
 			elementType.Type =  (ElementalSystemTypes) type;
 		}
