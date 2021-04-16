@@ -7,12 +7,16 @@ namespace _Project.Scripts.Player
 	public class ProjectileController : MonoBehaviour
 	{
 		[SerializeField] private ElementalSystemTypeCurrent type;
-		
+
+		private void OnDisable()
+		{
+			GetComponent<Rigidbody>().velocity = Vector3.zero;
+			GetComponent<ElementalSystemColorShift>().ResetColor();
+		}
+
 		private void OnCollisionEnter(Collision other)
 		{
-			if (other.collider.TryGetComponent(out IHealth health)) {
-				health.ReceiveDamage(type.Type, 1);
-			}
+			if (other.collider.TryGetComponent(out IHealth health)) health.ReceiveDamage(type.Type, 1);
 			gameObject.SetActive(false);
 		}
 	}

@@ -10,6 +10,7 @@ namespace _Project.Scripts.Enemies.AI
 		private float     _roamSpeedMultiplier = 0.5f;
 		private Vector3   _roamTargetPosition;
 		private Vector3   _nextRoamTargetPosition;
+        private bool      _isChangeDirection = true;
 
 		public override void Enter()
 		{
@@ -17,20 +18,26 @@ namespace _Project.Scripts.Enemies.AI
 			_rb                     = _enemy.GetComponent<Rigidbody>();
 			_roamTargetPosition     = GetNewRoamTargetPosition();
 			_nextRoamTargetPosition = _roamTargetPosition;
+
 			
 		}
-
+		
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
-			//Terrain.activeTerrain
-			_enemy.NavMeshAgent.SetDestination(_roamTargetPosition);
+            if (_isChangeDirection)
+            {
+				_enemy.NavMeshAgent.SetDestination(_roamTargetPosition);
+				_isChangeDirection = false;
+			}
+
 			
 			if (Vector3.Distance(_transform.position, _nextRoamTargetPosition) < 1.25f) {
-				_nextRoamTargetPosition = GetNewRoamTargetPosition();
+				
 			}
 			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f) {
-				_roamTargetPosition = _nextRoamTargetPosition;
+				_roamTargetPosition = GetNewRoamTargetPosition();
+				_isChangeDirection = true;
 			}
 		}
 

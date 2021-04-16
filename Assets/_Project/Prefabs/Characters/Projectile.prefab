@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: -2345025737998840536}
+  fadeSpeed: 1
+  startColorShiftOnStart: 0
 --- !u!33 &2811173150404562976
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -162,11 +164,11 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2811173150404562988}
   serializedVersion: 2
-  m_Mass: 0.2
+  m_Mass: 0.0001
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 84
+  m_Interpolate: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
