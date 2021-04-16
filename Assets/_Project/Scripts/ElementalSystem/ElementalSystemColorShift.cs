@@ -25,6 +25,9 @@ namespace _Project.Scripts.ElementalSystem
 			StartCoroutine(UpdateColor());
 		}
 
+		public void SetColor() => _renderer.material.color =
+			_targetColor = ElementalSystemColors.GetColorFromElementalSystemTypes(type.Type);
+
 		private IEnumerator UpdateColor()
 		{
 			while (_renderer.material.color != _targetColor) {
