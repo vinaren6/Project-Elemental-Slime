@@ -2,46 +2,43 @@ using UnityEngine;
 
 namespace _Project.Scripts.Player
 {
-    public class PlayerController : MonoBehaviour
-    {
-        [Header("PLAYER SETTINGS:")] [SerializeField]
-        private float movementSpeed = 0.2f;
-        [SerializeField] private float attackRate = 0.5f;
-        [SerializeField] private float projectileSpeed = 1f;
-        
-        private Camera _camera;
+	public class PlayerController : MonoBehaviour
+	{
+		[Header("PLAYER SETTINGS:")]
+		[SerializeField] private float moveSpeed   = 10f;
+		[SerializeField] private float attackRate      = 0.5f;
+		[SerializeField] private float projectileSpeed = 1f;
+		
+		private PlayerInput _input;
+		private PlayerAim   _aim;
+		private PlayerMove  _move;
+		private PlayerShoot _shoot;
+		
+		private Camera _camera;
 
-        private PlayerInputHandler _inputHandler;
-        private PlayerAim _playerAim;
-        private PlayerMovement _playerMovement;
-        private PlayerShootProjectiles _shootProjectiles;
+		private void Awake()
+		{
+			_input = GetComponent<PlayerInput>();
+			_aim   = GetComponent<PlayerAim>();
+			_move  = GetComponent<PlayerMove>();
+			_shoot = GetComponent<PlayerShoot>();
+		}
 
-        private void Awake()
-        {
-            _inputHandler = GetComponent<PlayerInputHandler>();
-            _playerAim = GetComponent<PlayerAim>();
-            _playerMovement = GetComponent<PlayerMovement>();
-            _shootProjectiles = GetComponent<PlayerShootProjectiles>();
-        }
+		private void Start()
+		{
+			_camera = Camera.main;
+		}
 
-        private void Start()
-        {
-            _camera = Camera.main;
-        }
+		private void Update()
+		{
+			_aim.Aim(_input.AimDirection, _camera);
+			if (_input.FireInput)
+				_shoot.Fire(attackRate, projectileSpeed);
+		}
 
-        private void Update()
-        {
-            _playerAim.AimUpdate(_inputHandler.AimDirection, _camera);
-        }
-
-        private void FixedUpdate()
-        {
-            _playerMovement.Move(_inputHandler, movementSpeed);
-
-            if (_inputHandler.FireInput)
-            {
-                _shootProjectiles.Fire(transform, attackRate, projectileSpeed);
-            }
-        }
-    }
+		private void FixedUpdate()
+		{
+			_move.Move(_input.MoveDirection, moveSpeed);
+		}
+	}
 }

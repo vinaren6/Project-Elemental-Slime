@@ -11,7 +11,7 @@ namespace _Project.Scripts.Player
             _plane = new Plane(Vector3.up, Vector3.zero);
         }
 
-        public void AimUpdate(Vector2 direction, Camera cameraRef)
+        public void Aim(Vector2 direction, Camera cameraRef)
         {
             Ray ray = cameraRef.ScreenPointToRay(direction);
             
