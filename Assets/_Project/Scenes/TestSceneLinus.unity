@@ -352,10 +352,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: projectileSpeed
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
 --- !u!1001 &3036836906094708273
@@ -513,6 +509,18 @@ PrefabInstance:
     - target: {fileID: 5085988910200415383, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988911407178916, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_XDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988911407178916, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_YDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988911407178916, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_ZDamping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5085988911851113652, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -43,7 +43,6 @@ namespace _Project.Scripts.Player
 			projectile.transform.SetParent(transform);
 			projectile.transform.localPosition    = Vector3.zero;
 			projectile.transform.localEulerAngles = Vector3.zero;
-			projectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
 			_projectilePool.Enqueue(projectile);
 		}
 	}
