@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   attackRate: 0.5
-  projectileSpeed: 150
+  projectileSpeed: 8
 --- !u!114 &963799656015739262
 MonoBehaviour:
   m_ObjectHideFlags: 0
