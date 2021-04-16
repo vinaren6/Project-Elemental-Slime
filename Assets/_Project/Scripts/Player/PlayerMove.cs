@@ -26,10 +26,11 @@ namespace _Project.Scripts.Player
 
 		public void Move(Vector3 input, float speed)
 		{
-			if (input== Vector3.zero)
-				return;
-			Vector3 movementDirection = ((_forward * input.z) + (_right * input.x)).normalized;
-			_rb.MovePosition(_rb.position + movementDirection * speed);
+			Vector3 moveDirection = ((_forward * input.z) + (_right * input.x)).normalized;
+			_rb.velocity = moveDirection * speed;
+			
+			// VelocityMovement with smoothing
+			// _rb.velocity = (moveDirection * (0.2f * speed)) + _rb.velocity * 0.8f;
 		}
 	}
 }
