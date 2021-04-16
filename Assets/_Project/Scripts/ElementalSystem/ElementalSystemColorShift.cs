@@ -6,9 +6,16 @@ namespace _Project.Scripts.ElementalSystem
 	public class ElementalSystemColorShift : MonoBehaviour
 	{
 		[SerializeField] private ElementalSystemTypeCurrent type;
+		[SerializeField] private float                      fadeSpeed = .5f;
+		[SerializeField] private bool                       startColorShiftOnStart;
 
 		private Renderer _renderer;
 		private Color    _targetColor;
+
+		private void Start()
+		{
+			if (startColorShiftOnStart) StartColorShift();
+		}
 
 		private void OnEnable() => _renderer ??= gameObject.GetComponent<Renderer>();
 
@@ -22,7 +29,7 @@ namespace _Project.Scripts.ElementalSystem
 		{
 			while (_renderer.material.color != _targetColor) {
 				_renderer.material.color = Color.Lerp(
-					_renderer.material.color, _targetColor, Time.deltaTime * 0.5f);
+					_renderer.material.color, _targetColor, Time.deltaTime * fadeSpeed);
 				yield return null;
 			}
 		}

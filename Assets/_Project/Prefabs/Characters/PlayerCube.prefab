@@ -297,6 +297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 7398852164926300467}
+  fadeSpeed: 0.5
+  startColorShiftOnStart: 1
 --- !u!33 &721889729854220463
 MeshFilter:
   m_ObjectHideFlags: 0
