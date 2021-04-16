@@ -28,6 +28,9 @@ namespace _Project.Scripts.ElementalSystem
 		public void SetColor() => _renderer.material.color =
 			_targetColor = ElementalSystemColors.GetColorFromElementalSystemTypes(type.Type);
 
+		public void ResetColor() => _renderer.material.color =
+			_targetColor = Color.white;
+
 		private IEnumerator UpdateColor()
 		{
 			while (_renderer.material.color != _targetColor) {
