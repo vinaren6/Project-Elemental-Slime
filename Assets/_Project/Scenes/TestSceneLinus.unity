@@ -268,6 +268,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1460504048, guid: 823884660fb12724e84302fc63206aec, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 823884660fb12724e84302fc63206aec, type: 3}
       propertyPath: m_Name
       value: EnemyAICube

@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Scripts.ElementalSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,8 @@ namespace _Project.Scripts.Enemies.AI
 		public EnemyAttackState AttackState { get; private set; }
 		public EnemyDeathState  DeathState  { get; private set; }
 
+		public ElementalSystemTypeCurrent type;
+		
 		public  float        moveSpeed     = 1f;
 		public  float        rotationSpeed = 2.5f;
 		public  float        attackRate    = 1f;

@@ -106,13 +106,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3036836907716680923}
   - component: {fileID: 798209536}
+  - component: {fileID: 234121515830617334}
+  - component: {fileID: 1460504048}
+  - component: {fileID: 1460504047}
   - component: {fileID: 3036836907716680921}
   - component: {fileID: 3036836907716680918}
   - component: {fileID: 3036836907716680919}
   - component: {fileID: 3036836907716680922}
-  - component: {fileID: 1460504047}
-  - component: {fileID: 1460504048}
-  - component: {fileID: 1460504049}
   - component: {fileID: 1551641480}
   m_Layer: 0
   m_Name: EnemyAICube
@@ -149,10 +149,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ceac59e21520d4982f63610c0e0253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: {fileID: 1460504048}
   moveSpeed: 1
   rotationSpeed: 2.5
   attackRate: 1
   target: {fileID: 0}
+--- !u!114 &234121515830617334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036836907716680916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7e991ba4874a59925e5da3e11dbe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: 1460504048}
+  maxHitPoints: 5
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1460504047}
+        m_TargetAssemblyTypeName: _Project.Scripts.Events.SpawnObj, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3036836907716680916}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1460504048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036836907716680916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  onElementTypeChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1460504047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036836907716680916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d739f04acfe54879b2355901e189299c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5622412576094577305, guid: c008a7ec567885f4eb78c6ee8d416285, type: 3}
+  type: {fileID: 1460504048}
 --- !u!33 &3036836907716680921
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -231,63 +303,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 1
---- !u!114 &1460504047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036836907716680916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d739f04acfe54879b2355901e189299c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 5622412576094577305, guid: c008a7ec567885f4eb78c6ee8d416285, type: 3}
-  type: {fileID: 1460504048}
---- !u!114 &1460504048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036836907716680916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  onElementTypeChange:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1460504049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036836907716680916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b94c079c964718bf31b905fc4306f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDestroy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1460504047}
-        m_TargetAssemblyTypeName: _Project.Scripts.Events.SpawnObj, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!195 &1551641480
 NavMeshAgent:
   m_ObjectHideFlags: 0
