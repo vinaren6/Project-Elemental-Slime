@@ -44,6 +44,10 @@ namespace _Project.Scripts.Audio
         {
         }
 
+        public void UpdateVolume(AudioType audioType, float volume)
+        {
+        }
+
         #endregion
 
         #endregion

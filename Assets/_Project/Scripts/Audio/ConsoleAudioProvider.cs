@@ -53,6 +53,11 @@ namespace _Project.Scripts.Audio
             Debug.Log($"{nameof(StopAll)}");
         }
 
+        public void UpdateVolume(AudioType audioType, float volume)
+        {
+            Debug.Log($"{nameof(UpdateVolume)} - audioType: {audioType} - volume: {volume}");
+        }
+
         #endregion
 
         #endregion

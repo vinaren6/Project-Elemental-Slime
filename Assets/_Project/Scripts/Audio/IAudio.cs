@@ -13,5 +13,6 @@ namespace _Project.Scripts.Audio
         public void StopAllSFX();
         public void StopAllBGM();
         public void StopAll();
+        public void UpdateVolume(AudioType audioType, float volume);
     }
 }
