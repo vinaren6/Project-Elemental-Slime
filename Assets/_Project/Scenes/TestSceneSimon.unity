@@ -222,67 +222,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1899339814903428228, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_Name
-      value: PlayerCube
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428228, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899339814903428283, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107543010449282769, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107543011280489990, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
+    m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
 --- !u!1001 &1124928145
@@ -352,6 +292,22 @@ PrefabInstance:
     - target: {fileID: 5085988909929289465, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.y
       value: -13.524004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_RootOrder

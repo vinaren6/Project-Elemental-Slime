@@ -1,3 +1,4 @@
+using _Project.Scripts.HealthSystem;
 using UnityEngine;
 
 namespace _Project.Scripts.Enemies.AI
@@ -16,6 +17,9 @@ namespace _Project.Scripts.Enemies.AI
             if (Time.time > _nextAttack) {
                 _nextAttack = Time.time + _enemy.attackRate;
                 Debug.Log("KILL!KILL!KILL!");
+                if (_enemy.target.TryGetComponent(out IHealth health)) {
+                    health.ReceiveDamage(_enemy.type.Type, 1);
+                }
             }
         }
 

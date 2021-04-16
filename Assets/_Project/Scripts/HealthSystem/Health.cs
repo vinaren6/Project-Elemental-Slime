@@ -16,6 +16,8 @@ namespace _Project.Scripts.HealthSystem
 			set => maxHitPoints = value;
 		}
 
+		private void Start() => HitPoints = maxHitPoints;
+
 		public void ReceiveDamage(ElementalSystemTypes damageType, float damage)
 		{
 			HitPoints -= ElementalSystemMultiplier.GetMultiplier(type.Type, damageType) * damage;
