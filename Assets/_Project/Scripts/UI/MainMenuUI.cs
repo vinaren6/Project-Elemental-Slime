@@ -1,9 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MainMenuUI : MonoBehaviour
+namespace _Project.Scripts.UI
 {
+    public class MainMenuUI : MonoBehaviour
+    {
+        [SerializeField] private GameObject[] panels;
+        public void PlayButtonClick()
+        {
+            SceneManager.LoadScene("TestSceneLinus");
+        }
 
+        public void OptionsButtonClick()
+        {
+        
+        }
 
+        public void CreditsButtonClick()
+        {
+        
+        }
+
+        public void QuitButtonClick()
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else 
+        Application.Quit();
+#endif
+        }
+
+        public void Reset()
+        {
+            Debug.Log("You have reset yo ass");
+        }
+
+    }
 }
