@@ -10,7 +10,7 @@ namespace _Project.Scripts.ElementalSystem
 		private Renderer _renderer;
 		private Color    _targetColor;
 
-		private void Start() => _renderer = gameObject.GetComponent<Renderer>();
+		private void OnEnable() => _renderer ??= gameObject.GetComponent<Renderer>();
 
 		public void StartColorShift()
 		{

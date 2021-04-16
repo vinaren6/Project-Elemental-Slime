@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 721889729854220459}
   - component: {fileID: 721889729854220456}
   - component: {fileID: 4370608818521531772}
-  - component: {fileID: 1346920458396491193}
+  - component: {fileID: 3974152424159788338}
   - component: {fileID: 7398852164926300467}
+  - component: {fileID: 1346920458396491193}
   - component: {fileID: 721889729854220463}
   - component: {fileID: 721889729854220462}
   - component: {fileID: 721889729854220433}
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1b657c02b5634182a23337fdd97d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1346920458396491193
+--- !u!114 &3974152424159788338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,10 +219,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 721889729854220435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
+  m_Script: {fileID: 11500000, guid: bc2562236d884c6c9f59747f7f6c9834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 7398852164926300467}
+  controls: {fileID: -944628639613478452, guid: efac0ae74d78c534a872299e8194b7c0, type: 3}
+  elementType: {fileID: 7398852164926300467}
+  requiredElementsToChange: 0
 --- !u!114 &7398852164926300467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +254,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1346920458396491193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721889729854220435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: 7398852164926300467}
 --- !u!33 &721889729854220463
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -471,3 +487,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2811173150404562988, guid: 995ca6468a0183243ad5affb67628a9c, type: 3}
   poolSize: 20
   _projectileLifespan: 4
+  type: {fileID: 7398852164926300467}

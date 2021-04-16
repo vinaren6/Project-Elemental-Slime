@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2811173150404562983}
   - component: {fileID: 4692284987296041087}
+  - component: {fileID: -2345025737998840536}
+  - component: {fileID: -2506722683647174971}
   - component: {fileID: 2811173150404562976}
   - component: {fileID: 2811173150404562977}
   - component: {fileID: 2811173150404562978}
@@ -47,6 +49,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05225cea589e743b0559685769617c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2345025737998840536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2811173150404562988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  onElementTypeChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2506722683647174971}
+        m_TargetAssemblyTypeName: _Project.Scripts.ElementalSystem.ElementalSystemColorShift,
+          Assembly-CSharp
+        m_MethodName: StartColorShift
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-2506722683647174971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2811173150404562988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: -2345025737998840536}
 --- !u!33 &2811173150404562976
 MeshFilter:
   m_ObjectHideFlags: 0

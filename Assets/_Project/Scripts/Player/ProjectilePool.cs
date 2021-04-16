@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.ElementalSystem;
 using UnityEngine;
 
 namespace _Project.Scripts.Player
@@ -9,6 +10,8 @@ namespace _Project.Scripts.Player
 		[SerializeField] private       GameObject projectilePrefab;
 		[SerializeField] private       int        poolSize            = 10;
 		[SerializeField] private       float      _projectileLifespan = 4f;
+
+		[SerializeField] private ElementalSystemTypeCurrent type;
 
 		private Queue<GameObject> _projectilePool;
 
@@ -27,6 +30,7 @@ namespace _Project.Scripts.Player
 		{
 			GameObject projectile = _projectilePool.Dequeue();
 			projectile.SetActive(true);
+			projectile.GetComponent<ElementalSystemTypeCurrent>().Type = type.Type;
 			projectile.transform.SetParent(null);
 			StartCoroutine(ReturnProjectileToPool(projectile));
 			return projectile;
