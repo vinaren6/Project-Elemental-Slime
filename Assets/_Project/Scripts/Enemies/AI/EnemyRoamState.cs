@@ -22,12 +22,8 @@ namespace _Project.Scripts.Enemies.AI
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
-			_transform.position = Vector3.Lerp(
-				_transform.position, _roamTargetPosition, Time.deltaTime * _enemy.moveSpeed * _roamSpeedMultiplier);
-			_transform.rotation = Quaternion.Slerp(
-				_transform.rotation,
-				Quaternion.LookRotation((_nextRoamTargetPosition - _transform.position).normalized),
-				Time.deltaTime * _enemy.rotationSpeed);
+			_enemy.NavMeshAgent.SetDestination(_roamTargetPosition);
+			
 			if (Vector3.Distance(_transform.position, _nextRoamTargetPosition) < 1.25f) {
 				_nextRoamTargetPosition = GetNewRoamTargetPosition();
 			}
@@ -43,7 +39,7 @@ namespace _Project.Scripts.Enemies.AI
 		private Vector3 GetNewRoamTargetPosition()
 		{
 			Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-			return _transform.position + randomDirection * Random.Range(6f, 12f);
+			return _transform.position + randomDirection * Random.Range(5f, 5f);
 		}
 	}
 }
