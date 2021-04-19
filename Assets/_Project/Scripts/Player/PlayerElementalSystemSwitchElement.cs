@@ -7,6 +7,8 @@ namespace _Project.Scripts.Player
 {
 	public class PlayerElementalSystemSwitchElement : MonoBehaviour
 	{
+		public static ElementalSystemTypeCurrent StaticPlayerElementType;
+		
 		[SerializeField] private InputActionAsset           controls;
 		[SerializeField] private ElementalSystemTypeCurrent elementType;
 		[SerializeField] private int                        requiredElementsToChange;
@@ -18,6 +20,8 @@ namespace _Project.Scripts.Player
 
 		private void Awake()
 		{
+			StaticPlayerElementType = elementType;
+			
 			_inputActionMap = controls.FindActionMap("Element Controls");
 			
 			_inputActionMap.FindAction("Earth").performed += _ => Switch(0);
