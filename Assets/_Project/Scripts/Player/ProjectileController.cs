@@ -1,4 +1,5 @@
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Enemies.AI;
 using _Project.Scripts.HealthSystem;
 using UnityEngine;
 
@@ -16,7 +17,12 @@ namespace _Project.Scripts.Player
 
 		private void OnCollisionEnter(Collision other)
 		{
-			if (other.collider.TryGetComponent(out IHealth health)) health.ReceiveDamage(type.Type, 1);
+			if (other.collider.TryGetComponent(out IHealth health))
+				health.ReceiveDamage(type.Type, PlayerController.PlayerDamage);
+			
+			if (PlayerController.IsDealingDamageOverTime && other.collider.TryGetComponent(out Enemy enemy))
+				enemy.IsBurning = true;
+			
 			gameObject.SetActive(false);
 		}
 	}

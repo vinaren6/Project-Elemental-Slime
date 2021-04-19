@@ -1,5 +1,6 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.HealthSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,13 +22,16 @@ namespace _Project.Scripts.Enemies.AI
 		public  float        rotationSpeed = 2.5f;
 		public  float        attackRate    = 1f;
 		public  Transform    target;
-		private Rigidbody   _rb;
+		public  Health       health;
+		private Rigidbody    _rb;
 		private NavMeshAgent _navMeshAgent;
+		private bool         _isBurning;
 
 		private bool _hasDetectedPlayer;
 
-		public Rigidbody Rb => _rb;
+		public Rigidbody    Rb           => _rb;
 		public NavMeshAgent NavMeshAgent { get => _navMeshAgent; set => _navMeshAgent = value; }
+		public bool         IsBurning    { get => _isBurning;    set=> _isBurning = value; }
 
 		private void Awake()
 		{
@@ -38,7 +42,8 @@ namespace _Project.Scripts.Enemies.AI
 			AttackState  = new EnemyAttackState(this, StateMachine);
 			DeathState   = new EnemyDeathState(this, StateMachine);
 			StateMachine.Initialize(RoamState);
-			
+
+			health        = GetComponent<Health>();
 			_rb           = GetComponent<Rigidbody>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
 		}

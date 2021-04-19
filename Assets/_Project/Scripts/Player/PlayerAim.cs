@@ -4,16 +4,18 @@ namespace _Project.Scripts.Player
 {
     public class PlayerAim : MonoBehaviour
     {
-        private Plane _plane;
+        private Camera _camera;
+        private Plane  _plane;
 
         private void Start()
         {
-            _plane = new Plane(Vector3.up, Vector3.zero);
+            _camera = Camera.main;
+            _plane  = new Plane(Vector3.up, Vector3.zero);
         }
 
-        public void Aim(Vector2 direction, Camera cameraRef)
+        public void Aim(Vector2 direction)
         {
-            Ray ray = cameraRef.ScreenPointToRay(direction);
+            Ray ray = _camera.ScreenPointToRay(direction);
             
             if (_plane.Raycast(ray, out float enter)) {
                 Vector3 mousePosition = ray.GetPoint(enter);

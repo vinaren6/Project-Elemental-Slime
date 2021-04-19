@@ -702,6 +702,30 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: none
+      value: 
+      objectReference: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: wind
+      value: 
+      objectReference: {fileID: 11400000, guid: ca6412bbda80e784da885ed9572281b7, type: 2}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: earth
+      value: 
+      objectReference: {fileID: 11400000, guid: 55a38ce1a4a0a2a4abbe4abfb702223e, type: 2}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: elementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
     - target: {fileID: 9048047761997672704, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -750,7 +774,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5085988909929289465, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.524004
+      value: -13.524003
       objectReference: {fileID: 0}
     - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_ClearFlags
@@ -816,6 +840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5085988911851113655, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 4157430870171537901}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cded27a50e442504dbd493f05c92297e, type: 3}
 --- !u!4 &8440744388599372582 stripped

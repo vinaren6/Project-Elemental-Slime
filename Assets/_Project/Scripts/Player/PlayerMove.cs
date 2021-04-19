@@ -29,7 +29,7 @@ namespace _Project.Scripts.Player
 			Vector3 moveDirection = ((_forward * input.z) + (_right * input.x)).normalized;
 			_rb.velocity = moveDirection * speed;
 			
-			// VelocityMovement with smoothing
+			// VelocityMovement with smoothing:
 			// _rb.velocity = (moveDirection * (0.2f * speed)) + _rb.velocity * 0.8f;
 		}
 	}

@@ -160,9 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deba0300af4c1604f8bf3c4a3c71eab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
-  attackRate: 0.5
-  projectileSpeed: 0.06
+  baseSettings: {fileID: 11400000, guid: 15d1dd041fe3ffc419697669bbfc015c, type: 2}
+  currentElementalStats: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
+  earth: {fileID: 11400000, guid: 55a38ce1a4a0a2a4abbe4abfb702223e, type: 2}
+  wind: {fileID: 11400000, guid: ca6412bbda80e784da885ed9572281b7, type: 2}
+  water: {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
+  fire: {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
+  noElement: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
 --- !u!114 &963799656015739262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +279,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: _Project.Scripts.ElementalSystem.ElementalSystemColorShift,
           Assembly-CSharp
         m_MethodName: StartColorShift
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 721889729854220461}
+        m_TargetAssemblyTypeName: _Project.Scripts.Player.PlayerController, Assembly-CSharp
+        m_MethodName: SwitchElementalStats
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -517,6 +533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2811173150404562988, guid: 995ca6468a0183243ad5affb67628a9c, type: 3}
-  poolSize: 20
-  _projectileLifespan: 4
+  poolSize: 50
+  _projectileLifespan: 3
   type: {fileID: 7398852164926300467}
