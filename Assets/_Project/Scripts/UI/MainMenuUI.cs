@@ -11,7 +11,6 @@ namespace _Project.Scripts.UI
 
         private void Awake()
         {
-            HideAllPanels();
             ShowPanel(MainMenuPanelType.TitleScreen);
         }
 
@@ -22,19 +21,16 @@ namespace _Project.Scripts.UI
 
         public void OptionsButtonClick()
         {
-            HideAllPanels();
             ShowPanel(MainMenuPanelType.Options);
         }
 
         public void CreditsButtonClick()
         {
-            HideAllPanels();
             ShowPanel(MainMenuPanelType.Credits);
         }
 
         public void BackToTitleClick()
         {
-            HideAllPanels();
             ShowPanel(MainMenuPanelType.TitleScreen);
         }
 
@@ -57,6 +53,7 @@ namespace _Project.Scripts.UI
 
         private void ShowPanel(MainMenuPanelType panelType)
         {
+            HideAllPanels();
             panels[(int) panelType].SetActive(true);
         }
     }
