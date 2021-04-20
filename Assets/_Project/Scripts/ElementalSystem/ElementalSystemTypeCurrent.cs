@@ -15,5 +15,7 @@ namespace _Project.Scripts.ElementalSystem
 				onElementTypeChange.Invoke();
 			}
 		}
+
+		public virtual void Destroy() => Destroy(gameObject);
 	}
 }
