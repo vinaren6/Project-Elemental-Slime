@@ -62,6 +62,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  respawn: 1
 --- !u!135 &5898216415040051051
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 0}
+  type: {fileID: 3433543592135790845}
   fadeSpeed: 0.5
   startColorShiftOnStart: 1
 --- !u!212 &8144017841797603759
