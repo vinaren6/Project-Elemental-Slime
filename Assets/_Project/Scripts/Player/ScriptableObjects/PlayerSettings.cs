@@ -13,5 +13,6 @@ namespace _Project.Scripts.Player.ScriptableObjects
 		public float projectileSpeed          = 0.06f;
 		public float damageOverTimeRate       = 0.5f;
 		public float damageOverTimeMultiplier = 0.2f;
+		public float specialAttackRate        = 3f;
 	}
 }

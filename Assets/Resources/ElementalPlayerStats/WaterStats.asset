@@ -17,3 +17,4 @@ MonoBehaviour:
   attackStrengthMultiplier: 0.2
   attackRateMultiplier: 5
   isDealingDamageOverTime: 0
+  specialAttack: {fileID: 6145588839501400648, guid: 38a47d16a0041754586a79e360c5a968, type: 3}

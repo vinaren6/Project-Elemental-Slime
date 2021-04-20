@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721889729854220460}
+  - component: {fileID: 9048047761997672704}
   - component: {fileID: 721889729854220458}
   - component: {fileID: 721889729854220461}
   - component: {fileID: 963799656015739262}
   - component: {fileID: 721889729854220459}
   - component: {fileID: 721889729854220456}
   - component: {fileID: 4370608818521531772}
-  - component: {fileID: 9048047761997672704}
+  - component: {fileID: 1998431243025321950}
   - component: {fileID: 3974152424159788338}
   - component: {fileID: 7398852164926300467}
   - component: {fileID: 1346920458396491193}
@@ -46,6 +47,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9048047761997672704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721889729854220435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7e991ba4874a59925e5da3e11dbe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: 7398852164926300467}
+  maxHitPoints: 20
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 721889729854220435}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &721889729854220458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,11 +192,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 15d1dd041fe3ffc419697669bbfc015c, type: 2}
   currentElementalStats: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
-  earth: {fileID: 11400000, guid: 55a38ce1a4a0a2a4abbe4abfb702223e, type: 2}
-  wind: {fileID: 11400000, guid: ca6412bbda80e784da885ed9572281b7, type: 2}
-  water: {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
-  fire: {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
-  noElement: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
+  earthStats: {fileID: 11400000, guid: 55a38ce1a4a0a2a4abbe4abfb702223e, type: 2}
+  windStats: {fileID: 11400000, guid: ca6412bbda80e784da885ed9572281b7, type: 2}
+  waterStats: {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
+  fireStats: {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
+  baseStats: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
 --- !u!114 &963799656015739262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1b657c02b5634182a23337fdd97d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9048047761997672704
+--- !u!114 &1998431243025321950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,26 +254,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 721889729854220435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7e991ba4874a59925e5da3e11dbe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 29494b5ce4cc4f679e8a0f118bbf2477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 7398852164926300467}
-  maxHitPoints: 20
-  onDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 721889729854220435}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3974152424159788338
 MonoBehaviour:
   m_ObjectHideFlags: 0
