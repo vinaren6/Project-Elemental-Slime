@@ -10,14 +10,9 @@ namespace _Project.Scripts.Player
 		[Header("ACTIVE SETTINGS/STATS:")]
 		[SerializeField] private PlayerSettings             baseSettings;
 		[SerializeField] private ElementalPlayerStats       currentElementalStats;
-
-		[Header("ELEMENTAL STATS:")]
-		[SerializeField] private ElementalPlayerStats earthStats;
-		[SerializeField] private ElementalPlayerStats windStats;
-		[SerializeField] private ElementalPlayerStats waterStats;
-		[SerializeField] private ElementalPlayerStats fireStats;
-		[SerializeField] private ElementalPlayerStats baseStats;
 		
+		[SerializeField] private ElementalPlayerStats[] elementalStats = new ElementalPlayerStats[5];
+
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
 		private PlayerMove                 _move;
@@ -38,15 +33,10 @@ namespace _Project.Scripts.Player
 
 		private void Awake()
 		{
-			_input         = GetComponent<PlayerInput>();
-			_aim           = GetComponent<PlayerAim>();
-			_move          = GetComponent<PlayerMove>();
-			_shoot         = GetComponent<PlayerShoot>();
-			_specialAttack = GetComponent<PlayerSpecialAttack>();
-			_elementType   = GetComponent<ElementalSystemTypeCurrent>();
-			SetPlayerStats();
+			GetComponentReferences();
+			SetStartingPlayerStats();
 		}
-		
+
 		private void Update()
 		{
 			_aim.Aim(_input.AimDirection);
@@ -54,7 +44,7 @@ namespace _Project.Scripts.Player
 			if (_input.FireInput)
 				_shoot.Fire(_attackRate, _projectileSpeed);
 			
-			if (_input.SpecialInput && currentElementalStats != baseStats) 
+			if (_input.SpecialInput && currentElementalStats != elementalStats[4]) 
 				_specialAttack.Activate(currentElementalStats.specialAttack, _projectileSpeed, _specialAttackRate, _elementType);
 		}
 
@@ -66,27 +56,42 @@ namespace _Project.Scripts.Player
 		public void SwitchElementalStats()
 		{
 			currentElementalStats = _elementType.Type switch {
-				ElementalSystemTypes.Earth => earthStats,
-				ElementalSystemTypes.Wind  => windStats,
-				ElementalSystemTypes.Water => waterStats,
-				ElementalSystemTypes.Fire  => fireStats,
-				ElementalSystemTypes.Base  => baseStats,
+				ElementalSystemTypes.Earth => elementalStats[0],
+				ElementalSystemTypes.Wind  => elementalStats[1],
+				ElementalSystemTypes.Water => elementalStats[2],
+				ElementalSystemTypes.Fire  => elementalStats[3],
+				ElementalSystemTypes.Base  => elementalStats[4],
 				_                          => throw new ArgumentOutOfRangeException()
 			};
-			SetPlayerStats();
+			SetElementBasedPlayerStats();
 		}
 		
-		private void SetPlayerStats()
+		private void GetComponentReferences()
 		{
-			EnemyDamage              = baseSettings.damageReceived * currentElementalStats.damageReceivedMultiplier;
-			PlayerDamage             = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
+			_input         = GetComponent<PlayerInput>();
+			_aim           = GetComponent<PlayerAim>();
+			_move          = GetComponent<PlayerMove>();
+			_shoot         = GetComponent<PlayerShoot>();
+			_specialAttack = GetComponent<PlayerSpecialAttack>();
+			_elementType   = GetComponent<ElementalSystemTypeCurrent>();
+		}
+		
+		private void SetStartingPlayerStats()
+		{
 			DamageOverTimeRate       = baseSettings.damageOverTimeRate;
 			DamageOverTimeMultiplier = baseSettings.damageOverTimeMultiplier;
-			_moveSpeed               = baseSettings.moveSpeed  * currentElementalStats.moveSpeedMultiplier;
-			_attackRate              = baseSettings.attackRate / currentElementalStats.attackRateMultiplier;
 			_projectileSpeed         = baseSettings.projectileSpeed;
 			_specialAttackRate       = baseSettings.specialAttackRate;
-			IsDealingDamageOverTime  = currentElementalStats.isDealingDamageOverTime;
+			SetElementBasedPlayerStats();
+		}
+		
+		private void SetElementBasedPlayerStats()
+		{
+			EnemyDamage             = baseSettings.damageReceived * currentElementalStats.damageReceivedMultiplier;
+			PlayerDamage            = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
+			_moveSpeed              = baseSettings.moveSpeed      * currentElementalStats.moveSpeedMultiplier;
+			_attackRate             = baseSettings.attackRate     / currentElementalStats.attackRateMultiplier;
+			IsDealingDamageOverTime = currentElementalStats.isDealingDamageOverTime;
 		}
 	}
 }

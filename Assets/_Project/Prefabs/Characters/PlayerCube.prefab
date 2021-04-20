@@ -192,11 +192,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 15d1dd041fe3ffc419697669bbfc015c, type: 2}
   currentElementalStats: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
-  earthStats: {fileID: 11400000, guid: 55a38ce1a4a0a2a4abbe4abfb702223e, type: 2}
-  windStats: {fileID: 11400000, guid: ca6412bbda80e784da885ed9572281b7, type: 2}
-  waterStats: {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
-  fireStats: {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
-  baseStats: {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
+  elementalStats:
+  - {fileID: 11400000, guid: 55a38ce1a4a0a2a4abbe4abfb702223e, type: 2}
+  - {fileID: 11400000, guid: ca6412bbda80e784da885ed9572281b7, type: 2}
+  - {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
+  - {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
+  - {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
 --- !u!114 &963799656015739262
 MonoBehaviour:
   m_ObjectHideFlags: 0
