@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/PauseMenu2E.unity
     guid: f260a168e6e43474a995635635256d6e
+  - enabled: 1
+    path: Assets/_Project/Scenes/TestScene2E.unity
+    guid: 4e39ecd664d0cb648b309549e0d20f53
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 728a62bdc2745c64ab4d15759628eeae, type: 2}
