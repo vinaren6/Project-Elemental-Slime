@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Audio;
+using _Project.Scripts.UI;
 using UnityEngine;
 
 namespace _Project.Scripts.Managers
@@ -9,11 +10,13 @@ namespace _Project.Scripts.Managers
         
         private static GameManager _game;
         private static IAudio _audio;
+        private static IHUD _hud;
 
         #region Properties
 
         public static GameManager Game => _game;
         public static IAudio Audio => _audio;
+        public static IHUD HUD => _hud;
         
         #endregion
 
@@ -26,6 +29,7 @@ namespace _Project.Scripts.Managers
         {
             _game = new GameManager();
             _audio = new NullAudioProvider();
+            _hud = new NullHUD();
         }
 
         #endregion
@@ -40,6 +44,14 @@ namespace _Project.Scripts.Managers
                 _audio = new NullAudioProvider();
 
             _audio = audioService;
+        }
+
+        public static void ProvideHUD(IHUD hud)
+        {
+            if (hud == null)
+                _hud = new NullHUD();
+            
+            _hud = hud;
         }
 
         #endregion

@@ -1,4 +1,5 @@
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Managers;
 using UnityEngine;
 
 namespace _Project.Scripts.Player
@@ -15,6 +16,7 @@ namespace _Project.Scripts.Player
 			projectile.GetComponent<ElementalSystemTypeCurrent>().Type = type.Type;
 			projectile.GetComponent<Rigidbody>().AddForce(transform.forward * (projectileSpeed * 1.2f));
 			_nextSpecialAttack = Time.time + specialAttackRate;
+			ServiceLocator.HUD.SpecialAttack?.StartCooldown(specialAttackRate);
 		}
 	}
 }

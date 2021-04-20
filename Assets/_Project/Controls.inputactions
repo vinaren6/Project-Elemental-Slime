@@ -891,6 +891,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "DEBUG",
+            "id": "58a0dbca-1f8b-493f-8d86-c2fc9044f474",
+            "actions": [
+                {
+                    "name": "K",
+                    "type": "Button",
+                    "id": "f0589feb-cfbc-4ac5-bc76-2592714966c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7cda9cc9-1763-4315-a6b9-c92e9694b249",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "K",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

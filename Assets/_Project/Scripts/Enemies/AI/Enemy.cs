@@ -1,6 +1,8 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.UI;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,18 +19,20 @@ namespace _Project.Scripts.Enemies.AI
 		public EnemyDeathState  DeathState  { get; private set; }
 
 		public ElementalSystemTypeCurrent type;
-		
+
 		public  float        moveSpeed     = 1f;
 		public  float        rotationSpeed = 2.5f;
 		public  float        attackRate    = 1f;
 		public  Transform    target;
 		public  Health       health;
+		private EnemyUI		 _ui;
 		private Rigidbody    _rb;
 		private NavMeshAgent _navMeshAgent;
 		private bool         _isBurning;
 
 		private bool _hasDetectedPlayer;
 
+		public EnemyUI		UI			 => _ui;
 		public Rigidbody    Rb           => _rb;
 		public NavMeshAgent NavMeshAgent { get => _navMeshAgent; set => _navMeshAgent = value; }
 		public bool         IsBurning    { get => _isBurning;    set=> _isBurning = value; }
@@ -46,6 +50,7 @@ namespace _Project.Scripts.Enemies.AI
 			health        = GetComponent<Health>();
 			_rb           = GetComponent<Rigidbody>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
+			_ui			  = GetComponentInChildren<EnemyUI>();
 		}
 
 		private void Start()

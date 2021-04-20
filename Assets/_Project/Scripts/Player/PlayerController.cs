@@ -1,5 +1,6 @@
 using System;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Managers;
 using _Project.Scripts.Player.ScriptableObjects;
 using UnityEngine;
 
@@ -64,6 +65,7 @@ namespace _Project.Scripts.Player
 				_                          => throw new ArgumentOutOfRangeException()
 			};
 			SetElementBasedPlayerStats();
+			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
 		}
 		
 		private void GetComponentReferences()

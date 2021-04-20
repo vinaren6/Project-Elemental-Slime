@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,6 +45,7 @@ namespace _Project.Scripts.Player
 				_pickups[typeId] = requiredElementsToChange;
 			else if (_pickups[typeId] < requiredElementsToChange)
 				_pickups[typeId]++;
+			ServiceLocator.HUD.UpdateElementBar(comp.Type, Random.Range(0f, 1f));
 			comp.Destroy();
 		}
 

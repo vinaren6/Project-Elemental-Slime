@@ -272,6 +272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
+  visibilityTime: 1
+  fadeOutTime: 0.5
 --- !u!1 &9098966068875608086
 GameObject:
   m_ObjectHideFlags: 0
