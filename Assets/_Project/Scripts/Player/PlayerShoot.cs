@@ -14,11 +14,10 @@ namespace _Project.Scripts.Player
 
         public void Fire(float attackRate, float projectileSpeed)
         {
-            if (!(Time.time > _nextAttack)) return;
-            
+            if (!(Time.time > _nextAttack))
+                return;
             GameObject projectile = _projectilePool.SpawnFromPool();
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
-
             _nextAttack = Time.time + attackRate;
         }
     }

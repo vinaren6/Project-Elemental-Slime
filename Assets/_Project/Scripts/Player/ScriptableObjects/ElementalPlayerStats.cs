@@ -7,9 +7,11 @@ namespace _Project.Scripts.Player.ScriptableObjects
 	{
 		[Header("ELEMENTAL MODIFIERS:")]
 		public float moveSpeedMultiplier      = 1f;
-		public float damageReceivedMultiplier = 1f;
-		public float attackStrengthMultiplier = 1f;
-		public float attackRateMultiplier     = 1f;
-		public bool  isDealingDamageOverTime  = false;
+		public float      damageReceivedMultiplier = 1f;
+		public float      attackStrengthMultiplier = 1f;
+		public float      attackRateMultiplier     = 1f;
+		public bool       isDealingDamageOverTime  = false;
+		
+		public GameObject specialAttack;
 	}
 }
