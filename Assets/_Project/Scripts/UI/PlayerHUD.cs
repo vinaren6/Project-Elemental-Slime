@@ -12,8 +12,11 @@ namespace _Project.Scripts.UI
         [SerializeField] private ElementBarUI[] _elementBars;
 
         public HealthUI Healthbar => _healthbar;
+        
         public void UpdateElementBar(ElementalSystemTypes type, float percent)
         {
+            if (type == ElementalSystemTypes.Base)
+                return;
             _elementBars[(int)type].UpdateUI(percent);
         }
 

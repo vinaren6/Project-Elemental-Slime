@@ -20,7 +20,7 @@ namespace _Project.Scripts.Player
 		private PlayerShoot                _shoot;
 		private PlayerSpecialAttack        _specialAttack;
 		private ElementalSystemTypeCurrent _elementType;
-		
+
 		public static float EnemyDamage;
 		public static float PlayerDamage;
 		public static float PlayerDamageOverTime;
@@ -95,5 +95,7 @@ namespace _Project.Scripts.Player
 			_attackRate             = baseSettings.attackRate     / currentElementalStats.attackRateMultiplier;
 			IsDealingDamageOverTime = currentElementalStats.isDealingDamageOverTime;
 		}
+
+		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
 	}
 }

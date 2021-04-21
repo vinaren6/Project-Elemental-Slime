@@ -1,3 +1,5 @@
+using System;
+using _Project.Scripts.HealthSystem;
 using TMPro;
 using UnityEngine;
 
@@ -11,19 +13,28 @@ namespace _Project.Scripts.UI
         private Transform _transform;
         private Animator _animator;
         
-
         private void Awake()
         {
-            _transform = transform;
-            _animator = GetComponent<Animator>();
+            Health.onAnyReceiveDamage += ShowDamage;
+            _transform                =  transform;
+            _animator                 =  GetComponent<Animator>();
         }
-        
-        public void ShowDamage(Vector3 position, int damage, EffectiveType type)
+
+        private void ShowDamage(Vector3 position, int damage, float elementalMultiplier)
         {
+            numberText.text    = damage.ToString();
             _transform.position = position;
-            numberText.color = colors[(int) type];
-            numberText.text = damage.ToString();
+            numberText.color   = GetEffectiveColor(elementalMultiplier);
             _animator.SetTrigger("Execute");
+        }
+
+        private Color GetEffectiveColor(float elementalMultiplier)
+        {
+            if (elementalMultiplier < 1)
+                return colors[(int) EffectiveType.Weakness];
+            if (elementalMultiplier > 1)
+                return colors[(int) EffectiveType.Effective];
+            return colors[(int) EffectiveType.Neutral];
         }
 
         public void AnimationEnd()

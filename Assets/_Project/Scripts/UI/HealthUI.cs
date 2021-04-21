@@ -1,3 +1,5 @@
+using System;
+using _Project.Scripts.HealthSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +9,8 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private Image fillImage;
 
-        public void UpdateHealthBar(float percent)
-        {
-            fillImage.fillAmount = percent;
-        }
+        private void Awake() => fillImage.fillAmount      =  1f;
+
+        public void UpdateHealthBar(float percent) => fillImage.fillAmount = percent;
     }
 }

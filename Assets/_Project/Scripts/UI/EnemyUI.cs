@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Scripts.HealthSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,22 +12,26 @@ namespace _Project.Scripts.UI
         [SerializeField][Range(0.5f, 3f)] private float fadeOutTime;
 
         private Image[] _images;
-
+        private HealthUI _healthUI;
+        
         private void Awake()
         {
             GetComponentInChildren<Canvas>().worldCamera = Camera.main;
-            _images = GetComponentsInChildren<Image>();
+            _images                                      = GetComponentsInChildren<Image>();
+            _healthUI                                    = GetComponentInChildren<HealthUI>();
             
             SetImagesAlpha(0f);
         }
+
         private void LateUpdate()
         {
             transform.eulerAngles = new Vector3(0, 180 - targetTransform.rotation.y, 0);
         }
 
         [ContextMenu("ShowHealthBar")]
-        public void ShowHealthBar()
+        public void ShowHealthBar(float remainingPercent)
         {
+            _healthUI.UpdateHealthBar(remainingPercent);
             StartCoroutine(UpdateHealthBarRoutine());
         }
 

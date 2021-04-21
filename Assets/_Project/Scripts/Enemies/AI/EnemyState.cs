@@ -26,7 +26,8 @@ namespace _Project.Scripts.Enemies.AI
 		{
 			if (!_enemy.IsBurning) {
 				return;
-			} else if (_nextDamageOverTime == 0) {
+			}
+			if (_nextDamageOverTime == 0) {
 				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeRate;
 			}
 			

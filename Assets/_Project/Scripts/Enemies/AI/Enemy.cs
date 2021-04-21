@@ -58,9 +58,9 @@ namespace _Project.Scripts.Enemies.AI
 			target       = GameObject.FindWithTag("Player").transform;
 		}
 
-		private void Update() { StateMachine.CurrentState.LogicUpdate(); }
+		private void Update() => StateMachine.CurrentState.LogicUpdate();
 
-		private void FixedUpdate() { StateMachine.CurrentState.PhysicsUpdate(); }
+		private void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 
 		public void CheckForPlayerDetection()
 		{
@@ -93,12 +93,14 @@ namespace _Project.Scripts.Enemies.AI
 
 		private void OnCollisionEnter(Collision other)
 		{
-			if (other.collider.CompareTag("Player")) { StateMachine.ChangeState(AttackState); }
+			if (other.collider.CompareTag("Player"))
+				StateMachine.ChangeState(AttackState);
 		}
 
 		private void OnCollisionExit(Collision other)
 		{
-			if (other.collider.CompareTag("Player")) { StateMachine.ChangeState(HuntState); }
+			if (other.collider.CompareTag("Player"))
+				StateMachine.ChangeState(HuntState);
 		}
 	}
 }

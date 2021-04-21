@@ -8,16 +8,14 @@ namespace _Project.Scripts.ElementalSystem
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private float                      fadeSpeed = .5f;
 		[SerializeField] private bool                       startColorShiftOnStart;
-
-		private Renderer _renderer;
-		private Color    _targetColor;
+		[SerializeField] private Renderer                   meshRenderer;
+		
+		private                  Color                      _targetColor;
 
 		private void Start()
 		{
 			if (startColorShiftOnStart) StartColorShift();
 		}
-
-		private void OnEnable() => _renderer ??= gameObject.GetComponent<Renderer>();
 
 		public void StartColorShift()
 		{
@@ -25,17 +23,17 @@ namespace _Project.Scripts.ElementalSystem
 			StartCoroutine(UpdateColor());
 		}
 
-		public void SetColor() => _renderer.material.color =
+		public void SetColor() => meshRenderer.material.color =
 			_targetColor = ElementalSystemColors.GetColorFromElementalSystemTypes(type.Type);
 
-		public void ResetColor() => _renderer.material.color =
+		public void ResetColor() => meshRenderer.material.color =
 			_targetColor = Color.white;
 
 		private IEnumerator UpdateColor()
 		{
-			while (_renderer.material.color != _targetColor) {
-				_renderer.material.color = Color.Lerp(
-					_renderer.material.color, _targetColor, Time.deltaTime * fadeSpeed);
+			while (meshRenderer.material.color != _targetColor) {
+				meshRenderer.material.color = Color.Lerp(
+					meshRenderer.material.color, _targetColor, Time.deltaTime * fadeSpeed);
 				yield return null;
 			}
 		}
