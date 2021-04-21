@@ -45,7 +45,7 @@ namespace _Project.Scripts.Player
 				_pickups[typeId] = requiredElementsToChange;
 			else if (_pickups[typeId] < requiredElementsToChange)
 				_pickups[typeId]++;
-			ServiceLocator.HUD.UpdateElementBar(comp.Type, Random.Range(0f, 1f));
+			ServiceLocator.HUD.UpdateElementBar(comp.Type, (float) _pickups[typeId] / requiredElementsToChange);
 			comp.Destroy();
 		}
 

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 6145588839501400647}
-  specialAttackMultiplier: 5
+  specialAttackMultiplier: 2
 --- !u!114 &6145588839501400647
 MonoBehaviour:
   m_ObjectHideFlags: 0

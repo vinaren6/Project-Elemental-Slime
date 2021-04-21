@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 1460504048}
-  maxHitPoints: 10
+  maxHitPoints: 150
   onDeath:
     m_PersistentCalls:
       m_Calls:

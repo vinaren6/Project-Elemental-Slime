@@ -1,3 +1,4 @@
+using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Player;
 using UnityEngine;
@@ -23,9 +24,14 @@ namespace _Project.Scripts.Enemies.AI
 
 		public virtual void LogicUpdate()
 		{
-			if (!_enemy.IsBurning) return;
+			if (!_enemy.IsBurning) {
+				return;
+			} else if (_nextDamageOverTime == 0) {
+				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeRate;
+			}
+			
 			if (Time.time > _nextDamageOverTime) {
-				_enemy.health.ReceiveDamage(_enemy.type.Type, PlayerController.EnemyDamage * PlayerController.DamageOverTimeMultiplier);
+				_enemy.health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
 				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeRate;
 			}
 		}

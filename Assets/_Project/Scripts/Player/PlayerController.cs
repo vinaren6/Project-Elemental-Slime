@@ -23,8 +23,8 @@ namespace _Project.Scripts.Player
 		
 		public static float EnemyDamage;
 		public static float PlayerDamage;
+		public static float PlayerDamageOverTime;
 		public static float DamageOverTimeRate;
-		public static float DamageOverTimeMultiplier;
 		public static bool  IsDealingDamageOverTime;
 
 		private float _moveSpeed;
@@ -62,7 +62,7 @@ namespace _Project.Scripts.Player
 				ElementalSystemTypes.Water => elementalStats[2],
 				ElementalSystemTypes.Fire  => elementalStats[3],
 				ElementalSystemTypes.Base  => elementalStats[4],
-				_                          => throw new ArgumentOutOfRangeException()
+				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};
 			SetElementBasedPlayerStats();
 			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
@@ -80,10 +80,10 @@ namespace _Project.Scripts.Player
 		
 		private void SetStartingPlayerStats()
 		{
-			DamageOverTimeRate       = baseSettings.damageOverTimeRate;
-			DamageOverTimeMultiplier = baseSettings.damageOverTimeMultiplier;
-			_projectileSpeed         = baseSettings.projectileSpeed;
-			_specialAttackRate       = baseSettings.specialAttackRate;
+			DamageOverTimeRate   = baseSettings.damageOverTimeRate;
+			PlayerDamageOverTime = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
+			_projectileSpeed     = baseSettings.projectileSpeed;
+			_specialAttackRate   = baseSettings.specialAttackRate;
 			SetElementBasedPlayerStats();
 		}
 		
