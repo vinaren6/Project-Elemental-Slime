@@ -16,7 +16,7 @@ MonoBehaviour:
   damageReceived: 6
   attackStrength: 10
   attackRate: 0.5
-  projectileSpeed: 0.06
+  projectileSpeed: 0.07
   damageOverTimeRate: 1
   damageOverTimeMultiplier: 0.2
   specialAttackRate: 3

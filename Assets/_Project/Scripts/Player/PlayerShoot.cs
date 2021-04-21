@@ -12,13 +12,13 @@ namespace _Project.Scripts.Player
             _projectilePool = GetComponentInChildren<ProjectilePool>();
         }
 
-        public void Fire(float attackRate, float projectileSpeed)
+        public void Fire(float attackCooldownTime, float projectileSpeed)
         {
             if (!(Time.time > _nextAttack))
                 return;
             GameObject projectile = _projectilePool.SpawnFromPool();
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
-            _nextAttack = Time.time + attackRate;
+            _nextAttack = Time.time + attackCooldownTime;
         }
     }
 }

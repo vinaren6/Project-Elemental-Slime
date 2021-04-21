@@ -20,17 +20,18 @@ namespace _Project.Scripts.Player
 		private PlayerShoot                _shoot;
 		private PlayerSpecialAttack        _specialAttack;
 		private ElementalSystemTypeCurrent _elementType;
+		// private PlayerNavMove              _navMove;
 
 		public static float EnemyDamage;
 		public static float PlayerDamage;
 		public static float PlayerDamageOverTime;
-		public static float DamageOverTimeRate;
+		public static float DamageOverTimeCooldownTime;
 		public static bool  IsDealingDamageOverTime;
 
 		private float _moveSpeed;
-		private float _attackRate;
+		private float _attackCooldownTime;
 		private float _projectileSpeed;
-		private float _specialAttackRate;
+		private float _specialAttackCooldownTime;
 
 		private void Awake()
 		{
@@ -40,13 +41,15 @@ namespace _Project.Scripts.Player
 
 		private void Update()
 		{
+			//_navMove.Move(_input.MoveDirection, _moveSpeed);
+			
 			_aim.Aim(_input.AimDirection);
 			
 			if (_input.FireInput)
-				_shoot.Fire(_attackRate, _projectileSpeed);
+				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
 			
 			if (_input.SpecialInput && currentElementalStats != elementalStats[4]) 
-				_specialAttack.Activate(currentElementalStats.specialAttack, _projectileSpeed, _specialAttackRate, _elementType);
+				_specialAttack.Activate(currentElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
 		}
 
 		private void FixedUpdate()
@@ -76,14 +79,15 @@ namespace _Project.Scripts.Player
 			_shoot         = GetComponent<PlayerShoot>();
 			_specialAttack = GetComponent<PlayerSpecialAttack>();
 			_elementType   = GetComponent<ElementalSystemTypeCurrent>();
+			// _navMove       = GetComponent<PlayerNavMove>();
 		}
 		
 		private void SetStartingPlayerStats()
 		{
-			DamageOverTimeRate   = baseSettings.damageOverTimeRate;
+			DamageOverTimeCooldownTime   = baseSettings.damageOverTimeCooldownTime;
 			PlayerDamageOverTime = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
 			_projectileSpeed     = baseSettings.projectileSpeed;
-			_specialAttackRate   = baseSettings.specialAttackRate;
+			_specialAttackCooldownTime   = baseSettings.specialAttackCooldownTime;
 			SetElementBasedPlayerStats();
 		}
 		
@@ -92,7 +96,7 @@ namespace _Project.Scripts.Player
 			EnemyDamage             = baseSettings.damageReceived * currentElementalStats.damageReceivedMultiplier;
 			PlayerDamage            = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
 			_moveSpeed              = baseSettings.moveSpeed      * currentElementalStats.moveSpeedMultiplier;
-			_attackRate             = baseSettings.attackRate     / currentElementalStats.attackRateMultiplier;
+			_attackCooldownTime             = baseSettings.attackCooldownTime     / currentElementalStats.attackRateMultiplier;
 			IsDealingDamageOverTime = currentElementalStats.isDealingDamageOverTime;
 		}
 

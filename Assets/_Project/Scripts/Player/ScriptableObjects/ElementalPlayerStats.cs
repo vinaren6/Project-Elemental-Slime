@@ -6,7 +6,7 @@ namespace _Project.Scripts.Player.ScriptableObjects
 	public class ElementalPlayerStats : ScriptableObject
 	{
 		[Header("ELEMENTAL MODIFIERS:")]
-		public float moveSpeedMultiplier      = 1f;
+		public float      moveSpeedMultiplier      = 1f;
 		public float      damageReceivedMultiplier = 1f;
 		public float      attackStrengthMultiplier = 1f;
 		public float      attackRateMultiplier     = 1f;

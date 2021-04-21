@@ -28,12 +28,12 @@ namespace _Project.Scripts.Enemies.AI
 				return;
 			}
 			if (_nextDamageOverTime == 0) {
-				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeRate;
+				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
 			}
 			
 			if (Time.time > _nextDamageOverTime) {
 				_enemy.health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
-				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeRate;
+				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
 			}
 		}
 
