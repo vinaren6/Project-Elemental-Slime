@@ -1,5 +1,6 @@
 using System;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Managers;
 using TMPro;
 using UnityEngine;
 
@@ -15,19 +16,23 @@ namespace _Project.Scripts.UI
         
         private void Awake()
         {
-            Health.onAnyReceiveDamage += ShowDamage;
             _transform                =  transform;
             _animator                 =  GetComponent<Animator>();
         }
 
-        private void ShowDamage(Vector3 position, int damage, float elementalMultiplier)
+        public void ShowDamage(Vector3 position, int damage, float elementalMultiplier)
         {
             numberText.text    = damage.ToString();
             _transform.position = position;
             numberText.color   = GetEffectiveColor(elementalMultiplier);
             _animator.SetTrigger("Execute");
         }
-
+        
+        public void AnimationEnd()
+        {
+            ServiceLocator.DamageNumbers.ReturnNumberToPool(gameObject);
+        }
+        
         private Color GetEffectiveColor(float elementalMultiplier)
         {
             if (elementalMultiplier < 1)
@@ -35,11 +40,6 @@ namespace _Project.Scripts.UI
             if (elementalMultiplier > 1)
                 return colors[(int) EffectiveType.Effective];
             return colors[(int) EffectiveType.Neutral];
-        }
-
-        public void AnimationEnd()
-        {
-            
         }
     }
 }

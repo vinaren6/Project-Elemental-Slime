@@ -62,6 +62,7 @@ MonoBehaviour:
   type: {fileID: 5622412576094577301}
   fadeSpeed: 0.5
   startColorShiftOnStart: 0
+  meshRenderer: {fileID: 1221062719986085116}
 --- !u!212 &1221062719986085116
 SpriteRenderer:
   m_ObjectHideFlags: 0

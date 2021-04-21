@@ -11,15 +11,16 @@ namespace _Project.Scripts.UI
         [SerializeField][Range(1f,5f)] private float visibilityTime;
         [SerializeField][Range(0.5f, 3f)] private float fadeOutTime;
 
-        private Image[] _images;
-        private HealthUI _healthUI;
+        private Image[]     _images;
+        private HealthUI    _healthUI;
+        private Coroutine _updateCoroutine;
         
         private void Awake()
         {
             GetComponentInChildren<Canvas>().worldCamera = Camera.main;
             _images                                      = GetComponentsInChildren<Image>();
             _healthUI                                    = GetComponentInChildren<HealthUI>();
-            
+
             SetImagesAlpha(0f);
         }
 
@@ -32,7 +33,12 @@ namespace _Project.Scripts.UI
         public void ShowHealthBar(float remainingPercent)
         {
             _healthUI.UpdateHealthBar(remainingPercent);
-            StartCoroutine(UpdateHealthBarRoutine());
+            
+            if (_updateCoroutine != null) {
+                StopCoroutine(_updateCoroutine);
+                _updateCoroutine = null;
+            }
+            _updateCoroutine = StartCoroutine(UpdateHealthBarRoutine());
         }
 
         private IEnumerator UpdateHealthBarRoutine()

@@ -8,15 +8,17 @@ namespace _Project.Scripts.Managers
     {
         #region Variables
         
-        private static GameManager _game;
-        private static IAudio _audio;
-        private static IHUD _hud;
+        private static GameManager      _game;
+        private static IAudio           _audio;
+        private static IHUD             _hud;
+        private static DamageNumberPool _damageNumbers;
 
         #region Properties
 
-        public static GameManager Game => _game;
-        public static IAudio Audio => _audio;
-        public static IHUD HUD => _hud;
+        public static GameManager      Game             => _game;
+        public static IAudio           Audio            => _audio;
+        public static IHUD             HUD              => _hud;
+        public static DamageNumberPool DamageNumbers    => _damageNumbers;
         
         #endregion
 
@@ -52,6 +54,11 @@ namespace _Project.Scripts.Managers
                 _hud = new NullHUD();
             
             _hud = hud;
+        }
+        
+        public static void ProvideDamageNumberPool(DamageNumberPool damageNumbers)
+        {
+            _damageNumbers = damageNumbers;
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,8 +8,6 @@ namespace _Project.Scripts.HealthSystem
 {
 	public class Health : MonoBehaviour, IHealth
 	{
-		public static event Action<Vector3, int, float> onAnyReceiveDamage;
-
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private float                      maxHitPoints;
 		public                   UnityEvent<float>          onReceiveDamage;
@@ -28,7 +27,7 @@ namespace _Project.Scripts.HealthSystem
 			float elementalMultiplier = ElementalSystemMultiplier.GetMultiplier(type.Type, damageType);
 			int   damageToReceive     = Mathf.CeilToInt(elementalMultiplier * damage);
 			HitPoints -= damageToReceive;
-			onAnyReceiveDamage?.Invoke(transform.position, damageToReceive, elementalMultiplier);
+			ServiceLocator.DamageNumbers.SpawnFromPool(transform.position, damageToReceive, elementalMultiplier);
 			onReceiveDamage.Invoke(RemainingPercent);
 			if (!(HitPoints <= 0)) return;
 			onDeath.Invoke();

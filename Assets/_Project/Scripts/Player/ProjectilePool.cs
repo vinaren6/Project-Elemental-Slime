@@ -7,9 +7,10 @@ namespace _Project.Scripts.Player
 {
 	public class ProjectilePool : MonoBehaviour
 	{
-		[SerializeField] private       GameObject projectilePrefab;
-		[SerializeField] private       int        poolSize            = 10;
-		[SerializeField] private       float      _projectileLifespan = 4f;
+		[SerializeField] private GameObject projectilePrefab;
+		[SerializeField] private int        poolSize            = 10;
+		[SerializeField] private float      projectileLifespan = 4f;
+		[SerializeField] private Transform  projectileParent;
 
 		[SerializeField] private ElementalSystemTypeCurrent type;
 
@@ -31,14 +32,14 @@ namespace _Project.Scripts.Player
 			GameObject projectile = _projectilePool.Dequeue();
 			projectile.SetActive(true);
 			projectile.GetComponent<ElementalSystemTypeCurrent>().Type = type.Type;
-			projectile.transform.SetParent(null);
+			projectile.transform.SetParent(projectileParent);
 			StartCoroutine(ReturnProjectileToPool(projectile));
 			return projectile;
 		}
 
 		private IEnumerator ReturnProjectileToPool(GameObject projectile)
 		{
-			yield return new WaitForSeconds(_projectileLifespan);
+			yield return new WaitForSeconds(projectileLifespan);
 			projectile.SetActive(false);
 			projectile.transform.SetParent(transform);
 			projectile.transform.localPosition    = Vector3.zero;
