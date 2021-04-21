@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 721889729854220462}
   - component: {fileID: 721889729854220433}
   - component: {fileID: 721889729854220432}
+  - component: {fileID: 5350825199767230108}
   m_Layer: 7
   m_Name: PlayerCube
   m_TagString: Player
@@ -68,6 +69,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5350825199767230108}
+        m_TargetAssemblyTypeName: _Project.Scripts.Events.PlayAudio, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -407,6 +420,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &5350825199767230108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721889729854220435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd16cbe67e2b4517a623a69917b5436a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: b15b0296815c10e46bb5df66ea11c44a, type: 3}
+  audioType: 0
 --- !u!1 &963799655787696657
 GameObject:
   m_ObjectHideFlags: 0
