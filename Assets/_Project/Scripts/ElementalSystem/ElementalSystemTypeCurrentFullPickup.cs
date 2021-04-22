@@ -5,14 +5,15 @@ namespace _Project.Scripts.ElementalSystem
 {
 	public class ElementalSystemTypeCurrentFullPickup : ElementalSystemTypeCurrent
 	{
-		[SerializeField] private bool respawn = true;
+		[SerializeField] private bool  respawn      = true;
+		[SerializeField] private float respawnDelay = 10;
 
 		public override void Destroy()
 		{
 			if (respawn)
 				Destroy(gameObject);
 			else
-				HideForT(gameObject, 10);
+				HideForT(gameObject, respawnDelay);
 		}
 
 		private IEnumerator HideForT(GameObject obj, float t)
