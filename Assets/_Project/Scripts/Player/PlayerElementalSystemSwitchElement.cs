@@ -51,6 +51,7 @@ namespace _Project.Scripts.Player
 
 		private void Switch(int type)
 		{
+			if ((int) elementType.Type == type) return;
 			if (_pickups[type] < requiredElementsToChange && type != 4) return;
 			_pickups[type]   -= requiredElementsToChange;
 			elementType.Type =  (ElementalSystemTypes) type;
