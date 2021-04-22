@@ -50,10 +50,10 @@ MonoBehaviour:
   onElementTypeChange:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6201293877070674156}
+      - m_Target: {fileID: 5003337753896702156}
         m_TargetAssemblyTypeName: _Project.Scripts.ElementalSystem.ElementalSystemColorShift,
           Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: StartColorShift
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -64,6 +64,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   respawn: 1
+  respawnDelay: 10
 --- !u!135 &5898216415040051051
 SphereCollider:
   m_ObjectHideFlags: 0
