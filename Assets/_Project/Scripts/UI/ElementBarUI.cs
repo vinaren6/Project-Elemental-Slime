@@ -14,7 +14,7 @@ namespace _Project.Scripts.UI
         
         private void Awake()
         {
-            fillImage.fillAmount = Random.Range(0f, 1f);
+            fillImage.fillAmount = 0;
             highlight.SetActive(false);
             SetupColors();
         }

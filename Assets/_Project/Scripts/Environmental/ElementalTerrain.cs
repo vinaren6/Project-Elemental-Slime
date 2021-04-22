@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ElementalTerrain : MonoBehaviour
 {
-        [SerializeField] private bool equal = true;
+        // [SerializeField] private bool equal = true;
         [SerializeField] private ElementalSystemTypes type;
         [SerializeField] private GameObject target;
         [SerializeField] private GameObject player;
