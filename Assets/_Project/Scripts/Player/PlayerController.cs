@@ -16,11 +16,10 @@ namespace _Project.Scripts.Player
 
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
-		// private PlayerMove                 _move;
+		private PlayerMove                 _move;
 		private PlayerShoot                _shoot;
 		private PlayerSpecialAttack        _specialAttack;
 		private ElementalSystemTypeCurrent _elementType;
-		private PlayerNavMove              _navMove;
 
 		public static float EnemyDamage;
 		public static float PlayerDamage;
@@ -41,7 +40,7 @@ namespace _Project.Scripts.Player
 
 		private void Update()
 		{
-			_navMove.Move(_input.MoveDirection, _moveSpeed);
+			_move.Move(_input.MoveDirection, _moveSpeed);
 			
 			_aim.Aim(_input.AimDirection);
 			
@@ -52,11 +51,6 @@ namespace _Project.Scripts.Player
 				_specialAttack.Activate(currentElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
 		}
 
-		// private void FixedUpdate()
-		// {
-		// 	_move.Move(_input.MoveDirection, _moveSpeed);
-		// }
-		
 		public void SwitchElementalStats()
 		{
 			currentElementalStats = _elementType.Type switch {
@@ -75,11 +69,10 @@ namespace _Project.Scripts.Player
 		{
 			_input         = GetComponent<PlayerInput>();
 			_aim           = GetComponent<PlayerAim>();
-			// _move          = GetComponent<PlayerMove>();
+			_move          = GetComponent<PlayerMove>();
 			_shoot         = GetComponent<PlayerShoot>();
 			_specialAttack = GetComponent<PlayerSpecialAttack>();
 			_elementType   = GetComponent<ElementalSystemTypeCurrent>();
-			_navMove       = GetComponent<PlayerNavMove>();
 		}
 		
 		private void SetStartingPlayerStats()
@@ -96,7 +89,7 @@ namespace _Project.Scripts.Player
 			EnemyDamage             = baseSettings.damageReceived * currentElementalStats.damageReceivedMultiplier;
 			PlayerDamage            = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
 			_moveSpeed              = baseSettings.moveSpeed      * currentElementalStats.moveSpeedMultiplier;
-			_attackCooldownTime             = baseSettings.attackCooldownTime     / currentElementalStats.attackRateMultiplier;
+			_attackCooldownTime     = baseSettings.attackCooldownTime / currentElementalStats.attackRateMultiplier;
 			IsDealingDamageOverTime = currentElementalStats.isDealingDamageOverTime;
 		}
 

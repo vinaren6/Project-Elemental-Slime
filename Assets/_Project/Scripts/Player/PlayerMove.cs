@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Player
 {
 	public class PlayerMove : MonoBehaviour
 	{
-		private Camera    _camera;
-		private Vector3   _forward, _right;
-		private Rigidbody _rb;
+		private Camera       _camera;
+		private Vector3      _forward, _right;
+		private NavMeshAgent _agent;
 
-		private void Awake() => _rb = GetComponent<Rigidbody>();
-
+		private void Awake()
+		{
+			_agent = GetComponent<NavMeshAgent>();
+		}
+		
 		private void Start()
 		{
 			_camera = Camera.main;
@@ -26,11 +30,14 @@ namespace _Project.Scripts.Player
 
 		public void Move(Vector3 input, float speed)
 		{
-			Vector3 moveDirection = ((_forward * input.z) + (_right * input.x)).normalized;
-			_rb.velocity = moveDirection * speed;
+			Vector3 moveDirection = (_forward * input.z + _right * input.x).normalized;
+			_agent.Move(moveDirection * (Time.deltaTime * speed));
 			
+			// -- MOVEMENT ALTERNATIVES --
+			// VelocityMovement:
+			// _agent.velocity = moveDirection * (Time.deltaTime * speed * 100);
 			// VelocityMovement with smoothing:
-			// _rb.velocity = (moveDirection * (0.2f * speed)) + _rb.velocity * 0.8f;
+			// _agent.velocity = moveDirection * (Time.deltaTime * speed * 100 * 0.1f) + _agent.velocity * 0.9f;
 		}
 	}
 }
