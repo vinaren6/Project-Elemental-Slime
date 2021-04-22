@@ -4,6 +4,7 @@ namespace _Project.Scripts.UI
     {
         Neutral,
         Weakness,
-        Effective
+        Effective,
+        Heal
     }
 }

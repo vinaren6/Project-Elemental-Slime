@@ -1,5 +1,3 @@
-using System;
-using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using TMPro;
 using UnityEngine;
@@ -20,11 +18,12 @@ namespace _Project.Scripts.UI
             _animator                 =  GetComponent<Animator>();
         }
 
-        public void ShowDamage(Vector3 position, int damage, float elementalMultiplier)
+        public void ShowDamage(Vector3 position, int damage, EffectiveType colorType)
         {
             numberText.text    = damage.ToString();
             _transform.position = position;
-            numberText.color   = GetEffectiveColor(elementalMultiplier);
+            // numberText.color   = GetEffectiveColor(elementalMultiplier);
+            numberText.color = colors[(int) colorType];
             _animator.SetTrigger("Execute");
         }
         
@@ -33,13 +32,13 @@ namespace _Project.Scripts.UI
             ServiceLocator.DamageNumbers.ReturnNumberToPool(gameObject);
         }
         
-        private Color GetEffectiveColor(float elementalMultiplier)
-        {
-            if (elementalMultiplier < 1)
-                return colors[(int) EffectiveType.Weakness];
-            if (elementalMultiplier > 1)
-                return colors[(int) EffectiveType.Effective];
-            return colors[(int) EffectiveType.Neutral];
-        }
+        // private Color GetEffectiveColor(float elementalMultiplier)
+        // {
+        //     if (elementalMultiplier < 1)
+        //         return colors[(int) EffectiveType.Weakness];
+        //     if (elementalMultiplier > 1)
+        //         return colors[(int) EffectiveType.Effective];
+        //     return colors[(int) EffectiveType.Neutral];
+        // }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Managers;
 using UnityEngine;
 
@@ -29,10 +26,10 @@ namespace _Project.Scripts.UI
 			}
 		}
 
-		public void SpawnFromPool(Vector3 position, int damage, float elementalMultiplier)
+		public void SpawnFromPool(Vector3 position, int damage, EffectiveType colorType)
 		{
 			GameObject number = _pool.Dequeue();
-			number.GetComponent<DamageNumberUI>().ShowDamage(position, damage, elementalMultiplier);
+			number.GetComponent<DamageNumberUI>().ShowDamage(position, damage, colorType);
 		}
 
 		public void ReturnNumberToPool(GameObject number)
