@@ -1484,7 +1484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3974152424159788338, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: hpGainOnPickup
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3974152424159788338, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: requiredElementsToChange

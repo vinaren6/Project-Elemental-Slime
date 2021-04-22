@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.ElementalSystem;
+﻿using System;
+using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI;
 using UnityEngine;
@@ -42,18 +43,17 @@ namespace _Project.Scripts.HealthSystem
 		{
 			if (HitPoints == maxHitPoints) return;
 			float elementalMultiplier = ElementalSystemMultiplier.GetMultiplier(type.Type, regenType);
-			float damageToReceive = Mathf.Min(
-				maxHitPoints - HitPoints, ElementalSystemMultiplier.GetMultiplier(type.Type, regenType) * hpRegain);
-			HitPoints += damageToReceive;
+			float hpToReceive = Mathf.Min(
+				maxHitPoints - HitPoints, elementalMultiplier * hpRegain);
+			HitPoints += hpToReceive;
 			ServiceLocator.DamageNumbers.SpawnFromPool(
-				transform.position, (int) damageToReceive, GetEffectiveType(elementalMultiplier));
+				transform.position, (int) hpToReceive, EffectiveType.Heal);
+			onReceiveDamage.Invoke(RemainingPercent);
 		}
 
 
 		private EffectiveType GetEffectiveType(float elementalMultiplier)
 		{
-			if (elementalMultiplier < 0)
-				return EffectiveType.Heal;
 			if (elementalMultiplier < 1)
 				return EffectiveType.Weakness;
 			if (elementalMultiplier > 1)
