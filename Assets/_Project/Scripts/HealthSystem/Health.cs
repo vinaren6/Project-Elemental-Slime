@@ -8,6 +8,8 @@ namespace _Project.Scripts.HealthSystem
 {
 	public class Health : MonoBehaviour, IHealth
 	{
+		public static event Action onAnyDeath;
+		
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private float                      maxHitPoints;
 		public                   UnityEvent<float>          onReceiveDamage;
@@ -32,6 +34,7 @@ namespace _Project.Scripts.HealthSystem
 			onReceiveDamage.Invoke(RemainingPercent);
 			if (!(HitPoints <= 0)) return;
 			onDeath.Invoke();
+			onAnyDeath?.Invoke();
 			Destroy(this);
 		}
 

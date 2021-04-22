@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 1460504048}
-  maxHitPoints: 150
+  maxHitPoints: 100
   onReceiveDamage:
     m_PersistentCalls:
       m_Calls:

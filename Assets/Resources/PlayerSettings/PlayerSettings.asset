@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   moveSpeed: 9
-  damageReceived: 6
+  damageReceived: 5
   attackStrength: 10
-  attackCooldownTime: 0.5
+  attackCooldownTime: 0.2
   projectileSpeed: 0.07
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2

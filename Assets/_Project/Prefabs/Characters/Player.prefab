@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 7398852164926300467}
-  maxHitPoints: 200
+  maxHitPoints: 100
   onReceiveDamage:
     m_PersistentCalls:
       m_Calls:
@@ -298,7 +298,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: efac0ae74d78c534a872299e8194b7c0, type: 3}
   elementType: {fileID: 7398852164926300467}
+  health: {fileID: 9048047761997672704}
   requiredElementsToChange: 0
+  hpGainOnPickup: 5
 --- !u!114 &7398852164926300467
 MonoBehaviour:
   m_ObjectHideFlags: 0
