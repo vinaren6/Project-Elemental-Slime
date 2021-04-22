@@ -31,11 +31,13 @@ namespace _Project.Scripts.Player
 
 		public void Move(Vector3 input, float speed)
 		{
-			Vector3 moveDirection = ((_forward * input.z) + (_right * input.x)).normalized;
+			Vector3 moveDirection = (_forward * input.z + _right * input.x).normalized;
 			_agent.Move(moveDirection * (Time.deltaTime * speed));
 			
-			// Movement Alternatives:
+			// VelocityMovement:
 			// _agent.velocity = moveDirection * (Time.deltaTime * speed * 100);
+			//
+			// VelocityMovement with smoothing:
 			// _agent.velocity = moveDirection * (Time.deltaTime * speed * 100 * 0.15f) + _agent.velocity * 0.85f;
 		}
 	}
