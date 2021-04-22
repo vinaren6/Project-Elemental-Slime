@@ -5,9 +5,8 @@ namespace _Project.Scripts.Enemies.AI
 	public class EnemyRoamState : EnemyState
 	{
 		public EnemyRoamState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
-
-		private Rigidbody _rb;
-		private float     _roamSpeedMultiplier = 0.5f;
+		
+		// private float     _roamSpeedMultiplier = 0.5f;
 		private Vector3   _roamTargetPosition;
 		private Vector3   _nextRoamTargetPosition;
         private bool      _isChangeDirection = true;
@@ -15,7 +14,6 @@ namespace _Project.Scripts.Enemies.AI
 		public override void Enter()
 		{
 			base.Enter();
-			_rb                     = _enemy.GetComponent<Rigidbody>();
 			_roamTargetPosition     = GetNewRoamTargetPosition();
 			_nextRoamTargetPosition = _roamTargetPosition;
 

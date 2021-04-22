@@ -11,7 +11,7 @@ namespace _Project.Scripts.ElementalSystem
 				ElementalSystemTypes.Wind  => Color.yellow,
 				ElementalSystemTypes.Water => Color.blue,
 				ElementalSystemTypes.Fire  => Color.red,
-				ElementalSystemTypes.Base  => Color.grey,
+				ElementalSystemTypes.Base  => Color.white,
 				_                          => throw new ArgumentOutOfRangeException(nameof(type), type, null)
 			};
 	}

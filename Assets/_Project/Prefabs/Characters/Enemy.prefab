@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 1460504048}
-  fadeSpeed: 0.5
+  fadeSpeed: 1
   startColorShiftOnStart: 1
   meshRenderer: {fileID: 7485359116318617770}
 --- !u!65 &3036836907716680919
@@ -495,7 +495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358507313467159675, guid: d016964aa47b029438c922434e18ec01, type: 3}
       propertyPath: m_Radius
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d016964aa47b029438c922434e18ec01, type: 3}
