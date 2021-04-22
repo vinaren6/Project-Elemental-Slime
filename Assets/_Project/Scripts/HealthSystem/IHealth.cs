@@ -7,6 +7,6 @@ namespace _Project.Scripts.HealthSystem
 		float HitPoints    { get; set; }
 		float MaxHitPoints { get; set; }
 		void  ReceiveDamage(ElementalSystemTypes damageType, float damage);
-		void  ReceiveHealth(ElementalSystemTypes damageType, float damage);
+		void  ReceiveHealth(ElementalSystemTypes regenType, float hpRegain);
 	}
 }
