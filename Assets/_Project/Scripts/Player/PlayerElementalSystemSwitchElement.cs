@@ -12,7 +12,7 @@ namespace _Project.Scripts.Player
 
 		[SerializeField] private InputActionAsset           controls;
 		[SerializeField] private ElementalSystemTypeCurrent elementType;
-		[SerializeField] private IHealth                    health;
+		[SerializeField] private Health                     health;
 		[SerializeField] private int                        requiredElementsToChange;
 		[SerializeField] private float                      hpGainOnPickup = 5;
 
@@ -42,12 +42,15 @@ namespace _Project.Scripts.Player
 		{
 			if (!other.CompareTag("Drop")) return;
 
-			ElementalSystemTypeCurrent comp   = other.GetComponent<ElementalSystemTypeCurrent>();
+			var comp = other.GetComponent<ElementalSystemTypeCurrent>();
 			if (comp.Type == elementType.Type) {
+				if (comp is ElementalSystemTypeCurrentFullPickup) return;
 				health.ReceiveHealth(ElementalSystemTypes.Base, hpGainOnPickup);
+				comp.Destroy();
 				return;
 			}
-			int                        typeId = (int) comp.Type;
+
+			int typeId = (int) comp.Type;
 			if (comp is ElementalSystemTypeCurrentFullPickup)
 				_pickups[typeId] = requiredElementsToChange;
 			else if (_pickups[typeId] < requiredElementsToChange)
