@@ -1,5 +1,6 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ namespace _Project.Scripts.Enemies
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private ElementalSystemTypes type;
         [SerializeField][Range(1f, 5f)] private float minSpawnDelay;
-        [SerializeField][Range(5f, 10f)] private float maxSpawnDelay;
+        [SerializeField][Range(2f, 10f)] private float maxSpawnDelay;
         [SerializeField] private Color[] colors;
         
         private Transform _transform;
@@ -49,6 +50,9 @@ namespace _Project.Scripts.Enemies
 
         private void Spawn()
         {
+            if (ServiceLocator.Game.IsPaused)
+                return;
+            
             GameObject enemy = Instantiate(enemyPrefab, _transform.position, Quaternion.identity, _transform);
             enemy.GetComponent<ElementalSystemTypeCurrent>().Type = type;
             enemy.name = $"Enemy[{type}]";

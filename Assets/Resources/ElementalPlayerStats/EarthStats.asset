@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372a6f21d4744b709b9003a940d44c12, type: 3}
   m_Name: EarthStats
   m_EditorClassIdentifier: 
-  moveSpeedMultiplier: 0.7
+  moveSpeedMultiplier: 0.8
   damageReceivedMultiplier: 0.5
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1

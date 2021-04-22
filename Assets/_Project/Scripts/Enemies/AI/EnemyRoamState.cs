@@ -1,3 +1,4 @@
+using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 namespace _Project.Scripts.Enemies.AI
@@ -22,6 +23,11 @@ namespace _Project.Scripts.Enemies.AI
 		
 		public override void LogicUpdate()
 		{
+			if (ServiceLocator.Game.IsPaused) {
+				_enemy.NavMeshAgent.SetDestination(_transform.position);
+				return;
+			}
+			
 			base.LogicUpdate();
             if (_isChangeDirection)
             {

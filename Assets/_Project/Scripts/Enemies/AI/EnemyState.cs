@@ -1,5 +1,6 @@
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Managers;
 using _Project.Scripts.Player;
 using UnityEngine;
 
@@ -37,7 +38,11 @@ namespace _Project.Scripts.Enemies.AI
 			}
 		}
 
-		public virtual void PhysicsUpdate() { }
+		public virtual void PhysicsUpdate()
+		{
+			if (ServiceLocator.Game.IsPaused)
+				return;
+		}
 
 		public virtual void Exit() { }
 	}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8c4d149e4b4bd39c06e50091160008, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  moveSpeed: 9
-  damageReceived: 5
-  attackStrength: 10
+  moveSpeed: 15
+  damageReceived: 15
+  attackStrength: 20
   attackCooldownTime: 0.2
-  projectileSpeed: 0.07
+  projectileSpeed: 0.15
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2
   specialAttackCooldownTime: 3

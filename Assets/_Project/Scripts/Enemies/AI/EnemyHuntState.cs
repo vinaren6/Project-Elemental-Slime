@@ -1,3 +1,4 @@
+using _Project.Scripts.Managers;
 using UnityEngine;
 
 namespace _Project.Scripts.Enemies.AI
@@ -12,6 +13,11 @@ namespace _Project.Scripts.Enemies.AI
 
         public override void PhysicsUpdate()
         {
+            if (ServiceLocator.Game.IsPaused) {
+                _enemy.NavMeshAgent.SetDestination(_transform.position);
+                return;
+            }
+
             base.PhysicsUpdate();
             // Vector3 direction = (_enemy.target.position - _transform.position).normalized;
             // _enemy.Rb.MovePosition(_enemy.Rb.position + direction * (Time.fixedDeltaTime * _enemy.moveSpeed));
