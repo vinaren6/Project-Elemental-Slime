@@ -762,7 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 935833464}
   playerHealth: {fileID: 2118004232}
-  timeLimit: 10
+  timeLimit: 90
 --- !u!1001 &993043903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1670,7 +1670,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ee0dc9b07421af4aab2a01f550bf432, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.01
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0

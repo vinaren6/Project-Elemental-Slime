@@ -40,7 +40,6 @@ namespace _Project.Scripts.Player
 
 		private void Update()
 		{
-			print(ServiceLocator.Game.IsPaused);
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
