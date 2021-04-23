@@ -40,9 +40,10 @@ namespace _Project.Scripts.Player
 
 		private void Update()
 		{
+			print(ServiceLocator.Game.IsPaused);
 			if (ServiceLocator.Game.IsPaused)
 				return;
-			
+
 			_move.Move(_input.MoveDirection, _moveSpeed);
 			
 			_aim.Aim(_input.AimDirection);

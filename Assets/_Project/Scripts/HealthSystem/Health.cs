@@ -70,5 +70,10 @@ namespace _Project.Scripts.HealthSystem
 				return EffectiveType.Effective;
 			return EffectiveType.Neutral;
 		}
+
+		public void KillPlayer()
+		{
+			onDeath.Invoke();
+		}
 	}
 }
