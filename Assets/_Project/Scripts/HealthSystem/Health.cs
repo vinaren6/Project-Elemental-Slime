@@ -35,7 +35,7 @@ namespace _Project.Scripts.HealthSystem
 				transform.position, damageToReceive, GetEffectiveType(elementalMultiplier));
 			onReceiveDamage.Invoke(RemainingPercent);
 			if (!(HitPoints <= 0)) return;
-			EnemySpawner.enemiesInScene++;
+			EnemySpawner.enemiesInScene--;
 			onDeath.Invoke();
 			onAnyDeath?.Invoke();
 			Destroy(this);
