@@ -51,6 +51,8 @@ namespace _Project.Scripts.Enemies
             if (enemiesInScene < maxEnemiesInScene) {
                 enemiesInScene++;
                 Spawn();
+            } else {
+                StartCoroutine(SpawnRoutine());
             }
         }
 
