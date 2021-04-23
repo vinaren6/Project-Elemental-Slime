@@ -26,7 +26,7 @@ namespace _Project.Scripts.Managers
 
         #region Start Methods
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         public static void Initialize()
         {
             _game = new GameManager();
