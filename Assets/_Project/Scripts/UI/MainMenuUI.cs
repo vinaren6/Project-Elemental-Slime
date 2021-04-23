@@ -16,7 +16,7 @@ namespace _Project.Scripts.UI
 
         public void PlayButtonClick()
         {
-            SceneManager.LoadScene("TestSceneLinus");
+            SceneManager.LoadScene("InfiniteActionScene");
         }
 
         public void OptionsButtonClick()

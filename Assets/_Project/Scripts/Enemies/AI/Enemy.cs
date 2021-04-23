@@ -55,7 +55,7 @@ namespace _Project.Scripts.Enemies.AI
 
 		private void Start()
 		{
-			target       = GameObject.FindWithTag("Player").transform;
+			// target       = GameObject.FindWithTag("Player").transform;
 		}
 
 		private void Update() => StateMachine.CurrentState.LogicUpdate();
@@ -67,6 +67,7 @@ namespace _Project.Scripts.Enemies.AI
 			//if (other.CompareTag("Player")) { } ???
 			if (_hasDetectedPlayer) return;
 			_hasDetectedPlayer = true;
+			target             = GameObject.FindWithTag("Player").transform;
 			StateMachine.ChangeState(DetectState);
 		}
 

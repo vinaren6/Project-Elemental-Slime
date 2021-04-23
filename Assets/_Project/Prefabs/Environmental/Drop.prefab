@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c8af15e8a54a23bb0f4e2c5aad002d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strenght: 0.05
-  speed: 2
+  strenght: 0.1
+  speed: 3
 --- !u!1 &1634823395682019347
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 1634823395682019347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 2400397817904005441}
   m_RootOrder: 0
@@ -301,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 5622412576094577305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 584923723918546423}
   m_Father: {fileID: 0}
@@ -347,7 +347,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.100000046
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7244869055592414363
 MonoBehaviour:
@@ -362,6 +362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 5622412576094577301}
-  fadeSpeed: 1.5
+  fadeSpeed: 2
   startColorShiftOnStart: 1
   meshRenderer: {fileID: 7878797890871877795}

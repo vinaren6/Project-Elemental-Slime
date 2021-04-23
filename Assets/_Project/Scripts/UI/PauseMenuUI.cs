@@ -23,6 +23,7 @@ namespace _Project.Scripts.UI
 
         public void RestartButtonClick()
         {
+            ServiceLocator.Game.SetPause(false);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

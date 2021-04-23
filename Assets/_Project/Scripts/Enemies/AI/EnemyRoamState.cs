@@ -51,21 +51,23 @@ namespace _Project.Scripts.Enemies.AI
 
 		private Vector3 GetNewRoamTargetPosition()
 		{
-			Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-			Vector3 rand = _transform.position + randomDirection * Random.Range(10f, 10f);
-			rand.y = 0;
+			Vector3 randomDirection  = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+			float   randomWalkRadius = Random.Range(10f, 20f);
+			Vector3 NewTargetPosition = _transform.position + randomDirection * randomWalkRadius;
+			NewTargetPosition.y = 0;
+			if (NavMesh.SamplePosition(NewTargetPosition, out NavMeshHit hit, randomWalkRadius, 1)) {
+				return hit.position;
+			}
+			
 			//Vector3 terrainPosition = Terrain.activeTerrain.GetPosition(rand);
 			
-			NavMeshHit hit;
-			
-            if (NavMesh.SamplePosition(rand, out hit, 1f, NavMesh.AllAreas))
-            {
-				
-				return rand;
-            }
+			// if (NavMesh.SamplePosition(NewTargetPosition, out hit, 1f, NavMesh.AllAreas))
+			//          {
+			//           return NewTargetPosition;
+			//          }
 
+			Debug.Log("Enemy has to get new RoamTargetPosition!");
 			return GetNewRoamTargetPosition();
-			
 		}
 	}
 }
