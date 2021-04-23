@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: -2345025737998840536}
-  fadeSpeed: 3
+  fadeSpeed: 6
   startColorShiftOnStart: 0
   meshRenderer: {fileID: 1606244412895489419}
 --- !u!135 &2811173150404562978

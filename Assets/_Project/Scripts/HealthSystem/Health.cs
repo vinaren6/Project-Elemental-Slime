@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Enemies;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI;
 using UnityEngine;
@@ -34,6 +35,7 @@ namespace _Project.Scripts.HealthSystem
 				transform.position, damageToReceive, GetEffectiveType(elementalMultiplier));
 			onReceiveDamage.Invoke(RemainingPercent);
 			if (!(HitPoints <= 0)) return;
+			EnemySpawner.enemiesInScene++;
 			onDeath.Invoke();
 			onAnyDeath?.Invoke();
 			Destroy(this);

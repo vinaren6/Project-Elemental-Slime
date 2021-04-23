@@ -127,7 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
   type: 0
-  minSpawnDelay: 2
+  maxEnemiesInScene: 20
+  minSpawnDelay: 4
   maxSpawnDelay: 8
   colors:
   - {r: 0.9254902, g: 0.74509805, b: 0.5294118, a: 1}

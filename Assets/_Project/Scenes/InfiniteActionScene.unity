@@ -180,11 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: maxSpawnDelay
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: minSpawnDelay
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
@@ -249,11 +249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: maxSpawnDelay
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: minSpawnDelay
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
@@ -666,11 +666,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: maxSpawnDelay
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: minSpawnDelay
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
@@ -816,11 +816,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: maxSpawnDelay
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5004801723601035677, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
       propertyPath: minSpawnDelay
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e59af52e87eb4aacaca0e4cf66b05e7, type: 3}
@@ -1359,7 +1359,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ee0dc9b07421af4aab2a01f550bf432, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1615,6 +1615,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: baseSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 15d1dd041fe3ffc419697669bbfc015c, type: 2}
     - target: {fileID: 3974152424159788338, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: hpGainOnPickup
       value: 5

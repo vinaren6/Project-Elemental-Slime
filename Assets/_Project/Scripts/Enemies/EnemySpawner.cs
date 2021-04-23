@@ -8,14 +8,17 @@ namespace _Project.Scripts.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject enemyPrefab;
-        [SerializeField] private ElementalSystemTypes type;
-        [SerializeField][Range(1f, 5f)] private float minSpawnDelay;
-        [SerializeField][Range(2f, 10f)] private float maxSpawnDelay;
-        [SerializeField] private Color[] colors;
+        [SerializeField]                 private GameObject           enemyPrefab;
+        [SerializeField]                 private ElementalSystemTypes type;
+        [SerializeField]                 private int                  maxEnemiesInScene;
+        [SerializeField][Range(1f, 5f)]  private float                minSpawnDelay;
+        [SerializeField][Range(2f, 10f)] private float                maxSpawnDelay;
+        [SerializeField]                 private Color[]              colors;
         
         private Transform _transform;
-
+        
+        public static int enemiesInScene = 4;
+        
         private void Awake()
         {
             name = $"EnemySpawner [{type}]";
@@ -45,7 +48,10 @@ namespace _Project.Scripts.Enemies
         {
             yield return new WaitForSeconds(GetSpawnDelay());
 
-            Spawn();
+            if (enemiesInScene < maxEnemiesInScene) {
+                enemiesInScene++;
+                Spawn();
+            }
         }
 
         private void Spawn()
