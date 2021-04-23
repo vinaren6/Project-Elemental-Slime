@@ -14,6 +14,9 @@ namespace _Project.Scripts.HealthSystem
 		
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private float                      maxHitPoints;
+		[SerializeField] private AudioClip hurtSFX;
+		[SerializeField] private AudioClip deathSFX;
+		
 		public                   UnityEvent<float>          onReceiveDamage;
 		public                   UnityEvent                 onDeath;
 		public                   float                      RemainingPercent => HitPoints / maxHitPoints;
@@ -34,7 +37,12 @@ namespace _Project.Scripts.HealthSystem
 			ServiceLocator.DamageNumbers.SpawnFromPool(
 				transform.position, damageToReceive, GetEffectiveType(elementalMultiplier));
 			onReceiveDamage.Invoke(RemainingPercent);
-			if (!(HitPoints <= 0)) return;
+			if (!(HitPoints <= 0))
+			{
+				ServiceLocator.Audio.PlaySFX(hurtSFX);
+				return;
+			}
+			ServiceLocator.Audio.PlaySFX(deathSFX);
 			EnemySpawner.enemiesInScene--;
 			onDeath.Invoke();
 			onAnyDeath?.Invoke();

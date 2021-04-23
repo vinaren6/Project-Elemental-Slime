@@ -10,6 +10,8 @@ namespace _Project.Scripts.Player
 	{
 		public static ElementalSystemTypeCurrent StaticPlayerElementType;
 
+		[SerializeField] private AudioClip pickUpSFX;
+		[SerializeField] private AudioClip switchSFX;
 		[SerializeField] private InputActionAsset           controls;
 		[SerializeField] private ElementalSystemTypeCurrent elementType;
 		[SerializeField] private Health                     health;
@@ -49,6 +51,8 @@ namespace _Project.Scripts.Player
 				comp.Destroy();
 				return;
 			}
+			
+			ServiceLocator.Audio.PlaySFX(pickUpSFX);
 
 			int typeId = (int) comp.Type;
 			if (comp is ElementalSystemTypeCurrentFullPickup)
@@ -65,6 +69,7 @@ namespace _Project.Scripts.Player
 			if (_pickups[type] < requiredElementsToChange && type != 4) return;
 			_pickups[type]   -= requiredElementsToChange;
 			elementType.Type =  (ElementalSystemTypes) type;
+			ServiceLocator.Audio.PlaySFX(switchSFX);
 		}
 	}
 }

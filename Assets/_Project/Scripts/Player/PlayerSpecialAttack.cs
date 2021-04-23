@@ -6,6 +6,7 @@ namespace _Project.Scripts.Player
 {
 	public class PlayerSpecialAttack : MonoBehaviour
 	{
+		[SerializeField] private AudioClip specialSFX;
 		private float _nextSpecialAttack = 0;
 		
 		public void Activate(GameObject specialAttack, float projectileSpeed, float specialAttackCooldownTime, ElementalSystemTypeCurrent type)
@@ -17,6 +18,7 @@ namespace _Project.Scripts.Player
 			projectile.GetComponent<Rigidbody>().AddForce(transform.forward * (projectileSpeed * 1.2f));
 			_nextSpecialAttack = Time.time + specialAttackCooldownTime;
 			ServiceLocator.HUD.SpecialAttack?.StartCooldown(specialAttackCooldownTime);
+			ServiceLocator.Audio.PlaySFX(specialSFX);
 		}
 	}
 }

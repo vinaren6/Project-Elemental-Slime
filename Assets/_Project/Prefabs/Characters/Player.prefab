@@ -60,6 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 7398852164926300467}
   maxHitPoints: 100
+  hurtSFX: {fileID: 8300000, guid: 90d4f9336aec763439e40558c4c31edc, type: 3}
+  deathSFX: {fileID: 8300000, guid: b15b0296815c10e46bb5df66ea11c44a, type: 3}
   onReceiveDamage:
     m_PersistentCalls:
       m_Calls:
@@ -272,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1b657c02b5634182a23337fdd97d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootSFX: {fileID: 8300000, guid: e42a2b95556f92641abee330745feffe, type: 3}
 --- !u!114 &1998431243025321950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29494b5ce4cc4f679e8a0f118bbf2477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialSFX: {fileID: 8300000, guid: adead9bcd7e72d346b2dd092d997ba15, type: 3}
 --- !u!114 &3974152424159788338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,10 +300,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2562236d884c6c9f59747f7f6c9834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpSFX: {fileID: 8300000, guid: 5701431de58bf62448f97ad6c8902eb1, type: 3}
+  switchSFX: {fileID: 8300000, guid: e36e4fd8f46fd524892646c31abc6361, type: 3}
   controls: {fileID: -944628639613478452, guid: efac0ae74d78c534a872299e8194b7c0, type: 3}
   elementType: {fileID: 7398852164926300467}
   health: {fileID: 9048047761997672704}
-  requiredElementsToChange: 0
+  requiredElementsToChange: 2
   hpGainOnPickup: 5
 --- !u!114 &7398852164926300467
 MonoBehaviour:
@@ -581,7 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2811173150404562988, guid: 995ca6468a0183243ad5affb67628a9c, type: 3}
-  poolSize: 50
+  poolSize: 150
   projectileLifespan: 4
   projectileParent: {fileID: 0}
   type: {fileID: 7398852164926300467}
