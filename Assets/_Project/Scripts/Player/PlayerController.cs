@@ -3,7 +3,6 @@ using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.Player.ScriptableObjects;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Player
 {
@@ -26,6 +25,7 @@ namespace _Project.Scripts.Player
 		public static float PlayerDamage;
 		public static float PlayerDamageOverTime;
 		public static float DamageOverTimeCooldownTime;
+		public static int DamageOverTimeTotalTicks;
 		public static bool  IsDealingDamageOverTime;
 
 		private float _moveSpeed;
@@ -82,9 +82,11 @@ namespace _Project.Scripts.Player
 		private void SetStartingPlayerStats()
 		{
 			DamageOverTimeCooldownTime   = baseSettings.damageOverTimeCooldownTime;
-			PlayerDamageOverTime = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
-			_projectileSpeed     = baseSettings.projectileSpeed;
+			PlayerDamageOverTime		 = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
+			DamageOverTimeTotalTicks	 = baseSettings.damageOverTimeTotalTicks;
+			_projectileSpeed			 = baseSettings.projectileSpeed;
 			_specialAttackCooldownTime   = baseSettings.specialAttackCooldownTime;
+			
 			SetElementBasedPlayerStats();
 		}
 		
