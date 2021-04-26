@@ -15,23 +15,23 @@ namespace _Project.Scripts.Enemies.AI
 		[SerializeField] private EnemySettings baseSettings;
 		[SerializeField] private EnemyElementalStats currentEnemyElementalStats;
 		
+		public ElementalSystemTypeCurrent type;
+		
 		public EnemyStateMachine StateMachine { get; set; }
 
-		public EnemyRoamState RoamState { get; private set; }
+		public EnemyRoamState   RoamState   { get; private set; }
 		public EnemyDetectState DetectState { get; private set; }
-		public EnemyHuntState HuntState { get; private set; }
+		public EnemyHuntState   HuntState   { get; private set; }
 		public EnemyAttackState AttackState { get; private set; }
-		public EnemyDeathState DeathState { get; private set; }
-
-		public ElementalSystemTypeCurrent type;
-
+		public EnemyDeathState  DeathState  { get; private set; }
+		
 		public float rotationSpeed = 2.5f;
 		public float attackStrength;
 		public float attackCooldownTime;
 		
-		public Transform target;
-		public Health health;
-		private EnemyUI _ui;
+		private Transform    _target;
+		private Health       _health;
+		private EnemyUI      _ui;
 		private NavMeshAgent _navMeshAgent;
 
 		private bool         _isBurning;
@@ -39,16 +39,12 @@ namespace _Project.Scripts.Enemies.AI
 
 		private bool _hasDetectedPlayer;
 
-		public EnemyUI UI => _ui;
+		public Transform    Target       => _target;
+		public Health       Health       => _health;
+		public EnemyUI      UI           => _ui;
+		public NavMeshAgent NavMeshAgent => _navMeshAgent;
 
-		public NavMeshAgent NavMeshAgent
-		{
-			get => _navMeshAgent;
-			set => _navMeshAgent = value;
-		}
-
-		public bool IsBurning
-		{
+		public bool IsBurning {
 			get => _isBurning;
 			set => _isBurning = value;
 		}
@@ -56,33 +52,33 @@ namespace _Project.Scripts.Enemies.AI
 		private void Awake()
 		{
 			StateMachine = new EnemyStateMachine();
-			RoamState = new EnemyRoamState(this, StateMachine);
-			DetectState = new EnemyDetectState(this, StateMachine);
-			HuntState = new EnemyHuntState(this, StateMachine);
-			AttackState = new EnemyAttackState(this, StateMachine);
-			DeathState = new EnemyDeathState(this, StateMachine);
+			RoamState    = new EnemyRoamState(this, StateMachine);
+			DetectState  = new EnemyDetectState(this, StateMachine);
+			HuntState    = new EnemyHuntState(this, StateMachine);
+			AttackState  = new EnemyAttackState(this, StateMachine);
+			DeathState   = new EnemyDeathState(this, StateMachine);
 			StateMachine.Initialize(RoamState);
 
-			health = GetComponent<Health>();
+			_health       = GetComponent<Health>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
-			_ui = GetComponentInChildren<EnemyUI>();
+			_ui           = GetComponentInChildren<EnemyUI>();
 
-			health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints;
-			_navMeshAgent.speed = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
-			attackStrength      = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
-			attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
+			type.Type            = currentEnemyElementalStats.elementType;
+			_health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints;
+			_navMeshAgent.speed  = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
+			attackStrength       = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
+			attackCooldownTime   = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
 		}
 
 		private void Update() => StateMachine.CurrentState.LogicUpdate();
 
 		public void CheckForPlayerDetection()
 		{
-			print("Hello!");
 			//if (other.CompareTag("Player")) { } ???
 			if (_hasDetectedPlayer)
 				return;
 			_hasDetectedPlayer = true;
-			target = GameObject.FindWithTag("Player").transform;
+			_target = GameObject.FindWithTag("Player").transform;
 			StateMachine.ChangeState(DetectState);
 		}
 
@@ -93,7 +89,7 @@ namespace _Project.Scripts.Enemies.AI
 
 		private IEnumerator PlayerDetection()
 		{
-			transform.rotation = Quaternion.LookRotation((target.position - transform.position).normalized);
+			transform.rotation = Quaternion.LookRotation((_target.position - transform.position).normalized);
 			yield return new WaitForSeconds(0.4f);
 			float time = 0;
 			float duration = 0.1f;

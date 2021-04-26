@@ -59,7 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 7398852164926300467}
-  maxHitPoints: 100
   hurtSFX: {fileID: 8300000, guid: 90d4f9336aec763439e40558c4c31edc, type: 3}
   deathSFX: {fileID: 8300000, guid: b15b0296815c10e46bb5df66ea11c44a, type: 3}
   onReceiveDamage:

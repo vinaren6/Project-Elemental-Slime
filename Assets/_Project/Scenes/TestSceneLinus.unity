@@ -1894,6 +1894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5085988910200415383, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5085988911851113652, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2016,6 +2020,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3284691321352450557}
     m_Modifications:
+    - target: {fileID: 798209536, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: currentEnemyElementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: c683ca5a7105aa447ac22daeaa2b243e, type: 2}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyFire
@@ -2109,10 +2117,6 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: c7e3e378fdd1fde448dee9529b28e1ef, type: 2}
-    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
-      propertyPath: type
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyEarth
@@ -2242,10 +2246,6 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: d1d25208f1522c746b80fdf666541fb9, type: 2}
-    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
-      propertyPath: type
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyWater
@@ -2504,6 +2504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7345239521098769411, guid: 422b41b4bf9d2364b92d7ad3d79c3191, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8911768862580103895, guid: 422b41b4bf9d2364b92d7ad3d79c3191, type: 3}
       propertyPath: m_Interactable
       value: 0
@@ -2585,10 +2589,6 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: 2308395039c156b43bbd44d20d8de55a, type: 2}
-    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
-      propertyPath: type
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyWind

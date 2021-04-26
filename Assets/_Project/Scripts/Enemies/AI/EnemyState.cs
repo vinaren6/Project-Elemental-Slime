@@ -34,7 +34,7 @@ namespace _Project.Scripts.Enemies.AI
 			if (!(Time.time > _nextDamageOverTime))
 				return;
 			
-			_enemy.health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
+			_enemy.Health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
 			_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
 			_damageOverTimeTicks++;
 

@@ -1913,10 +1913,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6555339509648968658}
     m_Modifications:
-    - target: {fileID: 721889729854220433, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 721889729854220435, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1969,22 +1965,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: baseSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 15d1dd041fe3ffc419697669bbfc015c, type: 2}
-    - target: {fileID: 3974152424159788338, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: hpGainOnPickup
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974152424159788338, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: requiredElementsToChange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5954015566207735552, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: poolSize
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 5954015566207735552, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: projectileParent
       value: 
@@ -2002,6 +1982,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3284691321352450557}
     m_Modifications:
+    - target: {fileID: 798209536, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: currentEnemyElementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: c683ca5a7105aa447ac22daeaa2b243e, type: 2}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyFire
@@ -2091,6 +2075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3284691321352450557}
     m_Modifications:
+    - target: {fileID: 798209536, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: currentEnemyElementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: c7e3e378fdd1fde448dee9529b28e1ef, type: 2}
     - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: type
       value: 0
@@ -2227,6 +2215,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3284691321352450557}
     m_Modifications:
+    - target: {fileID: 798209536, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: currentEnemyElementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: d1d25208f1522c746b80fdf666541fb9, type: 2}
     - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: type
       value: 2
@@ -2566,6 +2558,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3284691321352450557}
     m_Modifications:
+    - target: {fileID: 798209536, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: currentEnemyElementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 2308395039c156b43bbd44d20d8de55a, type: 2}
     - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: type
       value: 1

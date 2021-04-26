@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
   m_Name: FireStats
   m_EditorClassIdentifier: 
+  elementType: 3
+  maxHitPoints: 200
   moveSpeedMultiplier: 1
-  damageReceivedMultiplier: 1
   attackStrengthMultiplier: 2
   attackRateMultiplier: 0.5
   hasRangedAttack: 0

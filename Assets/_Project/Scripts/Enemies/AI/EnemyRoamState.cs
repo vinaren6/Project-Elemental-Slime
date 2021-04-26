@@ -15,25 +15,20 @@ namespace _Project.Scripts.Enemies.AI
 		public override void Enter()
 		{
 			base.Enter();
+			
 			_roamTargetPosition     = GetNewRoamTargetPosition();
 			_nextRoamTargetPosition = _roamTargetPosition;
-
-			
 		}
 		
 		public override void LogicUpdate()
 		{
-            
-            
 			if (ServiceLocator.Game.IsPaused) {
 				_enemy.NavMeshAgent.SetDestination(_transform.position);
 				return;
 			}
 			
 			base.LogicUpdate();
-           
-
-		
+			
 			if (_isChangeDirection )
             {
 				NavMeshPath path = new NavMeshPath();

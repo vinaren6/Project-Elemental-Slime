@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
-  m_Name: WindStats
+  m_Name: BaseStats
   m_EditorClassIdentifier: 
-  elementType: 1
-  maxHitPoints: 150
-  moveSpeedMultiplier: 1.2
+  elementType: 4
+  maxHitPoints: 200
+  moveSpeedMultiplier: 1
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
   hasRangedAttack: 0

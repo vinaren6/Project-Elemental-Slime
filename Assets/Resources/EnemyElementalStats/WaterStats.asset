@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
   m_Name: WaterStats
   m_EditorClassIdentifier: 
+  elementType: 2
+  maxHitPoints: 200
   moveSpeedMultiplier: 1
-  damageReceivedMultiplier: 1
   attackStrengthMultiplier: 0.5
   attackRateMultiplier: 2
   hasRangedAttack: 0

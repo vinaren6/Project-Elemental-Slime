@@ -19,7 +19,7 @@ namespace _Project.Scripts.Enemies.AI
             // Quaternion rotation = Quaternion.LookRotation(direction);
             // _transform.rotation = Quaternion.Slerp(
             //     _transform.rotation, rotation, Time.fixedDeltaTime * _enemy.rotationSpeed);
-            _enemy.NavMeshAgent.SetDestination(_enemy.target.position);
+            _enemy.NavMeshAgent.SetDestination(_enemy.Target.position);
         }
     }
 }

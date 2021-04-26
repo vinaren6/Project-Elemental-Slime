@@ -1,3 +1,4 @@
+using _Project.Scripts.ElementalSystem;
 using UnityEngine;
 
 namespace _Project.Scripts.Enemies.ScriptableObjects
@@ -6,6 +7,7 @@ namespace _Project.Scripts.Enemies.ScriptableObjects
     public class EnemyElementalStats : ScriptableObject
     {
         [Header("ELEMENTAL MODIFIERS:")]
+        public ElementalSystemTypes elementType;
         public float maxHitPoints             = 200f;
         public float moveSpeedMultiplier      = 1f;
         public float attackStrengthMultiplier = 1f;

@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
-  currentEnemyElementalStats: {fileID: 11400000, guid: c683ca5a7105aa447ac22daeaa2b243e, type: 2}
+  currentEnemyElementalStats: {fileID: 11400000, guid: 280edce054cf99b47b2a7ad0461be14b, type: 2}
   type: {fileID: 1460504048}
   rotationSpeed: 2.5
   attackStrength: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc2e62858f9412e9f353ca15c62afcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   onElementTypeChange:
     m_PersistentCalls:
       m_Calls: []
