@@ -23,17 +23,32 @@ namespace _Project.Scripts.Enemies.AI
 		
 		public override void LogicUpdate()
 		{
-			Debug.Log(_enemy.NavMeshAgent.remainingDistance);
+            
+            
 			if (ServiceLocator.Game.IsPaused) {
 				_enemy.NavMeshAgent.SetDestination(_transform.position);
 				return;
 			}
 			
 			base.LogicUpdate();
-            if (_isChangeDirection)
+           
+
+		
+			if (_isChangeDirection )
             {
-				_enemy.NavMeshAgent.SetDestination(_roamTargetPosition);
-				_isChangeDirection = false;
+				NavMeshPath path = new NavMeshPath();
+				_enemy.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
+				
+                if (path.status == NavMeshPathStatus.PathComplete)
+                {
+					_enemy.NavMeshAgent.SetDestination(_roamTargetPosition);
+					_isChangeDirection = false;
+                }
+                else
+                {
+					_roamTargetPosition = GetNewRoamTargetPosition();
+				}
+				
 			}
 
 			
