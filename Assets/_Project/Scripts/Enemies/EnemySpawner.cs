@@ -14,6 +14,7 @@ namespace _Project.Scripts.Enemies
         [SerializeField][Range(1f, 5f)]  private float                minSpawnDelay;
         [SerializeField][Range(2f, 10f)] private float                maxSpawnDelay;
         [SerializeField]                 private Color[]              colors;
+        [SerializeField]                 private int seed;
         
         private Transform _transform;
         
@@ -21,6 +22,7 @@ namespace _Project.Scripts.Enemies
         
         private void Awake()
         {
+            Random.InitState(seed);
             name = $"EnemySpawner [{type}]";
             _transform = transform;
 

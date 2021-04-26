@@ -28,6 +28,7 @@ namespace _Project.Scripts.Enemies.AI
 		private Rigidbody    _rb;
 		private NavMeshAgent _navMeshAgent;
 		private bool         _isBurning;
+		[HideInInspector] public float damageOverTimeTotalTicks;
 
 		private bool _hasDetectedPlayer;
 
@@ -82,6 +83,21 @@ namespace _Project.Scripts.Enemies.AI
 			transform.localScale = Vector3.one;
 			yield return new WaitForSeconds(0.15f);
 			StateMachine.ChangeState(HuntState);
+		}
+
+		public void StartDamageOverTime(ElementalSystemTypes damageType, int totalTicks)
+		{
+			if (damageType == type.Type)
+				return;
+
+			if (damageType != ElementalSystemTypes.Fire)
+				return;
+
+			if (type.Type == ElementalSystemTypes.Water)
+				return;
+			
+			_isBurning = true;
+			damageOverTimeTotalTicks = totalTicks;
 		}
 
 		private void OnCollisionEnter(Collision other)

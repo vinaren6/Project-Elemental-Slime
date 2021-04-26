@@ -19,10 +19,12 @@ namespace _Project.Scripts.Player
 		{
 			if (other.collider.TryGetComponent(out IHealth health))
 				health.ReceiveDamage(type.Type, PlayerController.PlayerDamage);
-			
+
 			if (PlayerController.IsDealingDamageOverTime && other.collider.TryGetComponent(out Enemy enemy))
-				enemy.IsBurning = true;
-			
+			{
+				enemy.StartDamageOverTime(type.Type, PlayerController.DamageOverTimeTotalTicks);
+			}
+
 			gameObject.SetActive(false);
 		}
 	}

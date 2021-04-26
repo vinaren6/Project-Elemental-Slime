@@ -1,6 +1,5 @@
 ﻿using _Project.Scripts.Audio;
 using _Project.Scripts.UI;
-using UnityEngine;
 
 namespace _Project.Scripts.Managers
 {
@@ -30,7 +29,6 @@ namespace _Project.Scripts.Managers
         public static void Initialize()
         {
             _game = new GameManager();
-            // _audio = new NullAudioProvider();
             _audio = new AudioController();
             _hud = new NullHUD();
         }
