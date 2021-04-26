@@ -17,7 +17,7 @@ namespace _Project.Scripts.Enemies
         
         private Transform _transform;
         
-        public static int enemiesInScene = 4;
+        public static int enemiesInScene;
         
         private void Awake()
         {
@@ -37,6 +37,8 @@ namespace _Project.Scripts.Enemies
                 meshRenderer.material.color = color;
                 index++;
             }
+
+            enemiesInScene = 4;
         }
 
         private void Start()
