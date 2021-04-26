@@ -11,12 +11,10 @@ namespace _Project.Scripts.Enemies.AI
 {
 	public class Enemy : MonoBehaviour
 	{
-		[Header("ACTIVE SETTINGS/STATS:")] [SerializeField]
-		private EnemySettings baseSettings;
-
-		[SerializeField] private ElementalEnemyStats currentElementalStats;
-
-		[SerializeField] private ElementalEnemyStats[] elementalStats = new ElementalEnemyStats[4];
+		[Header("ACTIVE SETTINGS/STATS:")] 
+		[SerializeField] private EnemySettings baseSettings;
+		[SerializeField] private EnemyElementalStats currentEnemyElementalStats;
+		
 		public EnemyStateMachine StateMachine { get; set; }
 
 		public EnemyRoamState RoamState { get; private set; }
@@ -30,17 +28,16 @@ namespace _Project.Scripts.Enemies.AI
 		public float rotationSpeed = 2.5f;
 		public float attackStrength;
 		public float attackCooldownTime;
+		
 		public Transform target;
 		public Health health;
 		private EnemyUI _ui;
-		private Rigidbody _rb;
 		private NavMeshAgent _navMeshAgent;
 		private bool _isBurning;
 
 		private bool _hasDetectedPlayer;
 
 		public EnemyUI UI => _ui;
-		public Rigidbody Rb => _rb;
 
 		public NavMeshAgent NavMeshAgent
 		{
@@ -65,13 +62,12 @@ namespace _Project.Scripts.Enemies.AI
 			StateMachine.Initialize(RoamState);
 
 			health = GetComponent<Health>();
-			_rb = GetComponent<Rigidbody>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
 			_ui = GetComponentInChildren<EnemyUI>();
 
-			_navMeshAgent.speed = baseSettings.moveSpeed * currentElementalStats.moveSpeedMultiplier;
-			attackStrength = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
-			attackCooldownTime = baseSettings.attackCooldownTime * currentElementalStats.attackRateMultiplier;
+			_navMeshAgent.speed = baseSettings.moveSpeed * currentEnemyElementalStats.moveSpeedMultiplier;
+			attackStrength = baseSettings.attackStrength * currentEnemyElementalStats.attackStrengthMultiplier;
+			attackCooldownTime = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
 		}
 
 		private void Update() => StateMachine.CurrentState.LogicUpdate();

@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace _Project.Scripts.Player.ScriptableObjects
 {
-	[CreateAssetMenu(fileName = "NewElementalPlayerStats", menuName = "ElementalPlayerStats", order = 0)]
-	public class ElementalPlayerStats : ScriptableObject
+	[CreateAssetMenu(fileName = "NewPlayerElementalStats", menuName = "PlayerElementalStats", order = 0)]
+	public class PlayerElementalStats : ScriptableObject
 	{
 		[Header("ELEMENTAL MODIFIERS:")]
 		public float      moveSpeedMultiplier      = 1f;

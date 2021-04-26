@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace _Project.Scripts.Enemies.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "NewElementalEnemyStats", menuName = "ElementalEnemyStats", order = 0)]
-    public class ElementalEnemyStats : ScriptableObject
+    [CreateAssetMenu(fileName = "NewEnemyElementalStats", menuName = "EnemyElementalStats", order = 0)]
+    public class EnemyElementalStats : ScriptableObject
     {
         [Header("ELEMENTAL MODIFIERS:")]
         public float      moveSpeedMultiplier      = 1f;

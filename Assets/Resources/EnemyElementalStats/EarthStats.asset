@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
-  m_Name: NewElementalEnemyStats
+  m_Name: EarthStats
   m_EditorClassIdentifier: 
-  moveSpeedMultiplier: 1
-  damageReceivedMultiplier: 1
+  moveSpeedMultiplier: 0.5
+  damageReceivedMultiplier: 0.5
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
   hasRangedAttack: 0

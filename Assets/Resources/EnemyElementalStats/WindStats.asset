@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85d3be3591434b8990838d0f8b1ade47, type: 3}
-  m_Name: NewEnemySettings
+  m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
+  m_Name: WindStats
   m_EditorClassIdentifier: 
-  moveSpeed: 13
-  attackStrength: 15
-  attackCooldownTime: 1
+  moveSpeedMultiplier: 1.2
+  damageReceivedMultiplier: 2
+  attackStrengthMultiplier: 1
+  attackRateMultiplier: 1
+  hasRangedAttack: 0
+  specialAttack: {fileID: 0}

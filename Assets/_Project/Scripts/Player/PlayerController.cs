@@ -11,9 +11,9 @@ namespace _Project.Scripts.Player
 	{
 		[Header("ACTIVE SETTINGS/STATS:")]
 		[SerializeField] private PlayerSettings             baseSettings;
-		[SerializeField] private ElementalPlayerStats       currentElementalStats;
+		[SerializeField] private PlayerElementalStats       currentPlayerElementalStats;
 		
-		[SerializeField] private ElementalPlayerStats[] elementalStats = new ElementalPlayerStats[5];
+		[SerializeField] private PlayerElementalStats[] elementalStats = new PlayerElementalStats[5];
 
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
@@ -51,13 +51,13 @@ namespace _Project.Scripts.Player
 			if (_input.FireInput)
 				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
 			
-			if (_input.SpecialInput && currentElementalStats != elementalStats[4]) 
-				_specialAttack.Activate(currentElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
+			if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[4]) 
+				_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
 		}
 
 		public void SwitchElementalStats()
 		{
-			currentElementalStats = _elementType.Type switch {
+			currentPlayerElementalStats = _elementType.Type switch {
 				ElementalSystemTypes.Earth => elementalStats[0],
 				ElementalSystemTypes.Wind  => elementalStats[1],
 				ElementalSystemTypes.Water => elementalStats[2],
@@ -90,11 +90,11 @@ namespace _Project.Scripts.Player
 		
 		private void SetElementBasedPlayerStats()
 		{
-			EnemyDamageMultiplier   = currentElementalStats.damageReceivedMultiplier;
-			PlayerDamage            = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
-			_moveSpeed              = baseSettings.moveSpeed      * currentElementalStats.moveSpeedMultiplier;
-			_attackCooldownTime     = baseSettings.attackCooldownTime / currentElementalStats.attackRateMultiplier;
-			IsDealingDamageOverTime = currentElementalStats.isDealingDamageOverTime;
+			EnemyDamageMultiplier   = currentPlayerElementalStats.damageReceivedMultiplier;
+			PlayerDamage            = baseSettings.attackStrength * currentPlayerElementalStats.attackStrengthMultiplier;
+			_moveSpeed              = baseSettings.moveSpeed      * currentPlayerElementalStats.moveSpeedMultiplier;
+			_attackCooldownTime     = baseSettings.attackCooldownTime / currentPlayerElementalStats.attackRateMultiplier;
+			IsDealingDamageOverTime = currentPlayerElementalStats.isDealingDamageOverTime;
 		}
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
