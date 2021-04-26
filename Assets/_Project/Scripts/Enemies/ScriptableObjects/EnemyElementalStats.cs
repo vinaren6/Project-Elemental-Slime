@@ -6,11 +6,11 @@ namespace _Project.Scripts.Enemies.ScriptableObjects
     public class EnemyElementalStats : ScriptableObject
     {
         [Header("ELEMENTAL MODIFIERS:")]
-        public float      moveSpeedMultiplier      = 1f;
-        public float      damageReceivedMultiplier = 1f;
-        public float      attackStrengthMultiplier = 1f;
-        public float      attackRateMultiplier     = 1f;
-        public bool       hasRangedAttack  = false;
+        public float maxHitPoints             = 200f;
+        public float moveSpeedMultiplier      = 1f;
+        public float attackStrengthMultiplier = 1f;
+        public float attackRateMultiplier     = 1f;
+        public bool  hasRangedAttack          = false;
 		
         public GameObject specialAttack;
     }

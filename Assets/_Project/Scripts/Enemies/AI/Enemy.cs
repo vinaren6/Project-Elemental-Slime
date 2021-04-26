@@ -67,17 +67,20 @@ namespace _Project.Scripts.Enemies.AI
 			_navMeshAgent = GetComponent<NavMeshAgent>();
 			_ui = GetComponentInChildren<EnemyUI>();
 
-			_navMeshAgent.speed = baseSettings.moveSpeed * currentEnemyElementalStats.moveSpeedMultiplier;
-			attackStrength = baseSettings.attackStrength * currentEnemyElementalStats.attackStrengthMultiplier;
-			attackCooldownTime = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
+			health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints;
+			_navMeshAgent.speed = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
+			attackStrength      = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
+			attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
 		}
 
 		private void Update() => StateMachine.CurrentState.LogicUpdate();
 
 		public void CheckForPlayerDetection()
 		{
+			print("Hello!");
 			//if (other.CompareTag("Player")) { } ???
-			if (_hasDetectedPlayer) return;
+			if (_hasDetectedPlayer)
+				return;
 			_hasDetectedPlayer = true;
 			target = GameObject.FindWithTag("Player").transform;
 			StateMachine.ChangeState(DetectState);
@@ -90,7 +93,6 @@ namespace _Project.Scripts.Enemies.AI
 
 		private IEnumerator PlayerDetection()
 		{
-			//_rb.velocity       = Vector3.zero;
 			transform.rotation = Quaternion.LookRotation((target.position - transform.position).normalized);
 			yield return new WaitForSeconds(0.4f);
 			float time = 0;

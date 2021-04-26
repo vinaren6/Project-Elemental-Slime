@@ -13,21 +13,21 @@ namespace _Project.Scripts.HealthSystem
 		public static event Action onAnyDeath;
 		
 		[SerializeField] private ElementalSystemTypeCurrent type;
-		[SerializeField] private float                      maxHitPoints;
-		[SerializeField] private AudioClip hurtSFX;
-		[SerializeField] private AudioClip deathSFX;
+		[SerializeField] private AudioClip                  hurtSFX;
+		[SerializeField] private AudioClip                  deathSFX;
 		
 		public                   UnityEvent<float>          onReceiveDamage;
 		public                   UnityEvent                 onDeath;
-		public                   float                      RemainingPercent => HitPoints / maxHitPoints;
-
-		private void  Start()   => HitPoints = maxHitPoints;
-		public  float HitPoints { get; set; }
-
+		
+		private float _maxHitPoints;
 		public float MaxHitPoints {
-			get => maxHitPoints;
-			set => maxHitPoints = value;
+			get => _maxHitPoints;
+			set => _maxHitPoints = value;
 		}
+		public float HitPoints        { get; set; }
+		public float RemainingPercent => HitPoints / _maxHitPoints;
+		
+		private void Start() => HitPoints = _maxHitPoints;
 
 		public void ReceiveDamage(ElementalSystemTypes damageType, float damage)
 		{
@@ -43,7 +43,7 @@ namespace _Project.Scripts.HealthSystem
 				return;
 			}
 			ServiceLocator.Audio.PlaySFX(deathSFX);
-			EnemySpawner.enemiesInScene--;
+			EnemySpawner.EnemiesInScene--;
 			onDeath.Invoke();
 			onAnyDeath?.Invoke();
 			Destroy(this);
@@ -51,17 +51,16 @@ namespace _Project.Scripts.HealthSystem
 
 		public void ReceiveHealth(ElementalSystemTypes regenType, float hpRegain)
 		{
-			if (HitPoints == maxHitPoints) return;
+			if (HitPoints == _maxHitPoints) return;
 			float elementalMultiplier = ElementalSystemMultiplier.GetMultiplier(type.Type, regenType);
 			float hpToReceive = Mathf.Min(
-				maxHitPoints - HitPoints, elementalMultiplier * hpRegain);
+				_maxHitPoints - HitPoints, elementalMultiplier * hpRegain);
 			HitPoints += hpToReceive;
 			ServiceLocator.DamageNumbers.SpawnFromPool(
 				transform.position, (int) hpToReceive, EffectiveType.Heal);
 			onReceiveDamage.Invoke(RemainingPercent);
 		}
-
-
+		
 		private EffectiveType GetEffectiveType(float elementalMultiplier)
 		{
 			if (elementalMultiplier < 1)

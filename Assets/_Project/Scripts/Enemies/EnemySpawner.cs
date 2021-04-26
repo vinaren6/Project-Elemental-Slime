@@ -18,7 +18,7 @@ namespace _Project.Scripts.Enemies
         
         private Transform _transform;
         
-        public static int enemiesInScene;
+        public static int EnemiesInScene;
         
         private void Awake()
         {
@@ -40,7 +40,7 @@ namespace _Project.Scripts.Enemies
                 index++;
             }
 
-            enemiesInScene = 4;
+            EnemiesInScene = 4;
         }
 
         private void Start()
@@ -52,8 +52,8 @@ namespace _Project.Scripts.Enemies
         {
             yield return new WaitForSeconds(GetSpawnDelay());
 
-            if (enemiesInScene < maxEnemiesInScene) {
-                enemiesInScene++;
+            if (EnemiesInScene < maxEnemiesInScene) {
+                EnemiesInScene++;
                 Spawn();
             } else {
                 StartCoroutine(SpawnRoutine());

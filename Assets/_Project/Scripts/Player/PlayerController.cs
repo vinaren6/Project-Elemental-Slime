@@ -1,5 +1,6 @@
 using System;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.Player.ScriptableObjects;
 using UnityEngine;
@@ -81,11 +82,12 @@ namespace _Project.Scripts.Player
 		
 		private void SetStartingPlayerStats()
 		{
-			DamageOverTimeCooldownTime   = baseSettings.damageOverTimeCooldownTime;
-			PlayerDamageOverTime		 = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
-			DamageOverTimeTotalTicks	 = baseSettings.damageOverTimeTotalTicks;
-			_projectileSpeed			 = baseSettings.projectileSpeed;
-			_specialAttackCooldownTime   = baseSettings.specialAttackCooldownTime;
+			DamageOverTimeCooldownTime          = baseSettings.damageOverTimeCooldownTime;
+			PlayerDamageOverTime                = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
+			DamageOverTimeTotalTicks            = baseSettings.damageOverTimeTotalTicks;
+			_projectileSpeed                    = baseSettings.projectileSpeed;
+			_specialAttackCooldownTime          = baseSettings.specialAttackCooldownTime;
+			GetComponent<Health>().MaxHitPoints = baseSettings.maxHitPoints;
 			
 			SetElementBasedPlayerStats();
 		}
