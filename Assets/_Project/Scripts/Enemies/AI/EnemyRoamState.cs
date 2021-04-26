@@ -23,6 +23,7 @@ namespace _Project.Scripts.Enemies.AI
 		
 		public override void LogicUpdate()
 		{
+			Debug.Log(_enemy.NavMeshAgent.remainingDistance);
 			if (ServiceLocator.Game.IsPaused) {
 				_enemy.NavMeshAgent.SetDestination(_transform.position);
 				return;
@@ -39,7 +40,7 @@ namespace _Project.Scripts.Enemies.AI
 			if (Vector3.Distance(_transform.position, _nextRoamTargetPosition) < 1.25f) {
 				
 			}
-			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f) {
+			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f || _enemy.NavMeshAgent.remainingDistance > 15) {
 				_roamTargetPosition = GetNewRoamTargetPosition();
 				_isChangeDirection = true;
 			}
