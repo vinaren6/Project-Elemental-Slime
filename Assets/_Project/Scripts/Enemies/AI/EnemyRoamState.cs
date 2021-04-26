@@ -44,30 +44,30 @@ namespace _Project.Scripts.Enemies.AI
 				_isChangeDirection = true;
 			}
 		}
-
-		public override void PhysicsUpdate() => base.PhysicsUpdate();
-
+		
 		public override void Exit() => base.Exit();
 
 		private Vector3 GetNewRoamTargetPosition()
 		{
 			Vector3 randomDirection  = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-			float   randomWalkRadius = Random.Range(10f, 20f);
+			float   randomWalkRadius = Random.Range(10f, 10f);
 			Vector3 NewTargetPosition = _transform.position + randomDirection * randomWalkRadius;
 			NewTargetPosition.y = 0;
-			if (NavMesh.SamplePosition(NewTargetPosition, out NavMeshHit hit, randomWalkRadius, 1)) {
-				return hit.position;
-			}
-			
 			//Vector3 terrainPosition = Terrain.activeTerrain.GetPosition(rand);
 			
-			// if (NavMesh.SamplePosition(NewTargetPosition, out hit, 1f, NavMesh.AllAreas))
-			//          {
-			//           return NewTargetPosition;
-			//          }
-
-			Debug.Log("Enemy has to get new RoamTargetPosition!");
+			NavMeshHit hit;
+			if (NavMesh.SamplePosition(NewTargetPosition, out hit, 1f, NavMesh.AllAreas))
+			{
+				return NewTargetPosition;
+			}
+			
 			return GetNewRoamTargetPosition();
+			
+			// if (NavMesh.SamplePosition(NewTargetPosition, out NavMeshHit hit, randomWalkRadius, 1)) {
+			// 	return hit.position;
+			// }
+			// Debug.Log("Enemy has to get new RoamTargetPosition!");
+			// return GetNewRoamTargetPosition();
 		}
 	}
 }

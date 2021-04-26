@@ -10,9 +10,7 @@ namespace _Project.Scripts.Enemies.AI
         public EnemyAttackState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
 
         private float _nextAttack = 0;
-
-        public override void Enter() => base.Enter();
-
+        
         public override void LogicUpdate()
         {
             if (ServiceLocator.Game.IsPaused)
@@ -21,14 +19,10 @@ namespace _Project.Scripts.Enemies.AI
             base.LogicUpdate();
             if (Time.time > _nextAttack) {
                 if (_enemy.target.TryGetComponent(out IHealth health)) {
-                    health.ReceiveDamage(_enemy.type.Type, PlayerController.EnemyDamage);
+                    health.ReceiveDamage(_enemy.type.Type, _enemy.attackStrength * PlayerController.EnemyDamageMultiplier);
                 }
-                _nextAttack = Time.time + _enemy.attackRate;
+                _nextAttack = Time.time + _enemy.attackCooldownTime;
             }
         }
-
-        public override void PhysicsUpdate() => base.PhysicsUpdate();
-
-        public override void Exit() => base.Exit();
     }
 }

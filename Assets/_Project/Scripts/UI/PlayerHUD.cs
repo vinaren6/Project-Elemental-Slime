@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Managers;
 using UnityEngine;
@@ -17,12 +16,13 @@ namespace _Project.Scripts.UI
         {
             if (type == ElementalSystemTypes.Base)
                 return;
+            
             _elementBars[(int)type].UpdateUI(percent);
         }
 
         public SpecialAttackUI SpecialAttack => _specialAttack;
 
-        private void Awake()
+        private void Start()
         {
             ServiceLocator.ProvideHUD(this);
         }

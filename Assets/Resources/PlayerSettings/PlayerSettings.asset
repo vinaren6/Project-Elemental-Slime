@@ -19,4 +19,5 @@ MonoBehaviour:
   projectileSpeed: 0.15
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2
+  damageOverTimeTotalTicks: 4
   specialAttackCooldownTime: 3

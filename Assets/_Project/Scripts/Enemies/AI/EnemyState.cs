@@ -1,6 +1,4 @@
 using _Project.Scripts.ElementalSystem;
-using _Project.Scripts.HealthSystem;
-using _Project.Scripts.Managers;
 using _Project.Scripts.Player;
 using UnityEngine;
 
@@ -12,7 +10,8 @@ namespace _Project.Scripts.Enemies.AI
 		protected EnemyStateMachine _stateMachine;
 		protected Transform         _transform;
 
-		private float  _nextDamageOverTime = 0;
+		private float _nextDamageOverTime;
+		private int _damageOverTimeTicks;
 
 		public EnemyState(Enemy enemy, EnemyStateMachine stateMachine)
 		{
@@ -25,25 +24,28 @@ namespace _Project.Scripts.Enemies.AI
 
 		public virtual void LogicUpdate()
 		{
-			if (!_enemy.IsBurning) {
+			if (!_enemy.IsBurning)
 				return;
-			}
+			
 			if (_nextDamageOverTime == 0) {
 				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
 			}
-			
-			if (Time.time > _nextDamageOverTime) {
-				_enemy.health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
-				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
-			}
-		}
 
-		public virtual void PhysicsUpdate()
-		{
-			if (ServiceLocator.Game.IsPaused)
+			if (!(Time.time > _nextDamageOverTime))
 				return;
-		}
+			
+			_enemy.health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
+			_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
+			_damageOverTimeTicks++;
 
+			if (!(_damageOverTimeTicks >= _enemy.damageOverTimeTotalTicks))
+				return;
+
+			_nextDamageOverTime = 0f;
+			_damageOverTimeTicks = 0;
+			_enemy.IsBurning = false;
+		}
+		
 		public virtual void Exit() { }
 	}
 

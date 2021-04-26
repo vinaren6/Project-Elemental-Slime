@@ -1,5 +1,4 @@
 using _Project.Scripts.Managers;
-using UnityEngine;
 
 namespace _Project.Scripts.Enemies.AI
 {
@@ -7,18 +6,14 @@ namespace _Project.Scripts.Enemies.AI
     {
         public EnemyHuntState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
 
-        public override void Enter() => base.Enter();
-
-        public override void LogicUpdate() => base.LogicUpdate();
-
-        public override void PhysicsUpdate()
+        public override void LogicUpdate()
         {
             if (ServiceLocator.Game.IsPaused) {
                 _enemy.NavMeshAgent.SetDestination(_transform.position);
                 return;
             }
 
-            base.PhysicsUpdate();
+            base.LogicUpdate();
             // Vector3 direction = (_enemy.target.position - _transform.position).normalized;
             // _enemy.Rb.MovePosition(_enemy.Rb.position + direction * (Time.fixedDeltaTime * _enemy.moveSpeed));
             // Quaternion rotation = Quaternion.LookRotation(direction);
@@ -26,7 +21,5 @@ namespace _Project.Scripts.Enemies.AI
             //     _transform.rotation, rotation, Time.fixedDeltaTime * _enemy.rotationSpeed);
             _enemy.NavMeshAgent.SetDestination(_enemy.target.position);
         }
-
-        public override void Exit() => base.Exit();
     }
 }

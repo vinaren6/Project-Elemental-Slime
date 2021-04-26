@@ -7,9 +7,7 @@ namespace _Project.Scripts.Enemies.AI
 		public override void Enter() => base.Enter();
 
 		public override void LogicUpdate() => base.LogicUpdate();
-
-		public override void PhysicsUpdate() => base.PhysicsUpdate();
-
+		
 		public override void Exit() => base.Exit();
 	}
 }
