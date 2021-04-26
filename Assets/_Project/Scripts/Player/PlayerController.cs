@@ -10,11 +10,14 @@ namespace _Project.Scripts.Player
 	public class PlayerController : MonoBehaviour
 	{
 		[Header("ACTIVE SETTINGS/STATS:")]
-		[SerializeField] private PlayerSettings             baseSettings;
-		[SerializeField] private PlayerElementalStats       currentPlayerElementalStats;
-		
+		[SerializeField] private PlayerSettings         baseSettings;
+		[SerializeField] private PlayerElementalStats   currentPlayerElementalStats;
 		[SerializeField] private PlayerElementalStats[] elementalStats = new PlayerElementalStats[5];
-
+		
+		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
+		[SerializeField][Range(0.25f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
+		[SerializeField][Range(0.25f, 1.0f)] private float moveBackwardsMultiplier     = 1.0f;
+		
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
 		private PlayerMove                 _move;
@@ -26,7 +29,7 @@ namespace _Project.Scripts.Player
 		public static float PlayerDamage;
 		public static float PlayerDamageOverTime;
 		public static float DamageOverTimeCooldownTime;
-		public static int DamageOverTimeTotalTicks;
+		public static int   DamageOverTimeTotalTicks;
 		public static bool  IsDealingDamageOverTime;
 
 		private float _moveSpeed;
@@ -45,12 +48,12 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			_move.Move(_input.MoveDirection, _moveSpeed, transform.forward);
+			_move.Move(_input.MoveDirection, _moveSpeed, moveBackwardsMultiplier);
 			
 			_aim.Aim(_input.AimDirection);
 			
 			if (_input.FireInput)
-				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
+				_shoot.Fire(_attackCooldownTime, _projectileSpeed, moveWhenAttackingMultiplier);
 			
 			if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[4]) 
 				_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);

@@ -17,7 +17,7 @@ namespace _Project.Scripts.Player
             _agent          = GetComponent<NavMeshAgent>();
         }
 
-        public void Fire(float attackCooldownTime, float projectileSpeed)
+        public void Fire(float attackCooldownTime, float projectileSpeed, float moveWhenAttackingMultiplier)
         {
             if (!(Time.time > _nextAttack))
                 return;
@@ -26,7 +26,7 @@ namespace _Project.Scripts.Player
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
             _nextAttack = Time.time + attackCooldownTime;
             ServiceLocator.Audio.PlaySFX(shootSFX);
-            _agent.velocity *= 0.75f;
+            _agent.velocity *= moveWhenAttackingMultiplier;
         }
     }
 }

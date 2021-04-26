@@ -215,9 +215,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1560301090733642263}
-        m_TargetAssemblyTypeName: _Project.Scripts.Events.DestroyThisObj, Assembly-CSharp
-        m_MethodName: DestroyMe
+      - m_Target: {fileID: 798209536}
+        m_TargetAssemblyTypeName: _Project.Scripts.Enemies.AI.Enemy, Assembly-CSharp
+        m_MethodName: ChangeToDeathState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -245,8 +245,6 @@ MonoBehaviour:
   rotationSpeed: 2.5
   attackStrength: 0
   attackCooldownTime: 0
-  target: {fileID: 0}
-  health: {fileID: 0}
   damageOverTimeTotalTicks: 0
 --- !u!114 &1460504048
 MonoBehaviour:

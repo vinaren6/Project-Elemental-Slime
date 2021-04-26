@@ -121,6 +121,8 @@ namespace _Project.Scripts.Enemies.AI
 			damageOverTimeTotalTicks = totalTicks;
 		}
 
+		public void ChangeToDeathState() => StateMachine.ChangeState(DeathState);
+
 		private void OnCollisionEnter(Collision other)
 		{
 			if (other.collider.CompareTag("Player"))

@@ -225,6 +225,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
   - {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
   - {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
+  moveWhenAttackingMultiplier: 0.6
+  moveBackwardsMultiplier: 0.8
 --- !u!114 &2430382309369243959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b66fccf87b43b2aa6efb943b078e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAimDifferenceRate: 0.05
 --- !u!114 &963799656015739262
 MonoBehaviour:
   m_ObjectHideFlags: 0
