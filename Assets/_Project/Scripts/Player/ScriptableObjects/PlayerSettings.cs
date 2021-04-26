@@ -7,7 +7,6 @@ namespace _Project.Scripts.Player.ScriptableObjects
 	{
 		[Header("UNIVERSAL PLAYER SETTINGS:")]
 		public float moveSpeed                  = 6f;
-		public float damageReceived             = 1f;
 		public float attackStrength             = 1f;
 		public float attackCooldownTime         = 0.5f;
 		public float projectileSpeed            = 0.06f;
