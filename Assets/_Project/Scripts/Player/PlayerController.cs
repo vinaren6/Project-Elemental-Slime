@@ -44,7 +44,7 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			_move.Move(_input.MoveDirection, _moveSpeed);
+			_move.Move(_input.MoveDirection, _moveSpeed, transform.forward);
 			
 			_aim.Aim(_input.AimDirection);
 			
