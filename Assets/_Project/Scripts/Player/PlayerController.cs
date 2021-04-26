@@ -21,7 +21,7 @@ namespace _Project.Scripts.Player
 		private PlayerSpecialAttack        _specialAttack;
 		private ElementalSystemTypeCurrent _elementType;
 
-		public static float EnemyDamage;
+		public static float EnemyDamageMultiplier;
 		public static float PlayerDamage;
 		public static float PlayerDamageOverTime;
 		public static float DamageOverTimeCooldownTime;
@@ -92,7 +92,7 @@ namespace _Project.Scripts.Player
 		
 		private void SetElementBasedPlayerStats()
 		{
-			EnemyDamage             = baseSettings.damageReceived * currentElementalStats.damageReceivedMultiplier;
+			EnemyDamageMultiplier   = currentElementalStats.damageReceivedMultiplier;
 			PlayerDamage            = baseSettings.attackStrength * currentElementalStats.attackStrengthMultiplier;
 			_moveSpeed              = baseSettings.moveSpeed      * currentElementalStats.moveSpeedMultiplier;
 			_attackCooldownTime     = baseSettings.attackCooldownTime / currentElementalStats.attackRateMultiplier;

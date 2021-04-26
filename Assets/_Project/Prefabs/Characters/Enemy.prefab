@@ -240,6 +240,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ceac59e21520d4982f63610c0e0253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSettings: {fileID: 11400000, guid: 852e9d15c8566cb4cbef57b1b9bcc804, type: 2}
+  currentElementalStats: {fileID: 11400000, guid: 94a7010db8d870041a98b339c5e3d555, type: 2}
+  elementalStats:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   type: {fileID: 1460504048}
   moveSpeed: 1.5
   rotationSpeed: 2.5
