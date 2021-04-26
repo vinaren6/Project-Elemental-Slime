@@ -9,8 +9,8 @@ namespace _Project.Scripts.ElementalSystem
 		[SerializeField] private float                      fadeSpeed = .5f;
 		[SerializeField] private bool                       startColorShiftOnStart;
 		[SerializeField] private Renderer                   meshRenderer;
-		
-		private                  Color                      _targetColor;
+
+		private Color _targetColor;
 
 		private void Start()
 		{
