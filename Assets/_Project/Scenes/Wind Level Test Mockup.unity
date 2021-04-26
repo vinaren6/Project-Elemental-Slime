@@ -190,6 +190,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wind Level Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5fe1a1c5da1891744af5e3307f5e2705, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5fe1a1c5da1891744af5e3307f5e2705, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fe1a1c5da1891744af5e3307f5e2705, type: 3}
 --- !u!1 &246333132
@@ -303,8 +311,8 @@ GameObject:
   m_Name: Rock Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &288976110
 SphereCollider:
@@ -493,8 +501,8 @@ GameObject:
   m_Name: Tree Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &650468337
 BoxCollider:
@@ -588,8 +596,8 @@ GameObject:
   m_Name: Rock Placeholder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &910679720
 SphereCollider:
@@ -683,8 +691,8 @@ GameObject:
   m_Name: Rock Placeholder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &1108943029
 SphereCollider:
@@ -873,8 +881,8 @@ GameObject:
   m_Name: Rock Placeholder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &1259926568
 SphereCollider:
@@ -968,8 +976,8 @@ GameObject:
   m_Name: Rock Placeholder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &1341859702
 SphereCollider:
