@@ -3,6 +3,7 @@ using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.Player.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Player
 {

@@ -53,7 +53,7 @@ namespace _Project.Scripts.Managers
         {
             if (hud == null)
                 _hud = new NullHUD();
-            
+
             _hud = hud;
         }
         
