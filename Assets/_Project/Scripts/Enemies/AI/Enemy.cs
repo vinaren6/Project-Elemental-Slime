@@ -52,15 +52,8 @@ namespace _Project.Scripts.Enemies.AI
 			_ui			  = GetComponentInChildren<EnemyUI>();
 		}
 
-		private void Start()
-		{
-			// target       = GameObject.FindWithTag("Player").transform;
-		}
-
 		private void Update() => StateMachine.CurrentState.LogicUpdate();
-
-		private void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
-
+		
 		public void CheckForPlayerDetection()
 		{
 			//if (other.CompareTag("Player")) { } ???

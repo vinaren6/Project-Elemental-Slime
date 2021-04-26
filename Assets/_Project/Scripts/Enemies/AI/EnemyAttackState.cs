@@ -10,9 +10,7 @@ namespace _Project.Scripts.Enemies.AI
         public EnemyAttackState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
 
         private float _nextAttack = 0;
-
-        public override void Enter() => base.Enter();
-
+        
         public override void LogicUpdate()
         {
             if (ServiceLocator.Game.IsPaused)
@@ -26,9 +24,5 @@ namespace _Project.Scripts.Enemies.AI
                 _nextAttack = Time.time + _enemy.attackRate;
             }
         }
-
-        public override void PhysicsUpdate() => base.PhysicsUpdate();
-
-        public override void Exit() => base.Exit();
     }
 }
