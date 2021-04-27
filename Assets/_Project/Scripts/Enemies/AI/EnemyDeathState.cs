@@ -6,15 +6,14 @@ namespace _Project.Scripts.Enemies.AI
 	{
 		public EnemyDeathState(EnemyController enemyController, EnemyStateMachine stateMachine) : base(enemyController, stateMachine) { }
 
-		public override void Enter()
+		public override void Enter() => base.Enter();
+
+		public override void LogicUpdate()
 		{
-			base.Enter();
-			
+			base.LogicUpdate();
 			EnemyController.GetComponent<DestroyThisObj>().DestroyMe();
 		}
 
-		public override void LogicUpdate() => base.LogicUpdate();
-		
 		public override void Exit() => base.Exit();
 	}
 }
