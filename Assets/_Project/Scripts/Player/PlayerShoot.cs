@@ -6,18 +6,18 @@ namespace _Project.Scripts.Player
 {
     public class PlayerShoot : MonoBehaviour
     {
-        [SerializeField] private AudioClip      shootSFX;
-        private                  ProjectilePool _projectilePool;
-        private                  float          _nextAttack = 0;
-        private                  NavMeshAgent   _agent;
+        [SerializeField] private AudioClip        shootSFX;
+        private                  ProjectilePool   _projectilePool;
+        private                  float            _nextAttack = 0;
+        private                  PlayerController _player;
         
         private void Awake()
         {
             _projectilePool = GetComponentInChildren<ProjectilePool>();
-            _agent          = GetComponent<NavMeshAgent>();
+            _player         = GetComponent<PlayerController>();
         }
 
-        public void Fire(float attackCooldownTime, float projectileSpeed, float moveWhenAttackingMultiplier)
+        public void Fire(float attackCooldownTime, float projectileSpeed)
         {
             if (!(Time.time > _nextAttack))
                 return;
@@ -26,7 +26,7 @@ namespace _Project.Scripts.Player
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
             _nextAttack = Time.time + attackCooldownTime;
             ServiceLocator.Audio.PlaySFX(shootSFX);
-            _agent.velocity *= moveWhenAttackingMultiplier;
+            _player.HasAttacked = true;
         }
     }
 }

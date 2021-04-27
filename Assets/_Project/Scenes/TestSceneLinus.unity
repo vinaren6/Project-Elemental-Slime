@@ -1653,7 +1653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2265625479594736235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1923,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 721889729854220432, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 721889729854220433, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1979,6 +1983,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: currentPlayerElementalStats
+      value: 
+      objectReference: {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
     - target: {fileID: 5954015566207735552, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: poolSize
       value: 150
