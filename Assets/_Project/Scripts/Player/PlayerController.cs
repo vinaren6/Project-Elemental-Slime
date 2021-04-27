@@ -15,9 +15,10 @@ namespace _Project.Scripts.Player
 		[SerializeField] private PlayerElementalStats[] elementalStats = new PlayerElementalStats[5];
 
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
-		[SerializeField]                     private float rotationSmooth              = 7.0f;
-		[SerializeField][Range(0.25f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
-		[SerializeField][Range(0.25f, 1.0f)] private float moveBackwardsMultiplier     = 1.0f;
+		[SerializeField][Range(0.1f, 1.0f)]  private float moveSmoothing               = 0.9f;
+		[SerializeField][Range(1.0f, 10.0f)] private float rotationSmoothing           = 7.0f;
+		[SerializeField][Range(0.1f, 1.0f)]  private float moveWhenAttackingMultiplier = 1.0f;
+		[SerializeField][Range(0.1f, 1.0f)]  private float moveBackwardsMultiplier     = 1.0f;
 		
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
@@ -51,30 +52,18 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			_move.Move(_input.MoveDirection, _moveSpeed, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
+			_move.Move(_input.MoveDirection, _moveSpeed, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
 			
-			_aim.Aim(_input.AimDirection, rotationSmooth);
+			_aim.Aim(_input.AimDirection, rotationSmoothing);
 
 			if (_input.FireInput)
 				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
 			
-			if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[4]) 
+			if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[(int)ElementalSystemTypes.Base]) 
 				_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
 		}
 
-		public void SwitchElementalStats()
-		{
-			currentPlayerElementalStats = _elementType.Type switch {
-				ElementalSystemTypes.Earth => elementalStats[0],
-				ElementalSystemTypes.Wind  => elementalStats[1],
-				ElementalSystemTypes.Water => elementalStats[2],
-				ElementalSystemTypes.Fire  => elementalStats[3],
-				ElementalSystemTypes.Base  => elementalStats[4],
-				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
-			};
-			SetElementBasedPlayerStats();
-			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
-		}
+		#region Methods
 		
 		private void GetComponentReferences()
 		{
@@ -106,7 +95,24 @@ namespace _Project.Scripts.Player
 			_attackCooldownTime     = baseSettings.attackCooldownTime / currentPlayerElementalStats.attackRateMultiplier;
 			IsDealingDamageOverTime = currentPlayerElementalStats.isDealingDamageOverTime;
 		}
+		
+		public void SwitchElementalStats()
+		{
+			currentPlayerElementalStats = _elementType.Type switch {
+				ElementalSystemTypes.Earth => elementalStats[(int)ElementalSystemTypes.Earth],
+				ElementalSystemTypes.Wind  => elementalStats[(int)ElementalSystemTypes.Wind],
+				ElementalSystemTypes.Water => elementalStats[(int)ElementalSystemTypes.Water],
+				ElementalSystemTypes.Fire  => elementalStats[(int)ElementalSystemTypes.Fire],
+				ElementalSystemTypes.Base  => elementalStats[(int)ElementalSystemTypes.Base],
+				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
+			};
+			SetElementBasedPlayerStats();
+			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
+		}
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
+		
+		#endregion
+
 	}
 }

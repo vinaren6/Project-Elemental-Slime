@@ -225,8 +225,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2e8035b52f3b4547ba2d33b6613546d, type: 2}
   - {fileID: 11400000, guid: a972552ec0247f94680beb5087d0c51e, type: 2}
   - {fileID: 11400000, guid: 80eb9afc6721c39458206ac4dee9288b, type: 2}
+  moveSmoothing: 0.9
+  rotationSmoothing: 7
   moveWhenAttackingMultiplier: 0.6
-  moveBackwardsMultiplier: 0.8
+  moveBackwardsMultiplier: 0.75
 --- !u!114 &2430382309369243959
 MonoBehaviour:
   m_ObjectHideFlags: 0

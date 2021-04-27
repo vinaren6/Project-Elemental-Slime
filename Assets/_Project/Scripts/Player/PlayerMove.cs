@@ -22,8 +22,20 @@ namespace _Project.Scripts.Player
 		{
 			_camera = Camera.main;
 			SetIsometricReferences();
-			_agent.updateRotation = false;
 		}
+
+		public void Move(Vector3 input, float speed, float moveSmoothing, float backwardsMoveMultiplier, float moveWhenAttackingMultiplier)
+		{
+			Vector3 moveDirection           = (_forward * input.z + _right * input.x).normalized;
+			float   lookDirectionAdjustment = GetLookDirectionAdjustment(moveDirection, backwardsMoveMultiplier);
+			
+			Vector3 movement                = moveDirection * (lookDirectionAdjustment * speed);
+			_agent.velocity = movement * (1 - moveSmoothing) + _agent.velocity * moveSmoothing;
+
+			AdjustVelocityIfPlayerHasAttacked(moveWhenAttackingMultiplier);
+		}
+
+		#region Methods
 
 		private void SetIsometricReferences()
 		{
@@ -32,32 +44,22 @@ namespace _Project.Scripts.Player
 			_forward   = Vector3.Normalize(_forward);
 			_right     = Quaternion.Euler(new Vector3(0, 90, 0)) * _forward;
 		}
-
-		public void Move(Vector3 input, float speed, float backwardsMoveMultiplier, float moveWhenAttackingMultiplier)
-		{
-			Vector3 moveDirection           = (_forward * input.z + _right * input.x).normalized;
-			float   lookDirectionAdjustment = GetLookDirectionAdjustment(moveDirection, backwardsMoveMultiplier);
-
-			// VelocityMovement with smoothing:
-			_agent.velocity = moveDirection * (speed * lookDirectionAdjustment * 0.1f) + _agent.velocity * 0.9f;
-
-			if (_player.HasAttacked) {
-				_agent.velocity     *= moveWhenAttackingMultiplier;
-				_player.HasAttacked =  false;
-			}
-
-			// -- MOVEMENT ALTERNATIVES --
-			// _agent.Move(moveDirection * (Time.deltaTime * speed * lookDirectionAdjustment));
-			// VelocityMovement:
-			// _agent.velocity = moveDirection * (Time.deltaTime * speed * 100);
-		}
-
+		
 		private float GetLookDirectionAdjustment(Vector3 moveDirection, float backwardsMoveMultiplier)
 		{
-			Vector3 lookDirection = _transform.forward;
-			float lookDirectionAdjustment = (Mathf.Abs(moveDirection.x + lookDirection.x) + Mathf.Abs(moveDirection.z + lookDirection.z)) / 2;
-			lookDirectionAdjustment = backwardsMoveMultiplier + Mathf.Clamp(lookDirectionAdjustment, 0.1f, 1f) * (1 - backwardsMoveMultiplier);
-			return lookDirectionAdjustment;
+			float moveLookRelation = (Vector3.Dot(_transform.forward, moveDirection) + 1) / 2 ;
+			return backwardsMoveMultiplier + moveLookRelation * (1 - backwardsMoveMultiplier);
 		}
+		
+		private void AdjustVelocityIfPlayerHasAttacked(float moveWhenAttackingMultiplier)
+		{
+			if (!_player.HasAttacked)
+				return;
+			
+			_agent.velocity     *= moveWhenAttackingMultiplier;
+			_player.HasAttacked =  false;
+		}
+
+		#endregion
 	}
 }

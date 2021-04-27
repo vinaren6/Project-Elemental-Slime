@@ -13,6 +13,7 @@ namespace _Project.Scripts.Player
 		{
 			if (!(Time.time > _nextSpecialAttack))
 				return;
+			
 			GameObject projectile = Instantiate(specialAttack, transform.position, Quaternion.identity);
 			projectile.GetComponent<ElementalSystemTypeCurrent>().Type = type.Type;
 			projectile.GetComponent<Rigidbody>().AddForce(transform.forward * (projectileSpeed * 1.2f));

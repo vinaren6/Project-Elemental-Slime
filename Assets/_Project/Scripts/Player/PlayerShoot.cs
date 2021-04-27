@@ -1,6 +1,5 @@
 using _Project.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace _Project.Scripts.Player
 {
