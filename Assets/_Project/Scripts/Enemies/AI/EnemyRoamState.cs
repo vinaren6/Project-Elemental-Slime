@@ -5,7 +5,7 @@ namespace _Project.Scripts.Enemies.AI
 {
 	public class EnemyRoamState : EnemyState
 	{
-		public EnemyRoamState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
+		public EnemyRoamState(EnemyController enemyController, EnemyStateMachine stateMachine) : base(enemyController, stateMachine) { }
 		
 		// private float     _roamSpeedMultiplier = 0.5f;
 		private Vector3   _roamTargetPosition;
@@ -23,7 +23,7 @@ namespace _Project.Scripts.Enemies.AI
 		public override void LogicUpdate()
 		{
 			if (ServiceLocator.Game.IsPaused) {
-				_enemy.NavMeshAgent.SetDestination(_transform.position);
+				EnemyController.NavMeshAgent.SetDestination(_transform.position);
 				return;
 			}
 			
@@ -32,11 +32,11 @@ namespace _Project.Scripts.Enemies.AI
 			if (_isChangeDirection )
             {
 				NavMeshPath path = new NavMeshPath();
-				_enemy.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
+				EnemyController.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
 				
                 if (path.status == NavMeshPathStatus.PathComplete)
                 {
-					_enemy.NavMeshAgent.SetDestination(_roamTargetPosition);
+					EnemyController.NavMeshAgent.SetDestination(_roamTargetPosition);
 					_isChangeDirection = false;
                 }
                 else
@@ -50,7 +50,7 @@ namespace _Project.Scripts.Enemies.AI
 			if (Vector3.Distance(_transform.position, _nextRoamTargetPosition) < 1.25f) {
 				
 			}
-			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f || _enemy.NavMeshAgent.remainingDistance > 15) {
+			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f || EnemyController.NavMeshAgent.remainingDistance > 15) {
 				_roamTargetPosition = GetNewRoamTargetPosition();
 				_isChangeDirection = true;
 			}

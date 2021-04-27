@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Enemies.AI
 {
-	public class Enemy : MonoBehaviour
+	public class EnemyController : MonoBehaviour
 	{
 		[Header("ACTIVE SETTINGS/STATS:")] 
 		[SerializeField] private EnemySettings baseSettings;
@@ -33,16 +33,17 @@ namespace _Project.Scripts.Enemies.AI
 		private Health       _health;
 		private EnemyUI      _ui;
 		private NavMeshAgent _navMeshAgent;
+		
+		private int          _damageOverTimeTotalTicks;
 
-		private bool         _isBurning;
-		[HideInInspector] public float damageOverTimeTotalTicks;
-
+		private bool _isBurning;
 		private bool _hasDetectedPlayer;
 
-		public Transform    Target       => _target;
-		public Health       Health       => _health;
-		public EnemyUI      UI           => _ui;
-		public NavMeshAgent NavMeshAgent => _navMeshAgent;
+		public Transform    Target                   => _target;
+		public Health       Health                   => _health;
+		public EnemyUI      UI                       => _ui;
+		public NavMeshAgent NavMeshAgent             => _navMeshAgent;
+		public int          DamageOverTimeTotalTicks => _damageOverTimeTotalTicks;
 
 		public bool IsBurning {
 			get => _isBurning;
@@ -118,7 +119,7 @@ namespace _Project.Scripts.Enemies.AI
 				return;
 			
 			_isBurning = true;
-			damageOverTimeTotalTicks = totalTicks;
+			_damageOverTimeTotalTicks = totalTicks;
 		}
 
 		public void ChangeToDeathState() => StateMachine.ChangeState(DeathState);

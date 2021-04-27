@@ -51,7 +51,7 @@ namespace _Project.Scripts.Player
 			_move.Move(_input.MoveDirection, _moveSpeed, moveBackwardsMultiplier);
 			
 			_aim.Aim(_input.AimDirection);
-			
+
 			if (_input.FireInput)
 				_shoot.Fire(_attackCooldownTime, _projectileSpeed, moveWhenAttackingMultiplier);
 			

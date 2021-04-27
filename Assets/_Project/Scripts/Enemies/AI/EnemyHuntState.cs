@@ -4,12 +4,12 @@ namespace _Project.Scripts.Enemies.AI
 {
     public class EnemyHuntState : EnemyState
     {
-        public EnemyHuntState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
+        public EnemyHuntState(EnemyController enemyController, EnemyStateMachine stateMachine) : base(enemyController, stateMachine) { }
 
         public override void LogicUpdate()
         {
             if (ServiceLocator.Game.IsPaused) {
-                _enemy.NavMeshAgent.SetDestination(_transform.position);
+                EnemyController.NavMeshAgent.SetDestination(_transform.position);
                 return;
             }
 
@@ -19,7 +19,7 @@ namespace _Project.Scripts.Enemies.AI
             // Quaternion rotation = Quaternion.LookRotation(direction);
             // _transform.rotation = Quaternion.Slerp(
             //     _transform.rotation, rotation, Time.fixedDeltaTime * _enemy.rotationSpeed);
-            _enemy.NavMeshAgent.SetDestination(_enemy.Target.position);
+            EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position);
         }
     }
 }

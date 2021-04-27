@@ -6,25 +6,25 @@ namespace _Project.Scripts.Enemies.AI
 {
 	public class EnemyState
 	{
-		protected Enemy             _enemy;
+		protected EnemyController             EnemyController;
 		protected EnemyStateMachine _stateMachine;
 		protected Transform         _transform;
 
 		private float _nextDamageOverTime;
 		private int _damageOverTimeTicks;
 
-		public EnemyState(Enemy enemy, EnemyStateMachine stateMachine)
+		public EnemyState(EnemyController enemyController, EnemyStateMachine stateMachine)
 		{
-			_enemy        = enemy;
+			EnemyController        = enemyController;
 			_stateMachine = stateMachine;
-			_transform    = enemy.transform;
+			_transform    = enemyController.transform;
 		}
 
 		public virtual void Enter() { }
 
 		public virtual void LogicUpdate()
 		{
-			if (!_enemy.IsBurning)
+			if (!EnemyController.IsBurning)
 				return;
 			
 			if (_nextDamageOverTime == 0) {
@@ -34,16 +34,16 @@ namespace _Project.Scripts.Enemies.AI
 			if (!(Time.time > _nextDamageOverTime))
 				return;
 			
-			_enemy.Health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
+			EnemyController.Health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
 			_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
 			_damageOverTimeTicks++;
 
-			if (!(_damageOverTimeTicks >= _enemy.damageOverTimeTotalTicks))
+			if (!(_damageOverTimeTicks >= EnemyController.DamageOverTimeTotalTicks))
 				return;
 
 			_nextDamageOverTime = 0f;
 			_damageOverTimeTicks = 0;
-			_enemy.IsBurning = false;
+			EnemyController.IsBurning = false;
 		}
 		
 		public virtual void Exit() { }
