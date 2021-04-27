@@ -5,10 +5,13 @@
         #region Variables
 
         private bool _isPaused;
+        public delegate void OnVariableChangeDelegate(bool state);
+        public event OnVariableChangeDelegate OnVariableChange;
 
         #region Properties
 
         public bool IsPaused => _isPaused;
+
 
         #endregion
 
@@ -26,7 +29,10 @@
 
         public void SetPause(bool pause)
         {
+            if (_isPaused == pause) return;
             _isPaused = pause;
+            if (OnVariableChange != null)
+                OnVariableChange(_isPaused);
         }
 
         #endregion

@@ -11,18 +11,28 @@ namespace _Project.Scripts.Enemies.AI
 		private Vector3   _roamTargetPosition;
 		private Vector3   _nextRoamTargetPosition;
         private bool      _isChangeDirection = true;
-
+		private bool pause;
+		
 		public override void Enter()
 		{
 			base.Enter();
 			
 			_roamTargetPosition     = GetNewRoamTargetPosition();
 			_nextRoamTargetPosition = _roamTargetPosition;
+			ServiceLocator.Game.OnVariableChange += PauseChange;
 		}
-		
+		private void PauseChange(bool pauseState)
+        {
+			Debug.Log("test");
+			pause = pauseState;
+            if (!pause)
+            {
+				EnemyController.NavMeshAgent.SetDestination(_roamTargetPosition);
+			}
+		}
 		public override void LogicUpdate()
 		{
-			if (ServiceLocator.Game.IsPaused) {
+			if (pause) {
 				EnemyController.NavMeshAgent.SetDestination(_transform.position);
 				return;
 			}
