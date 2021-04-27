@@ -13,8 +13,9 @@ namespace _Project.Scripts.Player
 		[SerializeField] private PlayerSettings         baseSettings;
 		[SerializeField] private PlayerElementalStats   currentPlayerElementalStats;
 		[SerializeField] private PlayerElementalStats[] elementalStats = new PlayerElementalStats[5];
-		
+
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
+		[SerializeField]                     private float rotationSmooth              = 7.0f;
 		[SerializeField][Range(0.25f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
 		[SerializeField][Range(0.25f, 1.0f)] private float moveBackwardsMultiplier     = 1.0f;
 		
@@ -37,6 +38,8 @@ namespace _Project.Scripts.Player
 		private float _projectileSpeed;
 		private float _specialAttackCooldownTime;
 
+		public bool HasAttacked { get; set; }
+
 		private void Awake()
 		{
 			GetComponentReferences();
@@ -48,12 +51,12 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			_move.Move(_input.MoveDirection, _moveSpeed, moveBackwardsMultiplier);
+			_move.Move(_input.MoveDirection, _moveSpeed, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
 			
-			_aim.Aim(_input.AimDirection);
+			_aim.Aim(_input.AimDirection, rotationSmooth);
 
 			if (_input.FireInput)
-				_shoot.Fire(_attackCooldownTime, _projectileSpeed, moveWhenAttackingMultiplier);
+				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
 			
 			if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[4]) 
 				_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
