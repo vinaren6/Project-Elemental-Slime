@@ -10,18 +10,18 @@ namespace _Project.Scripts.Enemies.AI
 		// private float     _roamSpeedMultiplier = 0.5f;
 		private Vector3   _roamTargetPosition;
 		private Vector3   _nextRoamTargetPosition;
-        private bool      _isChangeDirection = true;
+        private bool      _isChangeDirection = false;
 		private bool pause;
 		
 		public override void Enter()
 		{
 			base.Enter();
 			
-			_roamTargetPosition     = GetNewRoamTargetPosition();
-			_nextRoamTargetPosition = _roamTargetPosition;
+
 			ServiceLocator.Game.OnVariableChange += PauseChange;
 		}
-		private void PauseChange(bool pauseState)
+
+			private void PauseChange(bool pauseState)
         {
 			Debug.Log("test");
 			pause = pauseState;
@@ -32,63 +32,63 @@ namespace _Project.Scripts.Enemies.AI
 		}
 		public override void LogicUpdate()
 		{
+			//nedded for enemies att the start of the game otherwise they can get a position in a obsticle before it completely baked
+			if (Time.time < 1)
+            {
+				return;
+            }
+			
 			if (pause) {
 				EnemyController.NavMeshAgent.SetDestination(_transform.position);
 				return;
 			}
 			
 			base.LogicUpdate();
-			
-			if (_isChangeDirection )
-            {
-				NavMeshPath path = new NavMeshPath();
-				EnemyController.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
-				
-                if (path.status == NavMeshPathStatus.PathComplete)
-                {
-					EnemyController.NavMeshAgent.SetDestination(_roamTargetPosition);
-					_isChangeDirection = false;
-                }
-                else
-                {
-					_roamTargetPosition = GetNewRoamTargetPosition();
-				}
-				
-			}
 
-			
-			if (Vector3.Distance(_transform.position, _nextRoamTargetPosition) < 1.25f) {
-				
-			}
-			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f || EnemyController.NavMeshAgent.remainingDistance > 15) {
+			if (Vector3.Distance(_transform.position, _roamTargetPosition) < 0.75f || EnemyController.NavMeshAgent.remainingDistance > 15 || _roamTargetPosition == Vector3.zero)
+			{
 				_roamTargetPosition = GetNewRoamTargetPosition();
 				_isChangeDirection = true;
 			}
+
+			if (_isChangeDirection )
+            {
+					EnemyController.NavMeshAgent.SetDestination(_roamTargetPosition);
+					_isChangeDirection = false;
+			}
+			NavMeshPath path = new NavMeshPath();
+	
+			EnemyController.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
+			Debug.Log(path.status);
+
 		}
 		
 		public override void Exit() => base.Exit();
 
 		private Vector3 GetNewRoamTargetPosition()
 		{
-			Vector3 randomDirection  = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-			float   randomWalkRadius = Random.Range(10f, 10f);
-			Vector3 NewTargetPosition = _transform.position + randomDirection * randomWalkRadius;
-			NewTargetPosition.y = 0;
-			//Vector3 terrainPosition = Terrain.activeTerrain.GetPosition(rand);
-			
+
+			Vector3 randomDirection = Random.insideUnitSphere * 10;
+			randomDirection += _transform.position;
 			NavMeshHit hit;
-			if (NavMesh.SamplePosition(NewTargetPosition, out hit, 1f, NavMesh.AllAreas))
-			{
-				return NewTargetPosition;
-			}
+			NavMesh.SamplePosition(randomDirection, out hit, 10, 1);
+			Vector3 finalPosition = hit.position;
+
+			if (NavMesh.SamplePosition(finalPosition, out hit, 1f, NavMesh.AllAreas))
+            {
 			
-			return GetNewRoamTargetPosition();
-			
-			// if (NavMesh.SamplePosition(NewTargetPosition, out NavMeshHit hit, randomWalkRadius, 1)) {
-			// 	return hit.position;
-			// }
-			// Debug.Log("Enemy has to get new RoamTargetPosition!");
-			// return GetNewRoamTargetPosition();
-		}
-	}
+				NavMeshPath path = new NavMeshPath();
+		
+				EnemyController.NavMeshAgent.CalculatePath(finalPosition, path);
+
+				if (path.status == NavMeshPathStatus.PathComplete)
+				{
+					return finalPosition;
+				}
+            }
+
+            return GetNewRoamTargetPosition();
+
+        }
+    }
 }
