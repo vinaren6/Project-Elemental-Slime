@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Audio;
 using _Project.Scripts.UI;
+using UnityEngine;
 
 namespace _Project.Scripts.Managers
 {
@@ -25,7 +26,7 @@ namespace _Project.Scripts.Managers
 
         #region Start Methods
 
-        // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
         public static void Initialize()
         {
             _game = new GameManager();
