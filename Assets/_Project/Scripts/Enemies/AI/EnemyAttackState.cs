@@ -19,9 +19,9 @@ namespace _Project.Scripts.Enemies.AI
             base.LogicUpdate();
             if (Time.time > _nextAttack) {
                 if (EnemyController.Target.TryGetComponent(out IHealth health)) {
-                    health.ReceiveDamage(EnemyController.type.Type, EnemyController.attackStrength * PlayerController.EnemyDamageMultiplier);
+                    health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
                 }
-                _nextAttack = Time.time + EnemyController.attackCooldownTime;
+                _nextAttack = Time.time + EnemyController.AttackCooldownTime;
             }
         }
     }

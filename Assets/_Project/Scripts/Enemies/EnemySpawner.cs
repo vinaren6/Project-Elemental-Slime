@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Enemies.AI;
+using _Project.Scripts.Enemies.ScriptableObjects;
 using _Project.Scripts.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -66,8 +69,9 @@ namespace _Project.Scripts.Enemies
                 return;
             
             GameObject enemy = Instantiate(enemyPrefab, _transform.position, Quaternion.identity, _transform);
-            enemy.GetComponent<ElementalSystemTypeCurrent>().Type = type;
-            enemy.name = $"Enemy[{type}]";
+            // enemy.GetComponent<ElementalSystemTypeCurrent>().Type = type;
+            enemy.GetComponent<EnemyController>().SetupEnemyFromSpawner(GetEnemyElementalStats());
+            enemy.name                                                       = $"Enemy[{type}]";
 
             StartCoroutine(SpawnRoutine());
         }
@@ -75,6 +79,18 @@ namespace _Project.Scripts.Enemies
         private float GetSpawnDelay()
         {
             return Random.Range(minSpawnDelay, maxSpawnDelay);
+        }
+        
+        private EnemyElementalStats GetEnemyElementalStats()
+        {
+            return type switch {
+                ElementalSystemTypes.Earth => Resources.Load<EnemyElementalStats>("EnemyElementalStats/EarthStats"),
+                ElementalSystemTypes.Wind  => Resources.Load<EnemyElementalStats>("EnemyElementalStats/WindStats"),
+                ElementalSystemTypes.Water => Resources.Load<EnemyElementalStats>("EnemyElementalStats/WaterStats"),
+                ElementalSystemTypes.Fire  => Resources.Load<EnemyElementalStats>("EnemyElementalStats/FireStats"),
+                ElementalSystemTypes.Base  => Resources.Load<EnemyElementalStats>("EnemyElementalStats/BaseStats"),
+                _                          => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
         }
     }
 }

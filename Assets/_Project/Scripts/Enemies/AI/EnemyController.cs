@@ -18,57 +18,39 @@ namespace _Project.Scripts.Enemies.AI
 		public ElementalSystemTypeCurrent type;
 		
 		public EnemyStateMachine StateMachine { get; set; }
-
-		public EnemyRoamState   RoamState   { get; private set; }
-		public EnemyDetectState DetectState { get; private set; }
-		public EnemyHuntState   HuntState   { get; private set; }
-		public EnemyAttackState AttackState { get; private set; }
-		public EnemyDeathState  DeathState  { get; private set; }
-		
-		public float rotationSpeed = 2.5f;
-		public float attackStrength;
-		public float attackCooldownTime;
+		public EnemyRoamState    RoamState    { get; private set; }
+		public EnemyDetectState  DetectState  { get; private set; }
+		public EnemyHuntState    HuntState    { get; private set; }
+		public EnemyAttackState  AttackState  { get; private set; }
+		public EnemyDeathState   DeathState   { get; private set; }
 		
 		private Transform    _target;
 		private Health       _health;
 		private EnemyUI      _ui;
 		private NavMeshAgent _navMeshAgent;
 		
-		private int          _damageOverTimeTotalTicks;
-
-		private bool _isBurning;
-		private bool _hasDetectedPlayer;
+		private float _attackStrength;
+		private float _attackCooldownTime;
+		private int   _damageOverTimeTotalTicks;
+		
+		private bool  _isBurning;
+		private bool  _hasDetectedPlayer;
 
 		public Transform    Target                   => _target;
 		public Health       Health                   => _health;
 		public EnemyUI      UI                       => _ui;
 		public NavMeshAgent NavMeshAgent             => _navMeshAgent;
+		public float        AttackStrength           => _attackStrength;
+		public float        AttackCooldownTime       => _attackCooldownTime;
 		public int          DamageOverTimeTotalTicks => _damageOverTimeTotalTicks;
 
-		public bool IsBurning {
-			get => _isBurning;
-			set => _isBurning = value;
-		}
+		public bool IsBurning { get => _isBurning; set => _isBurning = value; }
 
 		private void Awake()
 		{
-			StateMachine = new EnemyStateMachine();
-			RoamState    = new EnemyRoamState(this, StateMachine);
-			DetectState  = new EnemyDetectState(this, StateMachine);
-			HuntState    = new EnemyHuntState(this, StateMachine);
-			AttackState  = new EnemyAttackState(this, StateMachine);
-			DeathState   = new EnemyDeathState(this, StateMachine);
-			StateMachine.Initialize(RoamState);
-
-			_health       = GetComponent<Health>();
-			_navMeshAgent = GetComponent<NavMeshAgent>();
-			_ui           = GetComponentInChildren<EnemyUI>();
-
-			type.Type            = currentEnemyElementalStats.elementType;
-			_health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints;
-			_navMeshAgent.speed  = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
-			attackStrength       = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
-			attackCooldownTime   = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
+			InitializeStateMachine();
+			GetComponentReferences();
+			SetStats();
 		}
 
 		private void Update() => StateMachine.CurrentState.LogicUpdate();
@@ -134,6 +116,39 @@ namespace _Project.Scripts.Enemies.AI
 		{
 			if (other.collider.CompareTag("Player"))
 				StateMachine.ChangeState(HuntState);
+		}
+		
+		private void InitializeStateMachine()
+		{
+			StateMachine = new EnemyStateMachine();
+			RoamState    = new EnemyRoamState(this, StateMachine);
+			DetectState  = new EnemyDetectState(this, StateMachine);
+			HuntState    = new EnemyHuntState(this, StateMachine);
+			AttackState  = new EnemyAttackState(this, StateMachine);
+			DeathState   = new EnemyDeathState(this, StateMachine);
+			StateMachine.Initialize(RoamState);
+		}
+		
+		private void GetComponentReferences()
+		{
+			_health       = GetComponent<Health>();
+			_navMeshAgent = GetComponent<NavMeshAgent>();
+			_ui           = GetComponentInChildren<EnemyUI>();
+		}
+		
+		private void SetStats()
+		{
+			type.Type            = currentEnemyElementalStats.elementType;
+			_health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints;
+			_navMeshAgent.speed  = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
+			_attackStrength      = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
+			_attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
+		}
+
+		public void SetupEnemyFromSpawner(EnemyElementalStats elementalStats)
+		{
+			currentEnemyElementalStats = elementalStats;
+			SetStats();
 		}
 	}
 }
