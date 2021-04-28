@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,12 +13,16 @@ namespace _Project.Scripts.Abilities
 	{
 		private PlayerController _player;
 		private NavMeshAgent     _agent;
+		private BoxCollider      _playerCollider;
+		private BoxCollider      _attackTrigger;
 		private float            _nextAttack = 0;
 
 		private void Awake()
 		{
-			_player                     = GetComponentInParent<PlayerController>();
-			_agent                      = GetComponentInParent<NavMeshAgent>();
+			_player         = GetComponentInParent<PlayerController>();
+			_agent          = GetComponentInParent<NavMeshAgent>();
+			_playerCollider = _player.gameObject.GetComponent<BoxCollider>();
+			_attackTrigger  = GetComponent<BoxCollider>();
 			//Application.targetFrameRate = 300;
 		}
 
@@ -25,14 +32,21 @@ namespace _Project.Scripts.Abilities
 				Execute(); 
 		}
 
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.TryGetComponent(out IHealth health))
+				health.ReceiveDamage(ElementalSystemTypes.Wind, PlayerController.PlayerDamage);
+		}
+
 		public void Execute()
 		{
 			if (!(Time.time > _nextAttack))
 				return;
-            
-			_agent.velocity   = Vector3.zero;
-			Time.timeScale    = 0.5f;
-			_player.isDashing = true;
+
+			_playerCollider.enabled = false;
+			_agent.velocity         = Vector3.zero;
+			Time.timeScale          = 0.5f;
+			_player.IsDashing       = true;
 			StartCoroutine(WindDash());
 
 			_nextAttack = Time.time + _player.AttackCooldownTime;
@@ -47,10 +61,14 @@ namespace _Project.Scripts.Abilities
 				time        += Time.deltaTime;
 				yield return null;
 			}
-
+			_attackTrigger.enabled = true;
+			
 			yield return new WaitForSeconds(0.1f);
-			Time.timeScale    = 1f;
-			_player.isDashing = false;
+			
+			_attackTrigger.enabled  = false;
+			_playerCollider.enabled = true;
+			_player.IsDashing       = false;
+			Time.timeScale          = 1f;
 		}
 	}
 }

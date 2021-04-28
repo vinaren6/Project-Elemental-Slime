@@ -16,7 +16,7 @@ namespace _Project.Scripts.Player
 
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
 		[SerializeField][Range(0.1f, 1.0f)]  private float moveSmoothing               = 0.9f;
-		[SerializeField][Range(1.0f, 10.0f)] private float rotationSmoothing           = 7.0f;
+		[SerializeField][Range(1.0f, 15.0f)] private float rotationSmoothing           = 7.0f;
 		[SerializeField][Range(0.1f, 1.0f)]  private float moveWhenAttackingMultiplier = 1.0f;
 		[SerializeField][Range(0.1f, 1.0f)]  private float moveBackwardsMultiplier     = 1.0f;
 		
@@ -36,11 +36,14 @@ namespace _Project.Scripts.Player
 
 		private float _moveSpeed;
 		private float _attackCooldownTime;
+		
 		private float _projectileSpeed;
 		private float _specialAttackCooldownTime;
 
-		public bool HasAttacked { get; set; }
-
+		public float AttackCooldownTime => _attackCooldownTime;
+		public bool  HasAttacked        { get; set; }
+		public bool  IsDashing          { get; set; }
+		
 		private void Awake()
 		{
 			GetComponentReferences();
@@ -52,10 +55,11 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			_move.Move(_input.MoveDirection, _moveSpeed, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
+			if (!IsDashing) {
+				_move.Move(_input.MoveDirection, _moveSpeed, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
+				_aim.Aim(_input.AimDirection, rotationSmoothing);
+			}
 			
-			_aim.Aim(_input.AimDirection, rotationSmoothing);
-
 			if (_input.FireInput)
 				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
 			

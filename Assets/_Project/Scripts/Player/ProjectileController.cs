@@ -21,9 +21,7 @@ namespace _Project.Scripts.Player
 				health.ReceiveDamage(type.Type, PlayerController.PlayerDamage);
 
 			if (PlayerController.IsDealingDamageOverTime && other.collider.TryGetComponent(out EnemyController enemy))
-			{
 				enemy.StartDamageOverTime(type.Type, PlayerController.DamageOverTimeTotalTicks);
-			}
 
 			gameObject.SetActive(false);
 		}
