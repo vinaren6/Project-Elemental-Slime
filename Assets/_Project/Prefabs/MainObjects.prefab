@@ -494,19 +494,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5085988909929289465, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000009536743
+      value: -0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 5085988909929289465, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.52117
+      value: 0.40957642
       objectReference: {fileID: 0}
     - target: {fileID: 5085988909929289465, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.702232
+      value: -50.28679
       objectReference: {fileID: 0}
     - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_ClearFlags
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: far clip plane
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5085988909929289467, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: near clip plane
@@ -574,20 +578,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085988911851113652, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.000002861023
       objectReference: {fileID: 0}
     - target: {fileID: 5085988911851113652, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.111599
+      value: 8.111593
       objectReference: {fileID: 0}
     - target: {fileID: 5085988911851113652, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.584568
+      value: 11.584557
       objectReference: {fileID: 0}
     - target: {fileID: 5085988911851113655, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 7268993656752703064}
+    - target: {fileID: 5085988911851113655, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085988911851113655, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cded27a50e442504dbd493f05c92297e, type: 3}
 --- !u!4 &8440744388599372582 stripped
