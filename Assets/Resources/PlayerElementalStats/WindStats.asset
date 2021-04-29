@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindStats
   m_EditorClassIdentifier: 
   moveSpeedMultiplier: 1.25
-  damageReceivedMultiplier: 2
+  damageReceivedMultiplier: 1.5
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
   isDealingDamageOverTime: 0

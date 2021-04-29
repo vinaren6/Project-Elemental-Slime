@@ -24,12 +24,12 @@ namespace _Project.Scripts.Player
 			SetIsometricReferences();
 		}
 
-		public void Move(Vector3 input, float speed, float moveSmoothing, float backwardsMoveMultiplier, float moveWhenAttackingMultiplier)
+		public void Move(Vector3 input, float moveSmoothing, float backwardsMoveMultiplier, float moveWhenAttackingMultiplier)
 		{
 			Vector3 moveDirection           = (_forward * input.z + _right * input.x).normalized;
 			float   lookDirectionAdjustment = GetLookDirectionAdjustment(moveDirection, backwardsMoveMultiplier);
 			
-			Vector3 movement                = moveDirection * (lookDirectionAdjustment * speed);
+			Vector3 movement                = moveDirection * (lookDirectionAdjustment * _player.MoveSpeed);
 			_agent.velocity = movement * (1 - moveSmoothing) + _agent.velocity * moveSmoothing;
 
 			AdjustVelocityIfPlayerHasAttacked(moveWhenAttackingMultiplier);

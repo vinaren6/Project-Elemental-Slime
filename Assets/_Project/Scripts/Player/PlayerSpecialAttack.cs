@@ -11,7 +11,7 @@ namespace _Project.Scripts.Player
 		
 		public void Activate(GameObject specialAttack, float projectileSpeed, float specialAttackCooldownTime, ElementalSystemTypeCurrent type)
 		{
-			if (!(Time.time > _nextSpecialAttack))
+			if (Time.time < _nextSpecialAttack)
 				return;
 			
 			GameObject projectile = Instantiate(specialAttack, transform.position, Quaternion.identity);

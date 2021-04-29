@@ -7,8 +7,8 @@ namespace _Project.Scripts.Player
     {
         [SerializeField] private AudioClip        shootSFX;
         private                  ProjectilePool   _projectilePool;
-        private                  float            _nextAttack = 0;
         private                  PlayerController _player;
+        private                  float            _nextAttack = 0;
         
         private void Awake()
         {
@@ -16,14 +16,14 @@ namespace _Project.Scripts.Player
             _player         = GetComponent<PlayerController>();
         }
 
-        public void Fire(float attackCooldownTime, float projectileSpeed)
+        public void Fire()
         {
-            if (!(Time.time > _nextAttack))
+            if (Time.time < _nextAttack)
                 return;
             
             GameObject projectile = _projectilePool.SpawnFromPool();
-            projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
-            _nextAttack = Time.time + attackCooldownTime;
+            projectile.GetComponent<Rigidbody>().AddForce(transform.forward * _player.ProjectileSpeed);
+            _nextAttack = Time.time + _player.AttackCooldownTime;
             ServiceLocator.Audio.PlaySFX(shootSFX);
             _player.HasAttacked = true;
         }

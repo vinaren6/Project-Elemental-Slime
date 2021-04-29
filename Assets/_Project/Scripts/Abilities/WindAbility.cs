@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Managers;
 using _Project.Scripts.Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,19 +24,20 @@ namespace _Project.Scripts.Abilities
 			_agent          = GetComponentInParent<NavMeshAgent>();
 			_playerCollider = _player.gameObject.GetComponent<BoxCollider>();
 			_attackTrigger  = GetComponent<BoxCollider>();
-			//Application.targetFrameRate = 300;
 		}
 
 		private void Update() 
 		{ 
-			if (Mouse.current.leftButton.isPressed)
+			if (Mouse.current.rightButton.isPressed)
 				Execute(); 
 		}
+
+		private void OnDisable() => ResetDashingModifications();
 
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.TryGetComponent(out IHealth health))
-				health.ReceiveDamage(ElementalSystemTypes.Wind, PlayerController.PlayerDamage);
+				health.ReceiveDamage(ElementalSystemTypes.Wind, PlayerController.PlayerDamage * _player.SpecialAttackMultiplier);
 		}
 
 		public void Execute()
@@ -45,30 +47,36 @@ namespace _Project.Scripts.Abilities
 
 			_playerCollider.enabled = false;
 			_agent.velocity         = Vector3.zero;
-			Time.timeScale          = 0.5f;
 			_player.IsDashing       = true;
+			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.SpecialAttackCooldownTime);
+			_nextAttack = Time.time + _player.SpecialAttackCooldownTime;
+			
 			StartCoroutine(WindDash());
-
-			_nextAttack = Time.time + _player.AttackCooldownTime;
 		}
 
 		private IEnumerator WindDash()
 		{
+			Time.timeScale = 0.5f;
 			float   time          = 0;
 			float   duration      = 0.03f;
 			while (time < duration) {
-				_agent.Move(transform.forward * Mathf.Lerp(5f, 0f, time / duration));
-				time        += Time.deltaTime;
+				float smoothStepLerp = time / duration;
+				smoothStepLerp = smoothStepLerp * smoothStepLerp * (3f - 2f * smoothStepLerp);
+				_agent.Move(transform.forward * Mathf.Lerp(5f, 0f, smoothStepLerp));
+				time           += Time.deltaTime;
 				yield return null;
 			}
 			_attackTrigger.enabled = true;
-			
 			yield return new WaitForSeconds(0.1f);
-			
+			ResetDashingModifications();
+		}
+
+		private void ResetDashingModifications()
+		{
 			_attackTrigger.enabled  = false;
 			_playerCollider.enabled = true;
 			_player.IsDashing       = false;
 			Time.timeScale          = 1f;
-		}
+		} 
 	}
 }

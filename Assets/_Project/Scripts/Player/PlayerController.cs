@@ -34,20 +34,24 @@ namespace _Project.Scripts.Player
 		public static int   DamageOverTimeTotalTicks;
 		public static bool  IsDealingDamageOverTime;
 
-		private float _moveSpeed;
+		private float _moveSpeed; 
 		private float _attackCooldownTime;
-		
 		private float _projectileSpeed;
 		private float _specialAttackCooldownTime;
 
-		public float AttackCooldownTime => _attackCooldownTime;
-		public bool  HasAttacked        { get; set; }
-		public bool  IsDashing          { get; set; }
+		public float MoveSpeed                 => _moveSpeed;
+		public float AttackCooldownTime        => _attackCooldownTime;
+		public float ProjectileSpeed           => _projectileSpeed;
+		public float SpecialAttackMultiplier   { get; } = 5f;
+		public float SpecialAttackCooldownTime => _specialAttackCooldownTime;
+		public bool  HasAttacked               { get; set; }
+		public bool  IsDashing                 { get; set; }
+		public bool  IsQuaking                 { get; set; }
 		
 		private void Awake()
 		{
 			GetComponentReferences();
-			SetStartingPlayerStats();
+			SetBaseStats();
 		}
 
 		private void Update()
@@ -55,16 +59,17 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			if (!IsDashing) {
-				_move.Move(_input.MoveDirection, _moveSpeed, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
-				_aim.Aim(_input.AimDirection, rotationSmoothing);
-			}
-			
+			if (IsDashing || IsQuaking)
+				return;
+				
+			_move.Move(_input.MoveDirection, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
+			_aim.Aim(_input.AimDirection, rotationSmoothing);
+
 			if (_input.FireInput)
-				_shoot.Fire(_attackCooldownTime, _projectileSpeed);
+				_shoot.Fire();
 			
-			if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[(int)ElementalSystemTypes.Base]) 
-				_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
+			// if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[(int)ElementalSystemTypes.Base]) 
+			// 	_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
 		}
 
 		#region Methods
@@ -79,7 +84,7 @@ namespace _Project.Scripts.Player
 			_elementType   = GetComponent<ElementalSystemTypeCurrent>();
 		}
 		
-		private void SetStartingPlayerStats()
+		private void SetBaseStats()
 		{
 			DamageOverTimeCooldownTime          = baseSettings.damageOverTimeCooldownTime;
 			PlayerDamageOverTime                = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
@@ -88,10 +93,10 @@ namespace _Project.Scripts.Player
 			_specialAttackCooldownTime          = baseSettings.specialAttackCooldownTime;
 			GetComponent<Health>().MaxHitPoints = baseSettings.maxHitPoints;
 			
-			SetElementBasedPlayerStats();
+			SetElementBasedStats();
 		}
 		
-		private void SetElementBasedPlayerStats()
+		private void SetElementBasedStats()
 		{
 			EnemyDamageMultiplier   = currentPlayerElementalStats.damageReceivedMultiplier;
 			PlayerDamage            = baseSettings.attackStrength * currentPlayerElementalStats.attackStrengthMultiplier;
@@ -110,7 +115,7 @@ namespace _Project.Scripts.Player
 				ElementalSystemTypes.Base  => elementalStats[(int)ElementalSystemTypes.Base],
 				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};
-			SetElementBasedPlayerStats();
+			SetElementBasedStats();
 			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
 		}
 
