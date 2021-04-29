@@ -14,10 +14,14 @@ namespace _Project.Scripts.Player
 		[SerializeField] private PlayerSettings         baseSettings;
 		[SerializeField] private PlayerElementalStats   currentPlayerElementalStats;
 		[SerializeField] private PlayerElementalStats[] elementalStats = new PlayerElementalStats[5];
-
+		[SerializeField] private GameObject[]           abilities      = new GameObject[5];
+		
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
 		[SerializeField][Range(0.1f, 1.0f)]  private float moveSmoothing               = 0.9f;
 		[SerializeField][Range(1.0f, 15.0f)] private float rotationSmoothing           = 7.0f;
+
+
+
 		[SerializeField][Range(0.1f, 1.0f)]  private float moveWhenAttackingMultiplier = 1.0f;
 		[SerializeField][Range(0.1f, 1.0f)]  private float moveBackwardsMultiplier     = 1.0f;
 		
@@ -25,7 +29,6 @@ namespace _Project.Scripts.Player
 		private PlayerAim                  _aim;
 		private PlayerMove                 _move;
 		private PlayerShoot                _shoot;
-		private PlayerSpecialAttack        _specialAttack;
 		private ElementalSystemTypeCurrent _elementType;
 		private IAbility                   _ability;
 
@@ -35,19 +38,22 @@ namespace _Project.Scripts.Player
 		public static float DamageOverTimeCooldownTime;
 		public static int   DamageOverTimeTotalTicks;
 		public static bool  IsDealingDamageOverTime;
+		public static bool  IsAttacking;
 
 		private float _moveSpeed; 
 		private float _attackCooldownTime;
 		private float _projectileSpeed;
-		private float _specialAttackCooldownTime;
-
-		public float MoveSpeed                 => _moveSpeed;
-		public float AttackCooldownTime        => _attackCooldownTime;
-		public float ProjectileSpeed           => _projectileSpeed;
-		public float SpecialAttackMultiplier   { get; } = 5f;
-		public float SpecialAttackCooldownTime => _specialAttackCooldownTime;
-		public bool  HasAttacked               { get; set; }
-		public bool  IsAttacking               { get; set; }
+		private float _abilityCooldownTime;
+		
+		public float MoveSmoothing               => moveSmoothing;
+		public float RotationSmoothing           => rotationSmoothing;
+		public float MoveWhenAttackingMultiplier => moveWhenAttackingMultiplier;
+		public float MoveBackwardsMultiplier     => moveBackwardsMultiplier;
+		public float MoveSpeed                   => _moveSpeed;
+		public float AttackCooldownTime          => _attackCooldownTime;
+		public float ProjectileSpeed             => _projectileSpeed;
+		public float AbilityCooldownTime         => _abilityCooldownTime;
+		public bool  HasAttacked                 { get; set; }
 
 		private void Awake()
 		{
@@ -63,38 +69,42 @@ namespace _Project.Scripts.Player
 			if (IsAttacking)
 				return;
 				
-			_move.Move(_input.MoveDirection, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);
-			_aim.Aim(_input.AimDirection, rotationSmoothing);
+			_move.Move(_input.MoveDirection);
+			_aim.Aim(_input.AimDirection);
 
 			if (_input.FireInput)
 				_shoot.Fire();
+
+			if (currentPlayerElementalStats == elementalStats[(int)ElementalSystemTypes.Base])
+				return;
 			
-			// if (_input.SpecialInput && currentPlayerElementalStats != elementalStats[(int)ElementalSystemTypes.Base]) 
-			// 	_specialAttack.Activate(currentPlayerElementalStats.specialAttack, _projectileSpeed, _specialAttackCooldownTime, _elementType);
+			if (_input.SpecialInput) 
+				_ability.Execute();
 		}
 
 		#region Methods
 		
 		private void GetComponentReferences()
 		{
-			_input         = GetComponent<PlayerInput>();
-			_aim           = GetComponent<PlayerAim>();
-			_move          = GetComponent<PlayerMove>();
-			_shoot         = GetComponent<PlayerShoot>();
-			_specialAttack = GetComponent<PlayerSpecialAttack>();
-			_elementType   = GetComponent<ElementalSystemTypeCurrent>();
+			_input       = GetComponent<PlayerInput>();
+			_aim         = GetComponent<PlayerAim>();
+			_move        = GetComponent<PlayerMove>();
+			_shoot       = GetComponent<PlayerShoot>();
+			_elementType = GetComponent<ElementalSystemTypeCurrent>();
+			_ability     = abilities[(int) ElementalSystemTypes.Base].GetComponent<IAbility>();
 		}
 		
 		private void SetBaseStats()
 		{
-			DamageOverTimeCooldownTime          = baseSettings.damageOverTimeCooldownTime;
 			PlayerDamageOverTime                = baseSettings.attackStrength * baseSettings.damageOverTimeMultiplier;
+			DamageOverTimeCooldownTime          = baseSettings.damageOverTimeCooldownTime;
 			DamageOverTimeTotalTicks            = baseSettings.damageOverTimeTotalTicks;
 			_projectileSpeed                    = baseSettings.projectileSpeed;
-			_specialAttackCooldownTime          = baseSettings.specialAttackCooldownTime;
+			_abilityCooldownTime                = baseSettings.AbilityCooldownTime;
 			GetComponent<Health>().MaxHitPoints = baseSettings.maxHitPoints;
-			
+			IsAttacking                         = false;
 			SetElementBasedStats();
+			InitializeAbility();
 		}
 		
 		private void SetElementBasedStats()
@@ -106,7 +116,15 @@ namespace _Project.Scripts.Player
 			IsDealingDamageOverTime = currentPlayerElementalStats.isDealingDamageOverTime;
 		}
 		
-		public void SwitchElementalStats()
+		public void SwitchElement()
+		{
+			SwitchElementalStats();
+			SetElementBasedStats();
+			SwitchAbility();
+			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
+		}
+
+		private void SwitchElementalStats()
 		{
 			currentPlayerElementalStats = _elementType.Type switch {
 				ElementalSystemTypes.Earth => elementalStats[(int)ElementalSystemTypes.Earth],
@@ -116,9 +134,29 @@ namespace _Project.Scripts.Player
 				ElementalSystemTypes.Base  => elementalStats[(int)ElementalSystemTypes.Base],
 				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};
-			SetElementBasedStats();
-			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
 		}
+
+		private void SwitchAbility()
+		{
+			_ability.gameObject.SetActive(false);
+			_ability = _elementType.Type switch {
+				ElementalSystemTypes.Earth => abilities[(int)ElementalSystemTypes.Earth].GetComponent<IAbility>(),
+				ElementalSystemTypes.Wind  => abilities[(int)ElementalSystemTypes.Wind].GetComponent<IAbility>(),
+				ElementalSystemTypes.Water => abilities[(int)ElementalSystemTypes.Water].GetComponent<IAbility>(),
+				ElementalSystemTypes.Fire  => abilities[(int)ElementalSystemTypes.Fire].GetComponent<IAbility>(),
+				ElementalSystemTypes.Base  => abilities[(int)ElementalSystemTypes.Base].GetComponent<IAbility>(),
+				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
+			};
+			InitializeAbility();
+		}
+
+		private void InitializeAbility()
+		{
+			_ability.gameObject.SetActive(true);
+			_ability.Initialize(PlayerDamage * baseSettings.abilityDamageMultiplier);
+		}
+
+		private void ExecuteAbility() { }
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
 		

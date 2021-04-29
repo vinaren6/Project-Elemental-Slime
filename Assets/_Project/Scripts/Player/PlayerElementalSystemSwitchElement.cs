@@ -19,8 +19,7 @@ namespace _Project.Scripts.Player
 		[SerializeField] private float                      hpGainOnPickup = 5;
 
 		private readonly int[] _pickups = new int[5];
-
-
+		
 		private InputActionMap _inputActionMap;
 
 		private void Awake()
@@ -65,6 +64,7 @@ namespace _Project.Scripts.Player
 
 		private void Switch(int type)
 		{
+			if (PlayerController.IsAttacking) return;
 			if ((int) elementType.Type == type) return;
 			if (_pickups[type] < requiredElementsToChange && type != 4) return;
 			_pickups[type]   -= requiredElementsToChange;

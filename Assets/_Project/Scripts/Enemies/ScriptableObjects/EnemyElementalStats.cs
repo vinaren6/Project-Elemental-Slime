@@ -15,7 +15,5 @@ namespace _Project.Scripts.Enemies.ScriptableObjects
         public float attackStrengthMultiplier = 1f;
         public float attackRateMultiplier     = 1f;
         public bool  hasRangedAttack          = false;
-		
-        public GameObject specialAttack;
     }
 }

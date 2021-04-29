@@ -32,31 +32,31 @@ namespace _Project.Scripts.Abilities
 			if (Mouse.current.rightButton.isPressed)
 				Execute(); 
 		}
-
-		private void OnDisable() => ResetDashingModifications();
-
-		private void OnTriggerEnter(Collider other)
-		{
-			if (other.TryGetComponent(out IHealth health)){
-				health.ReceiveDamage(ElementalSystemTypes.Wind, PlayerController.PlayerDamage * _player.SpecialAttackMultiplier);
-			}
-		}
-
+		
 		public void Initialize(float damage)
 		{
 			_damage = damage;
 		}
 		
+		private void OnDisable() => ResetDashingModifications();
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.TryGetComponent(out IHealth health)){
+				health.ReceiveDamage(ElementalSystemTypes.Wind, _damage);
+			}
+		}
+
 		public void Execute()
 		{
 			if (Time.time < _nextAttack)
 				return;
 
-			_playerCollider.enabled = false;
-			_agent.velocity         = Vector3.zero;
-			_player.IsAttacking       = true;
-			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.SpecialAttackCooldownTime);
-			_nextAttack = Time.time + _player.SpecialAttackCooldownTime;
+			_playerCollider.enabled      = false;
+			_agent.velocity              = Vector3.zero;
+			PlayerController.IsAttacking = true;
+			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.AbilityCooldownTime);
+			_nextAttack = Time.time + _player.AbilityCooldownTime;
 			
 			StartCoroutine(WindDash());
 		}
@@ -80,10 +80,10 @@ namespace _Project.Scripts.Abilities
 
 		private void ResetDashingModifications()
 		{
-			_attackTrigger.enabled  = false;
-			_playerCollider.enabled = true;
-			_player.IsAttacking       = false;
-			Time.timeScale          = 1f;
+			_attackTrigger.enabled       = false;
+			_playerCollider.enabled      = true;
+			PlayerController.IsAttacking = false;
+			Time.timeScale               = 1f;
 		} 
 	}
 }

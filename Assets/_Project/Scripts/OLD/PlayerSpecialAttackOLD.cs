@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Player
 {
-	public class PlayerSpecialAttack : MonoBehaviour
+	public class PlayerSpecialAttackOLD : MonoBehaviour
 	{
 		[SerializeField] private AudioClip specialSFX;
 		private float _nextSpecialAttack = 0;

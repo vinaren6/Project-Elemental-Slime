@@ -49,7 +49,7 @@ namespace _Project.Scripts.Abilities
 		{
 			if (other.TryGetComponent(out IHealth health)) {
 				float earthMultiplier = Mathf.Clamp(_attackTrigger.size.x, 5f, 10f) / 10;
-				health.ReceiveDamage(ElementalSystemTypes.Earth, earthMultiplier * PlayerController.PlayerDamage * _player.SpecialAttackMultiplier);
+				health.ReceiveDamage(ElementalSystemTypes.Earth, earthMultiplier * _damage);
 				other.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
 			}
 		}
@@ -64,11 +64,11 @@ namespace _Project.Scripts.Abilities
 			if (Time.time < _nextAttack)
 				return;
 			
-			_agent.velocity  = Vector3.zero;
-			_player.IsAttacking = true;
+			_agent.velocity              = Vector3.zero;
+			PlayerController.IsAttacking = true;
 			PlayEffect();
-			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.SpecialAttackCooldownTime);
-			_nextAttack = Time.time + _player.SpecialAttackCooldownTime;
+			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.AbilityCooldownTime);
+			_nextAttack = Time.time + _player.AbilityCooldownTime;
 			StartCoroutine(EarthQuake());
 		}
 
@@ -88,7 +88,7 @@ namespace _Project.Scripts.Abilities
 				_effectShape.scale  = new Vector3((Mathf.Lerp(2.5f, 22f, smoothStepLerp)), 1, 1);
 				
 				if (time > duration / 3)
-					_player.IsAttacking = false;
+					PlayerController.IsAttacking = false;
 				
 				time += Time.deltaTime;
 				yield return null;
@@ -103,12 +103,12 @@ namespace _Project.Scripts.Abilities
 		{
 			_earthEffect.Stop();
 			transform.SetParent(_playerParent);
-			_attackTrigger.enabled      = false;
-			_transform.localPosition    = _startPosition;
-			_transform.localEulerAngles = Vector3.zero;
-			_attackTrigger.size         = _startSize;
-			_effectShape.scale          = new Vector3(2, 1, 1);
-			_player.IsAttacking           = false;
+			_attackTrigger.enabled       = false;
+			_transform.localPosition     = _startPosition;
+			_transform.localEulerAngles  = Vector3.zero;
+			_attackTrigger.size          = _startSize;
+			_effectShape.scale           = new Vector3(2, 1, 1);
+			PlayerController.IsAttacking = false;
 		}
 		
 		private void PlayEffect()

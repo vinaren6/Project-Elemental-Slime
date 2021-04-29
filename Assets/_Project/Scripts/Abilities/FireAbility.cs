@@ -18,7 +18,6 @@ namespace _Project.Scripts.Abilities
 		private Transform _transform;
 		private Queue<GameObject> _flamePool;
 		
-		
 		private int _maxFlameColliders;
 		private float _fireRate;
 		private bool _canShoot;
@@ -28,26 +27,28 @@ namespace _Project.Scripts.Abilities
 		private void Awake()
 		{
 			_transform = transform;
-			Initialize(1f);
+			// Initialize(1f);
 		}
 
-		private void Update()
-		{
-			if (Mouse.current.rightButton.isPressed)
-				Execute();
-			if (Mouse.current.leftButton.isPressed)
-				Execute();
-		}
+		// private void Update()
+		// {
+		// 	if (Mouse.current.rightButton.isPressed)
+		// 		Execute();
+		// 	if (Mouse.current.leftButton.isPressed)
+		// 		Execute();
+		// }
 
 		public void Initialize(float damage)
 		{
-			_damage = damage;
+			_damage = 1f;
 			_maxFlameColliders = 30;
 			_fireRate = 1f / _maxFlameColliders;
 			_canShoot = true;
-
+			
+			if (_flamePool != null)
+				return;
+			
 			_flamePool = new Queue<GameObject>();
-
 			for (int i = 0; i < _maxFlameColliders; i++)
 			{
 				GameObject FlameObject = Instantiate(flamePrefab, flamePoolTransform);

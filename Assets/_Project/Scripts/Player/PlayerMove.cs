@@ -5,17 +5,17 @@ namespace _Project.Scripts.Player
 {
 	public class PlayerMove : MonoBehaviour
 	{
-		private Camera           _camera;
-		private Vector3          _forward, _right;
+		private PlayerController _player;
 		private NavMeshAgent     _agent;
 		private Transform        _transform;
-		private PlayerController _player;
+		private Camera           _camera;
+		private Vector3          _forward, _right;
 
 		private void Awake()
 		{
+			_player    = GetComponent<PlayerController>();
 			_agent     = GetComponent<NavMeshAgent>();
 			_transform = gameObject.transform;
-			_player    = GetComponent<PlayerController>();
 		}
 		
 		private void Start()
@@ -24,15 +24,15 @@ namespace _Project.Scripts.Player
 			SetIsometricReferences();
 		}
 
-		public void Move(Vector3 input, float moveSmoothing, float backwardsMoveMultiplier, float moveWhenAttackingMultiplier)
+		public void Move(Vector3 input)
 		{
 			Vector3 moveDirection           = (_forward * input.z + _right * input.x).normalized;
-			float   lookDirectionAdjustment = GetLookDirectionAdjustment(moveDirection, backwardsMoveMultiplier);
+			float   lookDirectionAdjustment = GetLookDirectionAdjustment(moveDirection);
 			
 			Vector3 movement                = moveDirection * (lookDirectionAdjustment * _player.MoveSpeed);
-			_agent.velocity = movement * (1 - moveSmoothing) + _agent.velocity * moveSmoothing;
+			_agent.velocity = movement * (1 - _player.MoveSmoothing) + _agent.velocity * _player.MoveSmoothing;
 
-			AdjustVelocityIfPlayerHasAttacked(moveWhenAttackingMultiplier);
+			AdjustVelocityIfPlayerHasAttacked();
 		}
 
 		#region Methods
@@ -45,18 +45,18 @@ namespace _Project.Scripts.Player
 			_right     = Quaternion.Euler(new Vector3(0, 90, 0)) * _forward;
 		}
 		
-		private float GetLookDirectionAdjustment(Vector3 moveDirection, float backwardsMoveMultiplier)
+		private float GetLookDirectionAdjustment(Vector3 moveDirection)
 		{
 			float moveLookRelation = (Vector3.Dot(_transform.forward, moveDirection) + 1) / 2 ;
-			return backwardsMoveMultiplier + moveLookRelation * (1 - backwardsMoveMultiplier);
+			return _player.MoveBackwardsMultiplier + moveLookRelation * (1 - _player.MoveBackwardsMultiplier);
 		}
 		
-		private void AdjustVelocityIfPlayerHasAttacked(float moveWhenAttackingMultiplier)
+		private void AdjustVelocityIfPlayerHasAttacked()
 		{
 			if (!_player.HasAttacked)
 				return;
 			
-			_agent.velocity     *= moveWhenAttackingMultiplier;
+			_agent.velocity     *= _player.MoveWhenAttackingMultiplier;
 			_player.HasAttacked =  false;
 		}
 

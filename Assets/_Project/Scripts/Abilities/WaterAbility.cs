@@ -22,17 +22,16 @@ namespace _Project.Scripts.Abilities
         private void Awake()
         {
             GetAllComponents();
-            // Initialize(0f);
         }
 
         private void Update()
         {
-            if (Mouse.current.leftButton.isPressed)
-                Execute();
-            else
-                _laser.SetPosition(1, _laser.GetPosition(0));
+            // if (Mouse.current.leftButton.isPressed)
+            //     Execute();
+            // else 
+            _laser.SetPosition(1, _laser.GetPosition(0));
             
-            if (!Mouse.current.leftButton.isPressed && _splashEffect.isPlaying && !_splashHasStopped)
+            if (!Mouse.current.rightButton.isPressed && _splashEffect.isPlaying && !_splashHasStopped)
             {
                 // Debug.Log($"Splash Has Stopped! Soon....");
                 

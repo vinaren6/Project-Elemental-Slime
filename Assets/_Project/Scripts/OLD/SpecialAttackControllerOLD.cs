@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Player
 {
-	public class SpecialAttackController : MonoBehaviour
+	public class SpecialAttackControllerOLD : MonoBehaviour
 	{
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private float                      specialAttackMultiplier = 5f;

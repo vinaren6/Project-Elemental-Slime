@@ -18,6 +18,7 @@ namespace _Project.Scripts.Player.ScriptableObjects
 		public float damageOverTimeCooldownTime = 0.5f;
 		public float damageOverTimeMultiplier   = 0.2f;
 		public int   damageOverTimeTotalTicks   = 4;
-		public float specialAttackCooldownTime  = 3f;
+		public float abilityDamageMultiplier    = 5f;
+		public float AbilityCooldownTime        = 3f;
 	}
 }
