@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Abilities;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
@@ -26,6 +27,7 @@ namespace _Project.Scripts.Player
 		private PlayerShoot                _shoot;
 		private PlayerSpecialAttack        _specialAttack;
 		private ElementalSystemTypeCurrent _elementType;
+		private IAbility                   _ability;
 
 		public static float EnemyDamageMultiplier;
 		public static float PlayerDamage;
@@ -45,9 +47,8 @@ namespace _Project.Scripts.Player
 		public float SpecialAttackMultiplier   { get; } = 5f;
 		public float SpecialAttackCooldownTime => _specialAttackCooldownTime;
 		public bool  HasAttacked               { get; set; }
-		public bool  IsDashing                 { get; set; }
-		public bool  IsQuaking                 { get; set; }
-		
+		public bool  IsAttacking               { get; set; }
+
 		private void Awake()
 		{
 			GetComponentReferences();
@@ -59,7 +60,7 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 
-			if (IsDashing || IsQuaking)
+			if (IsAttacking)
 				return;
 				
 			_move.Move(_input.MoveDirection, moveSmoothing, moveBackwardsMultiplier, moveWhenAttackingMultiplier);

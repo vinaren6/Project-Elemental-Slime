@@ -50,16 +50,21 @@ namespace _Project.Scripts.Abilities
 			if (other.TryGetComponent(out IHealth health)) {
 				float earthMultiplier = Mathf.Clamp(_attackTrigger.size.x, 5f, 10f) / 10;
 				health.ReceiveDamage(ElementalSystemTypes.Earth, earthMultiplier * PlayerController.PlayerDamage * _player.SpecialAttackMultiplier);
+				other.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
 			}
 		}
 
+		public void Initialize(float damage) {
+			
+		}
+		
 		public void Execute()
 		{
 			if (Time.time < _nextAttack)
 				return;
 			
 			_agent.velocity  = Vector3.zero;
-			_player.IsQuaking = true;
+			_player.IsAttacking = true;
 			PlayEffect();
 			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.SpecialAttackCooldownTime);
 			_nextAttack = Time.time + _player.SpecialAttackCooldownTime;
@@ -82,7 +87,7 @@ namespace _Project.Scripts.Abilities
 				_effectShape.scale  = new Vector3((Mathf.Lerp(2.5f, 22f, smoothStepLerp)), 1, 1);
 				
 				if (time > duration / 3)
-					_player.IsQuaking = false;
+					_player.IsAttacking = false;
 				
 				time += Time.deltaTime;
 				yield return null;
@@ -102,7 +107,7 @@ namespace _Project.Scripts.Abilities
 			_transform.localEulerAngles = Vector3.zero;
 			_attackTrigger.size         = _startSize;
 			_effectShape.scale          = new Vector3(2, 1, 1);
-			_player.IsQuaking           = false;
+			_player.IsAttacking           = false;
 		}
 		
 		private void PlayEffect()

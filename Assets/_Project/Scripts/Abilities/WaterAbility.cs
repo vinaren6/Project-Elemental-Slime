@@ -1,3 +1,6 @@
+using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,20 +8,20 @@ namespace _Project.Scripts.Abilities
 {
     public class WaterAbility : MonoBehaviour, IAbility
     {
-        [SerializeField] private LayerMask collisionMask;
-        private LineRenderer _laser;
-        private ParticleSystem _splashEffect;
-        private Transform _transform;
-        private Transform _splashEffectTransform;
-        private Transform _splashEffectParent;
-        private float _maxDistance;
-        private float _radius;
-        private bool _splashHasStopped;
+        [SerializeField] private LayerMask      collisionMask;
+        private                  LineRenderer   _laser;
+        private                  ParticleSystem _splashEffect;
+        private                  Transform      _transform;
+        private                  Transform      _splashEffectTransform;
+        private                  Transform      _splashEffectParent;
+        private                  float          _maxDistance;
+        private                  float          _radius;
+        private                  bool           _splashHasStopped;
+        private                  float          _damage;
 
         private void Awake()
         {
             GetAllComponents();
-            Initialize();
         }
 
         private void Update()
@@ -46,12 +49,13 @@ namespace _Project.Scripts.Abilities
             _splashEffectParent = _splashEffectTransform.parent;
         }
 
-        private void Initialize()
+        public void Initialize(float damage)
         {
             _maxDistance = 25f;
             _radius = _laser.startWidth * 0.5f;
             _splashEffect.Stop();
             _laser.SetPosition(1, _laser.GetPosition(0));
+            _damage = damage;
         }
 
         public void Execute()
@@ -76,6 +80,9 @@ namespace _Project.Scripts.Abilities
 
                 _splashHasStopped = false;
 
+                if (hit.collider.TryGetComponent(out IHealth health))
+                    health.ReceiveDamage(ElementalSystemTypes.Wind, _damage);
+                
                 PlayEffect();
             }
             else

@@ -36,10 +36,14 @@ namespace _Project.Scripts.Abilities
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.TryGetComponent(out IHealth health))
+			if (other.TryGetComponent(out IHealth health)){
 				health.ReceiveDamage(ElementalSystemTypes.Wind, PlayerController.PlayerDamage * _player.SpecialAttackMultiplier);
+			}
 		}
 
+		public void Initialize(float damage) {
+		}
+		
 		public void Execute()
 		{
 			if (!(Time.time > _nextAttack))
@@ -47,7 +51,7 @@ namespace _Project.Scripts.Abilities
 
 			_playerCollider.enabled = false;
 			_agent.velocity         = Vector3.zero;
-			_player.IsDashing       = true;
+			_player.IsAttacking       = true;
 			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.SpecialAttackCooldownTime);
 			_nextAttack = Time.time + _player.SpecialAttackCooldownTime;
 			
@@ -75,7 +79,7 @@ namespace _Project.Scripts.Abilities
 		{
 			_attackTrigger.enabled  = false;
 			_playerCollider.enabled = true;
-			_player.IsDashing       = false;
+			_player.IsAttacking       = false;
 			Time.timeScale          = 1f;
 		} 
 	}
