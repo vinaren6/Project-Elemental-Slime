@@ -59,7 +59,6 @@ namespace _Project.Scripts.Enemies.AI
 			NavMeshPath path = new NavMeshPath();
 	
 			EnemyController.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
-			Debug.Log(path.status);
 
 		}
 		
