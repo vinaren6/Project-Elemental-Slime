@@ -16,6 +16,7 @@ namespace _Project.Scripts.Abilities
 		private NavMeshAgent     _agent;
 		private BoxCollider      _playerCollider;
 		private BoxCollider      _attackTrigger;
+		private float            _damage;
 		private float            _nextAttack = 0;
 
 		private void Awake()
@@ -41,12 +42,14 @@ namespace _Project.Scripts.Abilities
 			}
 		}
 
-		public void Initialize(float damage) {
+		public void Initialize(float damage)
+		{
+			_damage = damage;
 		}
 		
 		public void Execute()
 		{
-			if (!(Time.time > _nextAttack))
+			if (Time.time < _nextAttack)
 				return;
 
 			_playerCollider.enabled = false;

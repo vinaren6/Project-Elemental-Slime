@@ -81,7 +81,7 @@ namespace _Project.Scripts.Abilities
                 _splashHasStopped = false;
 
                 if (hit.collider.TryGetComponent(out IHealth health))
-                    health.ReceiveDamage(ElementalSystemTypes.Wind, _damage);
+                    health.ReceiveDamage(ElementalSystemTypes.Water, _damage);
                 
                 PlayEffect();
             }

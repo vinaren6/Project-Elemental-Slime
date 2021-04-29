@@ -3,6 +3,7 @@ using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.Player;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -20,6 +21,7 @@ namespace _Project.Scripts.Abilities
 		private Vector3                    _startPosition;
 		private Vector3                    _startSize;
 		private Transform                  _playerParent;
+		private float                      _damage;
 		private float                      _nextAttack = 0;
 
 		private void Awake()
@@ -33,8 +35,6 @@ namespace _Project.Scripts.Abilities
 			_startPosition = _attackTrigger.transform.localPosition;
 			_startSize     = _attackTrigger.size;
 			_playerParent  = transform.parent;
-
-			_earthEffect.Stop();
 		}
 
 		private void Update() 
@@ -54,8 +54,9 @@ namespace _Project.Scripts.Abilities
 			}
 		}
 
-		public void Initialize(float damage) {
-			
+		public void Initialize(float damage)
+		{
+			_damage = damage;
 		}
 		
 		public void Execute()
