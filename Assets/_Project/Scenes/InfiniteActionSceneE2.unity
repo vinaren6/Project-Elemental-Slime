@@ -6424,6 +6424,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flamePrefab: {fileID: 4657077143858818891, guid: 7d7812426687ab846b47d8e5912320a6, type: 3}
   flamePoolTransform: {fileID: 1102032353}
+  speed: 14
+  speedMultiplier: 1.015
+  aliveTime: 0.3
 --- !u!1 &879283161
 GameObject:
   m_ObjectHideFlags: 0
@@ -34003,18 +34006,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1552025249167844016, guid: 7d7812426687ab846b47d8e5912320a6, type: 3}
-      propertyPath: speed
-      value: 7.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1552025249167844016, guid: 7d7812426687ab846b47d8e5912320a6, type: 3}
-      propertyPath: emelie
-      value: 3.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1552025249167844016, guid: 7d7812426687ab846b47d8e5912320a6, type: 3}
-      propertyPath: speedMultiplier
-      value: 1.01
-      objectReference: {fileID: 0}
     - target: {fileID: 1963493061731678477, guid: 7d7812426687ab846b47d8e5912320a6, type: 3}
       propertyPath: m_RootOrder
       value: 9

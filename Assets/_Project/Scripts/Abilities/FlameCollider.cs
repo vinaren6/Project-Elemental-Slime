@@ -2,7 +2,6 @@ using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Abilities
 {
@@ -10,9 +9,11 @@ namespace _Project.Scripts.Abilities
     {
         [SerializeField][Range (5f, 10f)] private float speed;
         [SerializeField][Range (1.01f, 1.10f)] private float speedMultiplier;
+        [SerializeField] private Gradient colorGradient;
         
         private Transform _transform;
         private FireAbility _ability;
+        private Material _material;
         
         private float _damage;
         private float _aliveTime;
@@ -25,6 +26,7 @@ namespace _Project.Scripts.Abilities
         private void Awake()
         {
             _transform = transform;
+            _material = GetComponentInChildren<MeshRenderer>().material;
         }
 
         public void Initialize(FireAbility ability, float damage)
@@ -74,7 +76,10 @@ namespace _Project.Scripts.Abilities
                 _transform.Translate(_velocity * Time.deltaTime);
 
                 SetSize(Mathf.Lerp(_startSize, _targetSize, time / _aliveTime));
-                
+
+                _material.color = colorGradient.Evaluate(time / _aliveTime);
+
+
                 time += Time.deltaTime;
 
                 yield return null;

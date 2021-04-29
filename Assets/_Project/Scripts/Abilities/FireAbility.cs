@@ -42,7 +42,7 @@ namespace _Project.Scripts.Abilities
 		public void Initialize(float damage)
 		{
 			_damage = damage;
-			_maxFlameColliders = 15;
+			_maxFlameColliders = 30;
 			_fireRate = 1f / _maxFlameColliders;
 			_canShoot = true;
 
