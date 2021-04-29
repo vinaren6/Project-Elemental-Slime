@@ -22,6 +22,7 @@ namespace _Project.Scripts.Abilities
         private void Awake()
         {
             GetAllComponents();
+            // Initialize(0f);
         }
 
         private void Update()
@@ -64,7 +65,7 @@ namespace _Project.Scripts.Abilities
             Vector3 direction = _transform.forward;
 
             RaycastHit hit;
-            
+
             Vector3 hitPosition = _laser.GetPosition(0);
             
             if (Physics.CapsuleCast(origin, origin, _radius, direction, out hit, _maxDistance, collisionMask))
