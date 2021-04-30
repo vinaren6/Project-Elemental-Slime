@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3036836907716680922}
   - component: {fileID: 1551641480}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_E2_Water
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,10 +242,6 @@ MonoBehaviour:
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
   currentEnemyElementalStats: {fileID: 11400000, guid: 280edce054cf99b47b2a7ad0461be14b, type: 2}
   type: {fileID: 1460504048}
-  rotationSpeed: 2.5
-  attackStrength: 0
-  attackCooldownTime: 0
-  damageOverTimeTotalTicks: 0
 --- !u!114 &1460504048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +410,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 292ee1edda2f756469382bc38850e8e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -16,8 +16,9 @@ MonoBehaviour:
   moveSpeed: 15
   attackStrength: 15
   attackCooldownTime: 0.25
-  projectileSpeed: 0.15
+  projectileSpeed: 15
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2
   damageOverTimeTotalTicks: 4
-  specialAttackCooldownTime: 3
+  abilityDamageMultiplier: 5
+  AbilityCooldownTime: 3
