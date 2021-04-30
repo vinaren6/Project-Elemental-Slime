@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3036836907716680919}
   - component: {fileID: 3036836907716680922}
   - component: {fileID: 1551641480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -242,10 +242,6 @@ MonoBehaviour:
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
   currentEnemyElementalStats: {fileID: 11400000, guid: 280edce054cf99b47b2a7ad0461be14b, type: 2}
   type: {fileID: 1460504048}
-  rotationSpeed: 2.5
-  attackStrength: 0
-  attackCooldownTime: 0
-  damageOverTimeTotalTicks: 0
 --- !u!114 &1460504048
 MonoBehaviour:
   m_ObjectHideFlags: 0
