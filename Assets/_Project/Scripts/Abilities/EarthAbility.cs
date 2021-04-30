@@ -1,5 +1,6 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Enemies.AI;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.Player;
@@ -22,6 +23,8 @@ namespace _Project.Scripts.Abilities
 		private Vector3                    _startSize;
 		private Transform                  _playerParent;
 		private float                      _damage;
+		private Vector3                    _attackDirection;
+		private float                      _hitPushBackStrength;
 		private float                      _nextAttack = 0;
 
 		private void Awake()
@@ -50,13 +53,14 @@ namespace _Project.Scripts.Abilities
 			if (other.TryGetComponent(out IHealth health)) {
 				float earthMultiplier = Mathf.Clamp(_attackTrigger.size.x, 5f, 10f) / 10;
 				health.ReceiveDamage(ElementalSystemTypes.Earth, earthMultiplier * _damage);
-				other.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
+				StartCoroutine(other.GetComponent<EnemyController>().HitPushBack(_attackDirection, _hitPushBackStrength, 1f));
 			}
 		}
 
 		public void Initialize(float damage)
 		{
-			_damage = damage;
+			_damage      = damage;
+			_hitPushBackStrength = 5f;
 		}
 		
 		public void Execute()
@@ -76,6 +80,7 @@ namespace _Project.Scripts.Abilities
 		{
 			_attackTrigger.enabled = true;
 			transform.SetParent(null);
+			_attackDirection = _transform.forward;
 			
 			float   time              = 0;
 			float   duration          = 1.5f;
@@ -83,11 +88,11 @@ namespace _Project.Scripts.Abilities
 			while (time < duration) {
 				float smoothStepLerp = time / duration;
 				smoothStepLerp      =  smoothStepLerp     * smoothStepLerp * (3f - 2f * smoothStepLerp);
-				_transform.position += _transform.forward * Mathf.Lerp(0.2f, 0, smoothStepLerp);
+				_transform.position += _attackDirection * Mathf.Lerp(0.2f, 0, smoothStepLerp);
 				_attackTrigger.size = new Vector3((Mathf.Lerp(2f, 20f, smoothStepLerp)), _startSize.y, _startSize.z);
 				_effectShape.scale  = new Vector3((Mathf.Lerp(2.5f, 22f, smoothStepLerp)), 1, 1);
 				
-				if (time > duration / 3)
+				if (time > duration / 4)
 					PlayerController.IsAttacking = false;
 				
 				time += Time.deltaTime;

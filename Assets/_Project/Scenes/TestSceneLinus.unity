@@ -2016,10 +2016,6 @@ PrefabInstance:
       propertyPath: projectileParent
       value: 
       objectReference: {fileID: 408537502647720564}
-    - target: {fileID: 8012741763557542194, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 9048047761997672704, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2184,10 +2180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056945363271207047, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

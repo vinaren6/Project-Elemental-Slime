@@ -150,5 +150,16 @@ namespace _Project.Scripts.Enemies.AI
 			currentEnemyElementalStats = elementalStats;
 			SetStats();
 		}
+
+		public IEnumerator HitPushBack(Vector3 direction, float pushStrength, float rotationFreezeTime)
+		{
+			if (_navMeshAgent != null) {
+				_navMeshAgent.velocity       = direction * pushStrength;
+				_navMeshAgent.updateRotation = false;
+			}
+			yield return new WaitForSeconds(rotationFreezeTime);
+			if (_navMeshAgent != null)
+				_navMeshAgent.updateRotation = true;
+		}
 	}
 }
