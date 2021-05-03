@@ -123,7 +123,5 @@ namespace _Project.Scripts.Abilities
             
             Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
         }
-        
-
     }
 }
