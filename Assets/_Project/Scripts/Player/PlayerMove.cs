@@ -30,9 +30,8 @@ namespace _Project.Scripts.Player
 			float   lookDirectionAdjustment = GetLookDirectionAdjustment(moveDirection);
 			
 			Vector3 movement                = moveDirection * (lookDirectionAdjustment * _player.MoveSpeed);
+			AdjustMovementIfPlayerIsAttacking(ref movement);
 			_agent.velocity = movement * (1 - _player.MoveSmoothing) + _agent.velocity * _player.MoveSmoothing;
-
-			AdjustVelocityIfPlayerHasAttacked();
 		}
 
 		#region Methods
@@ -51,15 +50,15 @@ namespace _Project.Scripts.Player
 			return _player.MoveBackwardsMultiplier + moveLookRelation * (1 - _player.MoveBackwardsMultiplier);
 		}
 		
-		private void AdjustVelocityIfPlayerHasAttacked()
+		private void AdjustMovementIfPlayerIsAttacking(ref Vector3 movement)
 		{
 			if (!PlayerController.IsAttacking)
 				return;
 
-			_agent.velocity     *= _player.MoveWhenAttackingMultiplier;
+			movement    *= _player.MoveWhenAttackingMultiplier;
 		}
 		
-		// private void AdjustVelocityIfPlayerHasAttackedOLD()
+		// private void AdjustVelocityIfPlayerHasAttacked()
 		// {
 		// 	if (!_player.HasAttacked)
 		// 		return;

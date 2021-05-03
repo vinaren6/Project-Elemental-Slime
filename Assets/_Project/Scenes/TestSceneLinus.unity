@@ -2010,7 +2010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: moveWhenAttackingMultiplier
-      value: 0.99
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1538581331650486401, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: m_IsActive

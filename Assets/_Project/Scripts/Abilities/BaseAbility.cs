@@ -16,7 +16,7 @@ namespace _Project.Scripts.Abilities
 		
 		public void Stop()
 		{
-			print("BaseAbility Stopped!");
+			//print("BaseAbility Stopped!");
 		}
 	}
 }
