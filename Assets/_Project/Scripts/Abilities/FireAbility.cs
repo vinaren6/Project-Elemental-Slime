@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Abilities
 {
@@ -27,20 +26,11 @@ namespace _Project.Scripts.Abilities
 		private void Awake()
 		{
 			_transform = transform;
-			// Initialize(1f);
 		}
-
-		// private void Update()
-		// {
-		// 	if (Mouse.current.rightButton.isPressed)
-		// 		Execute();
-		// 	if (Mouse.current.leftButton.isPressed)
-		// 		Execute();
-		// }
 
 		public void Initialize(float damage)
 		{
-			_damage = 1f;
+			_damage = damage;
 			_maxFlameColliders = 30;
 			_fireRate = 1f / _maxFlameColliders;
 			_canShoot = true;
@@ -69,6 +59,11 @@ namespace _Project.Scripts.Abilities
 			flameCollider.GetComponent<FlameCollider>().Execute(_transform, speed, speedMultiplier, aliveTime);
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
+		}
+
+		public void Stop()
+		{
+			
 		}
 
 		private IEnumerator SpawnDelayRoutine()

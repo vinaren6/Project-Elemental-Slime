@@ -61,28 +61,42 @@ namespace _Project.Scripts.Player
 			SetBaseStats();
 		}
 
+		private void Start()
+		{
+			DeactivateAllAbilities();
+			InitializeAbility(); 
+		}
+
 		private void Update()
 		{
 			if (ServiceLocator.Game.IsPaused)
 				return;
-
-			if (IsAttacking)
-				return;
+			
+			// if (IsAttacking)
+			// 	return;
 				
 			_move.Move(_input.MoveDirection);
 			_aim.Aim(_input.AimDirection);
 
-			if (_input.FireInput)
-				_shoot.Fire();
+			IsAttacking = _input.FireInput;
 
-			if (currentPlayerElementalStats == elementalStats[(int)ElementalSystemTypes.Base])
-				return;
-			
-			if (_input.SpecialInput) 
-				_ability.Execute();
+			if (IsAttacking)
+				ExecuteAbility();
+			else
+				StopAbility();
+
+				// _shoot.Fire();
+
+			// if (currentPlayerElementalStats == elementalStats[(int)ElementalSystemTypes.Base])
+			// 	return;
+			//
+			// if (_input.SpecialInput) 
+			// 	ExecuteAbility();
+			// else
+			// 	IsAttacking = false;
 		}
 
-		#region Methods
+#region Methods
 		
 		private void GetComponentReferences()
 		{
@@ -104,7 +118,6 @@ namespace _Project.Scripts.Player
 			GetComponent<Health>().MaxHitPoints = baseSettings.maxHitPoints;
 			IsAttacking                         = false;
 			SetElementBasedStats();
-			InitializeAbility();
 		}
 		
 		private void SetElementBasedStats()
@@ -149,6 +162,12 @@ namespace _Project.Scripts.Player
 			};
 			InitializeAbility();
 		}
+		
+		private void DeactivateAllAbilities()
+        {
+        	foreach (GameObject ability in abilities)
+        		ability.SetActive(false);
+        }
 
 		private void InitializeAbility()
 		{
@@ -156,7 +175,15 @@ namespace _Project.Scripts.Player
 			_ability.Initialize(PlayerDamage * baseSettings.abilityDamageMultiplier);
 		}
 
-		private void ExecuteAbility() { }
+		private void ExecuteAbility()
+		{
+			_ability.Execute();
+		}
+		
+		private void StopAbility()
+		{
+			_ability.Stop();
+		}
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
 		

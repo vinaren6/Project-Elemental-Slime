@@ -11,7 +11,8 @@ namespace _Project.Scripts.Enemies.AI
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
-			EnemyController.GetComponent<DestroyThisObj>().DestroyMe();
+			EnemyController.gameObject.SetActive(false);
+			// EnemyController.GetComponent<DestroyThisObj>().DestroyMe();
 		}
 
 		public override void Exit() => base.Exit();

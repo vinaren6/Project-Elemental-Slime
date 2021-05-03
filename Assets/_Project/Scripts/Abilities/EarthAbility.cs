@@ -14,7 +14,7 @@ namespace _Project.Scripts.Abilities
 	public class EarthAbility : MonoBehaviour, IAbility
 	{
 		private PlayerController           _player;
-		private NavMeshAgent               _agent;
+		private NavMeshAgent               agent;
 		private Transform                  _transform;
 		private BoxCollider                _attackTrigger;
 		private ParticleSystem             _earthEffect;
@@ -30,7 +30,7 @@ namespace _Project.Scripts.Abilities
 		private void Awake()
 		{
 			_player        = GetComponentInParent<PlayerController>();
-			_agent         = GetComponentInParent<NavMeshAgent>();
+			agent         = GetComponentInParent<NavMeshAgent>();
 			_transform     = gameObject.transform;
 			_attackTrigger = GetComponent<BoxCollider>();
 			_earthEffect   = GetComponentInChildren<ParticleSystem>();
@@ -43,7 +43,7 @@ namespace _Project.Scripts.Abilities
 		private void Update() 
 		{ 
 			if (Mouse.current.rightButton.isPressed)
-				Execute(); 
+				Execute();
 		}
 
 		private void OnDisable() => ResetEarthQuakeModifications();
@@ -53,14 +53,16 @@ namespace _Project.Scripts.Abilities
 			if (other.TryGetComponent(out IHealth health)) {
 				float earthMultiplier = Mathf.Clamp(_attackTrigger.size.x, 5f, 10f) / 10;
 				health.ReceiveDamage(ElementalSystemTypes.Earth, earthMultiplier * _damage);
-				StartCoroutine(other.GetComponent<EnemyController>().HitPushBack(_attackDirection, _hitPushBackStrength, 1f));
 			}
+			// if (other.TryGetComponent(out NavMeshAgent _agent)) {
+			// 	StartCoroutine(HitPushBack(agent, _attackDirection, _hitPushBackStrength, 1f));
+			// }
 		}
 
 		public void Initialize(float damage)
 		{
 			_damage      = damage;
-			_hitPushBackStrength = 5f;
+			_hitPushBackStrength = 4f;
 		}
 		
 		public void Execute()
@@ -68,7 +70,7 @@ namespace _Project.Scripts.Abilities
 			if (Time.time < _nextAttack)
 				return;
 			
-			_agent.velocity              = Vector3.zero;
+			agent.velocity              = Vector3.zero;
 			PlayerController.IsAttacking = true;
 			PlayEffect();
 			ServiceLocator.HUD.SpecialAttack?.StartCooldown(_player.AbilityCooldownTime);
@@ -104,6 +106,11 @@ namespace _Project.Scripts.Abilities
 			ResetEarthQuakeModifications();
 		}
 		
+		public void Stop()
+		{
+			
+		}
+		
 		private void ResetEarthQuakeModifications()
 		{
 			_earthEffect.Stop();
@@ -122,5 +129,15 @@ namespace _Project.Scripts.Abilities
 				return;
 			_earthEffect.Play();
 		}
+		
+		// private IEnumerator HitPushBack(NavMeshAgent agent, Vector3 direction, float pushStrength, float rotationFreezeTime)
+		// {
+		// 	if (agent != null){
+		// 		agent.velocity       = direction * pushStrength;
+		// 		agent.updateRotation = false;
+		// 		yield return new WaitForSeconds(rotationFreezeTime);
+		// 		agent.updateRotation = true;
+		// 	}
+		// }
 	}
 }

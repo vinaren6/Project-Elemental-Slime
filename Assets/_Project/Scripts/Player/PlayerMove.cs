@@ -53,12 +53,20 @@ namespace _Project.Scripts.Player
 		
 		private void AdjustVelocityIfPlayerHasAttacked()
 		{
-			if (!_player.HasAttacked)
+			if (!PlayerController.IsAttacking)
 				return;
-			
+
 			_agent.velocity     *= _player.MoveWhenAttackingMultiplier;
-			_player.HasAttacked =  false;
 		}
+		
+		// private void AdjustVelocityIfPlayerHasAttackedOLD()
+		// {
+		// 	if (!_player.HasAttacked)
+		// 		return;
+		//
+		// 	_agent.velocity     *= _player.MoveWhenAttackingMultiplier;
+		// 	_player.HasAttacked =  false;
+		// }
 
 		#endregion
 	}

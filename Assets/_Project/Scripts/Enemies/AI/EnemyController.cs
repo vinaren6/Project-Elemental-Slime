@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies.ScriptableObjects;
@@ -151,15 +152,14 @@ namespace _Project.Scripts.Enemies.AI
 			SetStats();
 		}
 
-		public IEnumerator HitPushBack(Vector3 direction, float pushStrength, float rotationFreezeTime)
-		{
-			if (_navMeshAgent != null) {
-				_navMeshAgent.velocity       = direction * pushStrength;
-				_navMeshAgent.updateRotation = false;
-			}
-			yield return new WaitForSeconds(rotationFreezeTime);
-			if (_navMeshAgent != null)
-				_navMeshAgent.updateRotation = true;
-		}
+		// public IEnumerator HitPushBack(Vector3 direction, float pushStrength, float rotationFreezeTime)
+		// {
+		// 	if (_navMeshAgent != null){
+		// 		_navMeshAgent.velocity       = direction * pushStrength;
+		// 		_navMeshAgent.updateRotation = false;
+		// 		yield return new WaitForSeconds(rotationFreezeTime);
+		// 		_navMeshAgent.updateRotation = true;
+		// 	}
+		// }
 	}
 }

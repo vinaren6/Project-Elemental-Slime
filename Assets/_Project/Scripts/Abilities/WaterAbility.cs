@@ -1,8 +1,7 @@
+using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
-using _Project.Scripts.Player;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Abilities
 {
@@ -18,35 +17,21 @@ namespace _Project.Scripts.Abilities
         private                  float          _radius;
         private                  bool           _splashHasStopped;
         private                  float          _damage;
+        private                  float          _damageCooldownTime;
+        private                  bool           _canDealDamage;
 
         private void Awake()
         {
             GetAllComponents();
         }
-
-        private void Update()
-        {
-            // if (Mouse.current.leftButton.isPressed)
-            //     Execute();
-            // else 
-            _laser.SetPosition(1, _laser.GetPosition(0));
-            
-            if (!Mouse.current.rightButton.isPressed && _splashEffect.isPlaying && !_splashHasStopped)
-            {
-                // Debug.Log($"Splash Has Stopped! Soon....");
-                
-                Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
-                _splashHasStopped = true;
-            }
-        }
-
+        
         private void GetAllComponents()
         {
-            _laser = GetComponentInChildren<LineRenderer>();
-            _splashEffect = GetComponentInChildren<ParticleSystem>();
-            _transform = transform;
+            _laser                 = GetComponentInChildren<LineRenderer>();
+            _splashEffect          = GetComponentInChildren<ParticleSystem>();
+            _transform             = transform;
             _splashEffectTransform = _splashEffect.transform;
-            _splashEffectParent = _splashEffectTransform.parent;
+            _splashEffectParent    = _splashEffectTransform.parent;
         }
 
         public void Initialize(float damage)
@@ -55,11 +40,14 @@ namespace _Project.Scripts.Abilities
             _radius = _laser.startWidth * 0.5f;
             _splashEffect.Stop();
             _laser.SetPosition(1, _laser.GetPosition(0));
-            _damage = damage;
+            _damage             = damage;
+            _damageCooldownTime = 0.2f;
+            _canDealDamage      = true;
         }
 
         public void Execute()
         {
+            
             Vector3 origin = _transform.position;
             Vector3 direction = _transform.forward;
 
@@ -80,9 +68,13 @@ namespace _Project.Scripts.Abilities
 
                 _splashHasStopped = false;
 
-                if (hit.collider.TryGetComponent(out IHealth health))
-                    health.ReceiveDamage(ElementalSystemTypes.Water, _damage);
-                
+                if (_canDealDamage) {
+                    if (hit.collider.TryGetComponent(out IHealth health)){
+                        health.ReceiveDamage(ElementalSystemTypes.Water, _damage);
+                        StartCoroutine(AttackCooldownRoutine());
+                    }
+                }
+
                 PlayEffect();
             }
             else
@@ -92,6 +84,21 @@ namespace _Project.Scripts.Abilities
             }
 
             _laser.SetPosition(1, hitPosition);
+        }
+
+        private IEnumerator AttackCooldownRoutine()
+        {
+            _canDealDamage = false;
+            yield return new WaitForSeconds(_damageCooldownTime);
+            _canDealDamage = true;
+        }
+
+        public void Stop()
+        {
+            _laser.SetPosition(1, _laser.GetPosition(0));
+            
+            Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
+            _splashHasStopped = true;
         }
 
         private void ResetSplashEffect()
@@ -116,5 +123,7 @@ namespace _Project.Scripts.Abilities
             
             Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
         }
+        
+
     }
 }

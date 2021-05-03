@@ -9,5 +9,7 @@ namespace _Project.Scripts.Abilities
         void Initialize(float damage);
         
         void Execute();
+
+        void Stop();
     }
 }

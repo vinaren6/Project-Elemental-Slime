@@ -20,5 +20,5 @@ MonoBehaviour:
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2
   damageOverTimeTotalTicks: 4
-  abilityDamageMultiplier: 5
+  abilityDamageMultiplier: 1
   AbilityCooldownTime: 3

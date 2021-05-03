@@ -13,5 +13,10 @@ namespace _Project.Scripts.Abilities
 		{
 			print("BaseAbility Executed!");
 		}
+		
+		public void Stop()
+		{
+			print("BaseAbility Stopped!");
+		}
 	}
 }

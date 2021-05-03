@@ -1756,7 +1756,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ee0dc9b07421af4aab2a01f550bf432, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2008,6 +2008,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 721889729854220461, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: moveWhenAttackingMultiplier
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538581331650486401, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123483030692819116, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2937585785946781591, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3974152424159788338, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: requiredElementsToChange
       value: 0
@@ -2016,6 +2032,14 @@ PrefabInstance:
       propertyPath: projectileParent
       value: 
       objectReference: {fileID: 408537502647720564}
+    - target: {fileID: 6852071112675158726, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137949773820758227, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9048047761997672704, guid: c43057cb71d4e1e4a8e4640786a2cd80, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

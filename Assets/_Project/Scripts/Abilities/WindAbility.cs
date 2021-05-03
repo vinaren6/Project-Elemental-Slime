@@ -77,6 +77,11 @@ namespace _Project.Scripts.Abilities
 			yield return new WaitForSeconds(0.1f);
 			ResetDashingModifications();
 		}
+		
+		public void Stop()
+		{
+			
+		}
 
 		private void ResetDashingModifications()
 		{
