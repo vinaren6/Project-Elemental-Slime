@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies;
 using _Project.Scripts.Managers;
@@ -19,18 +20,25 @@ namespace _Project.Scripts.HealthSystem
 		public                   UnityEvent<float>          onReceiveDamage;
 		public                   UnityEvent                 onDeath;
 		
+		private float _canReceiveDamageCooldownTime = 0.1f;
+		private bool  _canReceiveDamage             = true;
 		private float _maxHitPoints;
 		public float MaxHitPoints {
 			get => _maxHitPoints;
 			set => _maxHitPoints = value;
 		}
-		public float HitPoints        { get; set; }
-		public float RemainingPercent => HitPoints / _maxHitPoints;
+		public  float HitPoints        { get; set; }
+		public  float RemainingPercent => HitPoints / _maxHitPoints;
+
 		
 		private void Start() => HitPoints = _maxHitPoints;
 
 		public void ReceiveDamage(ElementalSystemTypes damageType, float damage)
 		{
+			if (!_canReceiveDamage)
+				return;
+
+			StartCoroutine(ReceiveDamageCooldownTimeRoutine());
 			float elementalMultiplier = ElementalSystemMultiplier.GetMultiplier(type.Type, damageType);
 			int   damageToReceive     = Mathf.CeilToInt(elementalMultiplier * damage);
 			HitPoints -= damageToReceive;
@@ -47,6 +55,13 @@ namespace _Project.Scripts.HealthSystem
 			onDeath.Invoke();
 			onAnyDeath?.Invoke();
 			Destroy(this);
+		}
+		
+		private IEnumerator ReceiveDamageCooldownTimeRoutine()
+		{
+			_canReceiveDamage = false;
+			yield return new WaitForSeconds(_canReceiveDamageCooldownTime);
+			_canReceiveDamage = true;
 		}
 
 		public void ReceiveHealth(ElementalSystemTypes regenType, float hpRegain)
