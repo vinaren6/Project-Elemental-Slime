@@ -35,7 +35,7 @@ namespace _Project.Scripts.Enemies.AI
 		private int   _damageOverTimeTotalTicks;
 		
 		private bool  _isBurning;
-		private bool  _hasDetectedPlayer;
+		private bool  _hasDetectedPlayer = false;
 
 		public Transform    Target                   => _target;
 		public Health       Health                   => _health;
@@ -54,15 +54,20 @@ namespace _Project.Scripts.Enemies.AI
 			SetStats();
 		}
 
+		private void Start()
+		{
+			_target = GameObject.FindWithTag("Player").transform;
+		}
+
 		private void Update() => StateMachine.CurrentState.LogicUpdate();
 
 		public void CheckForPlayerDetection()
 		{
-			//if (other.CompareTag("Player")) { } ???
+			// if (!other.CompareTag("Player"))
+			// 	return;
 			if (_hasDetectedPlayer)
 				return;
 			_hasDetectedPlayer = true;
-			_target = GameObject.FindWithTag("Player").transform;
 			StateMachine.ChangeState(DetectState);
 		}
 

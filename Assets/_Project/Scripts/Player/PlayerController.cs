@@ -72,9 +72,6 @@ namespace _Project.Scripts.Player
 			if (ServiceLocator.Game.IsPaused)
 				return;
 			
-			// if (IsAttacking)
-			// 	return;
-				
 			_move.Move(_input.MoveDirection);
 			_aim.Aim(_input.AimDirection);
 
@@ -177,7 +174,10 @@ namespace _Project.Scripts.Player
 
 		private void ExecuteAbility()
 		{
-			_ability.Execute();
+			if (currentPlayerElementalStats == elementalStats[(int)ElementalSystemTypes.Base])
+				_shoot.Fire();
+			else
+				_ability.Execute();
 		}
 		
 		private void StopAbility()
