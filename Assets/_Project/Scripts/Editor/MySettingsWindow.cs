@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Enemies.AI;
 using _Project.Scripts.Enemies.ScriptableObjects;
 using _Project.Scripts.Player;
@@ -14,10 +13,12 @@ namespace _Project.Scripts.Editor
 		[MenuItem("Window/SettingsOverview")]
 		private static void ShowWindow()
 		{
-			MySettingsWindow window = GetWindow<MySettingsWindow>();
+			window = GetWindow<MySettingsWindow>();
 			window.titleContent = new GUIContent("SettingsOverview");
 			window.Show();
 		}
+
+		private static MySettingsWindow window;
 		
 		private readonly string[] _toolbarNames  = {"BaseSettings", "PlayerElements", "EnemyElements"};
 		private          int      _selectedToolbar = 0;
@@ -34,7 +35,39 @@ namespace _Project.Scripts.Editor
 		public Vector2 scrollPosition;
 		public bool    liveUpdate;
 
+		private bool _playmodeHasInitialized;
+		private int  _undoBeforePlaymodeReference;
+
 		private void OnEnable()
+		{
+			Application.quitting += OnQuitting;
+			LoadAssets();
+		}
+
+		private void OnGUI()
+		{
+			if (Application.isPlaying && !_playmodeHasInitialized)
+				PlayModeInit();
+
+			if (Application.isPlaying && liveUpdate)
+				UpdateStats();
+			
+			scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, false, false);
+			
+			GUILayout.BeginHorizontal();
+			_selectedToolbar = GUILayout.Toolbar(_selectedToolbar, _toolbarNames);
+			GUILayout.EndHorizontal();
+
+			SetEditorsBasedOnToolbar();
+			
+			GUILayout.BeginVertical();
+			DrawWindow();
+			GUILayout.EndVertical();
+			
+			EditorGUILayout.EndScrollView();
+		}
+
+		private void LoadAssets()
 		{
 			playerSettings = Resources.Load<PlayerSettings>("PlayerSettings/PlayerBaseSettings");
 			enemySettings  = Resources.Load<EnemySettings>("EnemySettings/EnemyBaseSettings");
@@ -54,14 +87,27 @@ namespace _Project.Scripts.Editor
 			};
 		}
 
-		private void OnGUI()
+		private void PlayModeInit()
 		{
-			scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, false, false);
-			
-			GUILayout.BeginHorizontal();
-			_selectedToolbar = GUILayout.Toolbar(_selectedToolbar, _toolbarNames);
-			GUILayout.EndHorizontal();
-
+			if (playerController == null) {
+				playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+			}
+			// Debug.Log("Hello");
+			_undoBeforePlaymodeReference = Undo.GetCurrentGroup();
+			// Debug.Log($"Start: {_undoBeforePlaymodeReference}");
+			_playmodeHasInitialized = true;
+		}
+		
+		private void UpdateStats()
+		{
+			playerController.UpdateStatsFromEditorWindow();
+			var enemies = FindObjectsOfType<EnemyController>(false);
+			foreach (var enemy in enemies)
+				enemy.SetStatsFromEditorWindow();
+		}
+		
+		private void SetEditorsBasedOnToolbar()
+		{
 			editors = _selectedToolbar switch {
 				0 => new[] {
 					UnityEditor.Editor.CreateEditor(playerSettings),
@@ -81,21 +127,12 @@ namespace _Project.Scripts.Editor
 				},
 				_ => editors
 			};
-
-			GUILayout.BeginVertical();
-
+		}
+		
+		private void DrawWindow()
+		{
 			EditorGUILayout.Space(6);
 			liveUpdate = EditorGUILayout.Toggle("Update Changes Live", liveUpdate);
-			if (Application.isPlaying && liveUpdate) {
-				if (playerController == null) {
-					// Debug.Log("Player is null!");
-					playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-				}
-				playerController.UpdateStatsFromEditorWindow();
-				var enemies = FindObjectsOfType<EnemyController>(false);
-				foreach (var enemy in enemies)
-					enemy.SetStatsFromEditorWindow();
-			}
 			EditorGUILayout.Space(6);
 			
 			var style = new GUIStyle(GUI.skin.label) {fontSize = 14};
@@ -105,9 +142,28 @@ namespace _Project.Scripts.Editor
 				editor.OnInspectorGUI();
 				EditorGUILayout.Space(15);
 			}
-			GUILayout.EndVertical();
+		}
+		
+		private void OnQuitting()
+		{
+			// Debug.Log("Goodbye");
+			// Debug.Log($"Quit: {Undo.GetCurrentGroup()}");
 			
-			EditorGUILayout.EndScrollView();
+			if (EditorUtility.DisplayDialog(title:   "Information",
+											message: "Changes to SettingsOverview that was made during playmode can be saved if you wish.\r\n\r\n" +
+											         "Do you want to keep the changes?",
+											ok:      "Yes",
+											cancel:  "No")) {
+				// Debug.Log("Popup: Ok!");
+				// Debug.Log($"UnReverted: {Undo.GetCurrentGroup()}");
+			}
+			else {
+				// Debug.Log("Popup: Cancel!");
+				Undo.RevertAllDownToGroup(_undoBeforePlaymodeReference);
+				// Debug.Log($"Reverted: {Undo.GetCurrentGroup()}");
+			}
+			
+			_playmodeHasInitialized = false;
 		}
 	}
 }
