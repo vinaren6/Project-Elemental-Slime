@@ -44,10 +44,10 @@ namespace _Project.Scripts.Abilities
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IHealth health))
-            {
-                health.ReceiveDamage(ElementalSystemTypes.Fire, _damage);
-            }
+            if (!other.TryGetComponent(out IHealth health))
+                return;
+            
+            health.ReceiveDamage(ElementalSystemTypes.Fire, _damage);
         }
 
         public void Execute(Transform spawnTransform, float newSpeed, float newSpeedMultiplier, float aliveTime)
@@ -85,7 +85,7 @@ namespace _Project.Scripts.Abilities
                 yield return null;
             }
 
-            _ability.ReturnToPool(gameObject);
+            _ability.ReturnToPool(this);
         }
 
         private void CalculateVelocity()

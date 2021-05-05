@@ -6,6 +6,8 @@ namespace _Project.Scripts.Abilities
 {
 	public class FireAbility : MonoBehaviour, IAbility
 	{
+		#region Variables
+		
 		[SerializeField] private GameObject flamePrefab;
 		[SerializeField] private Transform flamePoolTransform;
 		
@@ -15,13 +17,17 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] [Range(0.1f, 0.5f)] private float aliveTime;
 
 		private Transform _transform;
-		private Queue<GameObject> _flamePool;
+		private Queue<FlameCollider> _flamePool;
 		
 		private int _maxFlameColliders;
 		private float _fireRate;
 		private bool _canShoot;
 
 		private float _damage;
+		
+		#endregion
+
+		#region Start Methods
 
 		private void Awake()
 		{
@@ -38,32 +44,39 @@ namespace _Project.Scripts.Abilities
 			if (_flamePool != null)
 				return;
 			
-			_flamePool = new Queue<GameObject>();
+			_flamePool = new Queue<FlameCollider>();
+			
 			for (int i = 0; i < _maxFlameColliders; i++)
 			{
-				GameObject FlameObject = Instantiate(flamePrefab, flamePoolTransform);
-				FlameObject.GetComponent<FlameCollider>().Initialize(this, _damage);
-				FlameObject.SetActive(false);
+				GameObject flameObject = Instantiate(flamePrefab, flamePoolTransform);
+				FlameCollider flameCollider = flameObject.GetComponent<FlameCollider>();
+				flameCollider.Initialize(this, _damage);
+				flameObject.SetActive(false);
 				
-				_flamePool.Enqueue(FlameObject);
+				_flamePool.Enqueue(flameCollider);
 			}
 		}
+		
+		#endregion
+
+		#region Methods
 
 		public void Execute()
 		{
 			if (!_canShoot)
 				return;
+
+			FlameCollider flameCollider = _flamePool.Dequeue();
+
+			flameCollider.gameObject.SetActive(true);
+			flameCollider.Execute(_transform, speed, speedMultiplier, aliveTime);
 			
-			GameObject flameCollider = _flamePool.Dequeue();
-			flameCollider.SetActive(true);
-			flameCollider.GetComponent<FlameCollider>().Execute(_transform, speed, speedMultiplier, aliveTime);
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
 		}
 
 		public void Stop()
 		{
-			
 		}
 
 		private IEnumerator SpawnDelayRoutine()
@@ -72,12 +85,14 @@ namespace _Project.Scripts.Abilities
 			_canShoot = true;
 		}
 
-		public void ReturnToPool(GameObject flameObject)
+		public void ReturnToPool(FlameCollider flameObject)
 		{
-			flameObject.SetActive(false);
+			flameObject.gameObject.SetActive(false);
 			flameObject.transform.SetParent(flamePoolTransform);
 
 			_flamePool.Enqueue(flameObject);
 		}
+		
+		#endregion
 	}
 }

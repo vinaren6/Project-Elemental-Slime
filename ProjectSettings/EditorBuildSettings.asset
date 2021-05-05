@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/InfiniteActionScene.unity
-    guid: 3f2256c1923c61f44a69b55e4b944be2
+    path: Assets/_Project/Scenes/TestSceneLinnEEa.unity
+    guid: c2563900102b9fc469c164119e63651a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 728a62bdc2745c64ab4d15759628eeae, type: 2}

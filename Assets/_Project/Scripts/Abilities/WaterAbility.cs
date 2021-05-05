@@ -55,9 +55,6 @@ namespace _Project.Scripts.Abilities
             _damage             = damage;
             _damageCooldownTime = 0.2f;
             _canDealDamage      = true;
-            
-            
-            // _damage = 0f;
         }
         
         #endregion
