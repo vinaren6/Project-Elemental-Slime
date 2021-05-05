@@ -166,5 +166,7 @@ namespace _Project.Scripts.Enemies.AI
 		// 		_navMeshAgent.updateRotation = true;
 		// 	}
 		// }
+
+		public void SetStatsFromEditorWindow() => SetStats();
 	}
 }

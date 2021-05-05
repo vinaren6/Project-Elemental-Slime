@@ -186,6 +186,12 @@ namespace _Project.Scripts.Player
 		}
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
+
+		public void UpdateStatsFromEditorWindow()
+		{
+			SetBaseStats();
+			SetElementBasedStats();
+		}
 		
 		#endregion
 
