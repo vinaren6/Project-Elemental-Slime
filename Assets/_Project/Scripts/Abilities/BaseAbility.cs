@@ -6,12 +6,12 @@ namespace _Project.Scripts.Abilities
 	{
 		public void Initialize(float damage)
 		{
-			print("BaseAbility Initialized!");
+			// print("BaseAbility Initialized!");
 		}
 
 		public void Execute()
 		{
-			print("BaseAbility Executed!");
+			// print("BaseAbility Executed!");
 		}
 		
 		public void Stop()

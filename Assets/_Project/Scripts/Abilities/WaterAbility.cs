@@ -7,18 +7,31 @@ namespace _Project.Scripts.Abilities
 {
     public class WaterAbility : MonoBehaviour, IAbility
     {
-        [SerializeField] private LayerMask      collisionMask;
-        private                  LineRenderer   _laser;
-        private                  ParticleSystem _splashEffect;
+        #region Variables
+        
+        [SerializeField] private LayerMask collisionMask;
+        [SerializeField] [Range(15f, 30f)] private float maxDistance;
+        [SerializeField] [Range(0.1f, 2f)] private float radius;
+        
         private                  Transform      _transform;
         private                  Transform      _splashEffectTransform;
         private                  Transform      _splashEffectParent;
-        private                  float          _maxDistance;
-        private                  float          _radius;
+        private                  LineRenderer   _laser;
+        private                  ParticleSystem _splashEffect;
         private                  bool           _splashHasStopped;
+        private                  bool           _canDealDamage;
         private                  float          _damage;
         private                  float          _damageCooldownTime;
-        private                  bool           _canDealDamage;
+
+        #endregion
+
+        #region Start Methods
+
+        private void Reset()
+        {
+            maxDistance = 25f;
+            radius = 0.5f;
+        }
 
         private void Awake()
         {
@@ -27,63 +40,79 @@ namespace _Project.Scripts.Abilities
         
         private void GetAllComponents()
         {
+            _transform             = transform;
             _laser                 = GetComponentInChildren<LineRenderer>();
             _splashEffect          = GetComponentInChildren<ParticleSystem>();
-            _transform             = transform;
             _splashEffectTransform = _splashEffect.transform;
             _splashEffectParent    = _splashEffectTransform.parent;
         }
 
         public void Initialize(float damage)
         {
-            _maxDistance = 25f;
-            _radius = _laser.startWidth * 0.5f;
-            _splashEffect.Stop();
+            _laser.startWidth = radius * 2f;
             _laser.SetPosition(1, _laser.GetPosition(0));
+            _splashEffect.Stop();
             _damage             = damage;
             _damageCooldownTime = 0.2f;
             _canDealDamage      = true;
+            
+            
+            // _damage = 0f;
         }
+        
+        #endregion
 
+        #region Methods
+        
         public void Execute()
         {
-            
-            Vector3 origin = _transform.position;
-            Vector3 direction = _transform.forward;
-
-            RaycastHit hit;
+            RaycastHit hit = new RaycastHit();
 
             Vector3 hitPosition = _laser.GetPosition(0);
-            
-            if (Physics.CapsuleCast(origin, origin, _radius, direction, out hit, _maxDistance, collisionMask))
+
+            if (LaserDidHit(ref hit))
             {
-                Transform hitTransform = hit.collider.transform;
+                ApplyHitLogic(hit);
                 
-                hitPosition.z = hit.distance;
-
-                _splashEffectTransform.SetParent(hitTransform);
-                _splashEffectTransform.localPosition = Vector3.zero;
-                float rotY = _transform.eulerAngles.y - 180f;
-                _splashEffectTransform.localRotation = Quaternion.Euler(0f, rotY, 0f);
-
-                _splashHasStopped = false;
-
-                if (_canDealDamage) {
-                    if (hit.collider.TryGetComponent(out IHealth health)){
-                        health.ReceiveDamage(ElementalSystemTypes.Water, _damage);
-                        StartCoroutine(AttackCooldownRoutine());
-                    }
-                }
-
+                hitPosition.z = hit.distance + radius;
                 PlayEffect();
             }
             else
             {
-                hitPosition.z = _maxDistance;
+                hitPosition.z = maxDistance;
                 StopEffect();
             }
 
             _laser.SetPosition(1, hitPosition);
+        }
+
+        private bool LaserDidHit(ref RaycastHit hit)
+        {
+            Vector3 origin = _transform.position;
+            Vector3 direction = _transform.forward;
+            
+            return Physics.CapsuleCast(origin, origin, radius, direction, out hit, maxDistance, collisionMask);
+        }
+
+        private void ApplyHitLogic(RaycastHit hit)
+        {
+            Transform hitTransform = hit.collider.transform;
+
+            _splashEffectTransform.SetParent(hitTransform);
+            _splashEffectTransform.localPosition = Vector3.zero;
+            float rotY = _transform.eulerAngles.y - 180f;
+            _splashEffectTransform.localRotation = Quaternion.Euler(0f, rotY, 0f);
+
+            _splashHasStopped = false;
+
+            if (!_canDealDamage)
+                return;
+
+            if (!hit.collider.TryGetComponent(out IHealth health))
+                return;
+            
+            health.ReceiveDamage(ElementalSystemTypes.Water, _damage);
+            StartCoroutine(AttackCooldownRoutine());
         }
 
         private IEnumerator AttackCooldownRoutine()
@@ -97,15 +126,16 @@ namespace _Project.Scripts.Abilities
         {
             _laser.SetPosition(1, _laser.GetPosition(0));
             
+            if (_splashHasStopped)
+                return;
+
             Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
             _splashHasStopped = true;
         }
+        
+        #endregion
 
-        private void ResetSplashEffect()
-        {
-            _splashEffect.Stop();
-            _splashEffectTransform.SetParent(_splashEffectParent);
-        }
+        #region Effect Methods
 
         private void PlayEffect()
         {
@@ -113,7 +143,6 @@ namespace _Project.Scripts.Abilities
                 return;
             
             _splashEffect.Play();
-            Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
         }
 
         private void StopEffect()
@@ -123,5 +152,13 @@ namespace _Project.Scripts.Abilities
             
             Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
         }
+        
+        private void ResetSplashEffect()
+        {
+            _splashEffect.Stop();
+            _splashEffectTransform.SetParent(_splashEffectParent);
+        }
+        
+        #endregion
     }
 }
