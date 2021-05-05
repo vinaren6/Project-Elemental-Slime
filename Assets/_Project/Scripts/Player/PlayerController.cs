@@ -17,13 +17,10 @@ namespace _Project.Scripts.Player
 		[SerializeField] private GameObject[]           abilities      = new GameObject[5];
 		
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
-		[SerializeField][Range(0.1f, 1.0f)]  private float moveSmoothing               = 0.9f;
-		[SerializeField][Range(1.0f, 15.0f)] private float rotationSmoothing           = 7.0f;
-
-
-
-		[SerializeField][Range(0.1f, 1.0f)]  private float moveWhenAttackingMultiplier = 1.0f;
-		[SerializeField][Range(0.1f, 1.0f)]  private float moveBackwardsMultiplier     = 1.0f;
+		[SerializeField][Range(0.1f, 1.0f)] private float moveSmoothing               = 0.9f;
+		[SerializeField][Range(0.1f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
+		[SerializeField][Range(0.1f, 1.0f)] private float moveBackwardsMultiplier     = 1.0f;
+		// [SerializeField][Range(1.0f, 15.0f)] private float rotationSmoothing           = 7.0f;
 		
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
@@ -46,7 +43,6 @@ namespace _Project.Scripts.Player
 		private float _abilityCooldownTime;
 		
 		public float MoveSmoothing               => moveSmoothing;
-		public float RotationSmoothing           => rotationSmoothing;
 		public float MoveWhenAttackingMultiplier => moveWhenAttackingMultiplier;
 		public float MoveBackwardsMultiplier     => moveBackwardsMultiplier;
 		public float MoveSpeed                   => _moveSpeed;
@@ -54,6 +50,7 @@ namespace _Project.Scripts.Player
 		public float ProjectileSpeed             => _projectileSpeed;
 		public float AbilityCooldownTime         => _abilityCooldownTime;
 		public bool  HasAttacked                 { get; set; }
+		// public float RotationSmoothing           => rotationSmoothing;
 
 		private void Awake()
 		{
