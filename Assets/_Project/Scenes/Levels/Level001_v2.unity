@@ -5609,8 +5609,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645966831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 261.19998, y: -1.6, z: 68.8}
-  m_LocalScale: {x: 10, y: 1, z: 50}
+  m_LocalPosition: {x: 261.19998, y: -1.6, z: 75.2}
+  m_LocalScale: {x: 10, y: 1, z: 60}
   m_Children:
   - {fileID: 1248537944}
   m_Father: {fileID: 735321620}
@@ -17177,6 +17177,10 @@ PrefabInstance:
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1248537949}
+    - target: {fileID: 9178388971088744417, guid: bbe958597e03cac4cbf30add565622e1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 24.7
+      objectReference: {fileID: 0}
     - target: {fileID: 9201421107789831974, guid: bbe958597e03cac4cbf30add565622e1, type: 3}
       propertyPath: m_Name
       value: Button
