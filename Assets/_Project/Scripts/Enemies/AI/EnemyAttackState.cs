@@ -26,8 +26,6 @@ namespace _Project.Scripts.Enemies.AI
                 RaycastHit hit;
                 if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, 50, ~9))
                 {
-                  
-                    
                     if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
                     {
                         if (EnemyController.Target.TryGetComponent(out IHealth health))
@@ -38,12 +36,7 @@ namespace _Project.Scripts.Enemies.AI
                     }
                     else
                         _stateMachine.ChangeState(EnemyController.HuntState);
-                    }
-
                 }
-                
-
-
             }
         }
     }
