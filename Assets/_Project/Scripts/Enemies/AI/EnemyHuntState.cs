@@ -17,7 +17,6 @@ namespace _Project.Scripts.Enemies.AI
             base.LogicUpdate();
             EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position); 
             RaycastHit hit;
-            Debug.DrawRay(_transform.position, _transform.TransformDirection(Vector3.forward) * EnemyController.AttackRange, Color.green);
             if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, EnemyController.AttackRange, ~9))
             { 
               

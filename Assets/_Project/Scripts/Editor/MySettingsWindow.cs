@@ -86,15 +86,18 @@ namespace _Project.Scripts.Editor
 
 		private void PlayModeInit()
 		{
-			if (playerController == null) {
+			if (playerController == null)
 				playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-			}
+			
 			_undoBeforePlaymodeReference = Undo.GetCurrentGroup();
 			_playmodeHasInitialized      = true;
 		}
 		
 		private void UpdateStats()
 		{
+			if (playerController == null)
+				playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+			
 			playerController.UpdateStatsFromEditorWindow();
 			var enemies = FindObjectsOfType<EnemyController>(false);
 			foreach (var enemy in enemies)
