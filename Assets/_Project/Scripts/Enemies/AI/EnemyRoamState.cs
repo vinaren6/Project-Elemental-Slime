@@ -16,8 +16,6 @@ namespace _Project.Scripts.Enemies.AI
 		public override void Enter()
 		{
 			base.Enter();
-			
-
 			ServiceLocator.Game.OnVariableChange += PauseChange;
 		}
 
@@ -60,8 +58,12 @@ namespace _Project.Scripts.Enemies.AI
 			EnemyController.NavMeshAgent.CalculatePath(_roamTargetPosition, path);
 
 		}
-		
-		public override void Exit() => base.Exit();
+
+		public override void Exit()
+		{
+			base.Exit();
+			ServiceLocator.Game.OnVariableChange -= PauseChange;
+		}
 
 		private Vector3 GetNewRoamTargetPosition()
 		{
