@@ -10,7 +10,7 @@ namespace _Project.Scripts.Abilities
 		
 		[SerializeField] private GameObject flamePrefab;
 		[SerializeField] private Transform flamePoolTransform;
-		
+
 		[Header("Test Values")]
 		[SerializeField] [Range(1f, 150f)] private float speed;
 		[SerializeField] [Range(1.0f, 1.20f)] private float speedMultiplier;
@@ -77,6 +77,7 @@ namespace _Project.Scripts.Abilities
 
 		public void Stop()
 		{
+			
 		}
 
 		private IEnumerator SpawnDelayRoutine()
