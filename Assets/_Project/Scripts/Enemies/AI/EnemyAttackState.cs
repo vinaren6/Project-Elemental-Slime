@@ -24,14 +24,12 @@ namespace _Project.Scripts.Enemies.AI
             if (Time.time > _nextAttack)
             {
                 RaycastHit hit;
-                Debug.DrawRay(_transform.position, _transform.TransformDirection(Vector3.forward) * 50, Color.green);
                 if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, 50, ~9))
                 {
                   
                     
                     if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
                     {
-                        Debug.Log(hit.distance);
                         if (EnemyController.Target.TryGetComponent(out IHealth health))
                         {
                             health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
@@ -39,8 +37,6 @@ namespace _Project.Scripts.Enemies.AI
                         _nextAttack = Time.time + EnemyController.AttackCooldownTime;
                     }
                     else
-                    {
-                        Debug.Log("Hunt state change");
                         _stateMachine.ChangeState(EnemyController.HuntState);
                     }
 

@@ -23,10 +23,8 @@ namespace _Project.Scripts.Enemies.AI
               
                 if (hit.transform.tag == "Player")
                 {
-                    EnemyController.NavMeshAgent.velocity = Vector3.zero;
-                   
+                    EnemyController.NavMeshAgent.velocity = Vector3.zero;               
                     EnemyController.NavMeshAgent.SetDestination(_transform.position);
-                    Debug.Log("attackstate");
                     _stateMachine.ChangeState(EnemyController.AttackState);
                 }
 
