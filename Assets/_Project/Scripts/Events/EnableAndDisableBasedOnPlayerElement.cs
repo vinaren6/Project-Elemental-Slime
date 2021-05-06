@@ -6,9 +6,9 @@ namespace _Project.Scripts.Events
 {
 	public class EnableAndDisableBasedOnPlayerElement : MonoBehaviour
 	{
-		[SerializeField] private bool                 equal = true;
-		[SerializeField] private ElementalSystemTypes type;
-		[SerializeField] private GameObject           target;
+		[SerializeField] private bool                       equal = true;
+		[SerializeField] private ElementalSystemTypeCurrent type;
+		[SerializeField] private GameObject                 target;
 
 		private void Start()
 		{
@@ -18,7 +18,7 @@ namespace _Project.Scripts.Events
 
 		private void Change() => target.SetActive(
 			equal
-				? type == PlayerElementalSystemSwitchElement.StaticPlayerElementType.Type
-				: type != PlayerElementalSystemSwitchElement.StaticPlayerElementType.Type);
+				? type.Type == PlayerElementalSystemSwitchElement.StaticPlayerElementType.Type
+				: type.Type != PlayerElementalSystemSwitchElement.StaticPlayerElementType.Type);
 	}
 }

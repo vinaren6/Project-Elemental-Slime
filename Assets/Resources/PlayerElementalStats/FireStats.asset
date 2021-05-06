@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372a6f21d4744b709b9003a940d44c12, type: 3}
   m_Name: FireStats
   m_EditorClassIdentifier: 
+  elementType: FIRE
   moveSpeedMultiplier: 1
   damageReceivedMultiplier: 1
   attackStrengthMultiplier: 0.5
   attackRateMultiplier: 1
   isDealingDamageOverTime: 1
-  specialAttack: {fileID: 6145588839501400648, guid: 38a47d16a0041754586a79e360c5a968, type: 3}

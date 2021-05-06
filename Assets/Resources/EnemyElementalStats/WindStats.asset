@@ -18,4 +18,3 @@ MonoBehaviour:
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
   hasRangedAttack: 0
-  specialAttack: {fileID: 0}
