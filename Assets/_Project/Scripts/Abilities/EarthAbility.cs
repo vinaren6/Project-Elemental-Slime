@@ -87,8 +87,10 @@ namespace _Project.Scripts.Abilities
 			while (rockCount < maxRocks)
 			{
 				rockCount++;
+
+				yield return null;
 			}
-			
+
 			_isAttacking = false;
 		}
 		
