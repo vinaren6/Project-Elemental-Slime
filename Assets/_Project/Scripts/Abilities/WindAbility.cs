@@ -120,7 +120,7 @@ namespace _Project.Scripts.Abilities
 
 				float newSpeed = velocityCurve.Evaluate(time / duration) * speed;
 
-				Debug.Log($"Dash.speed: {newSpeed} - time: {time}");
+				// Debug.Log($"Dash.speed: {newSpeed} - time: {time}");
 				
 				_agent.Move(direction * (newSpeed * Time.deltaTime));
 
