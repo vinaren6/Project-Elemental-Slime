@@ -5045,8 +5045,7 @@ MonoBehaviour:
   - {fileID: 6852071112675158726}
   - {fileID: 1538581331650486401}
   moveSmoothing: 0.9
-  rotationSmoothing: 10
-  moveWhenAttackingMultiplier: 0.6
+  moveWhenAttackingMultiplier: 0.75
   moveBackwardsMultiplier: 0.75
 --- !u!114 &2430382309369243959
 MonoBehaviour:
@@ -5114,7 +5113,7 @@ MonoBehaviour:
   controls: {fileID: -944628639613478452, guid: efac0ae74d78c534a872299e8194b7c0, type: 3}
   elementType: {fileID: 7398852164926300467}
   health: {fileID: 9048047761997672704}
-  requiredElementsToChange: 1
+  requiredElementsToChange: 0
   hpGainOnPickup: 5
 --- !u!114 &7398852164926300467
 MonoBehaviour:
@@ -5399,7 +5398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6047529988624082048
 Transform:
   m_ObjectHideFlags: 0
@@ -5443,7 +5442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7486438288256018350
 Transform:
   m_ObjectHideFlags: 0
@@ -5474,6 +5473,8 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
+  maxDistance: 20
+  radius: 1
 --- !u!1 &2937585785946781591
 GameObject:
   m_ObjectHideFlags: 0
@@ -5491,7 +5492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3861382731110247219
 Transform:
   m_ObjectHideFlags: 0
@@ -5520,6 +5521,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDamageCollider: {fileID: 721889729854220433}
+  velocityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &3883514665204785023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10575,7 +10600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4158803683270328844
 Transform:
   m_ObjectHideFlags: 0
@@ -10827,7 +10852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2069173747589475364
 Transform:
   m_ObjectHideFlags: 0
@@ -10855,6 +10880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bb560e29c24ab7bbced74a30d92061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockPrefab: {fileID: 918363026291034315, guid: 28fc4ab320c79964f95227b0f0fe6717, type: 3}
 --- !u!65 &8697844114426651485
 BoxCollider:
   m_ObjectHideFlags: 0
