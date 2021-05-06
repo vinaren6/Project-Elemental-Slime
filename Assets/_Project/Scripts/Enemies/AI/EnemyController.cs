@@ -15,7 +15,7 @@ namespace _Project.Scripts.Enemies.AI
 		[Header("ACTIVE SETTINGS/STATS:")] 
 		[SerializeField] private EnemySettings baseSettings;
 		[SerializeField] private EnemyElementalStats currentEnemyElementalStats;
-		
+		[SerializeField] private int _attackRange;
 		public ElementalSystemTypeCurrent type;
 		
 		public EnemyStateMachine StateMachine { get; set; }
@@ -33,7 +33,8 @@ namespace _Project.Scripts.Enemies.AI
 		private float _attackStrength;
 		private float _attackCooldownTime;
 		private int   _damageOverTimeTotalTicks;
-		
+	
+
 		private bool  _isBurning;
 		private bool  _hasDetectedPlayer = false;
 
@@ -44,6 +45,7 @@ namespace _Project.Scripts.Enemies.AI
 		public float        AttackStrength           => _attackStrength;
 		public float        AttackCooldownTime       => _attackCooldownTime;
 		public int          DamageOverTimeTotalTicks => _damageOverTimeTotalTicks;
+		public int          AttackRange              => _attackRange;
 
 		public bool IsBurning { get => _isBurning; set => _isBurning = value; }
 
@@ -114,14 +116,14 @@ namespace _Project.Scripts.Enemies.AI
 
 		private void OnCollisionEnter(Collision other)
 		{
-			if (other.collider.CompareTag("Player"))
-				StateMachine.ChangeState(AttackState);
+			//if (other.collider.CompareTag("Player"))
+				//StateMachine.ChangeState(AttackState);
 		}
 
 		private void OnCollisionExit(Collision other)
 		{
-			if (other.collider.CompareTag("Player"))
-				StateMachine.ChangeState(HuntState);
+			//if (other.collider.CompareTag("Player"))
+			//	StateMachine.ChangeState(HuntState);
 		}
 		
 		private void InitializeStateMachine()

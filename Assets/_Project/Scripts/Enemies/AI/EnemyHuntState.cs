@@ -1,4 +1,5 @@
 using _Project.Scripts.Managers;
+using UnityEngine;
 
 namespace _Project.Scripts.Enemies.AI
 {
@@ -14,7 +15,23 @@ namespace _Project.Scripts.Enemies.AI
             }
 
             base.LogicUpdate();
-            EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position);
+            EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position); 
+            RaycastHit hit;
+            Debug.DrawRay(_transform.position, _transform.TransformDirection(Vector3.forward) * EnemyController.AttackRange, Color.green);
+            if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, EnemyController.AttackRange, ~9))
+            { 
+              
+                if (hit.transform.tag == "Player")
+                {
+                    EnemyController.NavMeshAgent.velocity = Vector3.zero;
+                   
+                    EnemyController.NavMeshAgent.SetDestination(_transform.position);
+                    Debug.Log("attackstate");
+                    _stateMachine.ChangeState(EnemyController.AttackState);
+                }
+
+                
+            }
+            }
         }
     }
-}
