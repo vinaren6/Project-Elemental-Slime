@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
   m_Name: EarthStats
   m_EditorClassIdentifier: 
+  elementType: 0
   maxHitPoints: 250
   moveSpeedMultiplier: 0.75
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
   hasRangedAttack: 0
-  specialAttack: {fileID: 0}
+  mesh: {fileID: 919132149155446097, guid: 6c9456bf5a2c0b14d8c5bc9b35defdd0, type: 3}

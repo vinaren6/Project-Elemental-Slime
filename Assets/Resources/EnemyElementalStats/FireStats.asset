@@ -18,4 +18,4 @@ MonoBehaviour:
   attackStrengthMultiplier: 2
   attackRateMultiplier: 0.5
   hasRangedAttack: 0
-  specialAttack: {fileID: 0}
+  mesh: {fileID: 919132149155446097, guid: 1c38888ac80747146aa3cbca7dacfd99, type: 3}

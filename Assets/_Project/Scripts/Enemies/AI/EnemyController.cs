@@ -4,6 +4,7 @@ using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.UI;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -33,7 +34,6 @@ namespace _Project.Scripts.Enemies.AI
 		private float _attackStrength;
 		private float _attackCooldownTime;
 		private int   _damageOverTimeTotalTicks;
-	
 
 		private bool  _isBurning;
 		private bool  _hasDetectedPlayer = false;
@@ -54,6 +54,7 @@ namespace _Project.Scripts.Enemies.AI
 			InitializeStateMachine();
 			GetComponentReferences();
 			SetStats();
+			InstantiateMesh();
 		}
 
 		private void Start()
@@ -65,8 +66,6 @@ namespace _Project.Scripts.Enemies.AI
 
 		public void CheckForPlayerDetection()
 		{
-			// if (!other.CompareTag("Player"))
-			// 	return;
 			if (_hasDetectedPlayer)
 				return;
 			_hasDetectedPlayer = true;
@@ -153,22 +152,18 @@ namespace _Project.Scripts.Enemies.AI
 			_attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
 		}
 
+		private void InstantiateMesh()
+		{
+			GameObject EnemyMesh = Instantiate(currentEnemyElementalStats.mesh, transform.position, Quaternion.identity);
+			EnemyMesh.transform.SetParent(transform.Find("Graphics"));
+		}
+
 		public void SetupEnemyFromSpawner(EnemyElementalStats elementalStats)
 		{
 			currentEnemyElementalStats = elementalStats;
 			SetStats();
 		}
-
-		// public IEnumerator HitPushBack(Vector3 direction, float pushStrength, float rotationFreezeTime)
-		// {
-		// 	if (_navMeshAgent != null){
-		// 		_navMeshAgent.velocity       = direction * pushStrength;
-		// 		_navMeshAgent.updateRotation = false;
-		// 		yield return new WaitForSeconds(rotationFreezeTime);
-		// 		_navMeshAgent.updateRotation = true;
-		// 	}
-		// }
-
+		
 		public void SetStatsFromEditorWindow() => SetStats();
 	}
 }
