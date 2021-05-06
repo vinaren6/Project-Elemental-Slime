@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
   currentEnemyElementalStats: {fileID: 11400000, guid: 280edce054cf99b47b2a7ad0461be14b, type: 2}
-  _attackRange: 100
+  _attackRange: 1
   type: {fileID: 1460504048}
 --- !u!114 &1460504048
 MonoBehaviour:

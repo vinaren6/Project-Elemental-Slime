@@ -27,9 +27,11 @@ namespace _Project.Scripts.Enemies.AI
                 Debug.DrawRay(_transform.position, _transform.TransformDirection(Vector3.forward) * 50, Color.green);
                 if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, 50, ~9))
                 {
-                    Debug.Log(hit.transform.tag);
-                    if (hit.transform.tag == "Player")
+                  
+                    
+                    if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
                     {
+                        Debug.Log(hit.distance);
                         if (EnemyController.Target.TryGetComponent(out IHealth health))
                         {
                             health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
