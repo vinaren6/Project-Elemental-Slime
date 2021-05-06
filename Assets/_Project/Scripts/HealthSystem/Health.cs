@@ -54,7 +54,6 @@ namespace _Project.Scripts.HealthSystem
 			EnemySpawner.EnemiesInScene--;
 			onDeath.Invoke();
 			onAnyDeath?.Invoke();
-			Destroy(this);
 		}
 		
 		private IEnumerator ReceiveDamageCooldownTimeRoutine()

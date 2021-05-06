@@ -23,7 +23,6 @@ namespace _Project.Scripts.Enemies.AI
 
 			private void PauseChange(bool pauseState)
         {
-			Debug.Log("test");
 			pause = pauseState;
             if (!pause)
             {

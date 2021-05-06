@@ -59,11 +59,8 @@ namespace _Project.Scripts.Editor
 			GUILayout.EndHorizontal();
 
 			SetEditorsBasedOnToolbar();
-			
-			GUILayout.BeginVertical();
 			DrawWindow();
-			GUILayout.EndVertical();
-			
+
 			EditorGUILayout.EndScrollView();
 		}
 
@@ -92,10 +89,8 @@ namespace _Project.Scripts.Editor
 			if (playerController == null) {
 				playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 			}
-			// Debug.Log("Hello");
 			_undoBeforePlaymodeReference = Undo.GetCurrentGroup();
-			// Debug.Log($"Start: {_undoBeforePlaymodeReference}");
-			_playmodeHasInitialized = true;
+			_playmodeHasInitialized      = true;
 		}
 		
 		private void UpdateStats()
@@ -131,10 +126,12 @@ namespace _Project.Scripts.Editor
 		
 		private void DrawWindow()
 		{
+			GUILayout.BeginVertical();
+			
 			EditorGUILayout.Space(6);
 			liveUpdate = EditorGUILayout.Toggle("Update Changes Live", liveUpdate);
 			EditorGUILayout.Space(6);
-			
+
 			var style = new GUIStyle(GUI.skin.label) {fontSize = 14};
 			foreach (var editor in editors) {
 				EditorGUILayout.LabelField($"-- {editor.target.name} --", style);
@@ -142,25 +139,21 @@ namespace _Project.Scripts.Editor
 				editor.OnInspectorGUI();
 				EditorGUILayout.Space(15);
 			}
+			
+			GUILayout.EndVertical();
 		}
 		
 		private void OnQuitting()
 		{
-			// Debug.Log("Goodbye");
-			// Debug.Log($"Quit: {Undo.GetCurrentGroup()}");
-			
 			if (EditorUtility.DisplayDialog(title:   "Information",
 											message: "Changes to SettingsOverview that was made during playmode can be saved if you wish.\r\n\r\n" +
 											         "Do you want to keep the changes?",
 											ok:      "Yes",
 											cancel:  "No")) {
-				// Debug.Log("Popup: Ok!");
-				// Debug.Log($"UnReverted: {Undo.GetCurrentGroup()}");
+				Debug.Log("OverviewSettings: Changes have been saved.");
 			}
 			else {
-				// Debug.Log("Popup: Cancel!");
 				Undo.RevertAllDownToGroup(_undoBeforePlaymodeReference);
-				// Debug.Log($"Reverted: {Undo.GetCurrentGroup()}");
 			}
 			
 			_playmodeHasInitialized = false;

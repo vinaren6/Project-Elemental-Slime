@@ -1,4 +1,6 @@
-﻿namespace _Project.Scripts.Managers
+﻿using UnityEngine;
+
+namespace _Project.Scripts.Managers
 {
     public class GameManager
     {
@@ -31,6 +33,9 @@
         {
             if (_isPaused == pause) return;
             _isPaused = pause;
+
+            Time.timeScale = pause ? 0f : 1f;
+            
             if (OnVariableChange != null)
                 OnVariableChange(_isPaused);
         }

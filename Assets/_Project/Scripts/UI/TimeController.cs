@@ -22,9 +22,6 @@ namespace _Project.Scripts.UI
 
 		private void Update()
 		{
-			if (ServiceLocator.Game.IsPaused)
-				return;
-			
 			if (timeRemaining > 0) {
 				timeRemaining -= Time.deltaTime;
 				timeText.text =  Mathf.CeilToInt(timeRemaining).ToString();

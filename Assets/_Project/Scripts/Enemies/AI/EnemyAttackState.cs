@@ -17,11 +17,33 @@ namespace _Project.Scripts.Enemies.AI
                 return;
             
             base.LogicUpdate();
-            if (Time.time > _nextAttack) {
-                if (EnemyController.Target.TryGetComponent(out IHealth health)) {
-                    health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
+            Vector3 targetDelta = EnemyController.Target.position - _transform.position;
+            Quaternion rot = Quaternion.LookRotation(targetDelta);
+            _transform.rotation = rot;
+
+            if (Time.time > _nextAttack)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, 50, ~9))
+                {
+                  
+                    
+                    if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
+                    {
+                        if (EnemyController.Target.TryGetComponent(out IHealth health))
+                        {
+                            health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
+                        }
+                        _nextAttack = Time.time + EnemyController.AttackCooldownTime;
+                    }
+                    else
+                        _stateMachine.ChangeState(EnemyController.HuntState);
+                    }
+
                 }
-                _nextAttack = Time.time + EnemyController.AttackCooldownTime;
+                
+
+
             }
         }
     }
