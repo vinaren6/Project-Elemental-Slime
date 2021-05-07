@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using _Project.Scripts.ElementalSystem;
-using _Project.Scripts.HealthSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,10 +8,14 @@ namespace _Project.Scripts.Abilities
 	public class EarthAbility : MonoBehaviour, IAbility
 	{
 		[SerializeField] private GameObject rockPrefab;
+		[SerializeField] private Transform poolParent;
+		[SerializeField] private Transform rockTransformParent;
 		
 		private NavMeshAgent _agent;
 		private Transform _transform;
 		private Queue<RockWall> _rockPool;
+
+		private Transform[] _rockTransforms;
 		
 		private bool _isAttacking;
 		
@@ -29,6 +31,12 @@ namespace _Project.Scripts.Abilities
 		{
 			_agent = GetComponentInParent<NavMeshAgent>();
 			_transform = transform;
+			_rockTransforms = new Transform[rockTransformParent.childCount];
+			for (int i = 0; i < _rockTransforms.Length; i++)
+			{
+				_rockTransforms[i] = rockTransformParent.GetChild(i);
+			}
+			
 			SetupPool();
 		}
 
@@ -45,7 +53,7 @@ namespace _Project.Scripts.Abilities
 			{
 				GameObject rockObject = Instantiate(rockPrefab, _transform);
 				RockWall rockWall = rockObject.GetComponent<RockWall>();
-				rockWall.Initialize(this, _damage);
+				rockWall.Initialize(this);
 				rockObject.SetActive(false);
 				
 				_rockPool.Enqueue(rockWall);
@@ -83,12 +91,19 @@ namespace _Project.Scripts.Abilities
 			Vector3 startPosition = _transform.position;
 			Vector3 direction = _transform.forward;
 
+			Vector3[] rockPositions = new Vector3[_rockTransforms.Length];
+			for (int i = 0; i < rockPositions.Length; i++)
+			{
+				rockPositions[i] = _rockTransforms[i].position;
+			}
+
 			float time = 0f;
 			float rockSpawnTime = 0.25f;
 
 			// Have we spawned all rocks yet?
 			while (rockCount < maxRocks)
 			{
+				_agent.velocity = Vector3.zero;
 				// Time to spawn more rocks???
 				if (time >= rockSpawnTime)
 				{
@@ -97,7 +112,9 @@ namespace _Project.Scripts.Abilities
 					{
 						RockWall rock = _rockPool.Dequeue();
 						
-						rock.Execute(GetRockPosition(startPosition, direction, rockCount, rocksToSpawn));
+						rock.Execute(rockPositions[rockCount], GetDamage(rocksToSpawn));
+						
+						// rock.Execute(GetRockPosition(startPosition, direction, rockCount, rocksToSpawn));
 						
 						rockCount++;
 					}
@@ -116,8 +133,6 @@ namespace _Project.Scripts.Abilities
 
 		private Vector3 GetRockPosition(Vector3 startPosition, Vector3 direction, int rockIndex, int row)
 		{
-			
-			
 			// return new Vector3((rock-row * _rockMargin.x) * _rockSize.x, row);
 
 			Vector3 rockPosition = Vector3.zero;
@@ -154,6 +169,19 @@ namespace _Project.Scripts.Abilities
 			_isAttacking = true;
 			yield return new WaitForSeconds(_damageCooldownTime);
 			_isAttacking = false;
+		}
+
+		private float GetDamage(int row)
+		{
+			return _damage * row;
+		}
+		
+		public void ReturnToPool(RockWall rock)
+		{
+			rock.transform.SetParent(rockTransformParent);
+			rock.gameObject.SetActive(false);
+
+			_rockPool.Enqueue(rock);
 		}
 	}
 }

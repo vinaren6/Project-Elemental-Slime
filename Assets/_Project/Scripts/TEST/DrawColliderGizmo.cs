@@ -56,7 +56,7 @@ public class DrawColliderGizmo : MonoBehaviour
 
     private void DrawCollider(Collider col)
     {
-        Vector3 position = Vector3.zero;
+        Vector3 position = col.bounds.center - col.transform.position;
         Gizmos.matrix = _transform.localToWorldMatrix;
         
         if (col.transform != _transform)
