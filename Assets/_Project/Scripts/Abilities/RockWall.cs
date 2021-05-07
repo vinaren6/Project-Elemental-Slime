@@ -43,8 +43,10 @@ namespace _Project.Scripts.Abilities
             float upDuration = 0.4f;
             float aliveTime = 0.5f;
 
-            _transform.localScale = new Vector3(1f, 0f, 1f);
-            Vector3 targetScale = Vector3.one;
+            Vector3 localScale = _transform.localScale;
+            localScale.y = 0f;
+            _transform.localScale = localScale;
+            Vector3 targetScale = localScale;
             targetScale.y = height;
 
             while (time < upDuration)
@@ -64,6 +66,8 @@ namespace _Project.Scripts.Abilities
         {
             if (other.CompareTag(tag))
                 return;
+            
+            // Debug.Log($"col.name: {other.name}");
 
             if (other.TryGetComponent(out IHealth health))
             {

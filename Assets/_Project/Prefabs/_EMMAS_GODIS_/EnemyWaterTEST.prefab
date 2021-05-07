@@ -79,7 +79,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4257883850563282621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -161,7 +161,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4277991123655928113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
   currentEnemyElementalStats: {fileID: 11400000, guid: d1d25208f1522c746b80fdf666541fb9, type: 2}
+  _attackRange: 0
   type: {fileID: 1259733911109446602}
 --- !u!114 &1259733911109446602
 MonoBehaviour:
@@ -513,6 +514,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4277991123844281057}
     m_Modifications:
+    - target: {fileID: 9098966067950957468, guid: dfd95345dfc1d524193e7ddf21d9e885, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1032572231
+      objectReference: {fileID: 0}
     - target: {fileID: 9098966068800910530, guid: dfd95345dfc1d524193e7ddf21d9e885, type: 3}
       propertyPath: targetTransform
       value: 

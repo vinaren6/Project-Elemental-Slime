@@ -51,7 +51,7 @@ namespace _Project.Scripts.Abilities
 
 			for (int i = 0; i < _maxRockWalls; i++)
 			{
-				GameObject rockObject = Instantiate(rockPrefab, _transform);
+				GameObject rockObject = Instantiate(rockPrefab, poolParent);
 				RockWall rockWall = rockObject.GetComponent<RockWall>();
 				rockWall.Initialize(this);
 				rockObject.SetActive(false);
@@ -178,7 +178,7 @@ namespace _Project.Scripts.Abilities
 		
 		public void ReturnToPool(RockWall rock)
 		{
-			rock.transform.SetParent(rockTransformParent);
+			rock.transform.SetParent(poolParent);
 			rock.gameObject.SetActive(false);
 
 			_rockPool.Enqueue(rock);

@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
   currentEnemyElementalStats: {fileID: 11400000, guid: c7e3e378fdd1fde448dee9529b28e1ef, type: 2}
+  _attackRange: 0
   type: {fileID: 3418776705111617787}
 --- !u!114 &3418776705111617787
 MonoBehaviour:
@@ -627,7 +628,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3418776705234265937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -732,7 +733,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1032572231
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &3418776705271037540
@@ -897,7 +898,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3418776705608864281}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

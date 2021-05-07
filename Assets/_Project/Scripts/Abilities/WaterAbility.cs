@@ -72,6 +72,7 @@ namespace _Project.Scripts.Abilities
                 ApplyHitLogic(hit);
                 
                 hitPosition.z = hit.distance + radius;
+                
                 PlayEffect();
             }
             else
@@ -88,7 +89,17 @@ namespace _Project.Scripts.Abilities
             Vector3 origin = _transform.position;
             Vector3 direction = _transform.forward;
             
-            return Physics.CapsuleCast(origin, origin, radius, direction, out hit, maxDistance, collisionMask);
+            bool didHit = Physics.CapsuleCast(origin, origin, radius, direction, out hit, maxDistance, collisionMask);
+            // return Physics.CapsuleCast(origin, origin, radius, direction, out hit, maxDistance, collisionMask);
+            
+            if (didHit)
+                Debug.DrawRay(origin, direction * hit.distance, Color.red);
+            else
+                Debug.DrawRay(origin, direction * maxDistance, Color.yellow);
+            
+            // Debug.Log($"hit.distance: {hit.distance}");
+
+            return didHit;
         }
 
         private void ApplyHitLogic(RaycastHit hit)
