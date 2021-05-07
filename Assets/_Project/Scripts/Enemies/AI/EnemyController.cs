@@ -153,9 +153,39 @@ namespace _Project.Scripts.Enemies.AI
 		}
 
 		private void InstantiateMesh()
-		{
+		{ 
 			GameObject EnemyMesh = Instantiate(currentEnemyElementalStats.mesh, transform.position, Quaternion.identity);
 			EnemyMesh.transform.SetParent(transform.Find("Graphics"));
+
+			switch (type.Type) {
+				case ElementalSystemTypes.Earth:
+					EnemyMesh.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+					EnemyMesh.transform.localPosition = new Vector3(0,  1.5f, 0);
+					EnemyMesh.transform.localScale    = new Vector3(200, 200, 200);
+					break;
+				case ElementalSystemTypes.Wind:
+					EnemyMesh.transform.localRotation = Quaternion.Euler(0, 0, 0);
+					EnemyMesh.transform.localPosition = new Vector3(0,  0f, 0);
+					EnemyMesh.transform.localScale    = new Vector3(50, 50,   50);
+					break;
+				case ElementalSystemTypes.Water:
+					EnemyMesh.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+					EnemyMesh.transform.localPosition = new Vector3(0,  0.4f, 0);
+					EnemyMesh.transform.localScale    = new Vector3(30, 30, 30);
+					break;
+				case ElementalSystemTypes.Fire:
+					EnemyMesh.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+					EnemyMesh.transform.localPosition = new Vector3(0,  2f, 0);
+					EnemyMesh.transform.localScale    = new Vector3(75, 75,   75);
+					break;
+				case ElementalSystemTypes.Base:
+					EnemyMesh.transform.localRotation = Quaternion.Euler(0, 0, 0);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(type.Type), type.Type, null);
+			}
+
+			// Quaternion.Euler(0, 0, 0)
 		}
 
 		public void SetupEnemyFromSpawner(EnemyElementalStats elementalStats)
