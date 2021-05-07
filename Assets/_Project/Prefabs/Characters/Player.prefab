@@ -292,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 1531367002002788154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 15.7, y: 0.5, z: 14.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 8482349844016115155}
   - {fileID: 8103896443042918043}
@@ -5780,9 +5780,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flamePrefab: {fileID: 4657077143858818891, guid: 7d7812426687ab846b47d8e5912320a6, type: 3}
   flamePoolTransform: {fileID: 3886248367961271221}
-  speed: 14
+  speed: 16
   speedMultiplier: 1.015
-  aliveTime: 0.3
+  aliveTime: 0.4
 --- !u!1 &4783820577259260598
 GameObject:
   m_ObjectHideFlags: 0
