@@ -184,14 +184,14 @@ namespace _Project.Scripts.Enemies.AI
 				default:
 					throw new ArgumentOutOfRangeException(nameof(type.Type), type.Type, null);
 			}
-
-			// Quaternion.Euler(0, 0, 0)
 		}
 
 		public void SetupEnemyFromSpawner(EnemyElementalStats elementalStats)
 		{
 			currentEnemyElementalStats = elementalStats;
 			SetStats();
+			transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+			InstantiateMesh();
 		}
 		
 		public void SetStatsFromEditorWindow() => SetStats();
