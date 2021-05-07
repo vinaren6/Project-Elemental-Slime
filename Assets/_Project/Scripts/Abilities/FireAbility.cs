@@ -60,11 +60,6 @@ namespace _Project.Scripts.Abilities
 				
 				_flamePool.Enqueue(flameCollider);
 			}
-			
-			print(_rootTransform);
-			print(_transform);
-			print(_rootTransform.rotation);
-			print(_agent.velocity);
 		}
 		
 		#endregion
