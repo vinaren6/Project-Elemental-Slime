@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Abilities
 {
@@ -16,7 +17,9 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] [Range(1.0f, 1.20f)] private float speedMultiplier;
 		[SerializeField] [Range(0.1f, 0.5f)] private float aliveTime;
 
-		private Transform _transform;
+		private NavMeshAgent         _agent;
+		private Transform            _rootTransform;
+		private Transform            _transform;
 		private Queue<FlameCollider> _flamePool;
 		
 		private int _maxFlameColliders;
@@ -31,7 +34,9 @@ namespace _Project.Scripts.Abilities
 
 		private void Awake()
 		{
-			_transform = transform;
+			_agent         = GetComponentInParent<NavMeshAgent>();
+			_rootTransform = transform.parent.parent;
+			_transform     = transform;
 		}
 
 		public void Initialize(float damage)
@@ -55,6 +60,11 @@ namespace _Project.Scripts.Abilities
 				
 				_flamePool.Enqueue(flameCollider);
 			}
+			
+			print(_rootTransform);
+			print(_transform);
+			print(_rootTransform.rotation);
+			print(_agent.velocity);
 		}
 		
 		#endregion
@@ -65,12 +75,14 @@ namespace _Project.Scripts.Abilities
 		{
 			if (!_canShoot)
 				return;
+			
+			float adjustedSpeed = speed * GetLookDirectionSpeedAdjustment();
 
 			FlameCollider flameCollider = _flamePool.Dequeue();
 
 			flameCollider.gameObject.SetActive(true);
-			flameCollider.Execute(_transform, speed, speedMultiplier, aliveTime);
-			
+			flameCollider.Execute(_transform, adjustedSpeed, speedMultiplier, aliveTime);
+
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
 		}
@@ -92,6 +104,15 @@ namespace _Project.Scripts.Abilities
 			flameObject.transform.SetParent(flamePoolTransform);
 
 			_flamePool.Enqueue(flameObject);
+		}
+		
+		private float GetLookDirectionSpeedAdjustment()
+		{
+			Vector3 moveDirection    = _agent.velocity;
+			float   moveLookAdjustment = (Vector3.Dot(_rootTransform.forward, moveDirection.normalized) / 2.5f);
+			moveLookAdjustment += 1;
+			// print("MovelookAjustment:" + moveLookRelation);
+			return moveLookAdjustment;
 		}
 		
 		#endregion
