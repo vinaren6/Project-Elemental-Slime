@@ -19,9 +19,11 @@ namespace _Project.Scripts.Abilities
 		
 		private float _damage;
 		private float _damageCooldownTime;
-		private float _knockBackForce;
 
 		private int _maxRockWalls;
+
+		private Vector3 _rockSize;
+		private Vector3 _rockMargin;
 
 		private void Awake()
 		{
@@ -47,7 +49,10 @@ namespace _Project.Scripts.Abilities
 				rockObject.SetActive(false);
 				
 				_rockPool.Enqueue(rockWall);
-			}	
+			}
+			
+			_rockSize = new Vector3(1f, 0f, 1f);
+			_rockMargin = new Vector3(1f, 0f, 1f);
 		}
 		
 		public void Initialize(float damage)
@@ -55,7 +60,7 @@ namespace _Project.Scripts.Abilities
 			_damage = damage;
 			_isAttacking = false;
 			_damageCooldownTime = 1f;
-			_knockBackForce = 4f;
+			
 			SetupPool();
 		}
 
@@ -73,27 +78,72 @@ namespace _Project.Scripts.Abilities
 
 			int maxRocks = 6;
 			int rockCount = 0;
+			int rocksToSpawn = 1;
 
-			float rockWidthX = 1f;
-			float rockWidthZ = 1f;
-			float marginX = 1f;
-			float marginZ = 1f;
-
+			Vector3 startPosition = _transform.position;
 			Vector3 direction = _transform.forward;
 
 			float time = 0f;
-			float rockSpawnTime = 1f;
+			float rockSpawnTime = 0.25f;
 
+			// Have we spawned all rocks yet?
 			while (rockCount < maxRocks)
 			{
-				rockCount++;
+				// Time to spawn more rocks???
+				if (time >= rockSpawnTime)
+				{
+					// Spawn rock(s)
+					for (int i = 1; i <= rocksToSpawn; i++)
+					{
+						RockWall rock = _rockPool.Dequeue();
+						
+						rock.Execute(GetRockPosition(startPosition, direction, rockCount, rocksToSpawn));
+						
+						rockCount++;
+					}
+
+					rocksToSpawn++;
+					time -= rockSpawnTime;
+				}
+
+				time += Time.deltaTime;
 
 				yield return null;
 			}
 
 			_isAttacking = false;
 		}
-		
+
+		private Vector3 GetRockPosition(Vector3 startPosition, Vector3 direction, int rockIndex, int row)
+		{
+			
+			
+			// return new Vector3((rock-row * _rockMargin.x) * _rockSize.x, row);
+
+			Vector3 rockPosition = Vector3.zero;
+
+			float forward = (_rockSize.z + _rockMargin.z) * row;
+			// forward = (_rockSize.z + _rockMargin.z) * (rockIndex + 1);
+			float[] widths = new float[] {0f,
+				(_rockSize.x + _rockMargin.x) / -2f, (_rockSize.x + _rockMargin.x) / 2f,
+				(_rockSize.x + _rockMargin.x) * -1f, 0f, (_rockSize.x + _rockMargin.x)
+			};
+
+			rockPosition.x = widths[rockIndex];
+			rockPosition.x = 0f;
+			rockPosition.z = forward;
+
+			rockPosition = direction * forward;
+			rockPosition += Vector3.right * widths[rockIndex];
+
+			// Vector3 newPos = new Vector3(direction.x * rockPosition.x, 0f, direction.z * rockPosition.z);
+
+			// Debug.Log($"Rock[{rockIndex}]: pos: {startPosition} - direction: {direction} - rockPosition: {rockPosition} - newPos: {newPos} - POS: {startPosition + newPos}");
+			
+			// return startPosition + newPos;
+			return startPosition + rockPosition;
+		}
+
 		public void Stop()
 		{
 

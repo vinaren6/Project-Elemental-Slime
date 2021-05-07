@@ -16,7 +16,7 @@ namespace _Project.Scripts.UI
         {
             fillImage.fillAmount = 0;
             highlight.SetActive(false);
-            SetupColors();
+            // SetupColors();
         }
 
         public void UpdateUI(float percent)

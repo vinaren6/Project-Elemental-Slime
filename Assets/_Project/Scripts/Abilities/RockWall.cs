@@ -4,19 +4,23 @@ namespace _Project.Scripts.Abilities
 {
     public class RockWall : MonoBehaviour
     {
+        private Transform _transform;
         private EarthAbility _ability;
 
         private float _damage;
 
         public void Initialize(EarthAbility ability, float damage)
         {
+            _transform = transform;
             _ability = ability;
             _damage = damage;
         }
 
-        public void Execute(Transform spawnTransform)
+        public void Execute(Vector3 spawnPosition)
         {
-            
+            _transform.SetParent(null);
+            _transform.position = spawnPosition;
+            gameObject.SetActive(true);
         }
         
         // private void OnTriggerEnter(Collider other)
