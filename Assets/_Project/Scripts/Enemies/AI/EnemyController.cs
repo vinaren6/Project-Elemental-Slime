@@ -17,7 +17,6 @@ namespace _Project.Scripts.Enemies.AI
 		[Header("ACTIVE SETTINGS/STATS:")] 
 		[SerializeField] private EnemySettings baseSettings;
 		[SerializeField] private EnemyElementalStats currentEnemyElementalStats;
-		[SerializeField] private int _attackRange;
 		public ElementalSystemTypeCurrent type;
 		
 		public EnemyStateMachine StateMachine { get; set; }
@@ -31,6 +30,7 @@ namespace _Project.Scripts.Enemies.AI
 		private Health       _health;
 		private EnemyUI      _ui;
 		private NavMeshAgent _navMeshAgent;
+		private Animator _animator;
 		private IAbility _ability;
 		
 		private float _attackStrength;
@@ -44,11 +44,12 @@ namespace _Project.Scripts.Enemies.AI
 		public Health       Health                   => _health;
 		public EnemyUI      UI                       => _ui;
 		public NavMeshAgent NavMeshAgent             => _navMeshAgent;
+		public EnemyElementalStats CurrentEnemyElementalStats => currentEnemyElementalStats;
+		public Animator Animator => _animator;
 		public IAbility Ability => _ability;
 		public float        AttackStrength           => _attackStrength;
 		public float        AttackCooldownTime       => _attackCooldownTime;
 		public int          DamageOverTimeTotalTicks => _damageOverTimeTotalTicks;
-		public int          AttackRange              => _attackRange;
 
 		public bool IsBurning { get => _isBurning; set => _isBurning = value; }
 
@@ -158,12 +159,19 @@ namespace _Project.Scripts.Enemies.AI
 			_navMeshAgent.speed  = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
 			_attackStrength      = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
 			_attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
+
+
+
+			// _navMeshAgent.updateRotation = false;
 		}
 
 		private void InstantiateMesh()
 		{ 
 			GameObject EnemyMesh = Instantiate(currentEnemyElementalStats.mesh, transform.position, Quaternion.identity);
 			EnemyMesh.transform.SetParent(transform.Find("Graphics"));
+			_animator = EnemyMesh.AddComponent<Animator>();
+			_animator.runtimeAnimatorController = currentEnemyElementalStats.animatorController;
+			// animator.SetBool("IsMoving", false);
 		}
 
 		public void SetupEnemyFromSpawner(EnemyElementalStats elementalStats)

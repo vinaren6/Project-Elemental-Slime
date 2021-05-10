@@ -20,10 +20,15 @@ namespace _Project.Scripts.Enemies.AI
 			_transform    = enemyController.transform;
 		}
 
-		public virtual void Enter() { }
+		public virtual void Enter()
+		{
+			// Debug.Log($"{_transform.name} Enter {_stateMachine.CurrentState} state.");
+		}
 
 		public virtual void LogicUpdate()
 		{
+			EnemyController.Animator.SetBool("IsMoving", EnemyController.NavMeshAgent.velocity.magnitude > 0.1f);
+			
 			if (!EnemyController.IsBurning)
 				return;
 			

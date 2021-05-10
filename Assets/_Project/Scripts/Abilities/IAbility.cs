@@ -11,5 +11,7 @@ namespace _Project.Scripts.Abilities
         void Execute();
 
         void Stop();
+
+        // bool IsInRange();
     }
 }

@@ -18,5 +18,7 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.75
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
+  attackRange: 10
   hasRangedAttack: 0
   mesh: {fileID: 919132149155446097, guid: 6c9456bf5a2c0b14d8c5bc9b35defdd0, type: 3}
+  animatorController: {fileID: 9100000, guid: 9abb76a8097aeaa42b98eb00575e4cbc, type: 2}

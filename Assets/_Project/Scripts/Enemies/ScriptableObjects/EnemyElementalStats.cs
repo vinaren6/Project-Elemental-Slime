@@ -16,8 +16,10 @@ namespace _Project.Scripts.Enemies.ScriptableObjects
         public float moveSpeedMultiplier      = 1f;
         public float attackStrengthMultiplier = 1f;
         public float attackRateMultiplier     = 1f;
+        public float attackRange = 5f;
         public bool  hasRangedAttack          = false;
 
         public GameObject mesh;
+        public RuntimeAnimatorController animatorController;
     }
 }

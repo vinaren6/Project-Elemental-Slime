@@ -116,6 +116,8 @@ namespace _Project.Scripts.Abilities
 			Vector3 direction = transform.forward;
 			float speed = 120f;
 			
+			// Debug.Log($"_agent: {_agent.name}");
+			
 			while (time <= duration)
 			{
 				_canDealDamage = time < attackTime;

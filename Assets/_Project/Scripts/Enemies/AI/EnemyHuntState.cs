@@ -18,9 +18,11 @@ namespace _Project.Scripts.Enemies.AI
             EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position); 
             RaycastHit hit;
             
-            Debug.DrawRay(_transform.position, _transform.TransformDirection(Vector3.forward) * EnemyController.AttackRange, Color.red);
+            float debugHeight = 1f;
+            Vector3 upOffset = Vector3.up * debugHeight;
+            Debug.DrawRay(_transform.position + upOffset, _transform.TransformDirection(Vector3.forward) * EnemyController.CurrentEnemyElementalStats.attackRange, Color.red);
             
-            if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, EnemyController.AttackRange, 1 << LayerMask.NameToLayer("Player")))
+            if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, EnemyController.CurrentEnemyElementalStats.attackRange, 1 << LayerMask.NameToLayer("Player")))
             {
                 if (hit.transform.tag == "Player")
                 {

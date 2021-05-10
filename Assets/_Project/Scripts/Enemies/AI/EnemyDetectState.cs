@@ -6,8 +6,8 @@ namespace _Project.Scripts.Enemies.AI
 
         public override void Enter()
         {
-            base.Enter();
             EnemyController.StartPlayerDetection();
+            base.Enter();
         } 
     }
 }
