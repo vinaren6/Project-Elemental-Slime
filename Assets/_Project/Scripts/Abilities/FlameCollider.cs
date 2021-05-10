@@ -45,6 +45,9 @@ namespace _Project.Scripts.Abilities
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.CompareTag(tag))
+                return;
+            
             if (!other.TryGetComponent(out IHealth health))
                 return;
             
