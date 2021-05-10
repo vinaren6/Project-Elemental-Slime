@@ -14,7 +14,7 @@ namespace _Project.Scripts.ElementalSystem
 				new Color32(120, 238, 169, 255),
 				new Color32(36,  199, 242, 255),
 				new Color32(235, 70,  75,  255),
-				Color.white
+				new Color32(160, 125,  185,  255)
 			};
 
 		public static Color GetColorFromElementalSystemTypes(ElementalSystemTypes type) =>

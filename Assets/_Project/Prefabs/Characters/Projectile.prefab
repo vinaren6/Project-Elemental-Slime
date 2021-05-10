@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: -2345025737998840536}
-  fadeSpeed: 6
+  fadeSpeed: 1
   startColorShiftOnStart: 0
   meshRenderer: {fileID: 1606244412895489419}
 --- !u!135 &2811173150404562978
@@ -182,7 +182,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 292ee1edda2f756469382bc38850e8e2, type: 2}
+  - {fileID: 2100000, guid: 75b8f7ec200429147adda2842fd2ecfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

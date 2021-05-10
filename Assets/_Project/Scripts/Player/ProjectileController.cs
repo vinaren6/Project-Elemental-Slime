@@ -8,6 +8,11 @@ namespace _Project.Scripts.Player
 	public class ProjectileController : MonoBehaviour
 	{
 		[SerializeField] private ElementalSystemTypeCurrent type;
+		
+		private void OnEnable()
+		{
+			GetComponent<ElementalSystemColorShift>().SetColor();
+		}
 
 		private void OnDisable()
 		{
