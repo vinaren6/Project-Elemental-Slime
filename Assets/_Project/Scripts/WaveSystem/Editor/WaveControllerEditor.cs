@@ -24,7 +24,7 @@ namespace _Project.Scripts.WaveSystem.Editor
 
 			//button
 			EditorGUILayout.Space();
-			if (GUILayout.Button("Begin Next Wave"))
+			if (GUILayout.Button("Begin Next Wave") && Application.isPlaying)
 				(target as WaveController)?.StartNextWave();
 
 			//show active vs inactive spawners

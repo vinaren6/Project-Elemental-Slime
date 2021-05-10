@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,8 +23,9 @@ namespace _Project.Scripts.WaveSystem
 
 		private IEnumerator SpawnWave(int waveSize)
 		{
+			var activeWaveSpawners = spawners.Where(spawner => spawner.isActiveAndEnabled).ToList();
 			for (int waveIndex = 0; waveIndex < waveSize; waveIndex++) {
-				while (!spawners[Random.Range(0, spawners.Length)]
+				while (!activeWaveSpawners[Random.Range(0, activeWaveSpawners.Count)]
 				   .Spawn(spawnObjects[Random.Range(0, spawnObjects.Length)])) ;
 
 				yield return new WaitForSeconds(spawnDelay);
