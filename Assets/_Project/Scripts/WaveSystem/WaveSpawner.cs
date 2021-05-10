@@ -42,12 +42,14 @@ namespace _Project.Scripts.WaveSystem
 		#if UNITY_EDITOR
 		[SerializeField] public int totalSpawns;
 		[SerializeField] public int activeSpawns;
-		#endif
-		#if UNITY_EDITOR
+
 		private void OnDrawGizmos()
 		{
-			Gizmos.color = Color.white;
-			Gizmos.DrawWireSphere(transform.position, 1);
+			if (Application.isPlaying)
+				Gizmos.color = IsActive ? Color.green : Color.red;
+			else
+				Gizmos.color = Color.yellow;
+			Gizmos.DrawWireSphere(transform.position, 5);
 		}
 
 		private void OnDrawGizmosSelected()
@@ -56,8 +58,7 @@ namespace _Project.Scripts.WaveSystem
 				Gizmos.color = IsActive ? Color.green : Color.red;
 			else
 				Gizmos.color = Color.yellow;
-
-			Gizmos.DrawWireSphere(transform.position, 1);
+			Gizmos.DrawSphere(transform.position, 5);
 		}
 		#endif
 	}

@@ -738,6 +738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SphereTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 4767337549367860262, guid: d016964aa47b029438c922434e18ec01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5358507313467159675, guid: d016964aa47b029438c922434e18ec01, type: 3}
       propertyPath: m_Radius
       value: 20
