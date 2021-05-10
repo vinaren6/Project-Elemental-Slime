@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _Project.Scripts.Abilities;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
@@ -30,6 +31,7 @@ namespace _Project.Scripts.Enemies.AI
 		private Health       _health;
 		private EnemyUI      _ui;
 		private NavMeshAgent _navMeshAgent;
+		private IAbility _ability;
 		
 		private float _attackStrength;
 		private float _attackCooldownTime;
@@ -42,6 +44,7 @@ namespace _Project.Scripts.Enemies.AI
 		public Health       Health                   => _health;
 		public EnemyUI      UI                       => _ui;
 		public NavMeshAgent NavMeshAgent             => _navMeshAgent;
+		public IAbility Ability => _ability;
 		public float        AttackStrength           => _attackStrength;
 		public float        AttackCooldownTime       => _attackCooldownTime;
 		public int          DamageOverTimeTotalTicks => _damageOverTimeTotalTicks;
@@ -51,7 +54,6 @@ namespace _Project.Scripts.Enemies.AI
 
 		private void Awake()
 		{
-			InitializeStateMachine();
 			GetComponentReferences();
 			SetStats();
 			InstantiateMesh();
@@ -59,6 +61,7 @@ namespace _Project.Scripts.Enemies.AI
 
 		private void Start()
 		{
+			InitializeStateMachine();
 			_target = GameObject.FindWithTag("Player").transform;
 		}
 
@@ -141,6 +144,10 @@ namespace _Project.Scripts.Enemies.AI
 			_health       = GetComponent<Health>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
 			_ui           = GetComponentInChildren<EnemyUI>();
+			Instantiate(currentEnemyElementalStats.ability, transform);
+			_ability = GetComponentInChildren<IAbility>();
+			
+			print($"_ability.name: {_ability.gameObject.name}");
 		}
 		
 		private void SetStats()

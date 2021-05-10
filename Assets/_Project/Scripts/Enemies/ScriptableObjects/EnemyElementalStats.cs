@@ -9,6 +9,7 @@ namespace _Project.Scripts.Enemies.ScriptableObjects
     {
         // [Header("ELEMENTAL BASE:")]
         public ElementalSystemTypes elementType;
+        public GameObject ability;
         public float maxHitPoints             = 200f;
         
         // [Header("ELEMENTAL MODIFIERS:")]
