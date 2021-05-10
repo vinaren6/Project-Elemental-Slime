@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBaseSettings
   m_EditorClassIdentifier: 
   maxHitPoints: 125
-  moveSpeed: 15
+  moveSpeed: 18
   attackStrength: 15
   attackCooldownTime: 0.2
   projectileSpeed: 12
