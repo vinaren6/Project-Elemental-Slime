@@ -4,7 +4,7 @@ namespace _Project.Scripts.Abilities
 {
 	public class BaseAbility : MonoBehaviour, IAbility
 	{
-		public void Initialize(float damage)
+		public void Initialize(string newTag, float damage, Collider selfCollider = null)
 		{
 			// print("BaseAbility Initialized!");
 		}

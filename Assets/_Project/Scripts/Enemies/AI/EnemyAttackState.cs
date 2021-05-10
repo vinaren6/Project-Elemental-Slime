@@ -21,23 +21,27 @@ namespace _Project.Scripts.Enemies.AI
             Quaternion rot = Quaternion.LookRotation(targetDelta);
             _transform.rotation = rot;
 
-            if (Time.time > _nextAttack)
+            if (!(Time.time > _nextAttack))
+                return;
+            
+            RaycastHit hit;
+
+            if (!Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, 50,
+                ~9))
+                return;
+
+            if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
             {
-                RaycastHit hit;
-                if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, 50, ~9))
-                {
-                    if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
-                    {
-                        if (EnemyController.Target.TryGetComponent(out IHealth health))
-                        {
-                            health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
-                        }
-                        _nextAttack = Time.time + EnemyController.AttackCooldownTime;
-                    }
-                    else
-                        _stateMachine.ChangeState(EnemyController.HuntState);
-                }
+                Debug.Log($"{_transform.name} - Attack?");
+                EnemyController.Ability.Execute();
+                // if (EnemyController.Target.TryGetComponent(out IHealth health))
+                // {
+                //     health.ReceiveDamage(EnemyController.type.Type, EnemyController.AttackStrength * PlayerController.EnemyDamageMultiplier);
+                // }
+                _nextAttack = Time.time + EnemyController.AttackCooldownTime;
             }
+            else
+                _stateMachine.ChangeState(EnemyController.HuntState);
         }
     }
 }

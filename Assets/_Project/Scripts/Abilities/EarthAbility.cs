@@ -37,7 +37,7 @@ namespace _Project.Scripts.Abilities
 				_rockTransforms[i] = rockTransformParent.GetChild(i);
 			}
 			
-			SetupPool();
+			// SetupPool();
 		}
 
 		private void SetupPool()
@@ -53,7 +53,7 @@ namespace _Project.Scripts.Abilities
 			{
 				GameObject rockObject = Instantiate(rockPrefab, poolParent);
 				RockWall rockWall = rockObject.GetComponent<RockWall>();
-				rockWall.Initialize(this);
+				rockWall.Initialize(this, tag);
 				rockObject.SetActive(false);
 				
 				_rockPool.Enqueue(rockWall);
@@ -63,13 +63,16 @@ namespace _Project.Scripts.Abilities
 			_rockMargin = new Vector3(1f, 0f, 1f);
 		}
 		
-		public void Initialize(float damage)
+		public void Initialize(string newTag, float damage, Collider selfCollider = null)
 		{
+			tag = newTag;
 			_damage = damage;
 			_isAttacking = false;
 			_damageCooldownTime = 1f;
 			
 			SetupPool();
+			
+			Debug.Log($"name: {_transform.parent.name} - tag: {tag} - newTag = {newTag}");
 		}
 
 		public void Execute()

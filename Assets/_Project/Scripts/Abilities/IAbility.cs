@@ -6,8 +6,8 @@ namespace _Project.Scripts.Abilities
     {
         GameObject gameObject { get; }
         
-        void Initialize(float damage);
-        
+        void Initialize(string newTag, float damage, Collider selfCollider = null);
+
         void Execute();
 
         void Stop();

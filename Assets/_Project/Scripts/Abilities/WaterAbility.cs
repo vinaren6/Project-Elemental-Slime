@@ -47,8 +47,9 @@ namespace _Project.Scripts.Abilities
             _splashEffectParent    = _splashEffectTransform.parent;
         }
 
-        public void Initialize(float damage)
+        public void Initialize(string newTag, float damage, Collider selfCollider = null)
         {
+            tag = newTag;
             _laser.startWidth = radius * 2f;
             _laser.SetPosition(1, _laser.GetPosition(0));
             _splashEffect.Stop();

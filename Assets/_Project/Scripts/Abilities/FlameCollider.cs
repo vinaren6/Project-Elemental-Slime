@@ -29,8 +29,9 @@ namespace _Project.Scripts.Abilities
             _material = GetComponentInChildren<MeshRenderer>().material;
         }
 
-        public void Initialize(FireAbility ability, float damage)
+        public void Initialize(string newTag, FireAbility ability, float damage)
         {
+            tag = newTag;
             _ability = ability;
             _damage = damage;
             _aliveTime = 0.25f;

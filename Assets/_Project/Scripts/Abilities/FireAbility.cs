@@ -39,8 +39,9 @@ namespace _Project.Scripts.Abilities
 			_transform     = transform;
 		}
 
-		public void Initialize(float damage)
+		public void Initialize(string newTag, float damage, Collider selfCollider = null)
 		{
+			tag = newTag;
 			_damage = damage;
 			_maxFlameColliders = 30;
 			_fireRate = 1f / _maxFlameColliders;
@@ -55,7 +56,7 @@ namespace _Project.Scripts.Abilities
 			{
 				GameObject flameObject = Instantiate(flamePrefab, flamePoolTransform);
 				FlameCollider flameCollider = flameObject.GetComponent<FlameCollider>();
-				flameCollider.Initialize(this, _damage);
+				flameCollider.Initialize(tag, this, _damage);
 				flameObject.SetActive(false);
 				
 				_flamePool.Enqueue(flameCollider);

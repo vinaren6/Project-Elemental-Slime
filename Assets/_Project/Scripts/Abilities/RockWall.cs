@@ -15,10 +15,13 @@ namespace _Project.Scripts.Abilities
 
         private float _damage;
 
-        public void Initialize(EarthAbility ability)
+        public void Initialize(EarthAbility ability, string newTag)
         {
             _transform = transform;
             _ability = ability;
+            tag = newTag;
+            
+            Debug.Log($"name: {_transform.parent.name} - tag: {tag} - newTag = {newTag}");
         }
 
         public void Execute(Vector3 spawnPosition, float damage)

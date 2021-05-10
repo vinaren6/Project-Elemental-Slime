@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
@@ -17,7 +16,7 @@ namespace _Project.Scripts.Abilities
 		private NavMeshAgent _agent;
 		private BoxCollider _attackTrigger;
 		private float _damage;
-		private float _attackCooldownTime;
+		// private float _attackCooldownTime;
 		private float _rechargeTime;
 		private bool _canDealDamage;
 		private bool _canAttack;
@@ -42,15 +41,19 @@ namespace _Project.Scripts.Abilities
 			_attackTrigger = GetComponent<BoxCollider>();
 		}
 
-		public void Initialize(float damage)
+		public void Initialize(string newTag, float damage, Collider selfCollider = null)
 		{
+			tag = newTag;
 			_attackTrigger.enabled = false;
 			_damage                = damage;
-			_attackCooldownTime    = 0.1f;
+			// _attackCooldownTime    = 0.1f;
 			_rechargeTime          = 1f;
 			_maxCharges            = 3;
 			_currentCharges        = _maxCharges;
 			_canAttack = true;
+			
+			if (selfCollider != null)
+				selfDamageCollider = selfCollider;
 		}
 		
 		#endregion
@@ -106,7 +109,7 @@ namespace _Project.Scripts.Abilities
 			float attackTime = 0.1f;
 			float duration = 0.4f;
 
-			float maxDistance = 10f;
+			// float maxDistance = 10f;
 			
 			// Debug.Log($"DASH! START");
 

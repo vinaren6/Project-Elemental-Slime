@@ -166,7 +166,7 @@ namespace _Project.Scripts.Player
 		private void InitializeAbility()
 		{
 			_ability.gameObject.SetActive(true);
-			_ability.Initialize(PlayerDamage * baseSettings.abilityDamageMultiplier);
+			_ability.Initialize(tag, PlayerDamage * baseSettings.abilityDamageMultiplier);
 		}
 
 		private void ExecuteAbility()
