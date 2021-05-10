@@ -20,8 +20,6 @@ namespace _Project.Scripts.Abilities
             _transform = transform;
             _ability = ability;
             tag = newTag;
-            
-            Debug.Log($"name: {_transform.parent.name} - tag: {tag} - newTag = {newTag}");
         }
 
         public void Execute(Vector3 spawnPosition, float damage)

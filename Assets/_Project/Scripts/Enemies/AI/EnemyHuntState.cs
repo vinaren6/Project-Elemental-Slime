@@ -18,13 +18,10 @@ namespace _Project.Scripts.Enemies.AI
             EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position); 
             RaycastHit hit;
             
-            Debug.Log($"{_transform.name}: HUNT!");
-            
             Debug.DrawRay(_transform.position, _transform.TransformDirection(Vector3.forward) * EnemyController.AttackRange, Color.red);
             
             if (Physics.Raycast(_transform.position, _transform.TransformDirection(Vector3.forward), out hit, EnemyController.AttackRange, 1 << LayerMask.NameToLayer("Player")))
             {
-                Debug.Log($"HIT: {hit.collider.name}");
                 if (hit.transform.tag == "Player")
                 {
                     EnemyController.NavMeshAgent.velocity = Vector3.zero;               

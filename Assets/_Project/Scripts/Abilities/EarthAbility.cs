@@ -71,8 +71,6 @@ namespace _Project.Scripts.Abilities
 			_damageCooldownTime = 1f;
 			
 			SetupPool();
-			
-			Debug.Log($"name: {_transform.parent.name} - tag: {tag} - newTag = {newTag}");
 		}
 
 		public void Execute()

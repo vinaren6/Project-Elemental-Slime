@@ -32,7 +32,7 @@ namespace _Project.Scripts.Enemies.AI
 
             if (hit.transform.tag == "Player" && hit.distance <= EnemyController.AttackRange)
             {
-                Debug.Log($"{_transform.name} - Attack?");
+                // Debug.Log($"{_transform.name} - Attack?");
                 EnemyController.Ability.Execute();
                 // if (EnemyController.Target.TryGetComponent(out IHealth health))
                 // {
