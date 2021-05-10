@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace _Project.Scripts.Managers
 {
-    public class GameManager
+    public class GameManager : MonoBehaviour
     {
         #region Variables
 
@@ -21,8 +22,9 @@ namespace _Project.Scripts.Managers
 
         #region Start Methods
 
-        public GameManager()
+        private void Awake()
         {
+            ServiceLocator.Initialize(this);
         }
 
         #endregion

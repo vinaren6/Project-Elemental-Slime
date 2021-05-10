@@ -27,9 +27,9 @@ namespace _Project.Scripts.Managers
         #region Start Methods
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
-        public static void Initialize()
+        public static void Initialize(GameManager gameManager)
         {
-            _game = new GameManager();
+            _game = gameManager;
             _audio = new AudioController();
             _hud = new NullHUD();
         }

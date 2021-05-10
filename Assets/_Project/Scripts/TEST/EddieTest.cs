@@ -1,6 +1,5 @@
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
-using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +9,7 @@ namespace _Project.Scripts.TEST
     {
         private void Awake()
         {
-            ServiceLocator.Initialize();
+            // ServiceLocator.Initialize();
         }
 
         private void Start()
