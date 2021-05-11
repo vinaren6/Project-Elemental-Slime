@@ -25,6 +25,7 @@ namespace _Project.Scripts.WaveSystem.Editor
 				EditorGUILayout.LabelField($"Total Spawns: {_totalSpawns.intValue}");
 				EditorGUILayout.LabelField($"Active Spawns: {_activeSpawns.intValue}");
 			}
+
 			serializedObject.ApplyModifiedProperties();
 		}
 	}
