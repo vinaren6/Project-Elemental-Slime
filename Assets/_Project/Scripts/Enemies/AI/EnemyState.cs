@@ -36,12 +36,15 @@ namespace _Project.Scripts.Enemies.AI
 			lookTransform.LookAt(EnemyController.Target.position, Vector3.up);
 			
 			// _transform.LookAt(EnemyController.Target.position, Vector3.up);
+
+			float speed = 6f * EnemyController.CurrentEnemyElementalStats.moveSpeedMultiplier;
+			
 			_transform.eulerAngles =
 				Vector3.RotateTowards(_transform.eulerAngles,
 					lookTransform.eulerAngles,
 					5f,
 					5f);
-			EnemyController.NavMeshAgent.Move(_transform.forward * (8f * Time.deltaTime));
+			EnemyController.NavMeshAgent.Move(_transform.forward * (speed * Time.deltaTime));
 			
 			if (!EnemyController.IsBurning)
 				return;

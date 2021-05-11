@@ -147,7 +147,7 @@ namespace _Project.Scripts.Enemies.AI
 			_ui           = GetComponentInChildren<EnemyUI>();
 			Instantiate(currentEnemyElementalStats.ability, transform);
 			_ability = GetComponentInChildren<IAbility>();
-			_ability.Initialize(tag, 1f, GetComponent<Collider>());
+			_ability.Initialize(tag, 1f, currentEnemyElementalStats.attackRange, GetComponent<Collider>());
 			
 			// print($"_ability.name: {_ability.gameObject.name}");
 		}

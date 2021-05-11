@@ -62,6 +62,12 @@ namespace _Project.Scripts.Abilities
                 ? 1 << LayerMask.NameToLayer("Enemy")
                 : 1 << LayerMask.NameToLayer("Player");
         }
+
+        public void Initialize(string newTag, float damage, float distance, Collider selfCollider = null)
+        {
+            Initialize(newTag, damage, selfCollider);
+            maxDistance = distance;
+        }
         
         #endregion
 
@@ -149,6 +155,7 @@ namespace _Project.Scripts.Abilities
 
         public bool IsInRange()
         {
+            // TODO Better calc for checking range.
             Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
 
             if (Vector3.Distance(_transform.position, p.position) < maxDistance)

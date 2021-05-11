@@ -61,7 +61,12 @@ namespace _Project.Scripts.Abilities
 			if (selfCollider != null)
 				selfDamageCollider = selfCollider;
 		}
-		
+
+		public void Initialize(string newTag, float damage, float distance, Collider selfCollider = null)
+		{
+			Initialize(newTag, damage, selfCollider);
+		}
+
 		#endregion
 		
 		private void OnDisable() => ResetDashingModifications();

@@ -11,7 +11,7 @@ namespace _Project.Scripts.Events
 		
 		public void Spawn()
 		{
-			GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
+			GameObject obj = Instantiate(prefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
 			if (obj.TryGetComponent(out ElementalSystemTypeCurrent prefabType))
 				prefabType.Type = type.Type;
 		}

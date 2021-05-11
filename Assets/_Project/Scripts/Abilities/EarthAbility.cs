@@ -10,6 +10,7 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] private GameObject rockPrefab;
 		[SerializeField] private Transform poolParent;
 		[SerializeField] private Transform rockTransformParent;
+		[SerializeField] private BoxCollider rangeCollider;
 		
 		private NavMeshAgent _agent;
 		private Transform _transform;
@@ -21,6 +22,7 @@ namespace _Project.Scripts.Abilities
 		
 		private float _damage;
 		private float _damageCooldownTime;
+		private float _rockSpawnTime;
 
 		private int _maxRockWalls;
 
@@ -36,7 +38,7 @@ namespace _Project.Scripts.Abilities
 			{
 				_rockTransforms[i] = rockTransformParent.GetChild(i);
 			}
-			
+
 			// SetupPool();
 		}
 
@@ -69,8 +71,14 @@ namespace _Project.Scripts.Abilities
 			_damage = damage;
 			_isAttacking = false;
 			_damageCooldownTime = 1f;
+			_rockSpawnTime = 0.25f;
 			
 			SetupPool();
+		}
+
+		public void Initialize(string newTag, float damage, float distance, Collider selfCollider = null)
+		{
+			Initialize(newTag, damage, selfCollider);
 		}
 
 		public void Execute()
@@ -99,14 +107,13 @@ namespace _Project.Scripts.Abilities
 			}
 
 			float time = 0f;
-			float rockSpawnTime = 0.25f;
 
 			// Have we spawned all rocks yet?
 			while (rockCount < maxRocks)
 			{
 				_agent.velocity = Vector3.zero;
 				// Time to spawn more rocks???
-				if (time >= rockSpawnTime)
+				if (time >= _rockSpawnTime)
 				{
 					// Spawn rock(s)
 					for (int i = 1; i <= rocksToSpawn; i++)
@@ -121,7 +128,7 @@ namespace _Project.Scripts.Abilities
 					}
 
 					rocksToSpawn++;
-					time -= rockSpawnTime;
+					time -= _rockSpawnTime;
 				}
 
 				time += Time.deltaTime;
@@ -167,17 +174,20 @@ namespace _Project.Scripts.Abilities
 
 		public bool IsInRange()
 		{
-			throw new System.NotImplementedException();
+			return Physics.CheckBox(rangeCollider.transform.position + rangeCollider.center,
+				rangeCollider.size * 0.5f,
+				_transform.rotation,
+				1 << LayerMask.NameToLayer("Player"));
 		}
 
 		public bool CanAttack()
 		{
-			throw new System.NotImplementedException();
+			return !_isAttacking;
 		}
 
 		public float GetAttackTime()
 		{
-			throw new System.NotImplementedException();
+			return _rockSpawnTime * 3;
 		}
 
 		private IEnumerator AttackCooldownRoutine()

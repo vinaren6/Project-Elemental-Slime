@@ -9,6 +9,10 @@ namespace _Project.Scripts.Abilities
 			// print("BaseAbility Initialized!");
 		}
 
+		public void Initialize(string newTag, float damage, float distance, Collider selfCollider = null)
+		{
+		}
+
 		public void Execute()
 		{
 			// print("BaseAbility Executed!");
