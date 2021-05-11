@@ -11,7 +11,7 @@ namespace _Project.Scripts.HealthSystem
 {
 	public class Health : MonoBehaviour, IHealth
 	{
-		public static event Action onAnyDeath;
+		public static event Action<Vector3> onAnyDeath;
 		
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private AudioClip                  hurtSFX;
@@ -52,8 +52,8 @@ namespace _Project.Scripts.HealthSystem
 			}
 			ServiceLocator.Audio.PlaySFX(deathSFX);
 			EnemySpawner.EnemiesInScene--;
+			onAnyDeath?.Invoke(transform.position);
 			onDeath.Invoke();
-			onAnyDeath?.Invoke();
 		}
 		
 		private IEnumerator ReceiveDamageCooldownTimeRoutine()

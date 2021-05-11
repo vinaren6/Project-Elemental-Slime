@@ -865,6 +865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 850307705706163775}
   scoreTickSFX: {fileID: 11400000, guid: f389543edfcb4cf468540cff3f72fe80, type: 2}
+  killFeedbackPool: {fileID: 0}
   killScore: 25
   comboAdditionPerKill: 1
   comboTimeLimit: 25
@@ -879,7 +880,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

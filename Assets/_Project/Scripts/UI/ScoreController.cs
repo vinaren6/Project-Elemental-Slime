@@ -9,8 +9,9 @@ namespace _Project.Scripts.UI
 {
 	public class ScoreController : MonoBehaviour
 	{
-		[SerializeField] private TMP_Text    scoreText;
-		[SerializeField] private AudioEvent   scoreTickSFX;
+		[SerializeField] private TMP_Text   scoreText;
+		[SerializeField] private AudioEvent scoreTickSFX;
+		[SerializeField] private KillFeedbackPool killFeedbackPool;
 
 		private AudioSource _audioSource;
 
@@ -26,13 +27,15 @@ namespace _Project.Scripts.UI
 		
 		private void Start()
 		{
-			Health.onAnyDeath += OnDeathUpdate;
+			Health.onAnyDeath += OnAnyDeathUpdate;
 			scoreText.text    =  currentScore.ToString();
 			_audioSource      =  GetComponent<AudioSource>();
 		}
 				
-		private void OnDeathUpdate()
+		private void OnAnyDeathUpdate(Vector3 position)
 		{
+			killFeedbackPool.SpawnFromPool(position);
+			
 			if (currentScore == newScore) {
 				newScore = currentScore + killScore * comboMultiplier;
 				StartCoroutine(UpdateScoreRoutine());
