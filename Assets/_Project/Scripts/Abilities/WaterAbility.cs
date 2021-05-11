@@ -1,6 +1,7 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Player;
 using UnityEngine;
 
 namespace _Project.Scripts.Abilities
@@ -56,6 +57,10 @@ namespace _Project.Scripts.Abilities
             _damage             = damage;
             _damageCooldownTime = 0.2f;
             _canDealDamage      = true;
+
+            collisionMask = CompareTag("Player")
+                ? 1 << LayerMask.NameToLayer("Enemy")
+                : 1 << LayerMask.NameToLayer("Player");
         }
         
         #endregion
@@ -144,17 +149,21 @@ namespace _Project.Scripts.Abilities
 
         public bool IsInRange()
         {
-            throw new System.NotImplementedException();
+            Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
+
+            if (Vector3.Distance(_transform.position, p.position) < maxDistance)
+                return true;
+            return false;
         }
 
         public bool CanAttack()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public float GetAttackTime()
         {
-            throw new System.NotImplementedException();
+            return 0f;
         }
 
         #endregion
