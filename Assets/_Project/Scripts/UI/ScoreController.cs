@@ -1,5 +1,6 @@
 using System.Collections;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Managers;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,10 @@ namespace _Project.Scripts.UI
 {
 	public class ScoreController : MonoBehaviour
 	{
-		[SerializeField] private TMP_Text scoreText;
+		[SerializeField] private TMP_Text    scoreText;
+		[SerializeField] private AudioEvent   scoreTickSFX;
+
+		private AudioSource _audioSource;
 
 		public  int   killScore            = 10;
 		public  int   comboAdditionPerKill = 1;
@@ -23,6 +27,7 @@ namespace _Project.Scripts.UI
 		{
 			Health.onAnyDeath += OnDeathUpdate;
 			scoreText.text    =  currentScore.ToString();
+			_audioSource      =  GetComponent<AudioSource>();
 		}
 				
 		private void OnDeathUpdate()
@@ -53,7 +58,8 @@ namespace _Project.Scripts.UI
 		{
 			while (currentScore < newScore) {
 				UpdateScore();
-				// Play sound?
+				scoreTickSFX.PlayOneShot(_audioSource);
+				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
 				yield return new WaitForSeconds(0.05f);
 			}
 		}

@@ -21,4 +21,14 @@ public class AudioEvent : ScriptableObject
 		audioSource.pitch = Random.Range(pitch.minValue, pitch.maxValue);
 		audioSource.Play();
 	}
+	
+	public void PlayOneShot(AudioSource audioSource)
+	{
+		if (clips.Length == 0) return;
+		
+		audioSource.volume = Random.Range(volume.minValue, volume.maxValue);
+		audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
+		AudioClip clip = clips[Random.Range(0, clips.Length)];
+		audioSource.PlayOneShot(clip);
+	}
 }
