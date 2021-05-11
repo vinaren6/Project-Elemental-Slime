@@ -27,15 +27,14 @@ namespace _Project.Scripts.WaveSystem.Editor
 			if (GUILayout.Button("Begin Next Wave") && Application.isPlaying)
 				(target as WaveController)?.StartNextWave();
 
-			
+
 			WaveController wc;
 			if ((wc = target as WaveController) != null) {
-
 				if (wc.debugString != "") {
 					EditorGUILayout.Space();
 					EditorGUILayout.LabelField(wc.debugString);
 				}
-				
+
 				//show active vs inactive spawners
 				if (wc.spawners != null && wc.spawners.Length > 0) {
 					EditorGUILayout.Space();
@@ -51,6 +50,7 @@ namespace _Project.Scripts.WaveSystem.Editor
 				EditorGUILayout.LabelField($"Total Spawns: {_totalSpawns.intValue}");
 				EditorGUILayout.LabelField($"Active Spawns: {_activeSpawns.intValue}");
 			}
+
 			serializedObject.ApplyModifiedProperties();
 		}
 	}

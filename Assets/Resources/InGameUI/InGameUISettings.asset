@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3d01fe5a0a46088bf292d5c3b233a4, type: 3}
+  m_Name: InGameUISettings
+  m_EditorClassIdentifier: 
+  damageNumbers:
+  - name: Neutral
+    fontSize: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - name: Weak
+    fontSize: 0.9
+    color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+  - name: Effective
+    fontSize: 1.1
+    color: {r: 1, g: 0.8753972, b: 0, a: 1}
+  - name: Heal
+    fontSize: 1
+    color: {r: 0, g: 1, b: 0.06795335, a: 1}

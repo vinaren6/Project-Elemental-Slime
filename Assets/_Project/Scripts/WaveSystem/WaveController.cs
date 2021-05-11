@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
 namespace _Project.Scripts.WaveSystem
 {
 	public class WaveController : MonoBehaviour
 	{
-		public static                                 WaveController Instance;
-		[SerializeField]                      public  int            totalSpawns;
-		[SerializeField]                      private int            activeSpawns;
-		[SerializeField]                      private GameObject[]   spawnObjects;
-		[SerializeField]                      public  WaveSpawner[]  spawners;
-		[SerializeField]                      private int            wave;
-		[Header("Settings")] [SerializeField] private float          spawnDelay       = 0.1f;
-		[SerializeField]                      private float          waveBeingDelay   = 3f;
-		[SerializeField]                      private bool           autoStart        = true;
-		[SerializeField]                      private bool           autoplayNextWave = true;
+		public static WaveController Instance;
+
+		[SerializeField]                      public  UnityEvent    onWaveStart;
+		[SerializeField]                      public  int           totalSpawns;
+		[SerializeField]                      private int           activeSpawns;
+		[SerializeField]                      private GameObject[]  spawnObjects;
+		[SerializeField]                      public  WaveSpawner[] spawners;
+		[SerializeField]                      public  int           wave;
+		[Header("Settings")] [SerializeField] private float         spawnDelay       = 0.1f;
+		[SerializeField]                      private float         waveBeingDelay   = 3f;
+		[SerializeField]                      private bool          autoStart        = true;
+		[SerializeField]                      private bool          autoplayNextWave = true;
 
 		#if UNITY_EDITOR
 		[HideInInspector] public string debugString = "";
@@ -43,18 +44,25 @@ namespace _Project.Scripts.WaveSystem
 			if (autoStart) StartNextWave();
 		}
 
-		public void StartNextWave() => StartCoroutine(SpawnWave(GetWaveSpawnAmount(++wave)));
+		public void StartNextWave()
+		{
+			StartCoroutine(SpawnWave(GetWaveSpawnAmount(++wave)));
+			onWaveStart.Invoke();
+		}
 
 		private int GetWaveSpawnAmount(int currentWave) => (int) (3 + currentWave * 1.2f);
 
 		private IEnumerator SpawnWave(int waveSize)
 		{
 			var activeWaveSpawners = spawners.Where(spawner => spawner.isActiveAndEnabled).ToList();
+			#if UNITY_EDITOR
+			int fails = 0;
+			debugString = "Spawning: 0%";
+			#endif
 			yield return new WaitForSeconds(waveBeingDelay);
 			for (int waveIndex = 0; waveIndex < waveSize; waveIndex++) {
 				#if UNITY_EDITOR
 				debugString = $"Spawning: {(float) (waveIndex + 1) / waveSize * 100:n0}%";
-				int fails = 0;
 				#endif
 				while (!activeWaveSpawners[Random.Range(0, activeWaveSpawners.Count)]
 				   .Spawn(spawnObjects[Random.Range(0, spawnObjects.Length)])) {
@@ -64,7 +72,7 @@ namespace _Project.Scripts.WaveSystem
 				}
 				#if UNITY_EDITOR
 				if (fails != 0)
-					debugString += $"failed {fails} time{(fails == 1 ? "" : "s")}.";
+					debugString += $" -failed {fails} time{(fails == 1 ? "" : "s")}.";
 				#endif
 				yield return new WaitForSeconds(spawnDelay);
 			}
