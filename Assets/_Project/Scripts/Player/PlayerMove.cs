@@ -31,6 +31,7 @@ namespace _Project.Scripts.Player
 			
 			Vector3 movement                = moveDirection * (lookDirectionAdjustment * _player.MoveSpeed);
 			AdjustMovementIfPlayerIsAttacking(ref movement);
+			_player.Animator.SetBool("IsMoving", movement.magnitude > 0.1f);
 			_agent.velocity = movement * (1 - _player.MoveSmoothing) + _agent.velocity * _player.MoveSmoothing;
 		}
 

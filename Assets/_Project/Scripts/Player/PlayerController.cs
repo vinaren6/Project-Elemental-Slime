@@ -27,6 +27,8 @@ namespace _Project.Scripts.Player
 		private PlayerMove                 _move;
 		private PlayerShoot                _shoot;
 		private ElementalSystemTypeCurrent _elementType;
+		private Animator _animator;
+		private Collider _collider;
 		private IAbility                   _ability;
 
 		public static float EnemyDamageMultiplier;
@@ -50,6 +52,8 @@ namespace _Project.Scripts.Player
 		public float ProjectileSpeed             => _projectileSpeed;
 		public float AbilityCooldownTime         => _abilityCooldownTime;
 		public bool  HasAttacked                 { get; set; }
+
+		public Animator Animator => _animator;
 		// public float RotationSmoothing           => rotationSmoothing;
 
 		private void Awake()
@@ -99,6 +103,8 @@ namespace _Project.Scripts.Player
 			_move        = GetComponent<PlayerMove>();
 			_shoot       = GetComponent<PlayerShoot>();
 			_elementType = GetComponent<ElementalSystemTypeCurrent>();
+			_animator = GetComponentInChildren<Animator>();
+			_collider = GetComponent<Collider>();
 			_ability     = abilities[(int) ElementalSystemTypes.Base].GetComponent<IAbility>();
 		}
 		
@@ -166,13 +172,16 @@ namespace _Project.Scripts.Player
 		private void InitializeAbility()
 		{
 			_ability.gameObject.SetActive(true);
-			_ability.Initialize(tag, PlayerDamage * baseSettings.abilityDamageMultiplier);
+			_ability.Initialize(tag, PlayerDamage * baseSettings.abilityDamageMultiplier, _collider);
 		}
 
 		private void ExecuteAbility()
 		{
-			if (currentPlayerElementalStats == elementalStats[(int)ElementalSystemTypes.Base])
+			if (currentPlayerElementalStats == elementalStats[(int) ElementalSystemTypes.Base])
+			{
+				_animator.SetTrigger("DoAttack");
 				_shoot.Fire();
+			}
 			else
 				_ability.Execute();
 		}

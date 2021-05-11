@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 1460504048}
   - component: {fileID: 1460504047}
   - component: {fileID: 1560301090733642263}
-  - component: {fileID: 5140601808862378571}
   - component: {fileID: 3036836907716680919}
   - component: {fileID: 3036836907716680922}
   - component: {fileID: 1551641480}
@@ -142,8 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSettings: {fileID: 11400000, guid: 80fee08f4941017468f6fcd1bb360265, type: 2}
-  currentEnemyElementalStats: {fileID: 11400000, guid: 280edce054cf99b47b2a7ad0461be14b, type: 2}
-  _attackRange: 1
+  currentEnemyElementalStats: {fileID: 11400000, guid: 2308395039c156b43bbd44d20d8de55a, type: 2}
   type: {fileID: 1460504048}
 --- !u!114 &1460504048
 MonoBehaviour:
@@ -187,22 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4755114eb0354657aace10111db513a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5140601808862378571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036836907716680916}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a53c516acfd4328a913ba7d7a5cf456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: {fileID: 1460504048}
-  fadeSpeed: 1
-  startColorShiftOnStart: 1
-  meshRenderer: {fileID: 0}
 --- !u!65 &3036836907716680919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -334,6 +316,10 @@ PrefabInstance:
     - target: {fileID: 9098966067950957468, guid: dfd95345dfc1d524193e7ddf21d9e885, type: 3}
       propertyPath: m_SortingLayerID
       value: -1032572231
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098966067950957468, guid: dfd95345dfc1d524193e7ddf21d9e885, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9098966068800910530, guid: dfd95345dfc1d524193e7ddf21d9e885, type: 3}
       propertyPath: targetTransform
