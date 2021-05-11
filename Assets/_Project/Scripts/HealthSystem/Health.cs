@@ -78,7 +78,7 @@ namespace _Project.Scripts.HealthSystem
 		private EffectiveType GetEffectiveType(float elementalMultiplier)
 		{
 			if (elementalMultiplier < 1)
-				return EffectiveType.Weakness;
+				return EffectiveType.Weak;
 			if (elementalMultiplier > 1)
 				return EffectiveType.Effective;
 			return EffectiveType.Neutral;
