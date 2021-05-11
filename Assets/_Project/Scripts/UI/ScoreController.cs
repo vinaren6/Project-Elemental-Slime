@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Scripts.Audio.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using TMPro;
