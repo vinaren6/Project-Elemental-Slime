@@ -10,8 +10,10 @@ namespace _Project.Scripts.Abilities
 
         void Execute();
 
-        void Stop();
+        void Stop(bool isPlayer = true);
 
-        // bool IsInRange();
+        bool IsInRange();
+        bool CanAttack();
+        float GetAttackTime();
     }
 }

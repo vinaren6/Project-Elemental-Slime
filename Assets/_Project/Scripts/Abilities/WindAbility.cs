@@ -15,14 +15,17 @@ namespace _Project.Scripts.Abilities
 		
 		private NavMeshAgent _agent;
 		private BoxCollider _attackTrigger;
+		private Transform _transform;
 		private float _damage;
-		// private float _attackCooldownTime;
+		private float _maxDistance;
 		private float _rechargeTime;
+		private float _attackDuration;
+		private float _attackCooldownTime;
 		private bool _canDealDamage;
 		private bool _canAttack;
 		private int _maxCharges;
 		private int _currentCharges;
-		
+
 		#endregion
 
 		#region Start Methods
@@ -34,11 +37,12 @@ namespace _Project.Scripts.Abilities
 
 		private void GetAllComponents()
 		{
-			if (selfDamageCollider == null)
-				Debug.LogWarning($"No Collider is set for the \"{name}\" \"{nameof(selfDamageCollider)}\"");
+			// if (selfDamageCollider == null)
+			// 	Debug.LogWarning($"No Collider is set for the \"{name}\" \"{nameof(selfDamageCollider)}\"");
 			
 			_agent = GetComponentInParent<NavMeshAgent>();
 			_attackTrigger = GetComponent<BoxCollider>();
+			_transform = transform;
 		}
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
@@ -46,7 +50,9 @@ namespace _Project.Scripts.Abilities
 			tag = newTag;
 			_attackTrigger.enabled = false;
 			_damage                = damage;
-			// _attackCooldownTime    = 0.1f;
+			_attackDuration = 0.4f;
+			_attackCooldownTime = 0.5f;
+			_maxDistance = 8f;
 			_rechargeTime          = 1f;
 			_maxCharges            = 3;
 			_currentCharges        = _maxCharges;
@@ -107,58 +113,25 @@ namespace _Project.Scripts.Abilities
 
 			float time = 0f;
 			float attackTime = 0.1f;
-			float duration = 0.4f;
-
-			// float maxDistance = 10f;
-			
-			// Debug.Log($"DASH! START");
 
 			Vector3 direction = transform.forward;
 			float speed = 120f;
-			
-			// Debug.Log($"_agent: {_agent.name}");
-			
-			while (time <= duration)
+
+			while (time <= _attackDuration)
 			{
 				_canDealDamage = time < attackTime;
 				_attackTrigger.enabled = time < attackTime;
 
-				float newSpeed = velocityCurve.Evaluate(time / duration) * speed;
+				float newSpeed = velocityCurve.Evaluate(time / _attackDuration) * speed;
 
-				// Debug.Log($"Dash.speed: {newSpeed} - time: {time}");
-				
 				_agent.Move(direction * (newSpeed * Time.deltaTime));
 
 				time += Time.deltaTime;
 				
 				yield return null;
 			}
-			
-			// _agent.velocity = Vector3.zero;
-			
-			DeactivateAttackTrigger();
-			
-			// Debug.Log($"DASH! End...");
 
-			// _canDealDamage             = false;
-			// selfDamageCollider.enabled = false;
-			// _agent.velocity            = Vector3.zero;
-			//
-			// float time = 0;
-			// float duration = 0.05f;
-			//
-			// while (time < duration)
-			// {
-			// 	float smoothStepLerp = time / duration;
-			// 	smoothStepLerp = smoothStepLerp * smoothStepLerp * (3f - 2f * smoothStepLerp);
-			// 	_agent.Move(transform.forward * Mathf.Lerp(5f, 0f, smoothStepLerp));
-			// 	time           += Time.deltaTime;
-			// 	yield return null;
-			// }
-			//
-			// _attackTrigger.enabled = true;
-			// yield return new WaitForSeconds(_attackCooldownTime);
-			// ResetDashingModifications();
+			DeactivateAttackTrigger();
 		}
 		
 		private IEnumerator RechargeRoutine()
@@ -171,10 +144,53 @@ namespace _Project.Scripts.Abilities
 			}
 		}
 		
-		public void Stop()
+		public void Stop(bool isPlayer = true)
 		{
-			_canAttack = true;
-			// ResetDashingModifications();
+			if (isPlayer)
+				_canAttack = true;
+		}
+
+		public bool IsInRange()
+		{
+			RaycastHit hit = new RaycastHit();
+
+			Vector3 center = _transform.position + _attackTrigger.center;
+			Vector3 halfExtents = _attackTrigger.size * 0.5f;
+			Vector3 direction = _transform.forward;
+			Quaternion orientation = _transform.rotation;
+			
+			float debugHeight = 1f;
+            Vector3 upOffset = Vector3.up * debugHeight;
+            Debug.DrawRay(_transform.position + upOffset,
+	            _transform.TransformDirection(Vector3.forward) * _maxDistance,
+	            Color.red);
+            
+			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
+			
+			// TODO Calc some math to know how far the enemy will move and how big its attack trigger is for better results.
+			
+			if (!Physics.BoxCast(center,
+				halfExtents,
+				direction,
+				out hit,
+				orientation,
+				_maxDistance,
+				1 << LayerMask.NameToLayer("Player")))
+				return false;
+
+			// Debug.Log($"hit.name: {hit.collider.name} is in RANGE!!!");
+			
+			return true;
+		}
+
+		public bool CanAttack()
+		{
+			return _canAttack;
+		}
+
+		public float GetAttackTime()
+		{
+			return _attackDuration + _attackCooldownTime;
 		}
 
 		private void ResetDashingModifications()
@@ -197,6 +213,7 @@ namespace _Project.Scripts.Abilities
 			_attackTrigger.enabled = false;
 			selfDamageCollider.enabled = true;
 			_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+			_canAttack = true;
 		}
 		
 		#endregion

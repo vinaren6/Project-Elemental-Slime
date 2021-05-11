@@ -83,9 +83,24 @@ namespace _Project.Scripts.Abilities
 			StartCoroutine(nameof(SpawnDelayRoutine));
 		}
 
-		public void Stop()
+		public void Stop(bool isPlayer = true)
 		{
 			
+		}
+
+		public bool IsInRange()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public bool CanAttack()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public float GetAttackTime()
+		{
+			throw new System.NotImplementedException();
 		}
 
 		private IEnumerator SpawnDelayRoutine()

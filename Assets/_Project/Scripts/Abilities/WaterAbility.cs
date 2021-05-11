@@ -131,7 +131,7 @@ namespace _Project.Scripts.Abilities
             _canDealDamage = true;
         }
 
-        public void Stop()
+        public void Stop(bool isPlayer = true)
         {
             _laser.SetPosition(1, _laser.GetPosition(0));
             
@@ -141,7 +141,22 @@ namespace _Project.Scripts.Abilities
             Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
             _splashHasStopped = true;
         }
-        
+
+        public bool IsInRange()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool CanAttack()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public float GetAttackTime()
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
         #region Effect Methods

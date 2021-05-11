@@ -14,9 +14,24 @@ namespace _Project.Scripts.Abilities
 			// print("BaseAbility Executed!");
 		}
 		
-		public void Stop()
+		public void Stop(bool isPlayer = true)
 		{
 			//print("BaseAbility Stopped!");
+		}
+
+		public bool IsInRange()
+		{
+			return true;
+		}
+
+		public bool CanAttack()
+		{
+			return true;
+		}
+
+		public float GetAttackTime()
+		{
+			return 0f;
 		}
 	}
 }

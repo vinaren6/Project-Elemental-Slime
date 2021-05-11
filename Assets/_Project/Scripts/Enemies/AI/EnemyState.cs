@@ -22,12 +22,26 @@ namespace _Project.Scripts.Enemies.AI
 
 		public virtual void Enter()
 		{
-			Debug.Log($"{_transform.name} Enter {_stateMachine.CurrentState} state.");
+			// Debug.Log($"{_transform.name} Enter {_stateMachine.CurrentState} state.");
 		}
 
 		public virtual void LogicUpdate()
 		{
 			EnemyController.Animator.SetBool("IsMoving", EnemyController.NavMeshAgent.velocity.magnitude > 0.1f);
+
+			// EnemyController.NavMeshAgent.velocity = _transform.forward * (120f * Time.deltaTime);
+			// _transform.rotation = Quaternion.LookRotation(EnemyController.Target.position);
+
+			Transform lookTransform = _transform;
+			lookTransform.LookAt(EnemyController.Target.position, Vector3.up);
+			
+			// _transform.LookAt(EnemyController.Target.position, Vector3.up);
+			_transform.eulerAngles =
+				Vector3.RotateTowards(_transform.eulerAngles,
+					lookTransform.eulerAngles,
+					5f,
+					5f);
+			EnemyController.NavMeshAgent.Move(_transform.forward * (8f * Time.deltaTime));
 			
 			if (!EnemyController.IsBurning)
 				return;

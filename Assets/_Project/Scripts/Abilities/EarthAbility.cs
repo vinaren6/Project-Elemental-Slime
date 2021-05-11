@@ -160,9 +160,24 @@ namespace _Project.Scripts.Abilities
 			return startPosition + rockPosition;
 		}
 
-		public void Stop()
+		public void Stop(bool isPlayer = true)
 		{
 
+		}
+
+		public bool IsInRange()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public bool CanAttack()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public float GetAttackTime()
+		{
+			throw new System.NotImplementedException();
 		}
 
 		private IEnumerator AttackCooldownRoutine()
