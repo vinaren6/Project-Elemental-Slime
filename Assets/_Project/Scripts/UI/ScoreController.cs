@@ -13,7 +13,8 @@ namespace _Project.Scripts.UI
 		public  int   comboAdditionPerKill = 1;
 		public  float comboTimeLimit       = 25f;
 		
-		private int   score           = 0;
+		private int   currentScore    = 0;
+		private int   newScore    = 0;
 		private int   comboMultiplier = 1;
 		private bool  comboIsActive;
 		private float comboTimeRemaining = 0;
@@ -21,13 +22,19 @@ namespace _Project.Scripts.UI
 		private void Start()
 		{
 			Health.onAnyDeath += OnDeathUpdate;
-			scoreText.text    =  score.ToString();
+			scoreText.text    =  currentScore.ToString();
 		}
 				
 		private void OnDeathUpdate()
 		{
-			UpdateScore(killScore * comboMultiplier);
-			
+			if (currentScore == newScore) {
+				newScore = currentScore + killScore * comboMultiplier;
+				StartCoroutine(UpdateScoreRoutine());
+			} 
+			else {
+				newScore = currentScore + killScore * comboMultiplier;	
+			}
+
 			comboMultiplier += comboAdditionPerKill;
 
 			if (comboTimeRemaining > 0)
@@ -36,10 +43,19 @@ namespace _Project.Scripts.UI
 				StartCoroutine(StartComboTimeRoutine());
 		}
 
-		private void UpdateScore(int scoreToAdd)
+		private void UpdateScore()
 		{
-			score += scoreToAdd;
-			scoreText.text = score.ToString();
+			currentScore++;
+			scoreText.text = currentScore.ToString();
+		}
+
+		private IEnumerator UpdateScoreRoutine()
+		{
+			while (currentScore < newScore) {
+				UpdateScore();
+				// Play sound?
+				yield return new WaitForSeconds(0.05f);
+			}
 		}
 
 		private IEnumerator StartComboTimeRoutine()

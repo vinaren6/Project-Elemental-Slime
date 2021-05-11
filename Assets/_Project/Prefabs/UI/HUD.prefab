@@ -863,6 +863,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 850307705706163775}
+  killScore: 25
+  comboAdditionPerKill: 1
+  comboTimeLimit: 25
 --- !u!1001 &7687772889207237148
 PrefabInstance:
   m_ObjectHideFlags: 0
