@@ -52,7 +52,7 @@ namespace _Project.Scripts.UI
 			while (comboTimeRemaining > 0)
 			{
 				comboTimeRemaining -= Time.deltaTime;
-				print(comboTimeRemaining);
+				// print(comboTimeRemaining);
 				yield return null;
 			}
 			comboIsActive = false;

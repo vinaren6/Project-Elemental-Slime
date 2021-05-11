@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Player;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 namespace _Project.Scripts.Abilities
 {
@@ -22,6 +23,7 @@ namespace _Project.Scripts.Abilities
 		private Transform            _rootTransform;
 		private Transform            _transform;
 		private Queue<FlameCollider> _flamePool;
+		private VisualEffect _effect;
 		
 		private int _maxFlameColliders;
 		private float _fireRate;
@@ -38,6 +40,7 @@ namespace _Project.Scripts.Abilities
 			_agent         = GetComponentInParent<NavMeshAgent>();
 			_rootTransform = transform.parent.parent;
 			_transform     = transform;
+			_effect = GetComponentInChildren<VisualEffect>();
 		}
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
@@ -47,6 +50,7 @@ namespace _Project.Scripts.Abilities
 			_maxFlameColliders = 30;
 			_fireRate = 1f / _maxFlameColliders;
 			_canShoot = true;
+			_effect.Stop();
 			
 			if (_flamePool != null)
 				return;
@@ -78,6 +82,8 @@ namespace _Project.Scripts.Abilities
 			if (!_canShoot)
 				return;
 			
+			_effect.Play();
+			
 			float adjustedSpeed = speed * GetLookDirectionSpeedAdjustment();
 
 			FlameCollider flameCollider = _flamePool.Dequeue();
@@ -91,7 +97,7 @@ namespace _Project.Scripts.Abilities
 
 		public void Stop(bool isPlayer = true)
 		{
-			
+			_effect.Stop();
 		}
 
 		public bool IsInRange()

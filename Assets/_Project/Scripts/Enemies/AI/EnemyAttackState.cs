@@ -22,6 +22,7 @@ namespace _Project.Scripts.Enemies.AI
                 if (_timer >= _nextAttack)
                 {
                     _hasAttacked = false;
+                    EnemyController.Ability.Stop(false);
                     _stateMachine.ChangeState(EnemyController.HuntState);
                     return;
                 }

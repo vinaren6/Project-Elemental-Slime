@@ -81,8 +81,8 @@ namespace _Project.Scripts.Abilities
 
                 SetSize(Mathf.Lerp(_startSize, _targetSize, time / _aliveTime));
 
-                _material.color = colorGradient.Evaluate(time / _aliveTime);
-
+                // _material.color = colorGradient.Evaluate(time / _aliveTime);
+                _material.color = new Color(0f, 0f, 0f, 0f);
 
                 time += Time.deltaTime;
 

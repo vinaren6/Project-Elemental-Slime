@@ -111,8 +111,10 @@ namespace _Project.Scripts.Abilities
 			// Have we spawned all rocks yet?
 			while (rockCount < maxRocks)
 			{
-				_agent.velocity = Vector3.zero;
-				// Time to spawn more rocks???
+				if (rocksToSpawn <= 1)
+					_agent.velocity = Vector3.zero;
+
+				// Time to spawn more rocks???	
 				if (time >= _rockSpawnTime)
 				{
 					// Spawn rock(s)
