@@ -180,7 +180,8 @@ namespace _Project.Scripts.Abilities
 		private void ResetDashingModifications()
 		{
 			_attackTrigger.enabled = false;
-			selfDamageCollider.enabled = true;
+			if (selfDamageCollider != null)
+				selfDamageCollider.enabled = true;
 			_canDealDamage = true;
 		}
 

@@ -180,7 +180,7 @@ namespace _Project.Scripts.Player
 			if (currentPlayerElementalStats == elementalStats[(int) ElementalSystemTypes.Base])
 			{
 				_animator.SetTrigger("DoAttack");
-				_shoot.Fire();
+				// _shoot.Fire();
 			}
 			else
 				_ability.Execute();
