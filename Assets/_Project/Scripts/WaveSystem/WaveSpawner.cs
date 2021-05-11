@@ -24,7 +24,7 @@ namespace _Project.Scripts.WaveSystem
 				#if UNITY_EDITOR
 				activeSpawns++;
 				#endif
-				WaveController.Instance.activeSpawns++;
+				WaveController.Instance.ActiveSpawns++;
 			}
 
 			return true;
@@ -36,7 +36,7 @@ namespace _Project.Scripts.WaveSystem
 			#if UNITY_EDITOR
 			activeSpawns--;
 			#endif
-			WaveController.Instance.activeSpawns--;
+			WaveController.Instance.ActiveSpawns--;
 		}
 
 		#if UNITY_EDITOR
