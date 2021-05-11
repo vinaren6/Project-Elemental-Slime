@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Player;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -90,17 +91,21 @@ namespace _Project.Scripts.Abilities
 
 		public bool IsInRange()
 		{
-			throw new System.NotImplementedException();
+			Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
+
+			if (Vector3.Distance(_transform.position, p.position) < 10f)
+				return true;
+			return false;
 		}
 
 		public bool CanAttack()
 		{
-			throw new System.NotImplementedException();
+			return _canShoot;
 		}
 
 		public float GetAttackTime()
 		{
-			throw new System.NotImplementedException();
+			return _fireRate;
 		}
 
 		private IEnumerator SpawnDelayRoutine()

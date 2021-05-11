@@ -28,7 +28,7 @@ namespace _Project.Scripts.UI.ScriptableObjects
 
 		public Color GetDamageNumberColor(string effectiveType) 
 		{ 
-			Debug.Log(effectiveType);
+			// Debug.Log(effectiveType);
 			DamageNumber entry = damageNumbers.Find(c => c.name == effectiveType);
 			if (entry != null) {
 				return entry.color;
