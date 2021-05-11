@@ -9,40 +9,37 @@ namespace _Project.Scripts.UI
 	{
 		[SerializeField] private TMP_Text scoreText;
 
-		public int   killScore      = 10;
-		public float comboTimeLimit = 25f;
-		public bool  comboIsActive;
+		public  int   killScore            = 10;
+		public  int   comboAdditionPerKill = 1;
+		public  float comboTimeLimit       = 25f;
 		
-		private int score;
-
+		private int   score           = 0;
+		private int   comboMultiplier = 1;
+		private bool  comboIsActive;
 		private float comboTimeRemaining = 0;
-
-		private void Awake()
-		{
-			Health.onAnyDeath += OnDeathUpdateScore;
-		}
-
+		
 		private void Start()
 		{
-			score          = 0;
-			scoreText.text = score.ToString();
+			Health.onAnyDeath += OnDeathUpdate;
+			scoreText.text    =  score.ToString();
 		}
-
-		private void UpdateScore()
+				
+		private void OnDeathUpdate()
 		{
-			score++;
-			scoreText.text = score.ToString();
-		}
-		
-		private void OnDeathUpdateScore()
-		{
-			score += killScore;
-			scoreText.text = score.ToString();
+			UpdateScore(killScore * comboMultiplier);
+			
+			comboMultiplier += comboAdditionPerKill;
 
-			if (comboTimeRemaining > 0) 
-				comboTimeRemaining = comboTimeLimit;
+			if (comboTimeRemaining > 0)
+				comboTimeRemaining =  comboTimeLimit;
 			else
 				StartCoroutine(StartComboTimeRoutine());
+		}
+
+		private void UpdateScore(int scoreToAdd)
+		{
+			score += scoreToAdd;
+			scoreText.text = score.ToString();
 		}
 
 		private IEnumerator StartComboTimeRoutine()
@@ -55,7 +52,9 @@ namespace _Project.Scripts.UI
 				print(comboTimeRemaining);
 				yield return null;
 			}
-			comboIsActive = false;
+
+			comboMultiplier = 1;
+			comboIsActive   = false;
 		}
 	}
 }
