@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Flame
-  m_Shader: {fileID: -6465566751694194690, guid: 7aa3858e67fe4124d90fd93918aa7113, type: 3}
+  m_Name: Shader Graphs_Water Jet
+  m_Shader: {fileID: -6465566751694194690, guid: fdc626c83b5cc2345be0f77b1e4e24fe, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_9d105806102c4c4c81b803cd871fa2ea:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -36,7 +32,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1e3aa47e9b184e6e901549bdfa4c7471: 0.1
+    - Vector1_0a77129a065047e7aaf7e9d9054d165a: 2
+    - Vector1_8aa26089d2f249fa9c86b6494f1a7fb4: 2
+    - Vector1_92935932810f4bb8a4e8f865f387f323: 0.2
+    - Vector1_9d50fa3e7d274f30ac60352a429469d9: 5
+    - Vector1_c26505befb634869919fac6c1fda72b0: 3
+    - Vector1_d572f88bdafb4f64809369fcd86f65f0: 2
     m_Colors:
-    - Color_261a578a4ab24846bc50c4987ba6ac88: {r: 512, g: 18.07059, b: 0, a: 0}
+    - Color_3e612543572347aca215cb43c0e49e28: {r: 0.5541835, g: 6.4922, b: 10.68063, a: 0}
+    - Vector2_5f237f9929454e8882183ac86eb50bb0: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
