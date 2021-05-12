@@ -51,6 +51,7 @@ namespace _Project.Scripts.UI
 			if (_newScore < amount) return false;
 			if (amount    < 0) throw new ArgumentException("amount cannot negative");
 			_newScore -= amount;
+			if (_currentScore > _newScore) _currentScore = _newScore;
 			return true;
 		}
 
