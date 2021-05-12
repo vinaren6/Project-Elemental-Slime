@@ -26,9 +26,9 @@ namespace _Project.Scripts.UI
 		public int   comboAdditionPerKill = 1;
 		public float comboTimeLimit       = 25f;
 
-		private int   _currentScore    = 0; //the displayed score
-		private int   _newScore        = 0; //the actual score
-		private int   _totalScore      = 0; //tracks total score. 
+		private int   _displayedScore  = 0;
+		private int   _currentScore    = 0;
+		private int   _totalScore      = 0;
 		private int   _comboMultiplier = 1;
 		private bool  _comboIsActive;
 		private float _comboTimeRemaining = 0;
@@ -39,7 +39,7 @@ namespace _Project.Scripts.UI
 			_audioSource      =  GetComponent<AudioSource>();
 			scoreText.font    =  inGameUI.inGameFont;
 			score.font        =  inGameUI.inGameFont;
-			score.text        =  _currentScore.ToString();
+			score.text        =  _displayedScore.ToString();
 		}
 
 		/// <summary>
@@ -49,10 +49,10 @@ namespace _Project.Scripts.UI
 		/// <returns>Returns if the spending was successful or not.</returns>
 		public bool SpendScore(int amount)
 		{
-			if (_newScore < amount) return false;
+			if (_currentScore < amount) return false;
 			if (amount    < 0) throw new ArgumentException("amount cannot negative");
-			_newScore -= amount;
-			if (_currentScore > _newScore) _currentScore = _newScore;
+			_currentScore -= amount;
+			if (_displayedScore > _currentScore) _displayedScore = _currentScore;
 			return true;
 		}
 
@@ -65,10 +65,10 @@ namespace _Project.Scripts.UI
 
 			int delta = killScore * _comboMultiplier;
 			_totalScore += delta;
-			if (_currentScore == _newScore) {
-				_newScore += delta;
+			if (_displayedScore == _currentScore) {
+				_currentScore += delta;
 				StartCoroutine(UpdateScoreRoutine());
-			} else { _newScore += delta; }
+			} else { _currentScore += delta; }
 
 			_comboMultiplier += comboAdditionPerKill;
 
@@ -82,11 +82,11 @@ namespace _Project.Scripts.UI
 
 		private IEnumerator UpdateScoreRoutine()
 		{
-			while (_currentScore < _newScore) {
-				UpdateScore(++_currentScore);
+			while (_displayedScore < _currentScore) {
+				UpdateScore(++_displayedScore);
 				scoreTickSFX.PlayOneShot(_audioSource);
 				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
-				yield return new WaitForSeconds(0.002f + ((float)_currentScore / _newScore)*0.2f);
+				yield return new WaitForSeconds(0.002f + ((float)_displayedScore / _currentScore)*0.2f);
 			}
 		}
 
@@ -97,7 +97,6 @@ namespace _Project.Scripts.UI
 			while (_comboTimeRemaining > 0) {
 				_comboTimeRemaining -= Time.deltaTime;
 				comboMeterUI.UpdateUI(_comboTimeRemaining / comboTimeLimit);
-				// print(comboTimeRemaining);
 				yield return null;
 			}
 			comboMeterUI.UpdateUI(0f);
