@@ -8,7 +8,7 @@ namespace _Project.Scripts.Audio
 
         #region IAudio Interface
 
-        public void PlaySFX(AudioClip audioClip)
+        public void PlaySFX(AudioClip audioClip, float volume = 1f)
         {
         }
 

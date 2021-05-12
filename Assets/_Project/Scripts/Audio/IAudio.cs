@@ -4,7 +4,7 @@ namespace _Project.Scripts.Audio
 {
     public interface IAudio
     {
-        public void PlaySFX(AudioClip audioClip);
+        public void PlaySFX(AudioClip audioClip, float volume = 1f);
         public void PlayBGM(AudioClip audioClip);
         public void PauseSFX();
         public void PauseBGM();

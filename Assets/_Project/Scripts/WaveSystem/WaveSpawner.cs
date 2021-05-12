@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.HealthSystem;
+﻿using _Project.Scripts.Enemies.AI;
+using _Project.Scripts.HealthSystem;
 using UnityEngine;
 
 namespace _Project.Scripts.WaveSystem
@@ -26,6 +27,9 @@ namespace _Project.Scripts.WaveSystem
 				#endif
 				WaveController.Instance.ActiveSpawns++;
 			}
+
+			if (spawnedObj.TryGetComponent(out EnemyController enemyController))
+				enemyController.huntPlayerOnStart = true;
 
 			return true;
 		}

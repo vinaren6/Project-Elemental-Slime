@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0222c05e6635764b894c433d65ed4f5
+guid: 43e36ed7885f94c46acb12ec1c8de2e3
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Osaka-Sans Serif
+  - Romanica
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

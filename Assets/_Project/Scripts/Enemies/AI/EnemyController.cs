@@ -40,6 +40,8 @@ namespace _Project.Scripts.Enemies.AI
 		private bool  _isBurning;
 		private bool  _hasDetectedPlayer = false;
 
+		[HideInInspector] public bool huntPlayerOnStart;
+
 		public Transform    Target                   => _target;
 		public Health       Health                   => _health;
 		public EnemyUI      UI                       => _ui;
@@ -64,6 +66,7 @@ namespace _Project.Scripts.Enemies.AI
 		{
 			InitializeStateMachine();
 			_target = GameObject.FindWithTag("Player").transform;
+			if (huntPlayerOnStart) StartPlayerDetection();
 		}
 
 		private void Update() => StateMachine.CurrentState.LogicUpdate();

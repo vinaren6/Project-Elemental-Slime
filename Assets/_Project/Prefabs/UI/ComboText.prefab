@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3093819144751823080}
   - component: {fileID: 3615876294320872906}
   m_Layer: 5
-  m_Name: DamageNumberText
+  m_Name: ComboText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,17 +65,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KILL!
+  m_text: COMBO!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5da441e33a007143b473aa7ebd6ad78, type: 2}
-  m_sharedMaterial: {fileID: 1956277928082559961, guid: c5da441e33a007143b473aa7ebd6ad78, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e444148c2dac6b7489bf00e5a575008a, type: 2}
+  m_sharedMaterial: {fileID: -7153799385632275744, guid: e444148c2dac6b7489bf00e5a575008a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278200063
-  m_fontColor: {r: 1, g: 0.14813088, b: 0, a: 1}
+    rgba: 4286837503
+  m_fontColor: {r: 1, g: 0.947688, b: 0.514151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.2
-  m_fontSizeBase: 1.2
+  m_fontSize: 1.3
+  m_fontSizeBase: 1.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -5
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -192,7 +192,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -1032572231
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &9098966067950957469
 MonoBehaviour:
@@ -243,10 +243,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9098966068800910531}
-  - component: {fileID: 7055848119366421624}
+  - component: {fileID: 4668365100914135330}
   - component: {fileID: 1415605415}
   m_Layer: 5
-  m_Name: KillTextUI
+  m_Name: ComboText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7055848119366421624
+--- !u!114 &4668365100914135330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,9 +276,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9098966068800910532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a2fc9988614e00998b7fbde70b46ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a27b93582654965bec53362b6a0763b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGameUI: {fileID: 11400000, guid: 57d409f70999e7a44b4dc11da65f0ba4, type: 2}
+  comboText: {fileID: 3615876294320872906}
 --- !u!95 &1415605415
 Animator:
   serializedVersion: 3
@@ -289,7 +291,7 @@ Animator:
   m_GameObject: {fileID: 9098966068800910532}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0ebaa9fd224b5f4498536d6da6378775, type: 2}
+  m_Controller: {fileID: 9100000, guid: ab4c693f3744be6448ae270f521d6b8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

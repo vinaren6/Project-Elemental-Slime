@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Audio
@@ -21,13 +22,14 @@ namespace _Project.Scripts.Audio
             }
         }
         
-        public void PlaySFX(AudioClip audioClip)
+        public void PlaySFX(AudioClip audioClip, float volume = 1f)
         {
-            if (audioClip == null) return;
+            if (audioClip == null) throw new AggregateException("audioClip cannot be null");
             AudioSource audioSource = GetAvailableAudioSource();
-            if (audioSource == null) return;
-            audioSource.clip = audioClip;
-            audioSource.Play();
+            if (audioSource == null) throw new AggregateException("audioSource cannot be null");;
+            //audioSource.clip = audioClip;
+            //audioSource.Play();
+            audioSource.PlayOneShot(audioClip, volume);
         }
 
         public void PlayBGM(AudioClip audioClip)

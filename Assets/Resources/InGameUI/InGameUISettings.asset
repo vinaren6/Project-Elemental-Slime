@@ -14,14 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageNumbers:
   - name: Neutral
-    fontSize: 1
+    fontSizeModifier: 1
     color: {r: 1, g: 1, b: 1, a: 1}
   - name: Weak
-    fontSize: 0.9
+    fontSizeModifier: 0.9
     color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   - name: Effective
-    fontSize: 1.1
+    fontSizeModifier: 1.1
     color: {r: 1, g: 0.8753972, b: 0, a: 1}
   - name: Heal
-    fontSize: 1
+    fontSizeModifier: 1
     color: {r: 0, g: 1, b: 0.06795335, a: 1}
+  inGameFont: {fileID: 11400000, guid: a5a9117607a98874283e867ef4a910d4, type: 2}
+  damageNumberFontSizeBase: 1
+  killTextFontSize: 1.3
+  killTextColor: {r: 1, g: 0, b: 0.007147789, a: 1}
+  comboTextFontSize: 1.5
+  comboTextColor: {r: 1, g: 0.7783019, b: 0.93130475, a: 1}

@@ -7,7 +7,7 @@ namespace _Project.Scripts.UI
     public class PlayerHUD : MonoBehaviour, IHUD
     {
         [SerializeField] private HealthUI _healthbar;
-        [SerializeField] private SpecialAttackUI _specialAttack;
+        [SerializeField] private SpecialAttackUIOLD _specialAttack;
         [SerializeField] private ElementBarUI[] _elementBars;
 
         public HealthUI Healthbar => _healthbar;
@@ -20,7 +20,7 @@ namespace _Project.Scripts.UI
             _elementBars[(int)type].UpdateUI(percent);
         }
 
-        public SpecialAttackUI SpecialAttack => _specialAttack;
+        public SpecialAttackUIOLD SpecialAttack => _specialAttack;
 
         private void Start()
         {
