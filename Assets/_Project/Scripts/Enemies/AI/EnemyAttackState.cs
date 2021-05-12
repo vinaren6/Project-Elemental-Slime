@@ -24,7 +24,7 @@ namespace _Project.Scripts.Enemies.AI
                     _hasAttacked = false;
                     if (!EnemyController.Ability.IsInRange())
                     {
-                        Debug.Log($"DEN BORTA! T_T");
+                        // Debug.Log($"DEN BORTA! T_T");
                         // if (!EnemyController.Ability.StopLooping)
                             EnemyController.Ability.Stop(false);
                         _stateMachine.ChangeState(EnemyController.HuntState);
@@ -32,7 +32,7 @@ namespace _Project.Scripts.Enemies.AI
                     }
                     else
                     {
-                        Debug.Log($"ATTACK AGAIN! :'OOO");
+                        // Debug.Log($"ATTACK AGAIN! :'OOO");
                     }
                 }
                 return;
@@ -44,7 +44,7 @@ namespace _Project.Scripts.Enemies.AI
                 if (!EnemyController.Ability.StopLooping)
                 {
                     EnemyController.Ability.Stop(false);
-                    Debug.Log($"KAN INTE ATTACKERA! T_T");
+                    // Debug.Log($"KAN INTE ATTACKERA! T_T");
                 }
 
                 _stateMachine.ChangeState(EnemyController.HuntState);
