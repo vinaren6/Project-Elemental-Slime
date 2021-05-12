@@ -2,7 +2,9 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies;
+using _Project.Scripts.Enemies.AI;
 using _Project.Scripts.Managers;
+using _Project.Scripts.Player;
 using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +13,7 @@ namespace _Project.Scripts.HealthSystem
 {
 	public class Health : MonoBehaviour, IHealth
 	{
-		public static event Action<Vector3> onAnyDeath;
+		public static event Action<Vector3> onAnyEnemyDeath;
 		
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private AudioClip                  hurtSFX;
@@ -52,10 +54,11 @@ namespace _Project.Scripts.HealthSystem
 			}
 			ServiceLocator.Audio.PlaySFX(deathSFX);
 			EnemySpawner.EnemiesInScene--;
-			onAnyDeath?.Invoke(transform.position);
 			onDeath.Invoke();
 		}
-		
+
+		public void CallEnemyDeath() => onAnyEnemyDeath?.Invoke(transform.position);
+
 		private IEnumerator ReceiveDamageCooldownTimeRoutine()
 		{
 			_canReceiveDamage = false;

@@ -25,6 +25,7 @@ namespace _Project.Scripts.UI
 		public int   killScore            = 10;
 		public int   comboAdditionPerKill = 1;
 		public float comboTimeLimit       = 25f;
+		public int   maxCombo             = 3;
 
 		private int   _displayedScore  = 0;
 		private int   _currentScore    = 0;
@@ -35,7 +36,7 @@ namespace _Project.Scripts.UI
 
 		private void Awake()
 		{
-			Health.onAnyDeath += OnAnyDeathUpdate;
+			Health.onAnyEnemyDeath += OnAnyEnemyDeathUpdate;
 			_audioSource      =  GetComponent<AudioSource>();
 			scoreText.font    =  inGameUI.inGameFont;
 			score.font        =  inGameUI.inGameFont;
@@ -58,22 +59,27 @@ namespace _Project.Scripts.UI
 
 		public void UpdateGameOverScoreText() => gameOverScore.text = _totalScore.ToString();
 
-		private void OnAnyDeathUpdate(Vector3 position)
+		private void OnAnyEnemyDeathUpdate(Vector3 position)
 		{
 			killFeedbackPool.SpawnKillTextFromPool(position);
-			killFeedbackPool.SpawnComboTextFromPool(position);
-
+			
 			int delta = killScore * _comboMultiplier;
 			_totalScore += delta;
+			
 			if (_displayedScore == _currentScore) {
 				_currentScore += delta;
 				StartCoroutine(UpdateScoreRoutine());
-			} else { _currentScore += delta; }
+			} else {
+				_currentScore += delta;
+			}
 
-			_comboMultiplier += comboAdditionPerKill;
+			if (_comboMultiplier < maxCombo)
+				_comboMultiplier += comboAdditionPerKill;
 
-			if (_comboTimeRemaining > 0)
+			if (_comboTimeRemaining > 0) {
+				killFeedbackPool.SpawnComboTextFromPool(position);
 				_comboTimeRemaining = comboTimeLimit;
+			}
 			else
 				StartCoroutine(StartComboTimeRoutine());
 		}
