@@ -1,5 +1,3 @@
-using System;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace _Project.Scripts.Audio
