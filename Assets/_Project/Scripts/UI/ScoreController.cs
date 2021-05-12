@@ -2,6 +2,7 @@ using System.Collections;
 using _Project.Scripts.Audio.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
+using _Project.Scripts.UI.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +10,10 @@ namespace _Project.Scripts.UI
 {
 	public class ScoreController : MonoBehaviour
 	{
-		[SerializeField] private TMP_Text   scoreText;
-		[SerializeField] private AudioEvent scoreTickSFX;
+		[SerializeField] private InGameUI         inGameUI;
+		[SerializeField] private TMP_Text         scoreText;
+		[SerializeField] private TMP_Text         score;
+		[SerializeField] private AudioEvent       scoreTickSFX;
 		[SerializeField] private KillFeedbackPool killFeedbackPool;
 
 		private AudioSource _audioSource;
@@ -25,16 +28,19 @@ namespace _Project.Scripts.UI
 		private bool  _comboIsActive;
 		private float _comboTimeRemaining = 0;
 		
-		private void Start()
+		private void Awake()
 		{
 			Health.onAnyDeath += OnAnyDeathUpdate;
-			scoreText.text    =  _currentScore.ToString();
 			_audioSource      =  GetComponent<AudioSource>();
+			scoreText.font    =  inGameUI.inGameFont;
+			score.font        =  inGameUI.inGameFont;
+			score.text        =  _currentScore.ToString();
 		}
 				
 		private void OnAnyDeathUpdate(Vector3 position)
 		{
-			killFeedbackPool.SpawnFromPool(position);
+			killFeedbackPool.SpawnKillTextFromPool(position);
+			killFeedbackPool.SpawnComboTextFromPool(position);
 			
 			if (_currentScore == _newScore) {
 				_newScore = _currentScore + killScore * _comboMultiplier;
@@ -55,7 +61,7 @@ namespace _Project.Scripts.UI
 		private void UpdateScore()
 		{
 			_currentScore++;
-			scoreText.text = _currentScore.ToString();
+			score.text = _currentScore.ToString();
 		}
 
 		private IEnumerator UpdateScoreRoutine()

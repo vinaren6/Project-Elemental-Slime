@@ -6,29 +6,48 @@ namespace _Project.Scripts.UI
 	public class KillFeedbackPool : MonoBehaviour
 	{
 		[SerializeField] private GameObject killTextPrefab;
-		[SerializeField] private int        poolSize = 100;
+		[SerializeField] private GameObject comboTextPrefab;
+		[SerializeField] private int        killTextPoolSize = 10;
+		[SerializeField] private int        comboTextPoolSize = 10;
 
-		private Queue<GameObject> _pool;
+		private Queue<GameObject> _killTextPool;
+		private Queue<GameObject> _comboTextPool;
 
 		private void Start()
 		{
-			_pool = new Queue<GameObject>();
-
-			for (int i = 0; i < poolSize; i++) {
+			_killTextPool = new Queue<GameObject>();
+			for (int i = 0; i < killTextPoolSize; i++) {
 				GameObject killText = Instantiate(killTextPrefab, transform);
-				_pool.Enqueue(killText);
+				_killTextPool.Enqueue(killText);
+			}
+			
+			_comboTextPool = new Queue<GameObject>();
+			for (int i = 0; i < comboTextPoolSize; i++) {
+				GameObject comboText = Instantiate(comboTextPrefab, transform);
+				_comboTextPool.Enqueue(comboText);
 			}
 		}
 
-		public void SpawnFromPool(Vector3 position)
+		public void SpawnKillTextFromPool(Vector3 position)
 		{
-			GameObject killText = _pool.Dequeue();
+			GameObject killText = _killTextPool.Dequeue();
 			killText.GetComponent<KillTextUI>().ShowKillText(position);
 		}
 
-		public void ReturnNumberToPool(GameObject number)
+		public void ReturnKillTextToPool(GameObject killText)
 		{
-			_pool.Enqueue(number);
+			_killTextPool.Enqueue(killText);
+		}
+		
+		public void SpawnComboTextFromPool(Vector3 position)
+		{
+			GameObject comboText = _comboTextPool.Dequeue();
+			comboText.GetComponent<ComboTextUI>().ShowComboText(position);
+		}
+
+		public void ReturnComboTextToPool(GameObject comboText)
+		{
+			_comboTextPool.Enqueue(comboText);
 		}
 	}
 }

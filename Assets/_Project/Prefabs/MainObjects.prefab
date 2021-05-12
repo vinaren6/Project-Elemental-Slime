@@ -440,7 +440,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killTextPrefab: {fileID: 9098966068800910532, guid: d7e0101858c4e404eb8045f6819a9a0b, type: 3}
-  poolSize: 10
+  comboTextPrefab: {fileID: 9098966068800910532, guid: 50cf61b6449286347840c85c4563374e, type: 3}
+  killTextPoolSize: 10
+  comboTextPoolSize: 10
 --- !u!1 &3303091263253603538
 GameObject:
   m_ObjectHideFlags: 0

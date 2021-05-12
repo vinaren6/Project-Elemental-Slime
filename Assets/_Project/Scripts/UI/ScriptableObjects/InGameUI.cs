@@ -19,7 +19,8 @@ namespace _Project.Scripts.UI.ScriptableObjects
 		public TMP_FontAsset      inGameFont;
 
 		public float damageNumberFontSizeBase = 1f;
-		public float killTextFontSize = 1.3f;
+		public float killTextFontSize         = 1.3f;
+		public float comboTextFontSize        = 1.5f;
 		
 		public float GetDamageNumberFontSize(string effectiveType) 
 		{
@@ -28,8 +29,8 @@ namespace _Project.Scripts.UI.ScriptableObjects
 				float fontSize = damageNumberFontSizeBase * entry.fontSizeModifier;
 				return fontSize;
 			}
-			Debug.Log("Couldn't get damageNumber.fontSize from InGameUI");
-			return 1;
+			Debug.Log("Couldn't get damageNumber.fontSizeModifier from InGameUI");
+			return damageNumberFontSizeBase;
 		}
 
 		public Color GetDamageNumberColor(string effectiveType) 
@@ -38,6 +39,7 @@ namespace _Project.Scripts.UI.ScriptableObjects
 			if (entry != null) {
 				return entry.color;
 			}
+			Debug.Log("Couldn't get damageNumber.color from InGameUI");
 			return Color.white;
 		}
 	}

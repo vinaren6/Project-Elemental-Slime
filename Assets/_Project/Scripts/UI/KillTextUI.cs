@@ -30,7 +30,7 @@ namespace _Project.Scripts.UI
         
 		public void AnimationEnd()
 		{
-			_killFeedbackPool.ReturnNumberToPool(gameObject);
+			_killFeedbackPool.ReturnKillTextToPool(gameObject);
 		}
 	}
 }
