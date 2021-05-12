@@ -7,6 +7,6 @@ namespace _Project.Scripts.UI
         public HealthUI Healthbar { get; }
         public ElementBarUI ElementBar(ElementalSystemTypes type);
         public void UpdateElementBar(ElementalSystemTypes type, float percent);
-        public SpecialAttackUI SpecialAttack { get; }
+        public SpecialAttackUIOLD SpecialAttack { get; }
     }
 }

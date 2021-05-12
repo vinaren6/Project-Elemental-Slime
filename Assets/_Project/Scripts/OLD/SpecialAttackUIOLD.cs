@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts.UI
 {
-    public class SpecialAttackUI : MonoBehaviour
+    public class SpecialAttackUIOLD : MonoBehaviour
     {
         [SerializeField] private Image fillImage;
         [SerializeField] private GameObject highlight;

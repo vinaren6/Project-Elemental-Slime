@@ -18,7 +18,8 @@ namespace _Project.Scripts.UI
 		[SerializeField] private TMP_Text         gameOverScore;
 		[SerializeField] private AudioEvent       scoreTickSFX;
 		[SerializeField] private KillFeedbackPool killFeedbackPool;
-
+		[SerializeField] private ComboMeterUI     comboMeterUI;
+		
 		private AudioSource _audioSource;
 
 		public int   killScore            = 10;
@@ -95,10 +96,11 @@ namespace _Project.Scripts.UI
 			_comboIsActive      = true;
 			while (_comboTimeRemaining > 0) {
 				_comboTimeRemaining -= Time.deltaTime;
+				comboMeterUI.UpdateUI(_comboTimeRemaining / comboTimeLimit);
 				// print(comboTimeRemaining);
 				yield return null;
 			}
-
+			comboMeterUI.UpdateUI(0f);
 			_comboMultiplier = 1;
 			_comboIsActive   = false;
 		}

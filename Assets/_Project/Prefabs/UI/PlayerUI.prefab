@@ -1446,8 +1446,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1.0000038}
+  m_SizeDelta: {x: 0, y: -1.9999954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4513594851641486981
 CanvasRenderer:
@@ -1477,10 +1477,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RMB
+  m_text: 'COMBO
+
+    METER'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9ecd8fc11e03e4c6890cd8ba203e788d, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 9ecd8fc11e03e4c6890cd8ba203e788d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5a9117607a98874283e867ef4a910d4, type: 2}
+  m_sharedMaterial: {fileID: 1594709065914647781, guid: a5a9117607a98874283e867ef4a910d4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1504,8 +1506,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1516,7 +1518,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1689,8 +1691,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2714924506292686030}
+  - component: {fileID: 6258732858454870774}
   m_Layer: 0
-  m_Name: SpecialAttack
+  m_Name: ComboMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1714,9 +1717,23 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -20, y: 20}
+  m_AnchoredPosition: {x: -30, y: 30}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 1, y: 0}
+--- !u!114 &6258732858454870774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037454709329237751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160d1be53bf44335985fbd90cae60406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 6709344694576279484}
+  highlight: {fileID: 8390759839228663881}
 --- !u!1 &7321452459055604258
 GameObject:
   m_ObjectHideFlags: 0
