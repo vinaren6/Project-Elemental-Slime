@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: 6c9456bf5a2c0b14d8c5bc9b35defdd0
+guid: 7b936f20c2f6df94197e502752b9d900
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 1942704884739636374
+    second: Earth Golem Rig|EarthGolemAttackAnimation
+  - first:
+      74: -6243558865033555114
+    second: Earth Golem Rig|EarthGolemIdleAnimation
+  - first:
+      74: -1336144818927956920
+    second: Earth Golem Rig|EarthGolemRunAnimation
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Earth Golem
+      name: Body
     second: {fileID: 2100000, guid: 478ca105e2c5b9e42ab4c7dbd6d01f4d, type: 2}
   materials:
     materialImportMode: 2
@@ -28,7 +37,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -39,7 +48,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.4
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +99,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.004
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
