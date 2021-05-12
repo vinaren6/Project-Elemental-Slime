@@ -15,6 +15,7 @@ namespace _Project.Scripts.UI
 		[SerializeField] private InGameUI         inGameUI;
 		[SerializeField] private TMP_Text         scoreText;
 		[SerializeField] private TMP_Text         score;
+		[SerializeField] private TMP_Text         gameOverScore;
 		[SerializeField] private AudioEvent       scoreTickSFX;
 		[SerializeField] private KillFeedbackPool killFeedbackPool;
 
@@ -52,6 +53,8 @@ namespace _Project.Scripts.UI
 			_newScore -= amount;
 			return true;
 		}
+
+		public void UpdateGameOverScoreText() => gameOverScore.text = _totalScore.ToString();
 
 		private void OnAnyDeathUpdate(Vector3 position)
 		{
