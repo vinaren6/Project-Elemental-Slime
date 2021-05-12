@@ -279,6 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a2fc9988614e00998b7fbde70b46ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGameUI: {fileID: 11400000, guid: 57d409f70999e7a44b4dc11da65f0ba4, type: 2}
+  killText: {fileID: 3615876294320872906}
 --- !u!95 &1415605415
 Animator:
   serializedVersion: 3

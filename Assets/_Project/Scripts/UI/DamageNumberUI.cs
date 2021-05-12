@@ -8,16 +8,17 @@ namespace _Project.Scripts.UI
 {
     public class DamageNumberUI : MonoBehaviour
     {
-        [SerializeField] private TMP_Text numberText;
         [SerializeField] private InGameUI inGameUI;
-
+        [SerializeField] private TMP_Text numberText;
+        
         private Transform _transform;
         private Animator _animator;
         
         private void Awake()
         {
-            _transform                =  transform;
-            _animator                 =  GetComponent<Animator>();
+            _transform      = transform;
+            _animator       = GetComponent<Animator>();
+            numberText.font = inGameUI.inGameFont;
         }
 
         public void ShowDamage(Vector3 position, int damage, EffectiveType colorType)
