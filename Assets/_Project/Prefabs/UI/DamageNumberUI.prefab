@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 99
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f436d864f24317b4e9905324ae284813, type: 2}
-  m_sharedMaterial: {fileID: 6327685493242798035, guid: f436d864f24317b4e9905324ae284813, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c5da441e33a007143b473aa7ebd6ad78, type: 2}
+  m_sharedMaterial: {fileID: 1956277928082559961, guid: c5da441e33a007143b473aa7ebd6ad78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 4
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -281,11 +281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberText: {fileID: 3615876294320872906}
   inGameUI: {fileID: 11400000, guid: 57d409f70999e7a44b4dc11da65f0ba4, type: 2}
-  colors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.70980394, g: 0.7294118, b: 0.7490196, a: 1}
-  - {r: 1, g: 0.82299656, b: 0.1273585, a: 1}
-  - {r: 0.30896634, g: 0.922, b: 0.19546396, a: 1}
 --- !u!95 &1415605415
 Animator:
   serializedVersion: 3
