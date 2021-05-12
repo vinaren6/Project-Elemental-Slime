@@ -19,16 +19,16 @@ namespace _Project.Scripts.UI
 		public  int   comboAdditionPerKill = 1;
 		public  float comboTimeLimit       = 25f;
 		
-		private int   currentScore    = 0;
-		private int   newScore    = 0;
-		private int   comboMultiplier = 1;
-		private bool  comboIsActive;
-		private float comboTimeRemaining = 0;
+		private int   _currentScore    = 0;
+		private int   _newScore    = 0;
+		private int   _comboMultiplier = 1;
+		private bool  _comboIsActive;
+		private float _comboTimeRemaining = 0;
 		
 		private void Start()
 		{
 			Health.onAnyDeath += OnAnyDeathUpdate;
-			scoreText.text    =  currentScore.ToString();
+			scoreText.text    =  _currentScore.ToString();
 			_audioSource      =  GetComponent<AudioSource>();
 		}
 				
@@ -36,31 +36,31 @@ namespace _Project.Scripts.UI
 		{
 			killFeedbackPool.SpawnFromPool(position);
 			
-			if (currentScore == newScore) {
-				newScore = currentScore + killScore * comboMultiplier;
+			if (_currentScore == _newScore) {
+				_newScore = _currentScore + killScore * _comboMultiplier;
 				StartCoroutine(UpdateScoreRoutine());
 			} 
 			else {
-				newScore = currentScore + killScore * comboMultiplier;	
+				_newScore = _currentScore + killScore * _comboMultiplier;	
 			}
 
-			comboMultiplier += comboAdditionPerKill;
+			_comboMultiplier += comboAdditionPerKill;
 
-			if (comboTimeRemaining > 0)
-				comboTimeRemaining =  comboTimeLimit;
+			if (_comboTimeRemaining > 0)
+				_comboTimeRemaining =  comboTimeLimit;
 			else
 				StartCoroutine(StartComboTimeRoutine());
 		}
 
 		private void UpdateScore()
 		{
-			currentScore++;
-			scoreText.text = currentScore.ToString();
+			_currentScore++;
+			scoreText.text = _currentScore.ToString();
 		}
 
 		private IEnumerator UpdateScoreRoutine()
 		{
-			while (currentScore < newScore) {
+			while (_currentScore < _newScore) {
 				UpdateScore();
 				scoreTickSFX.PlayOneShot(_audioSource);
 				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
@@ -70,17 +70,17 @@ namespace _Project.Scripts.UI
 
 		private IEnumerator StartComboTimeRoutine()
 		{
-			comboTimeRemaining = comboTimeLimit;
-			comboIsActive      = true;
-			while (comboTimeRemaining > 0)
+			_comboTimeRemaining = comboTimeLimit;
+			_comboIsActive      = true;
+			while (_comboTimeRemaining > 0)
 			{
-				comboTimeRemaining -= Time.deltaTime;
+				_comboTimeRemaining -= Time.deltaTime;
 				// print(comboTimeRemaining);
 				yield return null;
 			}
 
-			comboMultiplier = 1;
-			comboIsActive   = false;
+			_comboMultiplier = 1;
+			_comboIsActive   = false;
 		}
 	}
 }
