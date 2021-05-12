@@ -92,7 +92,7 @@ namespace _Project.Scripts.UI
 				UpdateScore(++_displayedScore);
 				scoreTickSFX.PlayOneShot(_audioSource);
 				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
-				yield return new WaitForSeconds(0.002f + ((float)_displayedScore / _currentScore)*0.2f);
+				yield return new WaitForSeconds(0.002f + .75f / (_currentScore - _displayedScore)); 
 			}
 		}
 
