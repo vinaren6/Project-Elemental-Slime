@@ -20,5 +20,5 @@ MonoBehaviour:
   attackRateMultiplier: 1
   attackRange: 10
   hasRangedAttack: 0
-  mesh: {fileID: 919132149155446097, guid: 6c9456bf5a2c0b14d8c5bc9b35defdd0, type: 3}
-  animatorController: {fileID: 9100000, guid: 9abb76a8097aeaa42b98eb00575e4cbc, type: 2}
+  mesh: {fileID: 919132149155446097, guid: 7b936f20c2f6df94197e502752b9d900, type: 3}
+  animatorController: {fileID: 9100000, guid: bcc6a43ac97d95740a23f2c06b10cdca, type: 2}
