@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 388181478198702270}
   - component: {fileID: 5996968298132184138}
   m_Layer: 0
-  m_Name: Score
+  m_Name: GameOverScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,11 +15,12 @@ namespace _Project.Scripts.UI
 
 		private void Awake()
 		{
-			_transform        = transform;
-			_animator         = GetComponent<Animator>();
-			_killFeedbackPool = GetComponentInParent<KillFeedbackPool>();
+			_transform         = transform;
+			_animator          = GetComponent<Animator>();
+			_killFeedbackPool  = GetComponentInParent<KillFeedbackPool>();
 			comboText.font     = inGameUI.inGameFont;
 			comboText.fontSize = inGameUI.comboTextFontSize;
+			comboText.color    = inGameUI.comboTextColor;
 		}
 
 		public void ShowComboText(Vector3 position)

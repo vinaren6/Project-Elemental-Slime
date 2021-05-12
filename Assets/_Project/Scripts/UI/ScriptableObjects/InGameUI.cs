@@ -20,7 +20,9 @@ namespace _Project.Scripts.UI.ScriptableObjects
 
 		public float damageNumberFontSizeBase = 1f;
 		public float killTextFontSize         = 1.3f;
-		public float comboTextFontSize        = 1.5f;
+		public Color killTextColor;
+		public float comboTextFontSize = 1.5f;
+		public Color comboTextColor;
 		
 		public float GetDamageNumberFontSize(string effectiveType) 
 		{

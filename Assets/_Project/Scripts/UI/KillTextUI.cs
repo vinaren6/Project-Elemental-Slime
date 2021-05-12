@@ -20,6 +20,7 @@ namespace _Project.Scripts.UI
 			_killFeedbackPool = GetComponentInParent<KillFeedbackPool>();
 			killText.font     = inGameUI.inGameFont;
 			killText.fontSize = inGameUI.killTextFontSize;
+			killText.color    = inGameUI.killTextColor;
 		}
 
 		public void ShowKillText(Vector3 position)

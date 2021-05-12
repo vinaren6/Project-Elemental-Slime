@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0222c05e6635764b894c433d65ed4f5
+guid: 785f71e93a5eb684797fb60585bfbe7a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Osaka-Sans Serif
+  - Cardium A
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
