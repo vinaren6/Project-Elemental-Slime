@@ -13,7 +13,7 @@ namespace _Project.Scripts.Audio
             Debug.Log($"{nameof(PlaySFX)} - {audioClip.name}");
         }
 
-        public void PlayBGM(AudioClip audioClip)
+        public void PlayBGM(AudioClip audioClip, float volume = 1f)
         {
             Debug.Log($"{nameof(PlayBGM)}");
         }

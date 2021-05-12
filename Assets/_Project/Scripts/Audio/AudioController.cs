@@ -1,91 +1,56 @@
 using System;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace _Project.Scripts.Audio
 {
-    public class AudioController : IAudio
-    {
-        private readonly AudioSource[] _audioSources;
+	public class AudioController : IAudio
+	{
+		private GameObject _audioPlayerObj;
 
-        public AudioController()
-        {
-            int maxAudioSources = 16;
-            float volume = 0.05f;
-            _audioSources = new AudioSource[maxAudioSources];
-            
-            GameObject audioGO = new GameObject();
+		private AudioSource _audioSourceSFX, _audioSourceBGM;
 
-            for (int i = 0; i < maxAudioSources; i++)
-            {
-                _audioSources[i] = audioGO.AddComponent<AudioSource>();
-                _audioSources[i].volume = volume;
-            }
-        }
-        
-        public void PlaySFX(AudioClip audioClip, float volume = 1f)
-        {
-            if (audioClip == null) throw new AggregateException("audioClip cannot be null");
-            AudioSource audioSource = GetAvailableAudioSource();
-            if (audioSource == null) throw new AggregateException("audioSource cannot be null");;
-            //audioSource.clip = audioClip;
-            //audioSource.Play();
-            audioSource.PlayOneShot(audioClip, volume);
-        }
 
-        public void PlayBGM(AudioClip audioClip)
-        {
+		public AudioController()
+		{
+			_audioPlayerObj      ??= new GameObject();
+			_audioSourceSFX      ??= _audioPlayerObj.AddComponent<AudioSource>();
+			_audioSourceBGM      ??= _audioPlayerObj.AddComponent<AudioSource>();
+			_audioSourceBGM.loop =   true;
+		}
 
-        }
+		public void PlaySFX(AudioClip audioClip, float volume = 1f) => _audioSourceSFX.PlayOneShot(audioClip, volume);
 
-        public void PauseSFX()
-        {
+		public void PlayBGM(AudioClip audioClip, float volume = 1f)
+		{
+			if (_audioSourceBGM.isPlaying) {
+				_audioSourceBGM.PlayOneShot(audioClip, volume);
+				return;
+			}
+			_audioSourceBGM.clip   = audioClip;
+			_audioSourceBGM.volume = volume;
+			_audioSourceBGM.Play();
+		}
 
-        }
+		public void PauseSFX() => _audioSourceSFX.Pause();
 
-        public void PauseBGM()
-        {
+		public void PauseBGM() => _audioSourceBGM.Pause();
 
-        }
+		public void StopSFX() => _audioSourceSFX.Stop();
 
-        public void StopSFX()
-        {
+		public void StopBGM() => _audioSourceBGM.Stop();
 
-        }
+		public void StopAllSFX() => StopSFX();
 
-        public void StopBGM()
-        {
+		public void StopAllBGM() => StopBGM();
 
-        }
+		public void StopAll()
+		{
+			StopAllSFX();
+			StopAllBGM();
+		}
 
-        public void StopAllSFX()
-        {
-
-        }
-
-        public void StopAllBGM()
-        {
-
-        }
-
-        public void StopAll()
-        {
-
-        }
-
-        public void UpdateVolume(AudioType audioType, float volume)
-        {
-
-        }
-
-        private AudioSource GetAvailableAudioSource()
-        {
-            foreach (AudioSource audioSource in _audioSources)
-            {
-                if (!audioSource.isPlaying)
-                    return audioSource;
-            }
-
-            return null;
-        }
-    }
+		public void UpdateVolume(AudioType audioType, float volume) { }
+		
+	}
 }

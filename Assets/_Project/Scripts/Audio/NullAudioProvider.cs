@@ -12,7 +12,7 @@ namespace _Project.Scripts.Audio
         {
         }
 
-        public void PlayBGM(AudioClip audioClip)
+        public void PlayBGM(AudioClip audioClip, float volume = 1f)
         {
         }
 
