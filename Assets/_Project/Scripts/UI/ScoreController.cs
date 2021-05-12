@@ -76,19 +76,15 @@ namespace _Project.Scripts.UI
 				StartCoroutine(StartComboTimeRoutine());
 		}
 
-		private void UpdateScore()
-		{
-			_currentScore++;
-			score.text = _currentScore.ToString();
-		}
+		private void UpdateScore(int newScore) => score.text = newScore.ToString();
 
 		private IEnumerator UpdateScoreRoutine()
 		{
 			while (_currentScore < _newScore) {
-				UpdateScore();
+				UpdateScore(++_currentScore);
 				scoreTickSFX.PlayOneShot(_audioSource);
 				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
-				yield return new WaitForSeconds(0.05f);
+				yield return new WaitForSeconds(0.002f + ((float)_currentScore / _newScore)*0.2f);
 			}
 		}
 
