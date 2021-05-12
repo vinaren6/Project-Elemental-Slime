@@ -28,6 +28,8 @@ namespace _Project.Scripts.Abilities
 
 		private Vector3 _rockSize;
 		private Vector3 _rockMargin;
+		
+		public bool StopLooping => false;
 
 		private void Awake()
 		{

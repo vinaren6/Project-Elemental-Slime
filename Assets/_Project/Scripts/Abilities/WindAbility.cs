@@ -25,6 +25,8 @@ namespace _Project.Scripts.Abilities
 		private bool _canAttack;
 		private int _maxCharges;
 		private int _currentCharges;
+		
+		public bool StopLooping => false;
 
 		#endregion
 

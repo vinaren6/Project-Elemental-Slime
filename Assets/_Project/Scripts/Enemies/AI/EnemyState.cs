@@ -22,7 +22,7 @@ namespace _Project.Scripts.Enemies.AI
 
 		public virtual void Enter()
 		{
-			// Debug.Log($"{_transform.name} Enter {_stateMachine.CurrentState} state.");
+			Debug.Log($"{_transform.name} Enter {_stateMachine.CurrentState} state.");
 		}
 
 		public virtual void LogicUpdate()

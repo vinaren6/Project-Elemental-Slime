@@ -22,9 +22,18 @@ namespace _Project.Scripts.Enemies.AI
                 if (_timer >= _nextAttack)
                 {
                     _hasAttacked = false;
-                    EnemyController.Ability.Stop(false);
-                    _stateMachine.ChangeState(EnemyController.HuntState);
-                    return;
+                    if (!EnemyController.Ability.IsInRange())
+                    {
+                        Debug.Log($"DEN BORTA! T_T");
+                        // if (!EnemyController.Ability.StopLooping)
+                            EnemyController.Ability.Stop(false);
+                        _stateMachine.ChangeState(EnemyController.HuntState);
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log($"ATTACK AGAIN! :'OOO");
+                    }
                 }
                 return;
             }
@@ -32,7 +41,12 @@ namespace _Project.Scripts.Enemies.AI
             if (!EnemyController.Ability.CanAttack())
             {
                 // Debug.Log($"Can't attack... T_T");
-                EnemyController.Ability.Stop(false);
+                if (!EnemyController.Ability.StopLooping)
+                {
+                    EnemyController.Ability.Stop(false);
+                    Debug.Log($"KAN INTE ATTACKERA! T_T");
+                }
+
                 _stateMachine.ChangeState(EnemyController.HuntState);
                 return;
             }

@@ -16,5 +16,6 @@ namespace _Project.Scripts.Abilities
         bool IsInRange();
         bool CanAttack();
         float GetAttackTime();
+        bool StopLooping { get; }
     }
 }

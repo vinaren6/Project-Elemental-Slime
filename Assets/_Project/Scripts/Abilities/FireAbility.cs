@@ -31,6 +31,8 @@ namespace _Project.Scripts.Abilities
 
 		private float _damage;
 		
+		public bool StopLooping => false;
+		
 		#endregion
 
 		#region Start Methods

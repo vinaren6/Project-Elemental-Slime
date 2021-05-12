@@ -11,18 +11,20 @@ namespace _Project.Scripts.Abilities
         #region Variables
         
         [SerializeField] private LayerMask collisionMask;
+        [SerializeField] private Transform waterRayTransform;
         [SerializeField] [Range(15f, 30f)] private float maxDistance;
         [SerializeField] [Range(0.1f, 2f)] private float radius;
         
         private                  Transform      _transform;
-        private                  Transform      _splashEffectTransform;
-        private                  Transform      _splashEffectParent;
-        private                  LineRenderer   _laser;
-        private                  ParticleSystem _splashEffect;
-        private                  bool           _splashHasStopped;
+        private SplashEffect _splashEffect;
+
         private                  bool           _canDealDamage;
         private                  float          _damage;
         private                  float          _damageCooldownTime;
+
+        private bool _stopLooping;
+        
+        public bool StopLooping => _stopLooping;
 
         #endregion
 
@@ -41,19 +43,16 @@ namespace _Project.Scripts.Abilities
         
         private void GetAllComponents()
         {
-            _transform             = transform;
-            _laser                 = GetComponentInChildren<LineRenderer>();
-            _splashEffect          = GetComponentInChildren<ParticleSystem>();
-            _splashEffectTransform = _splashEffect.transform;
-            _splashEffectParent    = _splashEffectTransform.parent;
+            _transform = transform;
+            _splashEffect = GetComponentInChildren<SplashEffect>();
         }
 
         public void Initialize(string newTag, float damage, Collider selfCollider = null)
         {
             tag = newTag;
-            _laser.startWidth = radius * 2f;
-            _laser.SetPosition(1, _laser.GetPosition(0));
-            _splashEffect.Stop();
+            _stopLooping = true;
+            SetWaterRayScale(0f);
+            _splashEffect.StopEffect();
             _damage             = damage;
             _damageCooldownTime = 0.2f;
             _canDealDamage      = true;
@@ -77,23 +76,16 @@ namespace _Project.Scripts.Abilities
         {
             RaycastHit hit = new RaycastHit();
 
-            Vector3 hitPosition = _laser.GetPosition(0);
-
             if (LaserDidHit(ref hit))
             {
                 ApplyHitLogic(hit);
                 
-                hitPosition.z = hit.distance + radius;
+                SetWaterRayScale(hit.distance);
                 
-                PlayEffect();
+                _splashEffect.StartEffect(hit.transform);
             }
             else
-            {
-                hitPosition.z = maxDistance;
-                StopEffect();
-            }
-
-            _laser.SetPosition(1, hitPosition);
+                SetWaterRayScale(maxDistance);
         }
 
         private bool LaserDidHit(ref RaycastHit hit)
@@ -108,23 +100,12 @@ namespace _Project.Scripts.Abilities
                 Debug.DrawRay(origin, direction * hit.distance, Color.red);
             else
                 Debug.DrawRay(origin, direction * maxDistance, Color.yellow);
-            
-            // Debug.Log($"hit.distance: {hit.distance}");
 
             return didHit;
         }
 
         private void ApplyHitLogic(RaycastHit hit)
         {
-            Transform hitTransform = hit.collider.transform;
-
-            _splashEffectTransform.SetParent(hitTransform);
-            _splashEffectTransform.localPosition = Vector3.zero;
-            float rotY = _transform.eulerAngles.y - 180f;
-            _splashEffectTransform.localRotation = Quaternion.Euler(0f, rotY, 0f);
-
-            _splashHasStopped = false;
-
             if (!_canDealDamage)
                 return;
 
@@ -144,17 +125,14 @@ namespace _Project.Scripts.Abilities
 
         public void Stop(bool isPlayer = true)
         {
-            _laser.SetPosition(1, _laser.GetPosition(0));
-            
-            if (_splashHasStopped)
-                return;
-
-            Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
-            _splashHasStopped = true;
+            SetWaterRayScale(0f);
         }
 
         public bool IsInRange()
         {
+            RaycastHit hit = new RaycastHit();
+            return LaserDidHit(ref hit);
+            
             // TODO Better calc for checking range.
             Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
 
@@ -172,33 +150,12 @@ namespace _Project.Scripts.Abilities
         {
             return 0f;
         }
-
-        #endregion
-
-        #region Effect Methods
-
-        private void PlayEffect()
-        {
-            if (_splashEffect.isPlaying)
-                return;
-            
-            _splashEffect.Play();
-        }
-
-        private void StopEffect()
-        {
-            if (!_splashEffect.isPlaying)
-                return;
-            
-            Invoke(nameof(ResetSplashEffect), _splashEffect.main.duration);
-        }
         
-        private void ResetSplashEffect()
+        private void SetWaterRayScale(float amount)
         {
-            _splashEffect.Stop();
-            _splashEffectTransform.SetParent(_splashEffectParent);
+            waterRayTransform.localScale = new Vector3(1f, 1f, amount);
         }
-        
+
         #endregion
     }
 }
