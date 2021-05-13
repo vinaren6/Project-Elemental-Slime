@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyBaseSettings
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  attackStrength: 15
+  attackStrength: 5
   attackCooldownTime: 1

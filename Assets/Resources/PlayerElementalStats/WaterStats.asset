@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372a6f21d4744b709b9003a940d44c12, type: 3}
   m_Name: WaterStats
   m_EditorClassIdentifier: 
-  elementType: WATER
   moveSpeedMultiplier: 1
   damageReceivedMultiplier: 1
   attackStrengthMultiplier: 0.3

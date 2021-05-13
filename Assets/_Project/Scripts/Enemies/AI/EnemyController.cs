@@ -150,8 +150,7 @@ namespace _Project.Scripts.Enemies.AI
 			_ui           = GetComponentInChildren<EnemyUI>();
 			Instantiate(currentEnemyElementalStats.ability, transform);
 			_ability = GetComponentInChildren<IAbility>();
-			_ability.Initialize(tag, 1f, currentEnemyElementalStats.attackRange, GetComponent<Collider>());
-			
+
 			// print($"_ability.name: {_ability.gameObject.name}");
 		}
 		
@@ -162,9 +161,9 @@ namespace _Project.Scripts.Enemies.AI
 			_navMeshAgent.speed  = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
 			_attackStrength      = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
 			_attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
-
-
-
+			
+			_ability.Initialize(tag, _attackStrength, currentEnemyElementalStats.attackRange, GetComponent<Collider>());
+			
 			// _navMeshAgent.updateRotation = false;
 		}
 
