@@ -20,10 +20,8 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] [Range(0.1f, 0.5f)] private float aliveTime;
 
 		private NavMeshAgent         _agent;
-		private Transform            _rootTransform;
-		private Transform            _transform;
 		private Queue<FlameCollider> _flamePool;
-		private VisualEffect _effect;
+		private VisualEffect         _effect;
 		
 		private int _maxFlameColliders;
 		private float _fireRate;
@@ -39,9 +37,7 @@ namespace _Project.Scripts.Abilities
 
 		private void Awake()
 		{
-			_agent         = GetComponentInParent<NavMeshAgent>();
-			_rootTransform = transform.parent.parent;
-			_transform     = transform;
+			_agent  = GetComponentInParent<NavMeshAgent>();
 			_effect = GetComponentInChildren<VisualEffect>();
 		}
 
@@ -91,7 +87,7 @@ namespace _Project.Scripts.Abilities
 			FlameCollider flameCollider = _flamePool.Dequeue();
 
 			flameCollider.gameObject.SetActive(true);
-			flameCollider.Execute(_transform, adjustedSpeed, speedMultiplier, aliveTime);
+			flameCollider.Execute(transform, adjustedSpeed, speedMultiplier, aliveTime);
 
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
@@ -108,9 +104,7 @@ namespace _Project.Scripts.Abilities
 			
 			Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
 
-			if (Vector3.Distance(_transform.position, p.position) < 10f)
-				return true;
-			return false;
+			return Vector3.Distance(transform.position, p.position) < 10f;
 		}
 
 		public bool CanAttack()
@@ -139,8 +133,8 @@ namespace _Project.Scripts.Abilities
 		
 		private float GetLookDirectionSpeedAdjustment()
 		{
-			Vector3 moveDirection    = _agent.velocity;
-			float   moveLookAdjustment = (Vector3.Dot(_rootTransform.forward, moveDirection.normalized) / 2.5f);
+			Vector3 moveDirection      = _agent.velocity;
+			float   moveLookAdjustment = (Vector3.Dot(Vector3.forward, moveDirection.normalized) / 2.5f);
 			moveLookAdjustment += 1;
 			// print("MovelookAjustment:" + moveLookRelation);
 			return moveLookAdjustment;
