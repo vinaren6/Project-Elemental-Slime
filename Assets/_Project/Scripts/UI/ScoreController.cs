@@ -90,7 +90,7 @@ namespace _Project.Scripts.UI
 		{
 			while (_displayedScore < _currentScore) {
 				UpdateScore(++_displayedScore);
-				scoreTickSFX.PlayOneShot(_audioSource);
+				//scoreTickSFX.PlayOneShot(_audioSource);
 				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
 				yield return new WaitForSeconds(0.002f + .75f / (_currentScore - _displayedScore)); 
 			}
