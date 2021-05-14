@@ -11,6 +11,7 @@ namespace _Project.Scripts.Audio
 		public AudioController()
 		{
 			var audioPlayerObj = new GameObject();
+			audioPlayerObj.transform.name = "Audio Sources";
 			UnityEngine.Object.DontDestroyOnLoad(audioPlayerObj);
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
