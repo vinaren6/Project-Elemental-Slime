@@ -66,41 +66,10 @@ namespace _Project.Scripts.UI.Score
 			score.transform.parent.gameObject.SetActive(false);
 			gameOverScore.text = _totalScore.ToString();
 		}
-
-		public void OnDropPickupUpdateScore()
-		{
-			if (_displayedScore == _currentScore) {
-				_currentScore += 5;
-				_totalScore   += 5;
-				StartCoroutine(UpdateScoreRoutine());
-			} else {
-				_currentScore += 5;
-				_totalScore   += 5;
-			}
-		}
 		
-		private void OnAnyEnemyDeathUpdate(Vector3 position)
-		{
-			killFeedbackPool.SpawnKillTextFromPool(position);
+		public void GivePickupScore() => GiveScore(ScoreType.Pickup);
 
-			int delta = killScore * _comboMultiplier;
-			_totalScore += delta;
-
-			if (_displayedScore == _currentScore) {
-				_currentScore += delta;
-				StartCoroutine(UpdateScoreRoutine());
-			} else
-				_currentScore += delta;
-
-			if (_comboMultiplier < maxCombo)
-				_comboMultiplier += comboAdditionPerKill;
-
-			if (_comboTimeRemaining > 0) {
-				killFeedbackPool.SpawnComboTextFromPool(position);
-				_comboTimeRemaining = comboTimeLimit;
-			} else
-				StartCoroutine(StartComboTimeRoutine());
-		}
+		private void OnAnyEnemyDeathUpdate(Vector3 position) => GiveScore(ScoreType.Pickup, position);
 
 		public static bool GiveScore(ScoreType type) => _instance.ApplyScore(type);
 
@@ -121,7 +90,6 @@ namespace _Project.Scripts.UI.Score
 
 			return true;
 		}
-
 		private bool ApplyScore(ScoreType type)
 		{
 			int delta = type switch {
