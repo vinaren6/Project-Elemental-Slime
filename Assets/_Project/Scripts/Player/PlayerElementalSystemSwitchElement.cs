@@ -63,6 +63,8 @@ namespace _Project.Scripts.Player
 				_pickups[typeId] = requiredElementsToChange;
 			else if (_pickups[typeId] < requiredElementsToChange)
 				_pickups[typeId]++;
+			else 
+				health.ReceiveHealth(ElementalSystemTypes.Base, hpGainOnPickup / 2);
 			ServiceLocator.HUD.UpdateElementBar(comp.Type, (float) _pickups[typeId] / requiredElementsToChange);
 			comp.Destroy();
 		}
