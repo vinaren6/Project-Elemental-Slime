@@ -10,7 +10,7 @@ namespace _Project.Scripts.UI.Score
 {
 	public class ScoreController : MonoBehaviour
 	{
-		private static           ScoreController  instance;
+		private static           ScoreController  _instance;
 		[SerializeField] private InGameUI         inGameUI;
 		[SerializeField] private TMP_Text         scoreText;
 		[SerializeField] private TMP_Text         score;
@@ -37,6 +37,7 @@ namespace _Project.Scripts.UI.Score
 		private void Awake()
 		{
 			Health.onAnyEnemyDeath += OnAnyEnemyDeathUpdate;
+			_instance               =  this;
 			_audioSource           =  GetComponent<AudioSource>();
 			scoreText.font         =  inGameUI.inGameFont;
 			score.font             =  inGameUI.inGameFont;
@@ -100,12 +101,12 @@ namespace _Project.Scripts.UI.Score
 				StartCoroutine(StartComboTimeRoutine());
 		}
 
-		public static bool GiveScore(ScoreType type) => instance.ApplyScore(type);
+		public static bool GiveScore(ScoreType type) => _instance.ApplyScore(type);
 
 		public static bool GiveScore(ScoreType type, object argument) =>
 			type == ScoreType.EnemyKill && argument is Vector3 pos
-				? instance.TextPopUps(pos) & instance.ApplyScore(type)
-				: instance.ApplyScore(type);
+				? _instance.TextPopUps(pos) & _instance.ApplyScore(type)
+				: _instance.ApplyScore(type);
 
 		private bool TextPopUps(Vector3 position)
 		{
