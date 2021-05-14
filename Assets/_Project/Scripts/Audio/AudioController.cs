@@ -8,7 +8,6 @@ namespace _Project.Scripts.Audio
 		private readonly AudioSource _audioSourceSFX;
 		private readonly AudioSource _audioSourceBGM;
 
-
 		public AudioController()
 		{
 			var audioPlayerObj = new GameObject();
