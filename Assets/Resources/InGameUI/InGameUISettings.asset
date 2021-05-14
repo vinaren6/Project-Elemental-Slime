@@ -18,7 +18,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
   - name: Weak
     fontSizeModifier: 0.9
-    color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   - name: Effective
     fontSizeModifier: 1.1
     color: {r: 1, g: 0.8753972, b: 0, a: 1}
