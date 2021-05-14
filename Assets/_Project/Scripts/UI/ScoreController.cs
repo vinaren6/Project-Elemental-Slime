@@ -43,6 +43,11 @@ namespace _Project.Scripts.UI
 			score.text        =  _displayedScore.ToString();
 		}
 
+		private void OnDestroy()
+		{
+			Health.onAnyEnemyDeath -= OnAnyEnemyDeathUpdate;
+		}
+
 		/// <summary>
 		///  Attempt to spend a amount of score.
 		/// </summary>
