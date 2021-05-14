@@ -1,19 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Audio
 {
 	public class AudioController : IAudio
 	{
-		private GameObject _audioPlayerObj;
-
-		private AudioSource _audioSourceSFX, _audioSourceBGM;
+		private readonly AudioSource _audioSourceSFX;
+		private readonly AudioSource _audioSourceBGM;
 
 
 		public AudioController()
 		{
-			_audioPlayerObj      ??= new GameObject();
-			_audioSourceSFX      ??= _audioPlayerObj.AddComponent<AudioSource>();
-			_audioSourceBGM      ??= _audioPlayerObj.AddComponent<AudioSource>();
+			var audioPlayerObj = new GameObject();
+			UnityEngine.Object.DontDestroyOnLoad(audioPlayerObj);
+			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
+			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM.loop =   true;
 		}
 
@@ -48,7 +49,10 @@ namespace _Project.Scripts.Audio
 			StopAllBGM();
 		}
 
-		public void UpdateVolume(AudioType audioType, float volume) { }
+		public void UpdateVolume(AudioType audioType, float volume)
+		{
+			throw new NotImplementedException();
+		}
 		
 	}
 }
