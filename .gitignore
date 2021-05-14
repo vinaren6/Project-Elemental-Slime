@@ -39,3 +39,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 .vsconfig
+UserSettings/EditorUserSettings.asset
+UserSettings/EditorUserSettings.asset
+UserSettings/EditorUserSettings.asset
