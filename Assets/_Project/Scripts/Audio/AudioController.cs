@@ -8,10 +8,10 @@ namespace _Project.Scripts.Audio
 		private readonly AudioSource _audioSourceSFX;
 		private readonly AudioSource _audioSourceBGM;
 
-
 		public AudioController()
 		{
 			var audioPlayerObj = new GameObject();
+			audioPlayerObj.transform.name = "Audio Sources";
 			UnityEngine.Object.DontDestroyOnLoad(audioPlayerObj);
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();

@@ -34,7 +34,8 @@ namespace _Project.Scripts.Abilities
             if (_particleSystem.isPlaying)
                 return;
             
-            StartCoroutine(SplashRoutine());
+            if (gameObject.activeInHierarchy)
+                StartCoroutine(SplashRoutine());
         }
 
         public void StopEffect()

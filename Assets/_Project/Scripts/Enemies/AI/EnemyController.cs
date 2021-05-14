@@ -172,10 +172,10 @@ namespace _Project.Scripts.Enemies.AI
 			GameObject EnemyMesh = Instantiate(currentEnemyElementalStats.mesh, transform.position, Quaternion.identity);
 			EnemyMesh.transform.SetParent(transform.Find("Graphics"));
 
-			// for (int i = 0; i < EnemyMesh.transform.childCount; i++)
-			// {
-			// 	EnemyMesh.transform.GetChild(i).localScale = Vector3.one;
-			// }
+			for (int i = 0; i < EnemyMesh.transform.childCount; i++)
+			{
+				EnemyMesh.transform.GetChild(i).localScale = Vector3.one;
+			}
 			
 			_animator = EnemyMesh.AddComponent<Animator>();
 			_animator.runtimeAnimatorController = currentEnemyElementalStats.animatorController;

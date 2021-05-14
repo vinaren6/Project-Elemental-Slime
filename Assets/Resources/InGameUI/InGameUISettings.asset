@@ -25,7 +25,7 @@ MonoBehaviour:
   - name: Heal
     fontSizeModifier: 1
     color: {r: 0, g: 1, b: 0.06795335, a: 1}
-  inGameFont: {fileID: 11400000, guid: a5a9117607a98874283e867ef4a910d4, type: 2}
+  inGameFont: {fileID: 11400000, guid: 24871cc9844407e478578285072eb3e6, type: 2}
   damageNumberFontSizeBase: 1
   killTextFontSize: 1.3
   killTextColor: {r: 1, g: 0, b: 0.007147789, a: 1}
