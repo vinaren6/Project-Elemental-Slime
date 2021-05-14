@@ -62,7 +62,8 @@ namespace _Project.Scripts.UI.Score
 
 		public void UpdateGameOverScoreText()
 		{
-			score.text         = _totalScore.ToString();
+			//score.text         = _totalScore.ToString();
+			score.transform.parent.gameObject.SetActive(false);
 			gameOverScore.text = _totalScore.ToString();
 		}
 
