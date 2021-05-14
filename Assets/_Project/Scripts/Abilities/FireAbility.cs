@@ -101,8 +101,14 @@ namespace _Project.Scripts.Abilities
 		public bool IsInRange()
 		{
 			// TODO Better calc for checking range.
+
+			PlayerController controller = FindObjectOfType<PlayerController>();
 			
-			Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
+			if (!controller)
+			{
+				return false;
+			}
+			Transform p = controller.transform;
 
 			return Vector3.Distance(transform.position, p.position) < 10f;
 		}
