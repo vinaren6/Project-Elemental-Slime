@@ -2,6 +2,7 @@
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Player
@@ -10,6 +11,8 @@ namespace _Project.Scripts.Player
 	{
 		public static ElementalSystemTypeCurrent StaticPlayerElementType;
 
+		public UnityEvent onDropPickUp;
+		
 		[SerializeField] private AudioClip pickUpSFX;
 		[SerializeField] private AudioClip switchSFX;
 		[SerializeField] private InputActionAsset           controls;
@@ -43,6 +46,8 @@ namespace _Project.Scripts.Player
 		{
 			if (!other.CompareTag("Drop")) return;
 
+			onDropPickUp.Invoke();
+			
 			var comp = other.GetComponent<ElementalSystemTypeCurrent>();
 			if (comp.Type == elementType.Type) {
 				if (comp is ElementalSystemTypeCurrentFullPickup) return;

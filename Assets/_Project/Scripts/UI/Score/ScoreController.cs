@@ -59,8 +59,24 @@ namespace _Project.Scripts.UI.Score
 			return true;
 		}
 
-		public void UpdateGameOverScoreText() => gameOverScore.text = _totalScore.ToString();
+		public void UpdateGameOverScoreText()
+		{
+			score.text         = _totalScore.ToString();
+			gameOverScore.text = _totalScore.ToString();
+		}
 
+		public void OnDropPickupUpdateScore()
+		{
+			if (_displayedScore == _currentScore) {
+				_currentScore += 5;
+				_totalScore   += 5;
+				StartCoroutine(UpdateScoreRoutine());
+			} else {
+				_currentScore += 5;
+				_totalScore   += 5;
+			}
+		}
+		
 		private void OnAnyEnemyDeathUpdate(Vector3 position)
 		{
 			killFeedbackPool.SpawnKillTextFromPool(position);

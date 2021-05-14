@@ -1017,6 +1017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2910220757564529307, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: onDropPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 322116678216584849}
     - target: {fileID: 4451815793777624685, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
