@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 2
   ability: {fileID: 242483482085332295, guid: 1f7e2a8084e48aa4287077ae23127515, type: 3}
-  maxHitPoints: 200
+  maxHitPoints: 100
   moveSpeedMultiplier: 1
   attackStrengthMultiplier: 0.3
   attackRateMultiplier: 2

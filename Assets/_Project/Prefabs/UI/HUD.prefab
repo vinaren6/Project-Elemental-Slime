@@ -993,7 +993,7 @@ MonoBehaviour:
   comboMeterUI: {fileID: 3131286917355957932}
   killScore: 25
   comboAdditionPerKill: 1
-  comboTimeLimit: 10
+  comboTimeLimit: 20
   maxCombo: 3
 --- !u!82 &816136264200114586
 AudioSource:
