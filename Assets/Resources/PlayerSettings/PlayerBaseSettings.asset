@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitPoints: 150
   moveSpeed: 18
-  attackStrength: 10
-  attackCooldownTime: 0.4
-  projectileSpeed: 10
+  attackStrength: 20
+  attackCooldownTime: 0.6
+  projectileSpeed: 20
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2
   damageOverTimeTotalTicks: 4
-  abilityDamageMultiplier: 2
+  abilityDamageMultiplier: 3
   AbilityCooldownTime: 3
