@@ -10,14 +10,19 @@ namespace _Project.Scripts.UI.ScriptableObjects
 		[System.Serializable]    
 		public class DamageNumber 
 		{
-			public string name;
-			public float  fontSizeModifier;
-			public Color  color;
+			public string   name;
+			public float    fontSizeModifier;
+			public Material fontMaterial;
+			public Color    color;
 		}
 
 		public List<DamageNumber> damageNumbers = new List<DamageNumber>();
 		public TMP_FontAsset      inGameFont;
-
+		public Material           playerDamageMaterial;
+		public Material           enemyDamageMaterial;
+		public Color              enemyDamageColor;
+		public Color              playerDamageColor;
+		
 		public float damageNumberFontSizeBase = 1f;
 		public float killTextFontSize         = 1.3f;
 		public Color killTextColor;
@@ -35,14 +40,34 @@ namespace _Project.Scripts.UI.ScriptableObjects
 			return damageNumberFontSizeBase;
 		}
 
-		public Color GetDamageNumberColor(string effectiveType) 
+		public Color GetDamageNumberColor(DamageType damageType)
+		{
+			return damageType switch {
+				DamageType.Enemy  => enemyDamageColor,
+				DamageType.Player => playerDamageColor,
+				DamageType.Heal   => damageNumbers.Find(c => c.name == "Heal").color,
+				_                 => Color.white
+			};
+		}
+		
+		public Material GetDamageNumberMaterial(string effectiveType) 
 		{
 			DamageNumber entry = damageNumbers.Find(c => c.name == effectiveType);
 			if (entry != null) {
-				return entry.color;
+				return entry.fontMaterial;
 			}
 			Debug.Log("Couldn't get damageNumber.color from InGameUI");
-			return Color.white;
+			return null;
 		}
+		
+		// public Color GetDamageNumberColor(string effectiveType) 
+		// {
+		// 	DamageNumber entry = damageNumbers.Find(c => c.name == effectiveType);
+		// 	if (entry != null) {
+		// 		return entry.color;
+		// 	}
+		// 	Debug.Log("Couldn't get damageNumber.color from InGameUI");
+		// 	return Color.white;
+		// }
 	}
 }

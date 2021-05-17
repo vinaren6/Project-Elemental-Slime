@@ -3,6 +3,7 @@ using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies;
 using _Project.Scripts.Managers;
+using _Project.Scripts.Player;
 using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,7 +44,7 @@ namespace _Project.Scripts.HealthSystem
 			int   damageToReceive     = Mathf.CeilToInt(elementalMultiplier * damage);
 			HitPoints -= damageToReceive;
 			ServiceLocator.Pools.SpawnFromPool(
-				PoolType.DamageNumber, transform.position, damageToReceive, GetEffectiveType(elementalMultiplier));
+				PoolType.DamageNumber, transform.position, damageToReceive, GetEffectiveType(elementalMultiplier), GetDamageType());
 			onReceiveDamage.Invoke(RemainingPercent);
 			if (!(HitPoints <= 0))
 			{
@@ -74,7 +75,7 @@ namespace _Project.Scripts.HealthSystem
 				_maxHitPoints - HitPoints, elementalMultiplier * hpRegain);
 			HitPoints += hpToReceive;
 			ServiceLocator.Pools.SpawnFromPool(
-				PoolType.DamageNumber, transform.position, (int) hpToReceive, EffectiveType.Heal);
+				PoolType.DamageNumber, transform.position, (int) hpToReceive, EffectiveType.Heal, DamageType.Heal);
 			onReceiveHealth.Invoke(RemainingPercent);
 		}
 		
@@ -85,6 +86,14 @@ namespace _Project.Scripts.HealthSystem
 			if (elementalMultiplier > 1)
 				return EffectiveType.Effective;
 			return EffectiveType.Neutral;
+		}
+
+		private DamageType GetDamageType()
+		{
+			if (TryGetComponent<PlayerController>(out PlayerController pc))
+				return DamageType.Player;
+			
+			return DamageType.Enemy;
 		}
 
 		public void KillPlayer()

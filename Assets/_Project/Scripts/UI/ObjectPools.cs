@@ -39,26 +39,26 @@ namespace _Project.Scripts.UI
 			}
 		}
 
-		public void SpawnFromPool(PoolType type, Vector3 position, int damage, EffectiveType colorType)
+		public void SpawnFromPool(PoolType poolType, Vector3 position, int damage, EffectiveType colorType, DamageType damageType)
 		{
-			if (type != PoolType.DamageNumber) {
+			if (poolType != PoolType.DamageNumber) {
 				Debug.Log("Wrong PoolType in this function!");
 				return;
 			}
 			
-			GameObject objectToSpawn = PoolDictionary[type].Dequeue();
-			objectToSpawn.GetComponent<DamageNumberUI>().ShowDamage(position, damage, colorType);
+			GameObject objectToSpawn = PoolDictionary[poolType].Dequeue();
+			objectToSpawn.GetComponent<DamageNumberUI>().ShowDamage(position, damage, colorType, damageType);
 		}
 
-		public void SpawnFromPool(PoolType type, Vector3 position)
+		public void SpawnFromPool(PoolType poolType, Vector3 position)
 		{
-			if (type == PoolType.DamageNumber) {
+			if (poolType == PoolType.DamageNumber) {
 				Debug.Log("Wrong PoolType in this function!");
 				return;
 			}
 			
-			GameObject objectToSpawn = PoolDictionary[type].Dequeue();
-			if(type == PoolType.KillText) {
+			GameObject objectToSpawn = PoolDictionary[poolType].Dequeue();
+			if(poolType == PoolType.KillText) {
 				objectToSpawn.GetComponent<KillTextUI>().ShowKillText(position);
 			}
 			else {
