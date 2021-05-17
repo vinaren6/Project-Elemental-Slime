@@ -12,6 +12,7 @@ namespace _Project.Scripts.Abilities
 		
 		[SerializeField] private Collider      selfDamageCollider;
 		[SerializeField] private AnimationCurve velocityCurve;
+		[SerializeField] private GameObject effectObject;
 		
 		private NavMeshAgent _agent;
 		private BoxCollider _attackTrigger;
@@ -45,6 +46,7 @@ namespace _Project.Scripts.Abilities
 			_agent = GetComponentInParent<NavMeshAgent>();
 			_attackTrigger = GetComponent<BoxCollider>();
 			_transform = transform;
+			effectObject.SetActive(false);
 		}
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
@@ -228,19 +230,24 @@ namespace _Project.Scripts.Abilities
 		private void ActivateAttackTrigger()
 		{
 			_attackTrigger.enabled = true;
+			
 			if (CompareTag("Player"))
 				selfDamageCollider.enabled = false;
 
 			_agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+			effectObject.SetActive(true);
 		}
 
 		private void DeactivateAttackTrigger()
 		{
 			_attackTrigger.enabled = false;
+			
 			if (CompareTag("Player"))
 				selfDamageCollider.enabled = true;
+			
 			_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
 			_canAttack = true;
+			effectObject.SetActive(false);
 		}
 		
 		#endregion
