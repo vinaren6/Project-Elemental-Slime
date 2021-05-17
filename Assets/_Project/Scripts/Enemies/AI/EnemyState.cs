@@ -10,6 +10,10 @@ namespace _Project.Scripts.Enemies.AI
 		protected EnemyStateMachine _stateMachine;
 		protected Transform         _transform;
 
+		private Vector3 _direction;
+		private Quaternion _lookRotation;
+
+		private float _rotationSpeed;
 		private float _nextDamageOverTime;
 		private int _damageOverTimeTicks;
 
@@ -18,6 +22,8 @@ namespace _Project.Scripts.Enemies.AI
 			EnemyController        = enemyController;
 			_stateMachine = stateMachine;
 			_transform    = enemyController.transform;
+
+			_rotationSpeed = 10f;
 		}
 
 		public virtual void Enter()
@@ -28,23 +34,18 @@ namespace _Project.Scripts.Enemies.AI
 		public virtual void LogicUpdate()
 		{
 			EnemyController.Animator.SetBool("IsMoving", EnemyController.NavMeshAgent.velocity.magnitude > 0.1f);
-
-			// EnemyController.NavMeshAgent.velocity = _transform.forward * (120f * Time.deltaTime);
-			// _transform.rotation = Quaternion.LookRotation(EnemyController.Target.position);
-
-			Transform lookTransform = _transform;
-			lookTransform.LookAt(EnemyController.Target.position, Vector3.up);
 			
-			// _transform.LookAt(EnemyController.Target.position, Vector3.up);
+			_direction = (EnemyController.Target.position - _transform.position).normalized;
+			_lookRotation = Quaternion.LookRotation(_direction);
+			_transform.rotation = Quaternion.Slerp(_transform.rotation, _lookRotation, _rotationSpeed * Time.deltaTime);
+			
+			EnemyController.NavMeshAgent.updateRotation = false;
+			// EnemyController.NavMeshAgent.updatePosition = false;
 
 			float speed = 6f * EnemyController.CurrentEnemyElementalStats.moveSpeedMultiplier;
 			
-			_transform.eulerAngles =
-				Vector3.RotateTowards(_transform.eulerAngles,
-					lookTransform.eulerAngles,
-					5f,
-					5f);
-			EnemyController.NavMeshAgent.Move(_transform.forward * (speed * Time.deltaTime));
+			// EnemyController.NavMeshAgent.Move(_transform.forward * (speed * Time.deltaTime));
+			// EnemyController.NavMeshAgent.velocity = _transform.forward * (speed * Time.deltaTime);
 			
 			if (!EnemyController.IsBurning)
 				return;
@@ -67,7 +68,7 @@ namespace _Project.Scripts.Enemies.AI
 			_damageOverTimeTicks = 0;
 			EnemyController.IsBurning = false;
 		}
-		
+
 		public virtual void Exit() { }
 	}
 

@@ -119,10 +119,12 @@ namespace _Project.Scripts.Abilities
 			ActivateAttackTrigger();
 
 			float time = 0f;
-			float attackTime = 0.1f;
+			float attackTime = 0.2f;
 
 			Vector3 direction = transform.forward;
 			float speed = 120f;
+			
+			// Debug.Log($"atkTime: {_attackDuration} + 0.25 = {_attackDuration + 0.25f}");
 
 			while (time <= _attackDuration)
 			{
@@ -136,6 +138,20 @@ namespace _Project.Scripts.Abilities
 				time += Time.deltaTime;
 				
 				yield return null;
+			}
+
+			if (CompareTag("Enemy"))
+			{
+				time = 0f;
+				
+				while (time < 0.25f)
+				{
+					yield return null;
+					
+					time += Time.deltaTime;
+				}
+				
+				// Debug.Log($"FREE!!");
 			}
 
 			DeactivateAttackTrigger();
@@ -197,6 +213,7 @@ namespace _Project.Scripts.Abilities
 
 		public float GetAttackTime()
 		{
+			// Debug.Log($"Get Attack TiME: {_attackDuration + _attackCooldownTime}");
 			return _attackDuration + _attackCooldownTime;
 		}
 
@@ -211,14 +228,17 @@ namespace _Project.Scripts.Abilities
 		private void ActivateAttackTrigger()
 		{
 			_attackTrigger.enabled = true;
-			selfDamageCollider.enabled = false;
+			if (CompareTag("Player"))
+				selfDamageCollider.enabled = false;
+
 			_agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 		}
 
 		private void DeactivateAttackTrigger()
 		{
 			_attackTrigger.enabled = false;
-			selfDamageCollider.enabled = true;
+			if (CompareTag("Player"))
+				selfDamageCollider.enabled = true;
 			_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
 			_canAttack = true;
 		}
