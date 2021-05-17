@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Audio.ScriptableObjects
@@ -27,10 +28,10 @@ namespace _Project.Scripts.Audio.ScriptableObjects
 		{
 			if (clips.Length == 0) return;
 
-			audioSource.volume = Random.Range(volume.minValue, volume.maxValue);
-			audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
-			AudioClip clip = clips[Random.Range(0, clips.Length)];
-			audioSource.PlayOneShot(clip);
+			audioSource.pitch = Random.Range(pitch.minValue, pitch.maxValue);
+			audioSource.PlayOneShot(
+				clips[Random.Range(0, clips.Length)],
+				Random.Range(volume.minValue, volume.maxValue));
 		}
 	}
 }

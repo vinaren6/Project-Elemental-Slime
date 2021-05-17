@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using _Project.Scripts.Audio.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -11,11 +11,12 @@ namespace _Project.Scripts.UI.Score
 	public class ScoreController : MonoBehaviour
 	{
 		private static           ScoreController  _instance;
+		
 		[SerializeField] private InGameUI         inGameUI;
 		[SerializeField] private TMP_Text         scoreText;
 		[SerializeField] private TMP_Text         score;
 		[SerializeField] private TMP_Text         gameOverScore;
-		[SerializeField] private AudioEvent       scoreTickSFX;
+		[SerializeField] private AudioClip        scoreTickSFX;
 		[SerializeField] private KillFeedbackPool killFeedbackPool;
 		[SerializeField] private ComboMeterUI     comboMeterUI;
 
@@ -37,7 +38,7 @@ namespace _Project.Scripts.UI.Score
 		private void Awake()
 		{
 			Health.onAnyEnemyDeath += OnAnyEnemyDeathUpdate;
-			_instance               =  this;
+			_instance              =  this;
 			_audioSource           =  GetComponent<AudioSource>();
 			scoreText.font         =  inGameUI.inGameFont;
 			score.font             =  inGameUI.inGameFont;
@@ -62,14 +63,13 @@ namespace _Project.Scripts.UI.Score
 
 		public void UpdateGameOverScoreText()
 		{
-			//score.text         = _totalScore.ToString();
 			score.transform.parent.gameObject.SetActive(false);
 			gameOverScore.text = _totalScore.ToString();
 		}
 		
 		public void GivePickupScore() => GiveScore(ScoreType.Pickup);
 
-		private void OnAnyEnemyDeathUpdate(Vector3 position) => GiveScore(ScoreType.Pickup, position);
+		private void OnAnyEnemyDeathUpdate(Vector3 position) => GiveScore(ScoreType.EnemyKill, position);
 
 		public static bool GiveScore(ScoreType type) => _instance.ApplyScore(type);
 
@@ -90,25 +90,25 @@ namespace _Project.Scripts.UI.Score
 
 			return true;
 		}
+		
 		private bool ApplyScore(ScoreType type)
 		{
-			int delta = type switch {
+			int scoreDelta = type switch {
 				ScoreType.EnemyKill => killScore * _comboMultiplier,
 				ScoreType.Pickup    => pickupScore,
 				_                   => 1
 			};
-			_totalScore += delta;
+			_totalScore += scoreDelta;
 
 			if (_displayedScore == _currentScore) {
-				_currentScore += delta;
+				_currentScore += scoreDelta;
 				StartCoroutine(UpdateScoreRoutine());
 			} else
-				_currentScore += delta;
+				_currentScore += scoreDelta;
 
 			if (_comboMultiplier < maxCombo)
 				_comboMultiplier += comboAdditionPerKill;
-
-
+			
 			return true;
 		}
 
@@ -118,8 +118,7 @@ namespace _Project.Scripts.UI.Score
 		{
 			while (_displayedScore < _currentScore) {
 				UpdateScore(++_displayedScore);
-				//scoreTickSFX.PlayOneShot(_audioSource);
-				// ServiceLocator.Audio.PlaySFX(scoreTickSFX);
+				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.1f);
 				yield return new WaitForSeconds(0.002f + .75f / (_currentScore - _displayedScore));
 			}
 		}

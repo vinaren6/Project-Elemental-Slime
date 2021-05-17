@@ -7,6 +7,7 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceSFX;
 		private readonly AudioSource _audioSourceBGM;
+		private          float       _masterVolume = 1f;
 
 		public AudioController()
 		{
@@ -15,7 +16,7 @@ namespace _Project.Scripts.Audio
 			UnityEngine.Object.DontDestroyOnLoad(audioPlayerObj);
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
-			_audioSourceBGM.loop =   true;
+			_audioSourceBGM.loop = true;
 		}
 
 		public void PlaySFX(AudioClip audioClip, float volume = 1f) => _audioSourceSFX.PlayOneShot(audioClip, volume);
@@ -26,8 +27,10 @@ namespace _Project.Scripts.Audio
 				_audioSourceBGM.PlayOneShot(audioClip, volume);
 				return;
 			}
+
+			if (volume != 0)
+				_audioSourceBGM.volume = volume * _masterVolume;
 			_audioSourceBGM.clip   = audioClip;
-			_audioSourceBGM.volume = volume;
 			_audioSourceBGM.Play();
 		}
 
@@ -51,8 +54,22 @@ namespace _Project.Scripts.Audio
 
 		public void UpdateVolume(AudioType audioType, float volume)
 		{
-			throw new NotImplementedException();
+			switch (audioType) {
+				case AudioType.Master:
+					float masterVolumeDelta = volume / _masterVolume;
+					_masterVolume          =  volume;
+					_audioSourceBGM.volume *= masterVolumeDelta;
+					_audioSourceSFX.volume *= masterVolumeDelta;
+					return;
+				case AudioType.BGM:
+					_audioSourceBGM.volume = volume * _masterVolume;
+					return;
+				case AudioType.SFX:
+					_audioSourceSFX.volume = volume * _masterVolume;
+					return;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(audioType), audioType, null);
+			}
 		}
-		
 	}
 }
