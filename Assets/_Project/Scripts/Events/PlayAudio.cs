@@ -10,6 +10,13 @@ namespace _Project.Scripts.Events
         [SerializeField] private AudioClip audioClip;
         [SerializeField] private AudioType audioType;
 
+        [SerializeField] private bool playOnStart;
+
+        private void Start()
+        {
+            if (playOnStart) Play();
+        }
+
         public void Play()
         {
             switch (audioType)
