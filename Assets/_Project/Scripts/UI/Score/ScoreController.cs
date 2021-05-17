@@ -80,10 +80,10 @@ namespace _Project.Scripts.UI.Score
 
 		private bool TextPopUps(Vector3 position)
 		{
-			killFeedbackPool.SpawnKillTextFromPool(position);
+			ServiceLocator.Pools.SpawnFromPool(PoolType.KillText, position);
 
 			if (_comboTimeRemaining > 0) {
-				killFeedbackPool.SpawnComboTextFromPool(position);
+				ServiceLocator.Pools.SpawnFromPool(PoolType.ComboText, position);
 				_comboTimeRemaining = comboTimeLimit;
 			} else
 				StartCoroutine(StartComboTimeRoutine());
@@ -118,7 +118,7 @@ namespace _Project.Scripts.UI.Score
 		{
 			while (_displayedScore < _currentScore) {
 				UpdateScore(++_displayedScore);
-				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.1f);
+				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.04f);
 				yield return new WaitForSeconds(0.002f + .75f / (_currentScore - _displayedScore));
 			}
 		}

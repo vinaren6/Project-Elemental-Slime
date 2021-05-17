@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.UI
 {
-	public class DamageNumberPool : MonoBehaviour
+	public class DamageNumberPoolOLD : MonoBehaviour
 	{
 		[SerializeField] private GameObject numberPrefab;
 		[SerializeField] private int        poolSize = 100;
@@ -13,7 +13,7 @@ namespace _Project.Scripts.UI
 
 		private void Awake()
 		{
-			ServiceLocator.ProvideDamageNumberPool(this);
+			// ServiceLocator.ProvideDamageNumberPool(this);
 		}
 
 		private void Start()
