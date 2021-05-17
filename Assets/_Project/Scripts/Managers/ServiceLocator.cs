@@ -11,15 +11,15 @@ namespace _Project.Scripts.Managers
         private static GameManager      _game;
         private static IAudio           _audio;
         private static IHUD             _hud;
-        private static DamageNumberPool _damageNumbers;
-
+        private static ObjectPools      _pools;
+        
         #region Properties
 
-        public static GameManager      Game             => _game;
-        public static IAudio           Audio            => _audio;
-        public static IHUD             HUD              => _hud;
-        public static DamageNumberPool DamageNumbers    => _damageNumbers;
-        
+        public static GameManager Game  => _game;
+        public static IAudio      Audio => _audio;
+        public static IHUD        HUD   => _hud;
+        public static ObjectPools Pools => _pools;
+
         #endregion
 
         #endregion
@@ -56,9 +56,9 @@ namespace _Project.Scripts.Managers
             _hud = hud;
         }
         
-        public static void ProvideDamageNumberPool(DamageNumberPool damageNumbers)
+        public static void ProvideObjectPools(ObjectPools objectPools)
         {
-            _damageNumbers = damageNumbers;
+            _pools = objectPools;
         }
 
         #endregion

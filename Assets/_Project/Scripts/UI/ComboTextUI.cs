@@ -1,3 +1,4 @@
+using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -11,13 +12,11 @@ namespace _Project.Scripts.UI
 	
 		private Transform        _transform;
 		private Animator         _animator;
-		private KillFeedbackPool _killFeedbackPool;
 
 		private void Awake()
 		{
 			_transform         = transform;
 			_animator          = GetComponent<Animator>();
-			_killFeedbackPool  = GetComponentInParent<KillFeedbackPool>();
 			comboText.font     = inGameUI.inGameFont;
 			comboText.fontSize = inGameUI.comboTextFontSize;
 			comboText.color    = inGameUI.comboTextColor;
@@ -31,7 +30,7 @@ namespace _Project.Scripts.UI
     
 		public void AnimationEnd()
 		{
-			_killFeedbackPool.ReturnComboTextToPool(gameObject);
+			ServiceLocator.Pools.ReturnObjectToPool(PoolType.ComboText, gameObject);
 		}
 	}
 }
