@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Audio.ScriptableObjects
@@ -12,6 +13,9 @@ namespace _Project.Scripts.Audio.ScriptableObjects
 
 		[MinMaxRange(0, 2)] public RangedFloat pitch;
 
+		private bool _havePitch;
+		private void Awake() => _havePitch = !(pitch.minValue == 1 && pitch.maxValue == 1);
+
 		public void Play(AudioSource audioSource)
 		{
 			if (audioSource.isPlaying) return;
@@ -19,18 +23,18 @@ namespace _Project.Scripts.Audio.ScriptableObjects
 
 			audioSource.clip   = clips[Random.Range(0, clips.Length)];
 			audioSource.volume = Random.Range(volume.minValue, volume.maxValue);
-			audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
+			if (_havePitch) audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
 			audioSource.Play();
 		}
 
 		public void PlayOneShot(AudioSource audioSource)
 		{
 			if (clips.Length == 0) return;
-
-			audioSource.volume = Random.Range(volume.minValue, volume.maxValue);
-			audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
-			AudioClip clip = clips[Random.Range(0, clips.Length)];
-			audioSource.PlayOneShot(clip);
+			
+			if (_havePitch) audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
+			audioSource.PlayOneShot(
+				clips[Random.Range(0, clips.Length)], 
+				Random.Range(volume.minValue, volume.maxValue));
 		}
 	}
 }
