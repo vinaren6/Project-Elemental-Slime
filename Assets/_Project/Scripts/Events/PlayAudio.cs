@@ -9,8 +9,8 @@ namespace _Project.Scripts.Events
     {
         [SerializeField] private AudioClip audioClip;
         [SerializeField] private AudioType audioType;
-
-        [SerializeField] private bool playOnStart;
+        [SerializeField] private float     volume = 1;
+        [SerializeField] private bool      playOnStart;
 
         private void Start()
         {
@@ -22,10 +22,10 @@ namespace _Project.Scripts.Events
             switch (audioType)
             {
                 case AudioType.SFX:
-                    ServiceLocator.Audio.PlaySFX(audioClip);
+                    ServiceLocator.Audio.PlaySFX(audioClip, volume);
                     break;
                 case AudioType.BGM:
-                    ServiceLocator.Audio.PlayBGM(audioClip);
+                    ServiceLocator.Audio.PlayBGM(audioClip, volume);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
