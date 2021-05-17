@@ -28,14 +28,14 @@ MonoBehaviour:
   - name: Heal
     fontSizeModifier: 1
     fontMaterial: {fileID: 2100000, guid: 9fc35b9af7772de4cb0a9c46d9191b0c, type: 2}
-    color: {r: 0, g: 1, b: 0.06795335, a: 1}
+    color: {r: 0, g: 1, b: 0.050980397, a: 1}
   inGameFont: {fileID: 11400000, guid: 963af747b985c10428d4d2635f164d66, type: 2}
   playerDamageMaterial: {fileID: 2100000, guid: 98b56e76fa58a164e81a298afb4c7deb, type: 2}
   enemyDamageMaterial: {fileID: 2100000, guid: 37e6d8d19ba50b54a870320727e3e786, type: 2}
   enemyDamageColor: {r: 1, g: 1, b: 1, a: 1}
-  playerDamageColor: {r: 1, g: 0.16484332, b: 0, a: 1}
+  playerDamageColor: {r: 1, g: 0.16470589, b: 0, a: 1}
   damageNumberFontSizeBase: 1.2
   killTextFontSize: 1.4
-  killTextColor: {r: 0.7893484, g: 0.43867922, b: 1, a: 1}
+  killTextColor: {r: 0.6745098, g: 0.45882356, b: 0.9607844, a: 1}
   comboTextFontSize: 1.6
-  comboTextColor: {r: 0.6985024, g: 0.19339621, b: 1, a: 1}
+  comboTextColor: {r: 0.4784314, g: 0.30588236, b: 0.69803923, a: 1}
