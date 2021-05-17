@@ -13,9 +13,6 @@ namespace _Project.Scripts.Audio.ScriptableObjects
 
 		[MinMaxRange(0, 2)] public RangedFloat pitch;
 
-		private bool _havePitch;
-		private void Awake() => _havePitch = !(pitch.minValue == 1 && pitch.maxValue == 1);
-
 		public void Play(AudioSource audioSource)
 		{
 			if (audioSource.isPlaying) return;
@@ -23,17 +20,17 @@ namespace _Project.Scripts.Audio.ScriptableObjects
 
 			audioSource.clip   = clips[Random.Range(0, clips.Length)];
 			audioSource.volume = Random.Range(volume.minValue, volume.maxValue);
-			if (_havePitch) audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
+			audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
 			audioSource.Play();
 		}
 
 		public void PlayOneShot(AudioSource audioSource)
 		{
 			if (clips.Length == 0) return;
-			
-			if (_havePitch) audioSource.pitch  = Random.Range(pitch.minValue,  pitch.maxValue);
+
+			audioSource.pitch = Random.Range(pitch.minValue, pitch.maxValue);
 			audioSource.PlayOneShot(
-				clips[Random.Range(0, clips.Length)], 
+				clips[Random.Range(0, clips.Length)],
 				Random.Range(volume.minValue, volume.maxValue));
 		}
 	}
