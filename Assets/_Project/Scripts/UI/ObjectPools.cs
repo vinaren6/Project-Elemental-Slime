@@ -46,6 +46,11 @@ namespace _Project.Scripts.UI
 				return;
 			}
 			
+			if (PoolDictionary[poolType].Count <= 0) {
+				Debug.Log(poolType + "-Pool is empty");
+				return;
+			}
+
 			GameObject objectToSpawn = PoolDictionary[poolType].Dequeue();
 			objectToSpawn.GetComponent<DamageNumberUI>().ShowDamage(position, damage, colorType, damageType);
 		}
@@ -54,6 +59,11 @@ namespace _Project.Scripts.UI
 		{
 			if (poolType == PoolType.DamageNumber) {
 				Debug.Log("Wrong PoolType in this function!");
+				return;
+			}
+
+			if (PoolDictionary[poolType].Count <= 0) {
+				Debug.Log(poolType + "-Pool is empty");
 				return;
 			}
 			

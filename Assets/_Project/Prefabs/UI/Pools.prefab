@@ -83,11 +83,11 @@ MonoBehaviour:
     parent: {fileID: 5080220882799809080}
   - poolType: 1
     prefab: {fileID: 9098966068800910532, guid: d7e0101858c4e404eb8045f6819a9a0b, type: 3}
-    size: 10
+    size: 20
     parent: {fileID: 6997489729345123377}
   - poolType: 2
     prefab: {fileID: 9098966068800910532, guid: 50cf61b6449286347840c85c4563374e, type: 3}
-    size: 10
+    size: 20
     parent: {fileID: 6885313281133062427}
 --- !u!1 &4808097263105047237
 GameObject:
