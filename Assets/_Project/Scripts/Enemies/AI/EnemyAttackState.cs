@@ -26,7 +26,8 @@ namespace _Project.Scripts.Enemies.AI
                     {
                         // Debug.Log($"DEN BORTA! T_T");
                         // if (!EnemyController.Ability.StopLooping)
-                            EnemyController.Ability.Stop(false);
+                        EnemyController.Ability.Stop(false);
+                        EnemyController.Animator.SetBool("IsAttacking", false);
                         _stateMachine.ChangeState(EnemyController.HuntState);
                         return;
                     }
@@ -47,11 +48,13 @@ namespace _Project.Scripts.Enemies.AI
                     // Debug.Log($"KAN INTE ATTACKERA! T_T");
                 }
 
+                EnemyController.Animator.SetBool("IsAttacking", false);
                 _stateMachine.ChangeState(EnemyController.HuntState);
                 return;
             }
             
             // Debug.Log($"{_transform.name} - Attack?");
+            EnemyController.Animator.SetBool("IsAttacking", true);
             EnemyController.Animator.SetTrigger("DoAttack");
             EnemyController.Ability.Execute();
 
