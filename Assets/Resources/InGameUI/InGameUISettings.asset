@@ -15,19 +15,27 @@ MonoBehaviour:
   damageNumbers:
   - name: Neutral
     fontSizeModifier: 1
+    fontMaterial: {fileID: 2100000, guid: 9fc35b9af7772de4cb0a9c46d9191b0c, type: 2}
     color: {r: 1, g: 1, b: 1, a: 1}
   - name: Weak
-    fontSizeModifier: 0.8
+    fontSizeModifier: 0.7
+    fontMaterial: {fileID: 2100000, guid: 98b56e76fa58a164e81a298afb4c7deb, type: 2}
     color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
   - name: Effective
-    fontSizeModifier: 1.2
+    fontSizeModifier: 1.3
+    fontMaterial: {fileID: 2100000, guid: 37e6d8d19ba50b54a870320727e3e786, type: 2}
     color: {r: 1, g: 0.8753972, b: 0, a: 1}
   - name: Heal
     fontSizeModifier: 1
+    fontMaterial: {fileID: 2100000, guid: 9fc35b9af7772de4cb0a9c46d9191b0c, type: 2}
     color: {r: 0, g: 1, b: 0.06795335, a: 1}
   inGameFont: {fileID: 11400000, guid: 963af747b985c10428d4d2635f164d66, type: 2}
-  damageNumberFontSizeBase: 1
+  playerDamageMaterial: {fileID: 2100000, guid: 98b56e76fa58a164e81a298afb4c7deb, type: 2}
+  enemyDamageMaterial: {fileID: 2100000, guid: 37e6d8d19ba50b54a870320727e3e786, type: 2}
+  enemyDamageColor: {r: 1, g: 1, b: 1, a: 1}
+  playerDamageColor: {r: 1, g: 0.16484332, b: 0, a: 1}
+  damageNumberFontSizeBase: 1.2
   killTextFontSize: 1.4
-  killTextColor: {r: 1, g: 0, b: 0.007147789, a: 1}
+  killTextColor: {r: 0.7893484, g: 0.43867922, b: 1, a: 1}
   comboTextFontSize: 1.6
-  comboTextColor: {r: 1, g: 0.7783019, b: 0.93130475, a: 1}
+  comboTextColor: {r: 0.6985024, g: 0.19339621, b: 1, a: 1}

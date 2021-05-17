@@ -20,12 +20,14 @@ namespace _Project.Scripts.UI
             numberText.font = inGameUI.inGameFont;
         }
 
-        public void ShowDamage(Vector3 position, int damage, EffectiveType colorType)
+        public void ShowDamage(Vector3 position, int damage, EffectiveType colorType, DamageType damageType)
         {
-            numberText.text     = damage.ToString();
-            _transform.position = position;
-            numberText.fontSize = inGameUI.GetDamageNumberFontSize(colorType.ToString());
-            numberText.color    = inGameUI.GetDamageNumberColor(colorType.ToString());
+            numberText.text         = damage.ToString();
+            _transform.position     = position;
+            numberText.fontSize     = inGameUI.GetDamageNumberFontSize(colorType.ToString());
+            numberText.fontMaterial = inGameUI.GetDamageNumberMaterial(colorType.ToString());
+            numberText.color        = inGameUI.GetDamageNumberColor(damageType);
+            
             _animator.SetTrigger("Execute");
         }
         
