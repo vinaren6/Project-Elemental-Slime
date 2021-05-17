@@ -73,7 +73,7 @@ namespace _Project.Scripts.Abilities
 			_damage = damage;
 			_isAttacking = false;
 			_damageCooldownTime = 1f;
-			_rockSpawnTime = 0.25f;
+			_rockSpawnTime = 0.33f;
 			
 			SetupPool();
 		}
@@ -109,15 +109,21 @@ namespace _Project.Scripts.Abilities
 			}
 
 			float time = 0f;
+			float duration = 0f;
 
+			if (CompareTag("Enemy"))
+				duration = 1.41f;
+				
 			// Have we spawned all rocks yet?
 			while (rockCount < maxRocks)
 			{
-				if (rocksToSpawn <= 1)
+				if (rocksToSpawn <= 1 || CompareTag("Enemy"))
+				{
 					_agent.velocity = Vector3.zero;
+				}
 
 				// Time to spawn more rocks???	
-				if (time >= _rockSpawnTime)
+				if (time >= _rockSpawnTime * rocksToSpawn && rocksToSpawn <= 3)
 				{
 					// Spawn rock(s)
 					for (int i = 1; i <= rocksToSpawn; i++)
@@ -135,6 +141,13 @@ namespace _Project.Scripts.Abilities
 					time -= _rockSpawnTime;
 				}
 
+				time += Time.deltaTime;
+
+				yield return null;
+			}
+
+			while (time < duration)
+			{
 				time += Time.deltaTime;
 
 				yield return null;

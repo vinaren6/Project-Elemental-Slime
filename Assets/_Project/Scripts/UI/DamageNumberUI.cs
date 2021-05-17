@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
 using TMPro;
@@ -32,7 +31,7 @@ namespace _Project.Scripts.UI
         
         public void AnimationEnd()
         {
-            ServiceLocator.DamageNumbers.ReturnNumberToPool(gameObject);
+            ServiceLocator.Pools.ReturnObjectToPool(PoolType.DamageNumber, gameObject);
         }
     }
 }

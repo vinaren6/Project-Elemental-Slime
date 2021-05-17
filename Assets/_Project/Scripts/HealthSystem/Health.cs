@@ -2,9 +2,7 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies;
-using _Project.Scripts.Enemies.AI;
 using _Project.Scripts.Managers;
-using _Project.Scripts.Player;
 using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,7 +30,6 @@ namespace _Project.Scripts.HealthSystem
 		}
 		public  float HitPoints        { get; set; }
 		public  float RemainingPercent => HitPoints / _maxHitPoints;
-
 		
 		private void Start() => HitPoints = _maxHitPoints;
 
@@ -45,8 +42,8 @@ namespace _Project.Scripts.HealthSystem
 			float elementalMultiplier = ElementalSystemMultiplier.GetMultiplier(type.Type, damageType);
 			int   damageToReceive     = Mathf.CeilToInt(elementalMultiplier * damage);
 			HitPoints -= damageToReceive;
-			ServiceLocator.DamageNumbers.SpawnFromPool(
-				transform.position, damageToReceive, GetEffectiveType(elementalMultiplier));
+			ServiceLocator.Pools.SpawnFromPool(
+				PoolType.DamageNumber, transform.position, damageToReceive, GetEffectiveType(elementalMultiplier));
 			onReceiveDamage.Invoke(RemainingPercent);
 			if (!(HitPoints <= 0))
 			{
@@ -76,8 +73,8 @@ namespace _Project.Scripts.HealthSystem
 			float hpToReceive = Mathf.Min(
 				_maxHitPoints - HitPoints, elementalMultiplier * hpRegain);
 			HitPoints += hpToReceive;
-			ServiceLocator.DamageNumbers.SpawnFromPool(
-				transform.position, (int) hpToReceive, EffectiveType.Heal);
+			ServiceLocator.Pools.SpawnFromPool(
+				PoolType.DamageNumber, transform.position, (int) hpToReceive, EffectiveType.Heal);
 			onReceiveHealth.Invoke(RemainingPercent);
 		}
 		

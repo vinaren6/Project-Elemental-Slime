@@ -80,10 +80,10 @@ namespace _Project.Scripts.UI.Score
 
 		private bool TextPopUps(Vector3 position)
 		{
-			killFeedbackPool.SpawnKillTextFromPool(position);
+			ServiceLocator.Pools.SpawnFromPool(PoolType.KillText, position);
 
 			if (_comboTimeRemaining > 0) {
-				killFeedbackPool.SpawnComboTextFromPool(position);
+				ServiceLocator.Pools.SpawnFromPool(PoolType.ComboText, position);
 				_comboTimeRemaining = comboTimeLimit;
 			} else
 				StartCoroutine(StartComboTimeRoutine());

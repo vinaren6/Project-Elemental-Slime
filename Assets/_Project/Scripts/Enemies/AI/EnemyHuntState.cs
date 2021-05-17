@@ -9,11 +9,12 @@ namespace _Project.Scripts.Enemies.AI
 
         public override void LogicUpdate()
         {
-            if (ServiceLocator.Game.IsPaused) {
+            if (ServiceLocator.Game.IsPaused)
+            {
                 EnemyController.NavMeshAgent.SetDestination(_transform.position);
                 return;
             }
-
+            
             base.LogicUpdate();
             EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position);
 
