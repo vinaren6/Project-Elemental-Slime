@@ -19,8 +19,9 @@ namespace _Project.Scripts.HealthSystem
 		[SerializeField] private AudioClip                  hurtSFX;
 		[SerializeField] private AudioClip                  deathSFX;
 		
-		public                   UnityEvent<float>          onReceiveDamage;
-		public                   UnityEvent                 onDeath;
+		public UnityEvent<float> onReceiveDamage;
+		public UnityEvent<float> onReceiveHealth;
+		public UnityEvent        onDeath;
 		
 		private float _canReceiveDamageCooldownTime = 0.1f;
 		private bool  _canReceiveDamage             = true;
@@ -77,7 +78,7 @@ namespace _Project.Scripts.HealthSystem
 			HitPoints += hpToReceive;
 			ServiceLocator.DamageNumbers.SpawnFromPool(
 				transform.position, (int) hpToReceive, EffectiveType.Heal);
-			onReceiveDamage.Invoke(RemainingPercent);
+			onReceiveHealth.Invoke(RemainingPercent);
 		}
 		
 		private EffectiveType GetEffectiveType(float elementalMultiplier)
