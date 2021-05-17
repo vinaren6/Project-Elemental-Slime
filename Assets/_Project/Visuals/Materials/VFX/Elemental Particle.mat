@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Elemental Switch Inner
-  m_Shader: {fileID: -6465566751694194690, guid: 0760485a308e9af4eb24a0be75438d9a, type: 3}
+  m_Name: Elemental Particle
+  m_Shader: {fileID: -6465566751694194690, guid: 5b11d6c9b5bde4a44b36d2f7c4117774, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_4a406111d9e940f48750be6db7e9bf46:
-        m_Texture: {fileID: 0}
+    - Texture2D_87cf51a5166f45e9b3dd2decc345f65b:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_ee1dc80a2587484584b03af923f310bb_Out_0:
+        m_Texture: {fileID: 2800000, guid: d3beafdbc6f5e0a459ac7f0d4ee70fb0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -36,15 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_0a77129a065047e7aaf7e9d9054d165a: 1
-    - Vector1_8aa26089d2f249fa9c86b6494f1a7fb4: 10
-    - Vector1_92935932810f4bb8a4e8f865f387f323: 0.15
-    - Vector1_9d50fa3e7d274f30ac60352a429469d9: 10
-    - Vector1_c26505befb634869919fac6c1fda72b0: 1.92
-    - Vector1_d572f88bdafb4f64809369fcd86f65f0: 2
-    - Vector1_df1f8499b9d949fd8b6b977f5dec72b6: 0
-    - _TileAmount: 2.54
+    - Vector1_d15c923ef7d54bc38f42a5f85159e4a3: 240
     m_Colors:
-    - Color_3e612543572347aca215cb43c0e49e28: {r: 4.927829, g: 4.927829, b: 4.927829, a: 1}
-    - Vector2_5f237f9929454e8882183ac86eb50bb0: {r: 1, g: 1, b: 0, a: 0}
+    - Color_07c0acc35c454dcf86d27f557c0b36d7: {r: 2, g: 2, b: 2, a: 1}
   m_BuildTextureStacks: []
