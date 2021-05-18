@@ -71,6 +71,7 @@ namespace _Project.Scripts.Player
 
 		private void Switch(int type)
 		{
+			if (PlayerController.IsSwitching) return;
 			if (PlayerController.IsAttacking) return;
 			if ((int) elementType.Type == type) return;
 			if (_pickups[type] < requiredElementsToChange && type != 4) return;

@@ -41,6 +41,7 @@ namespace _Project.Scripts.Player
 		public static int   DamageOverTimeTotalTicks;
 		public static bool  IsDealingDamageOverTime;
 		public static bool  IsAttacking;
+		public static bool  IsSwitching;
 
 		private float _moveSpeed; 
 		private float _attackCooldownTime;
@@ -159,10 +160,13 @@ namespace _Project.Scripts.Player
 		
 		private IEnumerator SwitchMaterial()
 		{
+			IsSwitching = true;
+			switchFX.SetActive(true);
 			yield return new WaitForSeconds(0.3f);
 			meshRenderer.material = currentPlayerElementalStats.material;
 			yield return new WaitForSeconds(0.4f);
 			switchFX.SetActive(false);
+			IsSwitching = false;
 		}
 		
 		private void DeactivateAllAbilities()
