@@ -351,6 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: e42a2b95556f92641abee330745feffe, type: 3}
   audioType: 0
+  volume: 1
+  playOnStart: 0
 --- !u!1 &3726310581544255492
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +992,7 @@ MonoBehaviour:
   scoreTickSFX: {fileID: 8300000, guid: a95f79c2f766d2641981c913c06b0fee, type: 3}
   killFeedbackPool: {fileID: 0}
   comboMeterUI: {fileID: 3131286917355957932}
+  waveText: {fileID: 4516011138425048896}
   killScore: 25
   pickupScore: 5
   comboAdditionPerKill: 1
@@ -1875,6 +1878,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5116353264389322960, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
   m_PrefabInstance: {fileID: 9056717425374979162}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4516011138425048896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4828972294721809178, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
+  m_PrefabInstance: {fileID: 9056717425374979162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4228630100502427461 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5116353263903986463, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}

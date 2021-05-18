@@ -19,6 +19,7 @@ namespace _Project.Scripts.UI.Score
 		[SerializeField] private AudioClip        scoreTickSFX;
 		[SerializeField] private KillFeedbackPool killFeedbackPool;
 		[SerializeField] private ComboMeterUI     comboMeterUI;
+		[SerializeField] private TMP_Text         waveText;
 
 		public int   killScore            = 10;
 		public int   pickupScore          = 5;
@@ -65,6 +66,9 @@ namespace _Project.Scripts.UI.Score
 		{
 			score.transform.parent.gameObject.SetActive(false);
 			gameOverScore.text = _totalScore.ToString();
+			if (waveText is null) return;
+			waveText.enabled = true;
+			waveText.color   = new Color(waveText.color.r, waveText.color.g, waveText.color.b, 1);
 		}
 		
 		public void GivePickupScore() => GiveScore(ScoreType.Pickup);
