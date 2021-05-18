@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
 using _Project.Scripts.WaveSystem;
@@ -16,41 +15,35 @@ namespace _Project.Scripts.UI.Score
 		[SerializeField] private InGameUI         inGameUI;
 		[SerializeField] private TMP_Text         scoreText;
 		[SerializeField] private TMP_Text         score;
+		[SerializeField] private TMP_Text         comboChainText;
 		[SerializeField] private TMP_Text         gameOverScore;
 		[SerializeField] private AudioClip        scoreTickSFX;
-		[SerializeField] private KillFeedbackPool killFeedbackPool;
 		[SerializeField] private ComboMeterUI     comboMeterUI;
 		[SerializeField] private TMP_Text         waveText;
 
-		public int   killScore            = 10;
-		public int   pickupScore          = 5;
-		public int   comboAdditionPerKill = 1;
-		public float comboTimeLimit       = 25f;
-		public int   maxCombo             = 3;
+		public int   killScore             = 10;
+		public int   pickupScore           = 5;
+		public float scoreAdditionPerCombo = 0.1f;
+		public float comboTimeLimit        = 25f;
 
-		private AudioSource _audioSource;
-		private bool        _comboIsActive;
-		private int         _comboMultiplier = 1;
-		private float       _comboTimeRemaining;
-		private int         _currentScore;
+		private bool  _comboIsActive;
+		private int   _currentCombo;
+		private float _comboTimeRemaining;
 
 		private int _displayedScore;
-
+		private int _currentScore;
+		private int _totalScore;
 		private int _kills;
 		private int _pickups;
-		private int _totalScore;
 
 		private void Awake()
 		{
-			Health.onAnyEnemyDeath += OnAnyEnemyDeathUpdate;
 			_instance              =  this;
-			_audioSource           =  GetComponent<AudioSource>();
 			scoreText.font         =  inGameUI.inGameFont;
 			score.font             =  inGameUI.inGameFont;
 			score.text             =  _displayedScore.ToString();
+			UpdateComboChainText();
 		}
-
-		private void OnDestroy() => Health.onAnyEnemyDeath -= OnAnyEnemyDeathUpdate;
 
 		/// <summary>
 		///     Attempt to spend a amount of score.
@@ -60,7 +53,7 @@ namespace _Project.Scripts.UI.Score
 		public bool SpendScore(int amount)
 		{
 			if (_currentScore < amount) return false;
-			if (amount        < 0) throw new ArgumentException("amount cannot negative");
+			if (amount        < 0) throw new ArgumentException("amount cannot be negative");
 			_currentScore -= amount;
 			if (_displayedScore > _currentScore) _displayedScore = _currentScore;
 			return true;
@@ -84,27 +77,22 @@ namespace _Project.Scripts.UI.Score
 			waveText.color   = new Color(waveText.color.r, waveText.color.g, waveText.color.b, 1);
 		}
 
-		public void GivePickupScore() => GiveScore(ScoreType.Pickup);
-
-		private void OnAnyEnemyDeathUpdate(Vector3 position) => GiveScore(ScoreType.EnemyKill, position);
-
+		public void GivePickupScore() => ApplyScore(ScoreType.Pickup);
+		
 		public static bool GiveScore(ScoreType type) => _instance.ApplyScore(type);
 
-		public static bool GiveScore(ScoreType type, object argument) =>
-			type == ScoreType.EnemyKill && argument is Vector3 pos
-				? _instance.TextPopUps(pos) & _instance.ApplyScore(type)
+		public static bool GiveScore(ScoreType type, Vector3 pos) =>
+			type == ScoreType.EnemyKill
+				? _instance.TextPopUps(pos) & _instance.ApplyScore(type) & _instance.UpdateCombo()
 				: _instance.ApplyScore(type);
-
+		
 		private bool TextPopUps(Vector3 position)
 		{
 			ServiceLocator.Pools.SpawnFromPool(PoolType.KillText, position);
 
-			if (_comboTimeRemaining > 0) {
+			if (_comboTimeRemaining > 0)
 				ServiceLocator.Pools.SpawnFromPool(PoolType.ComboText, position);
-				_comboTimeRemaining = comboTimeLimit;
-			} else
-				StartCoroutine(StartComboTimeRoutine());
-
+				
 			return true;
 		}
 
@@ -113,7 +101,7 @@ namespace _Project.Scripts.UI.Score
 			int scoreDelta = 1;
 			switch (type) {
 				case ScoreType.EnemyKill:
-					scoreDelta = killScore * _comboMultiplier;
+					scoreDelta = (int) (killScore + Mathf.Clamp(_currentCombo * scoreAdditionPerCombo * killScore, 0, killScore));
 					_kills++;
 					break;
 				case ScoreType.Pickup:
@@ -121,17 +109,31 @@ namespace _Project.Scripts.UI.Score
 					_pickups++;
 					break;
 			}
-
 			_totalScore += scoreDelta;
+			print("Combo: " + _currentCombo);
+			print("ScoreDelta: " + scoreDelta);
 
 			if (_displayedScore == _currentScore) {
 				_currentScore += scoreDelta;
 				StartCoroutine(UpdateScoreRoutine());
-			} else
+			} 
+			else {
 				_currentScore += scoreDelta;
-
-			if (_comboMultiplier < maxCombo)
-				_comboMultiplier += comboAdditionPerKill;
+			}
+			
+			return true;
+		}
+		
+		private bool UpdateCombo()
+		{
+			if (_comboTimeRemaining > 0) {
+				_comboTimeRemaining = comboTimeLimit;
+				_currentCombo++;
+				UpdateComboChainText();
+			} 
+			else {
+				StartCoroutine(StartComboTimeRoutine());
+			}
 
 			return true;
 		}
@@ -142,8 +144,8 @@ namespace _Project.Scripts.UI.Score
 		{
 			while (_displayedScore < _currentScore) {
 				UpdateScore(++_displayedScore);
-				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.03f);
-				yield return new WaitForSeconds(0.002f + .6f / (_currentScore - _displayedScore));
+				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.04f);
+				yield return new WaitForSeconds(0.002f + .5f / (_currentScore - _displayedScore));
 			}
 		}
 
@@ -152,6 +154,8 @@ namespace _Project.Scripts.UI.Score
 			yield return new WaitForEndOfFrame();
 			_comboTimeRemaining = comboTimeLimit;
 			_comboIsActive      = true;
+			_currentCombo++;
+
 			while (_comboTimeRemaining > 0) {
 				_comboTimeRemaining -= Time.deltaTime;
 				comboMeterUI.UpdateUI(_comboTimeRemaining / comboTimeLimit);
@@ -159,8 +163,21 @@ namespace _Project.Scripts.UI.Score
 			}
 
 			comboMeterUI.UpdateUI(0f);
-			_comboMultiplier = 1;
-			_comboIsActive   = false;
+			_currentCombo  = 0;
+			UpdateComboChainText();
+			_comboIsActive = false;
+		}
+
+		private void UpdateComboChainText()
+		{
+			if (_currentCombo > 1) {
+				string chainNumber = _currentCombo.ToString();
+				comboChainText.text = chainNumber + "-CHAIN";
+			} 
+			else {
+				comboChainText.text = "";
+			}
+			
 		}
 	}
 }

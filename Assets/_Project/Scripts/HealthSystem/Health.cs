@@ -3,8 +3,8 @@ using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies;
 using _Project.Scripts.Managers;
-using _Project.Scripts.Player;
 using _Project.Scripts.UI;
+using _Project.Scripts.UI.Score;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,8 +12,6 @@ namespace _Project.Scripts.HealthSystem
 {
 	public class Health : MonoBehaviour, IHealth
 	{
-		public static event Action<Vector3> onAnyEnemyDeath;
-		
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		[SerializeField] private AudioClip                  hurtSFX;
 		[SerializeField] private AudioClip                  deathSFX;
@@ -57,7 +55,7 @@ namespace _Project.Scripts.HealthSystem
 			onDeath.Invoke();
 		}
 
-		public void CallEnemyDeath() => onAnyEnemyDeath?.Invoke(transform.position);
+		public void CallEnemyDeath() => ScoreController.GiveScore(ScoreType.EnemyKill, transform.position);
 
 		private IEnumerator ReceiveDamageCooldownTimeRoutine()
 		{
