@@ -34,7 +34,8 @@ namespace _Project.Scripts.UI
 
         public void BackToMainMenuClick()
         {
-            SceneManager.LoadScene("MainMenu");
+            ServiceLocator.Game.SetPause(false);
+            SceneManager.LoadScene(0);
         }
 
         public void OptionsConfirmClick()
