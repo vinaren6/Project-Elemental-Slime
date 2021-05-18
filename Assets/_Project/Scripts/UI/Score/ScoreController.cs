@@ -110,8 +110,8 @@ namespace _Project.Scripts.UI.Score
 					break;
 			}
 			_totalScore += scoreDelta;
-			print("Combo: " + _currentCombo);
-			print("ScoreDelta: " + scoreDelta);
+			// print("Combo: " + _currentCombo);
+			// print("ScoreDelta: " + scoreDelta);
 
 			if (_displayedScore == _currentScore) {
 				_currentScore += scoreDelta;
