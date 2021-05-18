@@ -30,9 +30,8 @@ namespace _Project.Scripts.HealthSystem
 			set => _maxHitPoints = value;
 		}
 		public  float HitPoints        { get; set; }
-		public  float RemainingPercent => HitPoints / _maxHitPoints;
-		
-		private void Start() => HitPoints = _maxHitPoints;
+		public  float NormalizedHealth => HitPoints / _maxHitPoints;
+		private void  Start()          => HitPoints = _maxHitPoints;
 
 		public void ReceiveDamage(ElementalSystemTypes damageType, float damage)
 		{
@@ -45,7 +44,7 @@ namespace _Project.Scripts.HealthSystem
 			HitPoints -= damageToReceive;
 			ServiceLocator.Pools.SpawnFromPool(
 				PoolType.DamageNumber, transform.position, damageToReceive, GetEffectiveType(elementalMultiplier), GetDamageType());
-			onReceiveDamage.Invoke(RemainingPercent);
+			onReceiveDamage.Invoke(NormalizedHealth);
 			if (!(HitPoints <= 0))
 			{
 				if (hurtSFX == null) throw new AggregateException("audioClip reference not set to an instance of an object");
@@ -76,7 +75,7 @@ namespace _Project.Scripts.HealthSystem
 			HitPoints += hpToReceive;
 			ServiceLocator.Pools.SpawnFromPool(
 				PoolType.DamageNumber, transform.position, (int) hpToReceive, EffectiveType.Heal, DamageType.Heal);
-			onReceiveHealth.Invoke(RemainingPercent);
+			onReceiveHealth.Invoke(NormalizedHealth);
 		}
 		
 		private EffectiveType GetEffectiveType(float elementalMultiplier)
