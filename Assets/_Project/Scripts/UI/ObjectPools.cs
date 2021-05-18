@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Managers;
 using UnityEngine;
@@ -41,11 +42,6 @@ namespace _Project.Scripts.UI
 
 		public void SpawnFromPool(PoolType poolType, Vector3 position, int damage, EffectiveType colorType, DamageType damageType)
 		{
-			if (poolType != PoolType.DamageNumber) {
-				Debug.Log("Wrong PoolType in this function!");
-				return;
-			}
-			
 			if (PoolDictionary[poolType].Count <= 0) {
 				Debug.Log(poolType + "-Pool is empty");
 				return;
@@ -57,21 +53,16 @@ namespace _Project.Scripts.UI
 
 		public void SpawnFromPool(PoolType poolType, Vector3 position)
 		{
-			if (poolType == PoolType.DamageNumber) {
-				Debug.Log("Wrong PoolType in this function!");
-				return;
-			}
-
 			if (PoolDictionary[poolType].Count <= 0) {
 				Debug.Log(poolType + "-Pool is empty");
 				return;
 			}
 			
 			GameObject objectToSpawn = PoolDictionary[poolType].Dequeue();
-			if(poolType == PoolType.KillText) {
+			if (poolType == PoolType.KillText) {
 				objectToSpawn.GetComponent<KillTextUI>().ShowKillText(position);
 			}
-			else {
+			else if (poolType == PoolType.ComboText) {
 				objectToSpawn.GetComponent<ComboTextUI>().ShowComboText(position);
 			}
 		}
