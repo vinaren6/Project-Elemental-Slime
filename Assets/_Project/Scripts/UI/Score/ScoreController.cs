@@ -3,6 +3,7 @@ using System.Collections;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
+using _Project.Scripts.WaveSystem;
 using TMPro;
 using UnityEngine;
 
@@ -10,8 +11,8 @@ namespace _Project.Scripts.UI.Score
 {
 	public class ScoreController : MonoBehaviour
 	{
-		private static           ScoreController  _instance;
-		
+		private static ScoreController _instance;
+
 		[SerializeField] private InGameUI         inGameUI;
 		[SerializeField] private TMP_Text         scoreText;
 		[SerializeField] private TMP_Text         score;
@@ -34,6 +35,9 @@ namespace _Project.Scripts.UI.Score
 		private int         _currentScore;
 
 		private int _displayedScore;
+
+		private int _kills;
+		private int _pickups;
 		private int _totalScore;
 
 		private void Awake()
@@ -64,13 +68,22 @@ namespace _Project.Scripts.UI.Score
 
 		public void UpdateGameOverScoreText()
 		{
+			//save score.
+			PlayerPrefs.SetInt("totalKills",   PlayerPrefs.GetInt("totalKills")   + _kills);
+			PlayerPrefs.SetInt("totalPickups", PlayerPrefs.GetInt("totalPickups") + _pickups);
+			if (PlayerPrefs.GetInt("maxScore") < _totalScore)
+				PlayerPrefs.SetInt("maxScore", _totalScore);
+			if (PlayerPrefs.GetInt("maxRound") < WaveController.Instance.wave)
+				PlayerPrefs.SetInt("maxRound", WaveController.Instance.wave);
+
+			//update UI
 			score.transform.parent.gameObject.SetActive(false);
 			gameOverScore.text = _totalScore.ToString();
 			if (waveText is null) return;
 			waveText.enabled = true;
 			waveText.color   = new Color(waveText.color.r, waveText.color.g, waveText.color.b, 1);
 		}
-		
+
 		public void GivePickupScore() => GiveScore(ScoreType.Pickup);
 
 		private void OnAnyEnemyDeathUpdate(Vector3 position) => GiveScore(ScoreType.EnemyKill, position);
@@ -94,14 +107,21 @@ namespace _Project.Scripts.UI.Score
 
 			return true;
 		}
-		
+
 		private bool ApplyScore(ScoreType type)
 		{
-			int scoreDelta = type switch {
-				ScoreType.EnemyKill => killScore * _comboMultiplier,
-				ScoreType.Pickup    => pickupScore,
-				_                   => 1
-			};
+			int scoreDelta = 1;
+			switch (type) {
+				case ScoreType.EnemyKill:
+					scoreDelta = killScore * _comboMultiplier;
+					_kills++;
+					break;
+				case ScoreType.Pickup:
+					scoreDelta = pickupScore;
+					_pickups++;
+					break;
+			}
+
 			_totalScore += scoreDelta;
 
 			if (_displayedScore == _currentScore) {
@@ -112,7 +132,7 @@ namespace _Project.Scripts.UI.Score
 
 			if (_comboMultiplier < maxCombo)
 				_comboMultiplier += comboAdditionPerKill;
-			
+
 			return true;
 		}
 
