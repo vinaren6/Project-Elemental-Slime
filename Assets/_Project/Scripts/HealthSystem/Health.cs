@@ -90,10 +90,7 @@ namespace _Project.Scripts.HealthSystem
 
 		private DamageType GetDamageType()
 		{
-			if (TryGetComponent<PlayerController>(out PlayerController pc))
-				return DamageType.Player;
-			
-			return DamageType.Enemy;
+			return CompareTag("Player") ? DamageType.Player : DamageType.Enemy;
 		}
 
 		public void KillPlayer()
