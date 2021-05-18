@@ -613,8 +613,9 @@ MonoBehaviour:
   - {fileID: 1721944478}
   - {fileID: 1083603306}
   wave: 0
-  spawnDelay: 0.1
-  waveBeingDelay: 3
+  maxActiveSpawnsAtSameTime: 15
+  spawnDelay: 0.2
+  waveBeingDelay: 5
   autoStart: 1
   autoplayNextWave: 1
   debugString: 
@@ -1169,7 +1170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358507313467159675, guid: d016964aa47b029438c922434e18ec01, type: 3}
       propertyPath: m_Radius
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d016964aa47b029438c922434e18ec01, type: 3}
@@ -1904,7 +1905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358507313467159675, guid: d016964aa47b029438c922434e18ec01, type: 3}
       propertyPath: m_Radius
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d016964aa47b029438c922434e18ec01, type: 3}
@@ -2117,7 +2118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358507313467159675, guid: d016964aa47b029438c922434e18ec01, type: 3}
       propertyPath: m_Radius
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d016964aa47b029438c922434e18ec01, type: 3}
@@ -2748,7 +2749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358507313467159675, guid: d016964aa47b029438c922434e18ec01, type: 3}
       propertyPath: m_Radius
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d016964aa47b029438c922434e18ec01, type: 3}

@@ -15,7 +15,8 @@ namespace _Project.Scripts.WaveSystem
 		[SerializeField]                      private GameObject[]  spawnObjects;
 		[SerializeField]                      public  WaveSpawner[] spawners;
 		[SerializeField]                      public  int           wave;
-		[Header("Settings")] [SerializeField] private float         spawnDelay       = 0.1f;
+		[Header("Settings")] [SerializeField] private int           maxActiveSpawnsAtSameTime = 15;
+		[SerializeField]                      private float         spawnDelay       = 0.2f;
 		[SerializeField]                      private float         waveBeingDelay   = 3f;
 		[SerializeField]                      private bool          autoStart        = true;
 		[SerializeField]                      private bool          autoplayNextWave = true;
@@ -75,6 +76,7 @@ namespace _Project.Scripts.WaveSystem
 					debugString += $" -failed {fails} time{(fails == 1 ? "" : "s")}.";
 				#endif
 				yield return new WaitForSeconds(spawnDelay);
+				while (activeSpawns >= maxActiveSpawnsAtSameTime) yield return new WaitForSeconds(1);
 			}
 		}
 	}
