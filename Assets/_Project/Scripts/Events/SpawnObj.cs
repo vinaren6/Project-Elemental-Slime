@@ -9,8 +9,8 @@ namespace _Project.Scripts.Events
 		[SerializeField] private GameObject                 prefab;
 		[SerializeField] private ElementalSystemTypeCurrent type;
 		
-		public bool  isSelfDestructing;
-		public float selfDestructTimer;
+		public bool  selfDestroy;
+		public float selfDestroyDelay;
 		
 		
 		public void Spawn()
@@ -19,9 +19,9 @@ namespace _Project.Scripts.Events
 			if (obj.TryGetComponent(out ElementalSystemTypeCurrent prefabType))
 				prefabType.Type = type.Type;
 			
-			if (isSelfDestructing) {
+			if (selfDestroy) {
 				if (obj.TryGetComponent(out DestroyThisObj destroyThisObj))
-					destroyThisObj.DestroyMe(selfDestructTimer);
+					destroyThisObj.DestroyMe(selfDestroyDelay);
 			}
 		}
 	}

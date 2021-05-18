@@ -189,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5622412576094577305, guid: c008a7ec567885f4eb78c6ee8d416285, type: 3}
   type: {fileID: 1460504048}
-  isSelfDestructing: 1
-  selfDestructTimer: 10
+  selfDestroy: 1
+  selfDestroyDelay: 10
 --- !u!114 &1560301090733642263
 MonoBehaviour:
   m_ObjectHideFlags: 0
