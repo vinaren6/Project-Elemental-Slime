@@ -12,20 +12,20 @@ namespace _Project.Scripts.Abilities
 		#region Variables
 		
 		[SerializeField] private GameObject flamePrefab;
-		[SerializeField] private Transform flamePoolTransform;
+		[SerializeField] private Transform  flamePoolTransform;
 
 		[Header("Test Values")]
-		[SerializeField] [Range(1f, 150f)] private float speed;
+		[SerializeField] [Range(1f, 150f)]    private float speed;
 		[SerializeField] [Range(1.0f, 1.20f)] private float speedMultiplier;
-		[SerializeField] [Range(0.1f, 0.5f)] private float aliveTime;
+		[SerializeField] [Range(0.1f, 0.5f)]  private float aliveTime;
 
 		private NavMeshAgent         _agent;
 		private Queue<FlameCollider> _flamePool;
 		private VisualEffect         _effect;
-		
-		private int _maxFlameColliders;
+
+		private int   _maxFlameColliders;
 		private float _fireRate;
-		private bool _canShoot;
+		private bool  _canShoot;
 
 		private float _damage;
 		
@@ -37,8 +37,8 @@ namespace _Project.Scripts.Abilities
 
 		private void Awake()
 		{
-			_agent  = GetComponentInParent<NavMeshAgent>();
-			_effect = GetComponentInChildren<VisualEffect>();
+			_agent     = GetComponentInParent<NavMeshAgent>();
+			_effect    = GetComponentInChildren<VisualEffect>();
 		}
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
@@ -82,12 +82,14 @@ namespace _Project.Scripts.Abilities
 			
 			_effect.Play();
 			
-			float adjustedSpeed = speed * GetLookDirectionSpeedAdjustment();
+			float speedAdjustment = GetLookDirectionSpeedAdjustment();
 
 			FlameCollider flameCollider = _flamePool.Dequeue();
 
 			flameCollider.gameObject.SetActive(true);
-			flameCollider.Execute(transform, adjustedSpeed, speedMultiplier, aliveTime);
+			flameCollider.Execute(transform, speed * speedAdjustment, speedMultiplier, aliveTime);
+
+			_effect.playRate = speedAdjustment * 2f;
 
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
@@ -140,9 +142,9 @@ namespace _Project.Scripts.Abilities
 		private float GetLookDirectionSpeedAdjustment()
 		{
 			Vector3 moveDirection      = _agent.velocity;
-			float   moveLookAdjustment = (Vector3.Dot(Vector3.forward, moveDirection.normalized) / 2.5f);
+			float   moveLookAdjustment = (Vector3.Dot(transform.forward, moveDirection.normalized) / 2.5f);
 			moveLookAdjustment += 1;
-			// print("MovelookAjustment:" + moveLookRelation);
+			// print("MovelookAjustment:" + moveLookAdjustment);
 			return moveLookAdjustment;
 		}
 		
