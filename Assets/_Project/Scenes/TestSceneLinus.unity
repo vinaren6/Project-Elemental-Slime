@@ -2848,6 +2848,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6905668727020290537, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905668727020290537, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+    - target: {fileID: 6905668727230416452, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905668727230416452, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+    - target: {fileID: 6905668727337277284, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+    - target: {fileID: 6905668727470052819, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+    - target: {fileID: 6905668727676380664, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+    - target: {fileID: 6905668728641703870, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+    - target: {fileID: 6905668728766069457, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
     - target: {fileID: 7925193270865203222, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
       propertyPath: m_Name
       value: InGameUITEST
