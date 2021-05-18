@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.UI
 {
-	public class KillFeedbackPool : MonoBehaviour
+	public class KillFeedbackPoolOLD : MonoBehaviour
 	{
 		[SerializeField] private GameObject killTextPrefab;
 		[SerializeField] private GameObject comboTextPrefab;
