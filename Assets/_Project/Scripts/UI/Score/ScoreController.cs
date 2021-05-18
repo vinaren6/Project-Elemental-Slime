@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
 using _Project.Scripts.WaveSystem;
@@ -39,15 +38,12 @@ namespace _Project.Scripts.UI.Score
 
 		private void Awake()
 		{
-			Health.onAnyEnemyDeath += OnAnyEnemyDeathUpdate;
 			_instance              =  this;
 			scoreText.font         =  inGameUI.inGameFont;
 			score.font             =  inGameUI.inGameFont;
 			score.text             =  _displayedScore.ToString();
 			UpdateComboChainText();
 		}
-
-		private void OnDestroy() => Health.onAnyEnemyDeath -= OnAnyEnemyDeathUpdate;
 
 		/// <summary>
 		///     Attempt to spend a amount of score.
@@ -81,14 +77,12 @@ namespace _Project.Scripts.UI.Score
 			waveText.color   = new Color(waveText.color.r, waveText.color.g, waveText.color.b, 1);
 		}
 
-		public void GivePickupScore() => GiveScore(ScoreType.Pickup);
-
-		private void OnAnyEnemyDeathUpdate(Vector3 position) => GiveScore(ScoreType.EnemyKill, position);
-
+		public void GivePickupScore() => ApplyScore(ScoreType.Pickup);
+		
 		public static bool GiveScore(ScoreType type) => _instance.ApplyScore(type);
 
-		public static bool GiveScore(ScoreType type, object argument) =>
-			type == ScoreType.EnemyKill && argument is Vector3 pos
+		public static bool GiveScore(ScoreType type, Vector3 pos) =>
+			type == ScoreType.EnemyKill
 				? _instance.TextPopUps(pos) & _instance.ApplyScore(type) & _instance.UpdateCombo()
 				: _instance.ApplyScore(type);
 		
@@ -108,7 +102,6 @@ namespace _Project.Scripts.UI.Score
 			switch (type) {
 				case ScoreType.EnemyKill:
 					scoreDelta = (int) (killScore + Mathf.Clamp(_currentCombo * scoreAdditionPerCombo * killScore, 0, killScore));
-						//killScore * _comboMultiplier;
 					_kills++;
 					break;
 				case ScoreType.Pickup:
@@ -151,7 +144,7 @@ namespace _Project.Scripts.UI.Score
 		{
 			while (_displayedScore < _currentScore) {
 				UpdateScore(++_displayedScore);
-				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.03f);
+				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.04f);
 				yield return new WaitForSeconds(0.002f + .5f / (_currentScore - _displayedScore));
 			}
 		}
