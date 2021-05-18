@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8952250569019361454}
   m_Layer: 0
-  m_Name: TimerAndScore
+  m_Name: TimerAndScoreOLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcc362cf2e44ba4a11c6c79058a0eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGameUI: {fileID: 0}
   scoreText: {fileID: 3819119328834960144}
+  score: {fileID: 0}
+  comboChainText: {fileID: 0}
+  gameOverScore: {fileID: 0}
+  scoreTickSFX: {fileID: 0}
+  comboMeterUI: {fileID: 0}
+  waveText: {fileID: 0}
+  killScore: 10
+  pickupScore: 5
+  scoreAdditionPerCombo: 0.1
+  comboTimeLimit: 25
 --- !u!222 &8012577146411336812
 CanvasRenderer:
   m_ObjectHideFlags: 0
