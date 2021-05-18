@@ -29,7 +29,7 @@ MonoBehaviour:
     fontSizeModifier: 1
     fontMaterial: {fileID: 2100000, guid: 9fc35b9af7772de4cb0a9c46d9191b0c, type: 2}
     color: {r: 0, g: 1, b: 0.050980397, a: 1}
-  inGameFont: {fileID: 11400000, guid: 963af747b985c10428d4d2635f164d66, type: 2}
+  inGameFont: {fileID: 11400000, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
   playerDamageMaterial: {fileID: 2100000, guid: 98b56e76fa58a164e81a298afb4c7deb, type: 2}
   enemyDamageMaterial: {fileID: 2100000, guid: 37e6d8d19ba50b54a870320727e3e786, type: 2}
   enemyDamageColor: {r: 1, g: 1, b: 1, a: 1}
