@@ -11,5 +11,7 @@ namespace _Project.Scripts.Player.ScriptableObjects
 		public float      attackStrengthMultiplier = 1f;
 		public float      attackRateMultiplier     = 1f;
 		public bool       isDealingDamageOverTime  = false;
+
+		public Material material;
 	}
 }

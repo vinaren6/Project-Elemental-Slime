@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _Project.Scripts.Abilities;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
@@ -15,7 +16,9 @@ namespace _Project.Scripts.Player
 		[SerializeField] private PlayerElementalStats   currentPlayerElementalStats;
 		[SerializeField] private PlayerElementalStats[] elementalStats = new PlayerElementalStats[5];
 		[SerializeField] private GameObject[]           abilities      = new GameObject[5];
-		
+		[SerializeField] private GameObject             switchFX;
+		[SerializeField] private Renderer               meshRenderer;
+
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
 		[SerializeField][Range(0.1f, 1.0f)] private float moveSmoothing               = 0.9f;
 		[SerializeField][Range(0.1f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
@@ -82,16 +85,6 @@ namespace _Project.Scripts.Player
 				ExecuteAbility();
 			else
 				StopAbility();
-
-				// _shoot.Fire();
-
-			// if (currentPlayerElementalStats == elementalStats[(int)ElementalSystemTypes.Base])
-			// 	return;
-			//
-			// if (_input.SpecialInput) 
-			// 	ExecuteAbility();
-			// else
-			// 	IsAttacking = false;
 		}
 
 #region Methods
@@ -134,6 +127,7 @@ namespace _Project.Scripts.Player
 			SwitchElementalStats();
 			SetElementBasedStats();
 			SwitchAbility();
+			StartCoroutine(SwitchMaterial());
 			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
 		}
 
@@ -161,6 +155,14 @@ namespace _Project.Scripts.Player
 				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};
 			InitializeAbility();
+		}
+		
+		private IEnumerator SwitchMaterial()
+		{
+			yield return new WaitForSeconds(0.3f);
+			meshRenderer.material = currentPlayerElementalStats.material;
+			yield return new WaitForSeconds(0.4f);
+			switchFX.SetActive(false);
 		}
 		
 		private void DeactivateAllAbilities()
