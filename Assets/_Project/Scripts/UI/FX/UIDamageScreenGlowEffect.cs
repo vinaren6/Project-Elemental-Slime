@@ -39,7 +39,11 @@ namespace _Project.Scripts.UI.FX
 			_tempDamage = 0.25f; //will show effect when hp < 75%
 		}
 
-		private void Heal(float normalizedHealth) =>
-			_baseHp = -(normalizedHealth * 2 - 1);
+		private void Heal(float normalizedHealth)
+		{
+			float newBaseHp = -(normalizedHealth * 2 - 1);
+			_tempDamage = _baseHp - newBaseHp;
+			_baseHp     = newBaseHp;
+		}
 	}
 }
