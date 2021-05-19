@@ -197,6 +197,14 @@ namespace _Project.Scripts.Abilities
 				1 << LayerMask.NameToLayer("Player"));
 		}
 
+		public bool IsInWalkRange()
+		{
+			return Physics.CheckBox(rangeCollider.transform.position + rangeCollider.center,
+				rangeCollider.size * 0.5f,
+				_transform.rotation,
+				1 << LayerMask.NameToLayer("Player"));
+		}
+
 		public bool CanAttack()
 		{
 			return !_isAttacking;

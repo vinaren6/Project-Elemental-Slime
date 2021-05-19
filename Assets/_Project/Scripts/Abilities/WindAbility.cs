@@ -208,6 +208,39 @@ namespace _Project.Scripts.Abilities
 			return true;
 		}
 
+		public bool IsInWalkRange()
+		{
+			RaycastHit hit = new RaycastHit();
+
+			Vector3 center = _transform.position + _attackTrigger.center;
+			Vector3 halfExtents = _attackTrigger.size * 0.5f;
+			Vector3 direction = _transform.forward;
+			Quaternion orientation = _transform.rotation;
+
+			float debugHeight = 1f;
+			Vector3 upOffset = Vector3.up * debugHeight;
+			Debug.DrawRay(_transform.position + upOffset,
+				_transform.TransformDirection(Vector3.forward) * _maxDistance,
+				Color.red);
+
+			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
+
+			// TODO Calc some math to know how far the enemy will move and how big its attack trigger is for better results.
+
+			if (!Physics.BoxCast(center,
+				halfExtents,
+				direction,
+				out hit,
+				orientation,
+				_maxDistance,
+				1 << LayerMask.NameToLayer("Player")))
+				return false;
+
+			// Debug.Log($"hit.name: {hit.collider.name} is in RANGE!!!");
+
+			return true;
+		}
+
 		public bool CanAttack()
 		{
 			return _canAttack;

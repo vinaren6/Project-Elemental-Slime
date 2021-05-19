@@ -115,6 +115,21 @@ namespace _Project.Scripts.Abilities
 			return Vector3.Distance(transform.position, p.position) < 10f;
 		}
 
+		public bool IsInWalkRange()
+		{
+			// TODO Better calc for checking range.
+
+			PlayerController controller = FindObjectOfType<PlayerController>();
+
+			if (!controller)
+			{
+				return false;
+			}
+			Transform p = controller.transform;
+
+			return Vector3.Distance(transform.position, p.position) < 5f;
+		}
+
 		public bool CanAttack()
 		{
 			return _canShoot;

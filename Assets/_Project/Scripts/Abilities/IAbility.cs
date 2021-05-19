@@ -14,6 +14,8 @@ namespace _Project.Scripts.Abilities
         void Stop(bool isPlayer = true);
 
         bool IsInRange();
+
+        bool IsInWalkRange();
         bool CanAttack();
         float GetAttackTime();
         bool StopLooping { get; }

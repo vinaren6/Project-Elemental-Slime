@@ -18,7 +18,7 @@ namespace _Project.Scripts.Enemies.AI
             base.LogicUpdate();
             EnemyController.NavMeshAgent.SetDestination(EnemyController.Target.position);
 
-            if (!EnemyController.Ability.IsInRange())
+            if (!EnemyController.Ability.IsInWalkRange())
                 return;
             
             EnemyController.NavMeshAgent.velocity = Vector3.zero;               

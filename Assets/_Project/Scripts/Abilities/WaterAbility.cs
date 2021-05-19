@@ -75,9 +75,13 @@ namespace _Project.Scripts.Abilities
         public void Execute()
         {
             RaycastHit hit = new RaycastHit();
+            Vector3 origin = _transform.position;
+            Vector3 direction = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.position;
+            bool didHit = Physics.CapsuleCast(origin, origin, radius, transform.parent.gameObject.transform.forward, out hit, maxDistance, collisionMask);
 
-            if (LaserDidHit(ref hit))
+            if (didHit)
             {
+              
                 ApplyHitLogic(hit);
                 
                 SetWaterRayScale(hit.distance);
@@ -88,12 +92,12 @@ namespace _Project.Scripts.Abilities
                 SetWaterRayScale(maxDistance);
         }
 
-        private bool LaserDidHit(ref RaycastHit hit)
+        private bool LaserDidHit(ref RaycastHit hit, float distance)
         {
             Vector3 origin = _transform.position;
-            Vector3 direction = _transform.forward;
-            
-            bool didHit = Physics.CapsuleCast(origin, origin, radius, direction, out hit, maxDistance, collisionMask);
+            //Vector3 direction = _transform.forward;
+            Vector3 direction = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.position;
+            bool didHit = Physics.CapsuleCast(origin, origin, radius, direction, out hit, distance, collisionMask);
             // return Physics.CapsuleCast(origin, origin, radius, direction, out hit, maxDistance, collisionMask);
             
             if (didHit)
@@ -130,13 +134,29 @@ namespace _Project.Scripts.Abilities
 
         public bool IsInRange()
         {
+            var turnSpeed = 5.0f;
+            var _dir = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.parent.gameObject.transform.position;
+            _dir.Normalize();
+            transform.parent.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
             RaycastHit hit = new RaycastHit();
-            return LaserDidHit(ref hit);
+            return LaserDidHit(ref hit, maxDistance);
             
             // TODO Better calc for checking range.
             Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
 
             if (Vector3.Distance(_transform.position, p.position) < maxDistance)
+                return true;
+            return false;
+        }
+        public bool IsInWalkRange()
+        {
+            RaycastHit hit = new RaycastHit();
+            return LaserDidHit(ref hit, maxDistance - 5);
+
+            // TODO Better calc for checking range.
+            Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
+
+            if (Vector3.Distance(_transform.position, p.position) < maxDistance - 5)
                 return true;
             return false;
         }

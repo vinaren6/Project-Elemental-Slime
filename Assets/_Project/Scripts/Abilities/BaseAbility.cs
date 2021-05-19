@@ -30,6 +30,11 @@ namespace _Project.Scripts.Abilities
 			return true;
 		}
 
+		public bool IsInWalkRange()
+		{
+			return true;
+		}
+
 		public bool CanAttack()
 		{
 			return true;
