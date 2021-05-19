@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 1
     agentHeight: 2
     agentSlope: 25
-    agentClimb: 0.4
+    agentClimb: 1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -1024,7 +1024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f168e1a6aa40c3f4a866142b69ef54da, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f168e1a6aa40c3f4a866142b69ef54da, type: 3}
@@ -1590,32 +1590,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8013091004277497683, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8013091004277497683, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -6391884170277854406, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -6391884170277854406, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6376735099003763007, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6376735099003763007, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6376735099003763007, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -5923742961445389043, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5923742961445389043, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5923742961445389043, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -895902147560866220, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1658,8 +1670,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7809322449845794126, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809322449845794126, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8266300556658091469, guid: 8e7be10035e528840af0ebe58797a0d4, type: 3}
       propertyPath: m_LocalScale.x
