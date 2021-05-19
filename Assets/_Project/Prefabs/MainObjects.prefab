@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 0.3764827
   m_FrequencyGain: 5
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1683136846
@@ -1037,6 +1037,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1531367002002788101, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
   m_PrefabInstance: {fileID: 2256998009487704013}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9045269800681711972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7121659197954234025, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+  m_PrefabInstance: {fileID: 2256998009487704013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7e991ba4874a59925e5da3e11dbe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7041835537220592035 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9145640584399445614, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
@@ -1163,14 +1174,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cded27a50e442504dbd493f05c92297e, type: 3}
---- !u!4 &8440744388599372582 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
-  m_PrefabInstance: {fileID: 3726310582996189104}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8440744388923844934 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5085988909929289462, guid: cded27a50e442504dbd493f05c92297e, type: 3}
+  m_PrefabInstance: {fileID: 3726310582996189104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8440744388599372582 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
   m_PrefabInstance: {fileID: 3726310582996189104}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5912781462063793306
@@ -1430,6 +1441,10 @@ PrefabInstance:
       propertyPath: killFeedbackPool
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8031976901434887461, guid: 422b41b4bf9d2364b92d7ad3d79c3191, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 9045269800681711972}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 422b41b4bf9d2364b92d7ad3d79c3191, type: 3}
 --- !u!4 &7699766479468519017 stripped
