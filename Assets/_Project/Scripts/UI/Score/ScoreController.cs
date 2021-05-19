@@ -12,14 +12,15 @@ namespace _Project.Scripts.UI.Score
 	{
 		private static ScoreController _instance;
 
-		[SerializeField] private InGameUI         inGameUI;
-		[SerializeField] private TMP_Text         scoreText;
-		[SerializeField] private TMP_Text         score;
-		[SerializeField] private TMP_Text         comboChainText;
-		[SerializeField] private TMP_Text         gameOverScore;
-		[SerializeField] private AudioClip        scoreTickSFX;
-		[SerializeField] private ComboMeterUI     comboMeterUI;
-		[SerializeField] private TMP_Text         waveText;
+		[SerializeField] private InGameUI     inGameUI;
+		[SerializeField] private TMP_Text     scoreText;
+		[SerializeField] private TMP_Text     score;
+		[SerializeField] private Animator     comboChainAnimator;
+		[SerializeField] private TMP_Text     comboChainText;
+		[SerializeField] private TMP_Text     gameOverScore;
+		[SerializeField] private AudioClip    scoreTickSFX;
+		[SerializeField] private ComboMeterUI comboMeterUI;
+		[SerializeField] private TMP_Text     waveText;
 
 		public int   killScore             = 10;
 		public int   pickupScore           = 5;
@@ -173,6 +174,7 @@ namespace _Project.Scripts.UI.Score
 			if (_currentCombo > 1) {
 				string chainNumber = _currentCombo.ToString();
 				comboChainText.text = chainNumber + "-CHAIN";
+				comboChainAnimator.Play("ComboChain", -1, 0f);
 			} 
 			else {
 				comboChainText.text = "";

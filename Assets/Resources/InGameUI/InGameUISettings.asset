@@ -36,6 +36,6 @@ MonoBehaviour:
   playerDamageColor: {r: 1, g: 0.16470589, b: 0, a: 1}
   damageNumberFontSizeBase: 1
   killTextFontSize: 1.1
-  killTextColor: {r: 0.6745098, g: 0.45882356, b: 0.9607844, a: 1}
+  killTextColor: {r: 0.4784314, g: 0.30588236, b: 0.69803923, a: 1}
   comboTextFontSize: 1.3
-  comboTextColor: {r: 0.4784314, g: 0.30588236, b: 0.69803923, a: 1}
+  comboTextColor: {r: 0.6745098, g: 0.45882356, b: 0.9607844, a: 1}

@@ -797,6 +797,7 @@ MonoBehaviour:
   inGameUI: {fileID: 11400000, guid: 57d409f70999e7a44b4dc11da65f0ba4, type: 2}
   scoreText: {fileID: 4661178345963634058}
   score: {fileID: 850307705706163775}
+  comboChainAnimator: {fileID: 2579367657447120860}
   comboChainText: {fileID: 2868678577239141670}
   gameOverScore: {fileID: 5996968298132184138}
   scoreTickSFX: {fileID: 8300000, guid: a95f79c2f766d2641981c913c06b0fee, type: 3}
@@ -916,6 +917,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2579367657447120860 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6801611590196312966, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
+  m_PrefabInstance: {fileID: 9056717425374979162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3131286917355957932 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6258732858454870774, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
