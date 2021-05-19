@@ -11,7 +11,11 @@ namespace _Project.Scripts.UI.FX
 
 		private float _baseHp = -1, _tempDamage;
 
-		private void Awake() => health.onReceiveDamage.AddListener(Damage);
+		private void Awake()
+		{
+			health.onReceiveDamage.AddListener(Damage);
+			health.onReceiveHealth.AddListener(Heal);
+		}
 
 		private void FixedUpdate()
 		{
@@ -22,13 +26,20 @@ namespace _Project.Scripts.UI.FX
 				_tempDamage -= Time.fixedDeltaTime;
 		}
 
-		private void OnDestroy() => health.onReceiveDamage.RemoveListener(Damage);
+		private void OnDestroy()
+		{
+			health.onReceiveDamage.RemoveListener(Damage);
+			health.onReceiveHealth.RemoveListener(Heal);
+		}
 
 		private void Damage(float normalizedHealth)
 		{
 			_baseHp = -(normalizedHealth * 2 -
-			           1);       //convertion: '0 -> 1' to '-1 -> 1'. this will only show effect when hp < 50%
+			            1);      //convertion: '0 -> 1' to '-1 -> 1'. this will only show effect when hp < 50%
 			_tempDamage = 0.25f; //will show effect when hp < 75%
 		}
+
+		private void Heal(float normalizedHealth) =>
+			_baseHp = -(normalizedHealth * 2 - 1);
 	}
 }
