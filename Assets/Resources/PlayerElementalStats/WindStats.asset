@@ -17,4 +17,4 @@ MonoBehaviour:
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
   isDealingDamageOverTime: 0
-  material: {fileID: 2100000, guid: e755e85705f1c4f4a98b41887d761054, type: 2}
+  material: {fileID: 2100000, guid: d84de4061a21d7c4c8fe7403b990c07b, type: 2}
