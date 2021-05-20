@@ -183,18 +183,23 @@ namespace _Project.Scripts.Player
 
 		private void ExecuteAbility()
 		{
-			if (currentPlayerElementalStats == elementalStats[(int) ElementalSystemTypes.Base])
+			if (currentPlayerElementalStats != elementalStats[(int) ElementalSystemTypes.Base])
 			{
-				_animator.SetTrigger("DoAttack");
-				_shoot.Fire();
-			}
-			else
 				_ability.Execute();
+				return;
+			}
+
+			if (!_shoot.DidFire())
+				return;
+			
+			_animator.SetTrigger("DoAttack");
+			_animator.SetBool("IsAttacking", true);
 		}
 		
 		private void StopAbility()
 		{
 			_ability.Stop();
+			_animator.SetBool("IsAttacking", false);
 		}
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);

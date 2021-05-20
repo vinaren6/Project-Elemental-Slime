@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: ff3f6baad5ad66f4cb78be4fb1b650f2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f4eccd0476ae63d43a27d7bb4f46aeb9, type: 2}
 --- !u!1001 &38412731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1965,7 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_RootOrder
@@ -1973,7 +1973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1981,7 +1981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2040,7 +2040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680923, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_RootOrder
