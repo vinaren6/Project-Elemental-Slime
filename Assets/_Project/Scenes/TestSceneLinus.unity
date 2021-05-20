@@ -1560,18 +1560,6 @@ PrefabInstance:
       propertyPath: m_AmplitudeGain
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3720216072965292290, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: drawColliders
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3720216072965292290, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: drawDisabledColliders
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3720216072965292290, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: findCollidersInChildren
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3726310583025180116, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_Name
       value: MainObjects
@@ -1623,10 +1611,6 @@ PrefabInstance:
     - target: {fileID: 3726310583025180139, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3772344481055858970, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: m_Height
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3772344481055858970, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_BaseOffset
@@ -1723,6 +1707,10 @@ PrefabInstance:
     - target: {fileID: 6690047746846206816, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904023304373526493, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7268993656752703064, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_LocalPosition.x

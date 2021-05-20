@@ -14,6 +14,9 @@ namespace _Project.Scripts.Enemies.AI
                 return;
             }
             
+            if (!EnemyController.Target.gameObject.activeInHierarchy)
+                return;
+            
             base.LogicUpdate();
 
             Vector3 targetPosition = EnemyController.Target.position;
