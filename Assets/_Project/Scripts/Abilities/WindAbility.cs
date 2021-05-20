@@ -51,16 +51,16 @@ namespace _Project.Scripts.Abilities
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
 		{
-			tag = newTag;
+			tag                    = newTag;
 			_attackTrigger.enabled = false;
 			_damage                = damage;
-			_attackDuration = 0.4f;
-			_attackCooldownTime = 0.5f;
-			_maxDistance = 8f;
-			_rechargeTime          = 1f;
+			_attackDuration        = 0.4f;
+			_attackCooldownTime    = 0.8f;
+			_maxDistance           = 8f;
+			_rechargeTime          = 1.2f;
 			_maxCharges            = 3;
 			_currentCharges        = _maxCharges;
-			_canAttack = true;
+			_canAttack             = true;
 			
 			if (selfCollider != null)
 				selfDamageCollider = selfCollider;
@@ -217,13 +217,13 @@ namespace _Project.Scripts.Abilities
 			Vector3 direction = _transform.forward;
 			Quaternion orientation = _transform.rotation;
 
-			float debugHeight = 1f;
+			float debugHeight = 2f;
 			Vector3 upOffset = Vector3.up * debugHeight;
 			Debug.DrawRay(_transform.position + upOffset,
 				_transform.TransformDirection(Vector3.forward) * _maxDistance,
 				Color.red);
 
-			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
+			Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
 
 			// TODO Calc some math to know how far the enemy will move and how big its attack trigger is for better results.
 
@@ -236,7 +236,7 @@ namespace _Project.Scripts.Abilities
 				1 << LayerMask.NameToLayer("Player")))
 				return false;
 
-			// Debug.Log($"hit.name: {hit.collider.name} is in RANGE!!!");
+			Debug.Log($"hit.name: {hit.collider.name} is in RANGE!!!");
 
 			return true;
 		}
