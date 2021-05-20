@@ -151,7 +151,7 @@ namespace _Project.Scripts.Abilities
 			{
 				time = 0f;
 				
-				while (time < 0.1f)
+				while (time < 0.5f)
 				{
 					time            += Time.deltaTime;
 					yield return null;
