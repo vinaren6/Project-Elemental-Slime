@@ -83,12 +83,13 @@ namespace _Project.Scripts.Abilities
 			Initialize(newTag, damage, selfCollider);
 		}
 
-		public void Execute()
+		public bool DidExecute()
 		{
 			if (_isAttacking)
-				return;
+				return false;
 			
 			StartCoroutine(nameof(EarthQuakeRoutine));
+			return true;
 		}
 
 		private IEnumerator EarthQuakeRoutine()

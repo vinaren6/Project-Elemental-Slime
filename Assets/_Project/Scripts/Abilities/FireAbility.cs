@@ -75,10 +75,10 @@ namespace _Project.Scripts.Abilities
 
 		#region Methods
 
-		public void Execute()
+		public bool DidExecute()
 		{
 			if (!_canShoot)
-				return;
+				return false;
 			
 			_effect.Play();
 			
@@ -93,6 +93,8 @@ namespace _Project.Scripts.Abilities
 
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
+
+			return true;
 		}
 
 		public void Stop(bool isPlayer = true)

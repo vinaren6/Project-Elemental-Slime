@@ -60,7 +60,7 @@ namespace _Project.Scripts.Enemies.AI
             // Debug.Log($"{_transform.name} - Attack?");
             EnemyController.Animator.SetBool("IsAttacking", true);
             EnemyController.Animator.SetTrigger("DoAttack");
-            EnemyController.Ability.Execute();
+            EnemyController.Ability.DidExecute();
 
             _timer = 0f;
             _hasAttacked = true;

@@ -128,8 +128,28 @@ namespace _Project.Scripts.Player
 			SwitchElementalStats();
 			SetElementBasedStats();
 			SwitchAbility();
+			SetAnimations();
 			StartCoroutine(SwitchMaterial());
 			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
+		}
+
+		private void SetAnimations()
+		{
+			_animator.SetBool("IsEarthAttack", false);
+			_animator.SetBool("IsSprayAttack", false);
+
+			switch (_elementType.Type)
+			{
+				case ElementalSystemTypes.Base:
+				case ElementalSystemTypes.Wind:
+					return;
+				case ElementalSystemTypes.Earth:
+					_animator.SetBool("IsEarthAttack", true);
+					return;
+				default:
+					_animator.SetBool("IsSprayAttack", true);
+					break;
+			}
 		}
 
 		private void SwitchElementalStats()
@@ -185,7 +205,9 @@ namespace _Project.Scripts.Player
 		{
 			if (currentPlayerElementalStats != elementalStats[(int) ElementalSystemTypes.Base])
 			{
-				_ability.Execute();
+				if (_ability.DidExecute())
+					_animator.SetTrigger("DoAttack");
+				_animator.SetBool("IsAttacking", true);
 				return;
 			}
 

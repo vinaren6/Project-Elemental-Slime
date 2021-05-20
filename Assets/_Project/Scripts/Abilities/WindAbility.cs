@@ -96,14 +96,15 @@ namespace _Project.Scripts.Abilities
 
 		#region Methods
 
-		public void Execute()
+		public bool DidExecute()
 		{
 			if (!CanBeExecuted())
-				return;
+				return false;
 
 			_canAttack = false;
 			
 			StartCoroutine(WindDashRoutine());
+			return true;
 		}
 
 		private bool CanBeExecuted()

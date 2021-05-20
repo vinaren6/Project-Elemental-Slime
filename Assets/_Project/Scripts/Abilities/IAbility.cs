@@ -9,7 +9,7 @@ namespace _Project.Scripts.Abilities
         void Initialize(string newTag, float damage, Collider selfCollider = null);
         void Initialize(string newTag, float damage, float distance, Collider selfCollider = null);
 
-        void Execute();
+        bool DidExecute();
 
         void Stop(bool isPlayer = true);
 

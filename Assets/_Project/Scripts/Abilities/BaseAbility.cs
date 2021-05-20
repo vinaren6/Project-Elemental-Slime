@@ -15,9 +15,10 @@ namespace _Project.Scripts.Abilities
 		{
 		}
 
-		public void Execute()
+		public bool DidExecute()
 		{
 			// print("BaseAbility Executed!");
+			return true;
 		}
 		
 		public void Stop(bool isPlayer = true)

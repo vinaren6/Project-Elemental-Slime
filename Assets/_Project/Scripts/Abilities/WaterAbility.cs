@@ -72,7 +72,7 @@ namespace _Project.Scripts.Abilities
 
         #region Methods
         
-        public void Execute()
+        public bool DidExecute()
         {
             RaycastHit hit = new RaycastHit();
             Vector3 origin = _transform.position;
@@ -90,6 +90,8 @@ namespace _Project.Scripts.Abilities
             }
             else
                 SetWaterRayScale(maxDistance);
+
+            return false;
         }
 
         private bool LaserDidHit(ref RaycastHit hit, float distance)
