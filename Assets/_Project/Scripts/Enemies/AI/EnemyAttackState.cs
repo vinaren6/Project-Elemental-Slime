@@ -22,7 +22,7 @@ namespace _Project.Scripts.Enemies.AI
             
             if (_hasAttacked)
             {
-                EnemyController.NavMeshAgent.destination = _transform.position;
+               // EnemyController.NavMeshAgent.destination = _transform.position;
                 // Debug.Log($"TIME: {_timer} - NEXTaTTACK: {_nextAttack}");
                 _timer += Time.deltaTime;
                 if (_timer >= _nextAttack)
