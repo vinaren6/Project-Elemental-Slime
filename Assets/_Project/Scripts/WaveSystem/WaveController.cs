@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
+using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.HealthSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,12 +16,14 @@ namespace _Project.Scripts.WaveSystem
 		[SerializeField]                      private int           activeSpawns;
 		[SerializeField]                      private GameObject[]  spawnObjects;
 		[SerializeField]                      public  WaveSpawner[] spawners;
+		[SerializeField]                      private Health        player;
 		[SerializeField]                      public  int           wave;
 		[Header("Settings")] [SerializeField] private int           maxActiveSpawnsAtSameTime = 15;
-		[SerializeField]                      private float         spawnDelay       = 0.2f;
-		[SerializeField]                      private float         waveBeingDelay   = 3f;
-		[SerializeField]                      private bool          autoStart        = true;
-		[SerializeField]                      private bool          autoplayNextWave = true;
+		[SerializeField]                      private float         spawnDelay                = 0.2f;
+		[SerializeField]                      private float         waveBeingDelay            = 3f;
+		[SerializeField]                      private bool          autoStart                 = true;
+		[SerializeField]                      private bool          autoplayNextWave          = true;
+		[SerializeField]                      private float         healAmountOnNewRound      = 20;
 
 		#if UNITY_EDITOR
 		[HideInInspector] public string debugString = "";
@@ -47,6 +51,8 @@ namespace _Project.Scripts.WaveSystem
 
 		public void StartNextWave()
 		{
+			if (player != null && healAmountOnNewRound > 0)
+				player.ReceiveHealth(ElementalSystemTypes.Base, healAmountOnNewRound);
 			StartCoroutine(SpawnWave(GetWaveSpawnAmount(++wave)));
 			onWaveStart.Invoke();
 		}

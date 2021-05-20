@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace _Project.Scripts.UI
+namespace _Project.Scripts.UI.Menu
 {
 	public class PauseMenuUI : MonoBehaviour
 	{
