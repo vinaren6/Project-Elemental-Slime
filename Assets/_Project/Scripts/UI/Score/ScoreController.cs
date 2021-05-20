@@ -145,7 +145,7 @@ namespace _Project.Scripts.UI.Score
 			while (_displayedScore < _currentScore) {
 				UpdateScore(++_displayedScore);
 				ServiceLocator.Audio.PlaySFX(scoreTickSFX, 0.04f);
-				yield return new WaitForSeconds(0.002f + .5f / (_currentScore - _displayedScore));
+				yield return new WaitForSeconds(0.01f + .25f / (_currentScore - _displayedScore));
 			}
 		}
 
