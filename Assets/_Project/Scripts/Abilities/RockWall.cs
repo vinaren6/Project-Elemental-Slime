@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.ElementalSystem;
@@ -16,6 +15,7 @@ namespace _Project.Scripts.Abilities
         private Material _material;
         private Color _originalColor;
         private Collider _collider;
+        private ParticleSystem _particleSystem;
 
         private List<IHealth> _damagedEnemies;
 
@@ -26,6 +26,7 @@ namespace _Project.Scripts.Abilities
             _material = GetComponentInChildren<MeshRenderer>().material;
             _originalColor = _material.color;
             _collider = GetComponent<Collider>();
+            _particleSystem = GetComponentInChildren<ParticleSystem>();
         }
 
         public void Initialize(EarthAbility ability, string newTag)
@@ -45,6 +46,7 @@ namespace _Project.Scripts.Abilities
             _transform.position = spawnPosition;
             _material.color = _originalColor;
             gameObject.SetActive(true);
+            _particleSystem.Stop();
 
             StartCoroutine(nameof(RockRoutine));
         }
@@ -65,6 +67,8 @@ namespace _Project.Scripts.Abilities
             targetScale.y = height;
 
             _collider.enabled = true;
+            
+            // TODO Make the RockWall MOVE up instead of SCALE...
 
             while (time < aliveTime)
             {
@@ -72,6 +76,9 @@ namespace _Project.Scripts.Abilities
 
                 targetScale.y = height * _animationCurve.Evaluate(time / aliveTime);
                 _transform.localScale = targetScale;
+                
+                if (_particleSystem.isStopped && time >= upDuration)
+                    _particleSystem.Play();
                 
                 // _transform.localScale = Vector3.Lerp(_transform.localScale, targetScale,
                 //     _animationCurve.Evaluate(time / aliveTime));
@@ -84,8 +91,6 @@ namespace _Project.Scripts.Abilities
                 yield return null;
             }
 
-            _collider.enabled = false;
-
             // time = 0f;
             // while (time < aliveTime)
             // {
@@ -96,6 +101,8 @@ namespace _Project.Scripts.Abilities
             //     time += Time.deltaTime;
             //     yield return null;
             // }
+
+            yield return new WaitForSeconds(0.5f);
 
             _ability.ReturnToPool(this);
         }

@@ -73,7 +73,7 @@ namespace _Project.Scripts.Abilities
 			_damage = damage;
 			_isAttacking = false;
 			_damageCooldownTime = 1f;
-			_rockSpawnTime = 0.20f;
+			_rockSpawnTime = 0.1f;
 			
 			SetupPool();
 		}
@@ -213,7 +213,7 @@ namespace _Project.Scripts.Abilities
 
 		public float GetAttackTime()
 		{
-			return _rockSpawnTime * 3;
+			return _rockSpawnTime * 3 * 2;
 		}
 
 		private IEnumerator AttackCooldownRoutine()
