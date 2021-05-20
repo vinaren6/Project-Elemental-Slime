@@ -184,11 +184,11 @@ namespace _Project.Scripts.Abilities
 			Vector3 direction = _transform.forward;
 			Quaternion orientation = _transform.rotation;
 			
-			float debugHeight = 1f;
-            Vector3 upOffset = Vector3.up * debugHeight;
-            Debug.DrawRay(_transform.position + upOffset,
-	            _transform.TransformDirection(Vector3.forward) * _maxDistance,
-	            Color.red);
+			// float debugHeight = 1f;
+            // Vector3 upOffset = Vector3.up * debugHeight;
+            // Debug.DrawRay(_transform.position + upOffset,
+			//  _transform.TransformDirection(Vector3.forward) * _maxDistance,
+			//  Color.red);
             
 			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
 			
@@ -217,13 +217,13 @@ namespace _Project.Scripts.Abilities
 			Vector3 direction = _transform.forward;
 			Quaternion orientation = _transform.rotation;
 
-			float debugHeight = 2f;
-			Vector3 upOffset = Vector3.up * debugHeight;
-			Debug.DrawRay(_transform.position + upOffset,
-				_transform.TransformDirection(Vector3.forward) * _maxDistance,
-				Color.red);
+			// float debugHeight = 2f;
+			// Vector3 upOffset = Vector3.up * debugHeight;
+			// Debug.DrawRay(_transform.position + upOffset,
+			// 	_transform.TransformDirection(Vector3.forward) * _maxDistance,
+			// 	Color.red);
 
-			Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
+			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
 
 			// TODO Calc some math to know how far the enemy will move and how big its attack trigger is for better results.
 
@@ -236,7 +236,7 @@ namespace _Project.Scripts.Abilities
 				1 << LayerMask.NameToLayer("Player")))
 				return false;
 
-			Debug.Log($"hit.name: {hit.collider.name} is in RANGE!!!");
+			// Debug.Log($"hit.name: {hit.collider.name} is in RANGE!!!");
 
 			return true;
 		}

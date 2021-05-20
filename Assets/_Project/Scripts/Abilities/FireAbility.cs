@@ -122,9 +122,8 @@ namespace _Project.Scripts.Abilities
         {
 			PlayerController controller = FindObjectOfType<PlayerController>();
 			Transform p = controller.transform;
-			Debug.Log("walktowardPlayer");
-
-
+			// Debug.Log("walktowardPlayer");
+			
 			var turnSpeed = 10.0f;
 			var _dir = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.parent.gameObject.transform.position;
 			_dir.Normalize();
