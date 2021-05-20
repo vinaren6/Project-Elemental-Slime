@@ -5,7 +5,7 @@ namespace _Project.Scripts.WaveSystem
 {
 	public class DisplayCurrentWave : MonoBehaviour
 	{
-		[SerializeField] private TMP_Text text;
+		[SerializeField] private TMP_Text text, staticText;
 
 		[SerializeField] private float fadeInTime = 1, activeTime = 2, fadeOutTime = 3;
 
@@ -42,7 +42,7 @@ namespace _Project.Scripts.WaveSystem
 			_t           = 0;
 			enabled      = true;
 			text.enabled = true;
-			text.text    = ToRoman(WaveController.Instance.wave);
+			text.text    = staticText.text = ToRoman(WaveController.Instance.wave);
 			text.color   = new Color(text.color.a, text.color.b, text.color.g, 0);
 		}
 
