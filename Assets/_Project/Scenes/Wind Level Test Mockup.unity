@@ -96808,6 +96808,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5132432985780227473, guid: 140c5943179cffb479c91f592d0e579d, type: 3}
+      propertyPath: VelocityModule.y.minScalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132432985780227473, guid: 140c5943179cffb479c91f592d0e579d, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132432985780227473, guid: 140c5943179cffb479c91f592d0e579d, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132432985780227473, guid: 140c5943179cffb479c91f592d0e579d, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5475103130837846317, guid: 140c5943179cffb479c91f592d0e579d, type: 3}
       propertyPath: m_Name
       value: Earth Ability
