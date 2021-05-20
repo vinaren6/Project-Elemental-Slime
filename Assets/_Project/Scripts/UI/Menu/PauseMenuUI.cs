@@ -37,6 +37,7 @@ namespace _Project.Scripts.UI.Menu
 		}
 
 		public void OptionsButtonClick() => ShowPanel(PauseMenuPanelType.Options);
+		public void ControlsButtonClick() => ShowPanel(PauseMenuPanelType.Controls);
 
 		public void BackToMainMenuClick()
 		{

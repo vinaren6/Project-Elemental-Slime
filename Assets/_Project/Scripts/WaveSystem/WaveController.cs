@@ -51,7 +51,7 @@ namespace _Project.Scripts.WaveSystem
 
 		public void StartNextWave()
 		{
-			if (player != null && healAmountOnNewRound > 0)
+			if (player != null && healAmountOnNewRound > 0 && wave != 0)
 				player.ReceiveHealth(ElementalSystemTypes.Base, healAmountOnNewRound);
 			StartCoroutine(SpawnWave(GetWaveSpawnAmount(++wave)));
 			onWaveStart.Invoke();
