@@ -51,16 +51,16 @@ namespace _Project.Scripts.Abilities
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
 		{
-			tag = newTag;
+			tag                    = newTag;
 			_attackTrigger.enabled = false;
 			_damage                = damage;
-			_attackDuration = 0.4f;
-			_attackCooldownTime = 0.5f;
-			_maxDistance = 8f;
-			_rechargeTime          = 1f;
+			_attackDuration        = 0.4f;
+			_attackCooldownTime    = 0.8f;
+			_maxDistance           = 8f;
+			_rechargeTime          = 1.2f;
 			_maxCharges            = 3;
 			_currentCharges        = _maxCharges;
-			_canAttack = true;
+			_canAttack             = true;
 			
 			if (selfCollider != null)
 				selfDamageCollider = selfCollider;
@@ -96,14 +96,15 @@ namespace _Project.Scripts.Abilities
 
 		#region Methods
 
-		public void Execute()
+		public bool DidExecute()
 		{
 			if (!CanBeExecuted())
-				return;
+				return false;
 
 			_canAttack = false;
 			
 			StartCoroutine(WindDashRoutine());
+			return true;
 		}
 
 		private bool CanBeExecuted()
@@ -184,11 +185,11 @@ namespace _Project.Scripts.Abilities
 			Vector3 direction = _transform.forward;
 			Quaternion orientation = _transform.rotation;
 			
-			float debugHeight = 1f;
-            Vector3 upOffset = Vector3.up * debugHeight;
-            Debug.DrawRay(_transform.position + upOffset,
-	            _transform.TransformDirection(Vector3.forward) * _maxDistance,
-	            Color.red);
+			// float debugHeight = 1f;
+            // Vector3 upOffset = Vector3.up * debugHeight;
+            // Debug.DrawRay(_transform.position + upOffset,
+			//  _transform.TransformDirection(Vector3.forward) * _maxDistance,
+			//  Color.red);
             
 			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
 			
@@ -217,11 +218,11 @@ namespace _Project.Scripts.Abilities
 			Vector3 direction = _transform.forward;
 			Quaternion orientation = _transform.rotation;
 
-			float debugHeight = 1f;
-			Vector3 upOffset = Vector3.up * debugHeight;
-			Debug.DrawRay(_transform.position + upOffset,
-				_transform.TransformDirection(Vector3.forward) * _maxDistance,
-				Color.red);
+			// float debugHeight = 2f;
+			// Vector3 upOffset = Vector3.up * debugHeight;
+			// Debug.DrawRay(_transform.position + upOffset,
+			// 	_transform.TransformDirection(Vector3.forward) * _maxDistance,
+			// 	Color.red);
 
 			// Debug.Log($"center: {center} - ext: {halfExtents} - dir: {direction} - ori: {orientation}");
 

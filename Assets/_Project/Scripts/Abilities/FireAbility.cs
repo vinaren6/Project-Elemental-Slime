@@ -75,10 +75,10 @@ namespace _Project.Scripts.Abilities
 
 		#region Methods
 
-		public void Execute()
+		public bool DidExecute()
 		{
 			if (!_canShoot)
-				return;
+				return false;
 			
 			_effect.Play();
 			
@@ -93,6 +93,8 @@ namespace _Project.Scripts.Abilities
 
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
+
+			return true;
 		}
 
 		public void Stop(bool isPlayer = true)
@@ -111,10 +113,32 @@ namespace _Project.Scripts.Abilities
 				return false;
 			}
 			Transform p = controller.transform;
-
-			return Vector3.Distance(transform.position, p.position) < 10f;
+			bool IsInRange = Vector3.Distance(transform.position, p.position) < 10f;
+			if (IsInRange)
+			{
+				walkTowardPlayer();
+			}
+			return IsInRange;
 		}
-
+		private void walkTowardPlayer()
+        {
+			PlayerController controller = FindObjectOfType<PlayerController>();
+			Transform p = controller.transform;
+			// Debug.Log("walktowardPlayer");
+			
+			var turnSpeed = 10.0f;
+			var _dir = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.parent.gameObject.transform.position;
+			_dir.Normalize();
+			transform.parent.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
+			if (Vector3.Distance(transform.position, p.position) > 2f)
+            {
+				_agent.SetDestination(controller.transform.position);
+            }
+            else
+            {
+				_agent.SetDestination(transform.parent.gameObject.transform.position);
+			}
+        }
 		public bool IsInWalkRange()
 		{
 			// TODO Better calc for checking range.
@@ -126,8 +150,11 @@ namespace _Project.Scripts.Abilities
 				return false;
 			}
 			Transform p = controller.transform;
+			bool IsInRange = Vector3.Distance(transform.position, p.position) < 5f;
 
-			return Vector3.Distance(transform.position, p.position) < 5f;
+			
+
+			return IsInRange;
 		}
 
 		public bool CanAttack()

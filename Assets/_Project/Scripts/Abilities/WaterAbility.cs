@@ -72,7 +72,7 @@ namespace _Project.Scripts.Abilities
 
         #region Methods
         
-        public void Execute()
+        public bool DidExecute()
         {
             RaycastHit hit = new RaycastHit();
             Vector3 origin = _transform.position;
@@ -90,6 +90,8 @@ namespace _Project.Scripts.Abilities
             }
             else
                 SetWaterRayScale(maxDistance);
+
+            return false;
         }
 
         private bool LaserDidHit(ref RaycastHit hit, float distance)
@@ -143,11 +145,11 @@ namespace _Project.Scripts.Abilities
             return LaserDidHit(ref hit, maxDistance);
             
             // TODO Better calc for checking range.
-            Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
-
-            if (Vector3.Distance(_transform.position, p.position) < maxDistance)
-                return true;
-            return false;
+            // Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
+            //
+            // if (Vector3.Distance(_transform.position, p.position) < maxDistance)
+            //     return true;
+            // return false;
         }
         public bool IsInWalkRange()
         {
@@ -155,11 +157,11 @@ namespace _Project.Scripts.Abilities
             return LaserDidHit(ref hit, maxDistance - 5);
 
             // TODO Better calc for checking range.
-            Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
-
-            if (Vector3.Distance(_transform.position, p.position) < maxDistance - 5)
-                return true;
-            return false;
+            // Transform p = GameObject.FindObjectOfType<PlayerController>().transform;
+            //
+            // if (Vector3.Distance(_transform.position, p.position) < maxDistance - 5)
+            //     return true;
+            // return false;
         }
 
         public bool CanAttack()
