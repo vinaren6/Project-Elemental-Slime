@@ -650,8 +650,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426285379}
-  - component: {fileID: 426285381}
   - component: {fileID: 426285380}
+  - component: {fileID: 426285381}
   m_Layer: 0
   m_Name: Stats
   m_TagString: Untagged
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426285378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f96721e33844cc790c333155469ea51, type: 3}
   m_Name: 
@@ -1079,6 +1079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 633483020}
   - component: {fileID: 633483022}
+  - component: {fileID: 633483023}
   - component: {fileID: 633483021}
   m_Layer: 0
   m_Name: Text (TMP) (3)
@@ -1203,6 +1204,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633483019}
   m_CullTransparentMesh: 1
+--- !u!114 &633483023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633483019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da26ac711514baa9051696e168526d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statKey: totalPickups
 --- !u!1 &635878872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,6 +1739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 916759980}
   - component: {fileID: 916759982}
+  - component: {fileID: 916759983}
   - component: {fileID: 916759981}
   m_Layer: 0
   m_Name: Text (TMP) (1)
@@ -1849,6 +1864,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916759979}
   m_CullTransparentMesh: 1
+--- !u!114 &916759983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916759979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da26ac711514baa9051696e168526d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statKey: maxScore
 --- !u!1001 &927711562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2246,6 +2274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1531834698}
   - component: {fileID: 1531834700}
+  - component: {fileID: 1531834701}
   - component: {fileID: 1531834699}
   m_Layer: 0
   m_Name: Text (TMP)
@@ -2370,6 +2399,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531834697}
   m_CullTransparentMesh: 1
+--- !u!114 &1531834701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531834697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da26ac711514baa9051696e168526d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statKey: maxRound
 --- !u!1 &1712736863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,6 +2954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1905971470}
   - component: {fileID: 1905971472}
+  - component: {fileID: 1905971473}
   - component: {fileID: 1905971471}
   m_Layer: 0
   m_Name: Text (TMP) (2)
@@ -3036,6 +3079,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905971469}
   m_CullTransparentMesh: 1
+--- !u!114 &1905971473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905971469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da26ac711514baa9051696e168526d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statKey: totalKills
 --- !u!1 &1987404931
 GameObject:
   m_ObjectHideFlags: 0
