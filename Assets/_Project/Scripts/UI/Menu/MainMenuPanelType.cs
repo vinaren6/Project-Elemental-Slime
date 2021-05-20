@@ -5,6 +5,7 @@ namespace _Project.Scripts.UI.Menu
 		TitleScreen,
 		Options,
 		Credits,
-		Stats
+		Stats,
+		Controls
 	}
 }
