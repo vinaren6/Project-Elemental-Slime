@@ -94,11 +94,17 @@ namespace _Project.Scripts.Abilities
 			_canShoot = false;
 			StartCoroutine(nameof(SpawnDelayRoutine));
 
+			if (CompareTag("Enemy"))
+				_agent.speed = 10;
+
 			return true;
 		}
 
 		public void Stop(bool isPlayer = true)
 		{
+			if (CompareTag("Enemy"))
+				_agent.speed = 15;
+			
 			_effect.Stop();
 		}
 
