@@ -130,6 +130,7 @@ namespace _Project.Scripts.Abilities
         public void Stop(bool isPlayer = true)
         {
             SetWaterRayScale(0f);
+            _splashEffect.StopEffect();
         }
 
         public bool IsInRange()

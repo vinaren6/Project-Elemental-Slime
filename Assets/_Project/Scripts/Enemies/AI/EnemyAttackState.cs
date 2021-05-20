@@ -1,5 +1,6 @@
 using _Project.Scripts.Managers;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 namespace _Project.Scripts.Enemies.AI
 {
@@ -15,7 +16,10 @@ namespace _Project.Scripts.Enemies.AI
         {
             if (ServiceLocator.Game.IsPaused)
                 return;
-
+            
+            if (!EnemyController.Target.gameObject.activeInHierarchy)
+                return;
+            
             if (_hasAttacked)
             {
                 EnemyController.NavMeshAgent.destination = _transform.position;
@@ -30,8 +34,6 @@ namespace _Project.Scripts.Enemies.AI
                     {
                         // Debug.Log($"DEN BORTA! T_T time: {_timer}");
                         // if (!EnemyController.Ability.StopLooping)
-                        EnemyController.Ability.Stop(false);
-                        EnemyController.Animator.SetBool("IsAttacking", false);
                         _stateMachine.ChangeState(EnemyController.HuntState);
                         return;
                     }
@@ -45,14 +47,13 @@ namespace _Project.Scripts.Enemies.AI
 
             if (!EnemyController.Ability.CanAttack())
             {
-                // Debug.Log($"Can't attack... T_T");
-                if (!EnemyController.Ability.StopLooping)
-                {
-                    EnemyController.Ability.Stop(false);
-                    // Debug.Log($"KAN INTE ATTACKERA! T_T");
-                }
-
-                EnemyController.Animator.SetBool("IsAttacking", false);
+                // // Debug.Log($"Can't attack... T_T");
+                // if (!EnemyController.Ability.StopLooping)
+                // {
+                //     EnemyController.Ability.Stop(false);
+                //     // Debug.Log($"KAN INTE ATTACKERA! T_T");
+                // }
+                
                 _stateMachine.ChangeState(EnemyController.HuntState);
                 return;
             }
@@ -74,6 +75,7 @@ namespace _Project.Scripts.Enemies.AI
         public override void Exit()
         {
             base.Exit();
+            EnemyController.Ability.Stop(false);
             EnemyController.Animator.SetBool("IsAttacking", false);
         }
     }
