@@ -9,10 +9,13 @@ namespace _Project.Scripts.Abilities
 {
     public class RockWall : MonoBehaviour
     {
+        [SerializeField] private AnimationCurve _animationCurve;
+        
         private Transform _transform;
         private EarthAbility _ability;
         private Material _material;
         private Color _originalColor;
+        private Collider _collider;
 
         private List<IHealth> _damagedEnemies;
 
@@ -22,6 +25,7 @@ namespace _Project.Scripts.Abilities
         {
             _material = GetComponentInChildren<MeshRenderer>().material;
             _originalColor = _material.color;
+            _collider = GetComponent<Collider>();
         }
 
         public void Initialize(EarthAbility ability, string newTag)
@@ -51,7 +55,7 @@ namespace _Project.Scripts.Abilities
 
             float height = 1.5f;
 
-            float upDuration = 0.4f;
+            float upDuration = 0.25f;
             float aliveTime = 0.5f;
 
             Vector3 localScale = _transform.localScale;
@@ -60,24 +64,38 @@ namespace _Project.Scripts.Abilities
             Vector3 targetScale = localScale;
             targetScale.y = height;
 
-            while (time < upDuration)
-            {
-                _transform.localScale = Vector3.Lerp(_transform.localScale, targetScale, time / upDuration);
+            _collider.enabled = true;
 
-                time += Time.deltaTime;
-                yield return null;
-            }
-
-            time = 0f;
             while (time < aliveTime)
             {
-                Color noAlphaColor = _material.color;
-                noAlphaColor.a = Mathf.Lerp(1f, 0f, time / aliveTime);
-                _material.color = noAlphaColor;
+                _collider.enabled = time < upDuration;
+
+                targetScale.y = height * _animationCurve.Evaluate(time / aliveTime);
+                _transform.localScale = targetScale;
+                
+                // _transform.localScale = Vector3.Lerp(_transform.localScale, targetScale,
+                //     _animationCurve.Evaluate(time / aliveTime));
+                
+                // Debug.Log($"ev.value: {_animationCurve.Evaluate(time / aliveTime)}");
+                
+                // _transform.localScale = Vector3.Lerp(_transform.localScale, targetScale, time / upDuration);
                 
                 time += Time.deltaTime;
                 yield return null;
             }
+
+            _collider.enabled = false;
+
+            // time = 0f;
+            // while (time < aliveTime)
+            // {
+            //     Color noAlphaColor = _material.color;
+            //     noAlphaColor.a = Mathf.Lerp(1f, 0f, time / aliveTime);
+            //     _material.color = noAlphaColor;
+            //     
+            //     time += Time.deltaTime;
+            //     yield return null;
+            // }
 
             _ability.ReturnToPool(this);
         }

@@ -73,7 +73,7 @@ namespace _Project.Scripts.Abilities
 			_damage = damage;
 			_isAttacking = false;
 			_damageCooldownTime = 1f;
-			_rockSpawnTime = 0.33f;
+			_rockSpawnTime = 0.20f;
 			
 			SetupPool();
 		}

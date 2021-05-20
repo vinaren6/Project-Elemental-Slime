@@ -223,14 +223,14 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5455201847457721630}
-    m_Position: {x: 860, y: 10, z: 0}
+    m_Position: {x: 700, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6742541245037983716}
-    m_Position: {x: 860, y: -90, z: 0}
+    m_Position: {x: 700, y: -100, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -6142967410302367605}
-    m_Position: {x: 380, y: -10, z: 0}
+    m_Position: {x: 400, y: -20, z: 0}
   m_AnyStateTransitions:
   - {fileID: 9124181756126180929}
   - {fileID: -8226933359465938403}
@@ -241,9 +241,9 @@ AnimatorStateMachine:
     - {fileID: -3502158084507984639}
     - {fileID: 1617068263944223959}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 140, y: 0, z: 0}
-  m_EntryPosition: {x: 1090, y: -110, z: 0}
-  m_ExitPosition: {x: 1020, y: 200, z: 0}
+  m_AnyStatePosition: {x: 140, y: -20, z: 0}
+  m_EntryPosition: {x: 1000, y: -90, z: 0}
+  m_ExitPosition: {x: 1000, y: -30, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 6742541245037983716}
 --- !u!1101 &-3923723971197564256
@@ -330,7 +330,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Earth Slam
-  m_Speed: 1
+  m_Speed: 0.9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7485435844378903041}
