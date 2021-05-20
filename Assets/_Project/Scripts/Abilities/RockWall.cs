@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.ElementalSystem;
@@ -10,10 +11,18 @@ namespace _Project.Scripts.Abilities
     {
         private Transform _transform;
         private EarthAbility _ability;
+        private Material _material;
+        private Color _originalColor;
 
         private List<IHealth> _damagedEnemies;
 
         private float _damage;
+
+        private void Awake()
+        {
+            _material = GetComponentInChildren<MeshRenderer>().material;
+            _originalColor = _material.color;
+        }
 
         public void Initialize(EarthAbility ability, string newTag)
         {
@@ -30,6 +39,7 @@ namespace _Project.Scripts.Abilities
             
             _transform.SetParent(null);
             _transform.position = spawnPosition;
+            _material.color = _originalColor;
             gameObject.SetActive(true);
 
             StartCoroutine(nameof(RockRoutine));
@@ -39,7 +49,7 @@ namespace _Project.Scripts.Abilities
         {
             float time = 0f;
 
-            float height = 4f;
+            float height = 1.5f;
 
             float upDuration = 0.4f;
             float aliveTime = 0.5f;
@@ -58,8 +68,17 @@ namespace _Project.Scripts.Abilities
                 yield return null;
             }
 
-            yield return new WaitForSeconds(aliveTime);
-            
+            time = 0f;
+            while (time < aliveTime)
+            {
+                Color noAlphaColor = _material.color;
+                noAlphaColor.a = Mathf.Lerp(1f, 0f, time / aliveTime);
+                _material.color = noAlphaColor;
+                
+                time += Time.deltaTime;
+                yield return null;
+            }
+
             _ability.ReturnToPool(this);
         }
         
