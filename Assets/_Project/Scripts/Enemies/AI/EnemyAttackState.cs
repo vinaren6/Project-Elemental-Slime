@@ -12,6 +12,12 @@ namespace _Project.Scripts.Enemies.AI
         private float _nextAttack = 1f;
         private bool _hasAttacked;
 
+        public override void Enter()
+        {
+            base.Enter();
+            _nextAttack = EnemyController.Ability.GetAttackTime();
+        }
+
         public override void LogicUpdate()
         {
             if (ServiceLocator.Game.IsPaused)
@@ -66,12 +72,7 @@ namespace _Project.Scripts.Enemies.AI
             _timer = 0f;
             _hasAttacked = true;
         }
-
-        public override void Enter()
-        {
-            _nextAttack = EnemyController.Ability.GetAttackTime();
-        }
-
+        
         public override void Exit()
         {
             base.Exit();

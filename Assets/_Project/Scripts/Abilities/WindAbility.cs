@@ -136,24 +136,26 @@ namespace _Project.Scripts.Abilities
 
 				float newSpeed = velocityCurve.Evaluate(time / _attackDuration) * speed;
 
+
 				_agent.Move(direction * (newSpeed * Time.deltaTime));
+				
+				if (CompareTag("Enemy"))
+					_agent.SetDestination(_transform.position);
 
 				time += Time.deltaTime;
 				
 				yield return null;
 			}
-
+			
 			if (CompareTag("Enemy"))
 			{
 				time = 0f;
 				
-				while (time < 0.25f)
+				while (time < 0.1f)
 				{
+					time            += Time.deltaTime;
 					yield return null;
-					
-					time += Time.deltaTime;
 				}
-				
 				// Debug.Log($"FREE!!");
 			}
 
