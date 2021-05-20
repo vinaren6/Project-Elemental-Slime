@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.UI.Score
 {
-	public class ScoreMenuDisplay : MonoBehaviour
+	public class StatMenuDisplay : MonoBehaviour
 	{
 		public TMP_Text maxRound, maxScore, totalKills, totalPickups;
 
