@@ -12,4 +12,4 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Waves.unity
     guid: 3709130b0483be44ba052e9f0756000c
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 728a62bdc2745c64ab4d15759628eeae, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: bf0638c79fdfb9144aab0368842411c4, type: 2}
