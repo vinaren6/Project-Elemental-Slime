@@ -10,11 +10,15 @@ namespace _Project.Scripts.UI.Menu
 
 		private void Awake() => ShowPanel(MainMenuPanelType.TitleScreen);
 
+		public void ButtonClick(MainMenuPanelType type) => ShowPanel(type);
+			
 		public void PlayButtonClick() => SceneManager.LoadScene(1);
 
 		public void OptionsButtonClick() => ShowPanel(MainMenuPanelType.Options);
 
 		public void CreditsButtonClick() => ShowPanel(MainMenuPanelType.Credits);
+		
+		public void ControlsButtonClick() => ShowPanel(MainMenuPanelType.Controls);
 
 		public void BackToTitleClick() => ShowPanel(MainMenuPanelType.TitleScreen);
 
