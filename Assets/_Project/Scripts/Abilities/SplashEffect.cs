@@ -40,6 +40,8 @@ namespace _Project.Scripts.Abilities
 
         public void StopEffect()
         {
+            StopCoroutine(SplashRoutine());
+            
             _transform.SetParent(_originalParent);
             _particleSystem.Stop();
             
@@ -57,7 +59,8 @@ namespace _Project.Scripts.Abilities
                 _timer += Time.deltaTime;
             }
 
-            StopEffect();
+            _transform.SetParent(_originalParent);
+            _particleSystem.Stop();
         }
     }
 }

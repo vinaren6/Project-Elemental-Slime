@@ -1,73 +1,72 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using _Project.Scripts.Managers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.UI
 {
-    public class PauseMenuUI : MonoBehaviour
-    {
-        [SerializeField] private GameObject[] panels;
+	public class PauseMenuUI : MonoBehaviour
+	{
+		[SerializeField] private InputActionAsset controls;
+		[SerializeField] private GameObject[]     panels;
 
-        private void Awake()
-        {
-            HideAllPanels();
-        }
+		private InputAction _inputAction;
 
-        public void ResumeButtonClick()
-        {
-            ClosePauseMenu();
-        }
+		private void Awake()
+		{
+			_inputAction = controls.FindActionMap("UI").FindAction("Pause");
+			_inputAction.performed += _ => {
+				ServiceLocator.Game.SetPause(!ServiceLocator.Game.GetPause());
+				if (ServiceLocator.Game.GetPause())
+					ShowPanel(PauseMenuPanelType.PauseScreen);
+				else
+					HideAllPanels();
+			};
+			HideAllPanels();
+		}
 
-        public void RestartButtonClick()
-        {
-            ServiceLocator.Game.SetPause(false);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+		private void OnEnable()  => _inputAction.Enable();
+		private void OnDisable() => _inputAction.Disable();
 
-        public void OptionsButtonClick()
-        {
-            ShowPanel(PauseMenuPanelType.Options);
-        }
+		public void ResumeButtonClick() => ClosePauseMenu();
 
-        public void BackToMainMenuClick()
-        {
-            ServiceLocator.Game.SetPause(false);
-            SceneManager.LoadScene(0);
-        }
+		public void RestartButtonClick()
+		{
+			ServiceLocator.Game.SetPause(false);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 
-        public void OptionsConfirmClick()
-        {
-            ShowPanel(PauseMenuPanelType.PauseScreen);
-        }
+		public void OptionsButtonClick() => ShowPanel(PauseMenuPanelType.Options);
 
-        public void OpenPauseMenu()
-        {
-            ServiceLocator.Game.SetPause(true);
-            ShowPanel(PauseMenuPanelType.PauseScreen);
-        }
+		public void BackToMainMenuClick()
+		{
+			ServiceLocator.Game.SetPause(false);
+			SceneManager.LoadScene(0);
+		}
 
-        public void ClosePauseMenu()
-        {
-            ServiceLocator.Game.SetPause(false);
-            HideAllPanels();
-        }
-        
-        private void HideAllPanels()
-        {
-            foreach (GameObject panel in panels)
-            {
-                panel.SetActive(false);
-            }
-        }
+		public void OptionsConfirmClick() => ShowPanel(PauseMenuPanelType.PauseScreen);
 
-        private void ShowPanel(PauseMenuPanelType panelType)
-        {
-            HideAllPanels();
-            panels[(int) panelType].SetActive(true);
-        }
-    }
+		public void OpenPauseMenu()
+		{
+			ServiceLocator.Game.SetPause(true);
+			ShowPanel(PauseMenuPanelType.PauseScreen);
+		}
+
+		public void ClosePauseMenu()
+		{
+			ServiceLocator.Game.SetPause(false);
+			HideAllPanels();
+		}
+
+		private void HideAllPanels()
+		{
+			foreach (GameObject panel in panels) panel.SetActive(false);
+		}
+
+		private void ShowPanel(PauseMenuPanelType panelType)
+		{
+			HideAllPanels();
+			panels[(int) panelType].SetActive(true);
+		}
+	}
 }
-

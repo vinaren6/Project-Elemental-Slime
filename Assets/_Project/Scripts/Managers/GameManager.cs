@@ -42,6 +42,8 @@ namespace _Project.Scripts.Managers
                 OnVariableChange(_isPaused);
         }
 
-        #endregion
+        public bool GetPause() => _isPaused;
+
+#endregion
     }
 }

@@ -26,8 +26,7 @@ namespace _Project.Scripts.UI.Score
 		public int   pickupScore           = 5;
 		public float scoreAdditionPerCombo = 0.1f;
 		public float comboTimeLimit        = 25f;
-
-		private bool  _comboIsActive;
+		
 		private int   _currentCombo;
 		private float _comboTimeRemaining;
 
@@ -154,7 +153,6 @@ namespace _Project.Scripts.UI.Score
 		{
 			yield return new WaitForEndOfFrame();
 			_comboTimeRemaining = comboTimeLimit;
-			_comboIsActive      = true;
 			_currentCombo++;
 
 			while (_comboTimeRemaining > 0) {
@@ -166,7 +164,6 @@ namespace _Project.Scripts.UI.Score
 			comboMeterUI.UpdateUI(0f);
 			_currentCombo  = 0;
 			UpdateComboChainText();
-			_comboIsActive = false;
 		}
 
 		private void UpdateComboChainText()
@@ -179,7 +176,6 @@ namespace _Project.Scripts.UI.Score
 			else {
 				comboChainText.text = "";
 			}
-			
 		}
 	}
 }
