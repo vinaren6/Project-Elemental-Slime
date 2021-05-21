@@ -937,9 +937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35df1881841845b981e64cd1d54e0d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthbar: {fileID: 9056717425959043334}
-  _specialAttack: {fileID: 0}
-  _elementBars:
+  healthBar: {fileID: 9056717425959043334}
+  elementBars:
   - {fileID: 4511309516540697201}
   - {fileID: 4511309514933080340}
   - {fileID: 4511309516341209010}
