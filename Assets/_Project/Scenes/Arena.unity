@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1865882349}
-  m_IndirectSpecularColor: {r: 0.4709394, g: 0.17482945, b: 0.59045124, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -544,6 +544,51 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.0050000004, y: 0.004, z: 0.007}
   m_TimeToStationary: 0.5
+--- !u!1001 &630600321
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4183805657313760133, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_Name
+      value: Clouds Donut
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760133, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183805657313760134, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56b61b6bb9868dd47aa2a2a0b273b006, type: 3}
 --- !u!1001 &652338963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -849,7 +894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3977058796477162838, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: requiredElementsToChange
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227883920354427314, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_RootOrder
