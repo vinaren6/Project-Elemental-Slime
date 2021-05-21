@@ -13,7 +13,7 @@ namespace _Project.Scripts.Audio
             Debug.Log($"{nameof(PlaySFX)} - {audioClip.name}");
         }
 
-        public void PlaySFX(AudioClip audioClip, float volume = 1, float delay = 0)
+        public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0)
         {
             throw new System.NotImplementedException();
         }

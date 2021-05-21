@@ -21,7 +21,7 @@ namespace _Project.Scripts.Audio
 
 		public void PlaySFX(AudioClip audioClip, float volume = 1f) => _audioSourceSFX.PlayOneShot(audioClip, volume);
 
-		public void PlaySFX(AudioClip audioClip, float volume = 1f, float delay = 0f)
+		public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0f)
 		{
 			_audioSourceSFX.clip = audioClip;
 			_audioSourceSFX.volume = volume;
