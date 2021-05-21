@@ -106,7 +106,7 @@ namespace _Project.Scripts.Abilities
 			StartCoroutine(nameof(SpawnDelayRoutine));
 
 			if (CompareTag("Enemy"))
-				_agent.speed = 8f;
+				_agent.speed = 5f;
 
 			return true;
 		}
