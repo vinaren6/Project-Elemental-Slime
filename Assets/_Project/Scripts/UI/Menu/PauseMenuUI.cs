@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,15 +16,20 @@ namespace _Project.Scripts.UI.Menu
 		private void Awake()
 		{
 			_inputAction = controls.FindActionMap("UI").FindAction("Pause");
-			_inputAction.performed += _ => {
-				ServiceLocator.Game.SetPause(!ServiceLocator.Game.GetPause());
-				if (ServiceLocator.Game.GetPause())
-					ShowPanel(PauseMenuPanelType.PauseScreen);
-				else
-					HideAllPanels();
-			};
+			_inputAction.performed += OnInputActionPerformed;
 			HideAllPanels();
 		}
+
+		private void OnInputActionPerformed(InputAction.CallbackContext _)
+		{
+			ServiceLocator.Game.SetPause(!ServiceLocator.Game.GetPause());
+			if (ServiceLocator.Game.GetPause())
+				ShowPanel(PauseMenuPanelType.PauseScreen);
+			else
+				HideAllPanels();
+		}
+
+		private void OnDestroy() => _inputAction.performed -= OnInputActionPerformed;
 
 		private void OnEnable()  => _inputAction.Enable();
 		private void OnDisable() => _inputAction.Disable();
@@ -61,7 +67,10 @@ namespace _Project.Scripts.UI.Menu
 
 		private void HideAllPanels()
 		{
-			foreach (GameObject panel in panels) panel.SetActive(false);
+			foreach (GameObject panel in panels) {
+				if (panel.activeSelf)
+					panel.SetActive(false);
+			}
 		}
 
 		private void ShowPanel(PauseMenuPanelType panelType)
