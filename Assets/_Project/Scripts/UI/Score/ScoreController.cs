@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _Project.Scripts.Events.Stats;
 using _Project.Scripts.Managers;
 using _Project.Scripts.UI.ScriptableObjects;
 using _Project.Scripts.WaveSystem;
@@ -63,12 +64,10 @@ namespace _Project.Scripts.UI.Score
 		public void UpdateGameOverScoreText()
 		{
 			//save score.
-			PlayerPrefs.SetInt("totalKills",   PlayerPrefs.GetInt("totalKills")   + _kills);
-			PlayerPrefs.SetInt("totalPickups", PlayerPrefs.GetInt("totalPickups") + _pickups);
-			if (PlayerPrefs.GetInt("maxScore") < _totalScore)
-				PlayerPrefs.SetInt("maxScore", _totalScore);
-			if (PlayerPrefs.GetInt("maxRound") < WaveController.Instance.wave)
-				PlayerPrefs.SetInt("maxRound", WaveController.Instance.wave);
+			UpdateStat.SetMaxAndAddStat("maxKills", "totalKills",   _kills);
+			UpdateStat.SetMaxAndAddStat("maxPickups", "totalPickups", _pickups);
+			UpdateStat.SetMaxAndAddStat("maxScore", "totalScore",   _totalScore);
+			UpdateStat.SetMaxAndAddStat("maxRound", "totalRound",   WaveController.Instance.wave);
 
 			//update UI
 			score.transform.parent.gameObject.SetActive(false);
