@@ -2093,7 +2093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524343677183777123, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_AmplitudeGain
-      value: 0
+      value: 0.2650567
       objectReference: {fileID: 0}
     - target: {fileID: 3726310583025180116, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_Name
@@ -6218,6 +6218,10 @@ PrefabInstance:
     - target: {fileID: 7925193270865203222, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
       propertyPath: m_Name
       value: InGameUITEST
+      objectReference: {fileID: 0}
+    - target: {fileID: 7925193270865203222, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7925193270865203223, guid: d8cf70785e5780c4e866eb2bef8679c1, type: 3}
       propertyPath: m_RootOrder

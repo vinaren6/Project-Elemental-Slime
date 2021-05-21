@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3be3591434b8990838d0f8b1ade47, type: 3}
   m_Name: EnemyBaseSettings
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 14
   attackStrength: 8
   attackCooldownTime: 1
