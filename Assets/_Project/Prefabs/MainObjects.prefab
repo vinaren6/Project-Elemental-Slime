@@ -1213,6 +1213,14 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: c683ca5a7105aa447ac22daeaa2b243e, type: 2}
+    - target: {fileID: 1460504047, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 7210979119041249676, guid: 8edd6c9b48335f54c9ecc3fd69da7ba1, type: 3}
+    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyFire
@@ -1279,6 +1287,14 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: c7e3e378fdd1fde448dee9529b28e1ef, type: 2}
+    - target: {fileID: 1460504047, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 6485977670028745617, guid: d282a7483960c724cbc24bbe786c12d1, type: 3}
+    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyEarth
@@ -1345,6 +1361,14 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: d1d25208f1522c746b80fdf666541fb9, type: 2}
+    - target: {fileID: 1460504047, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 6610135025877107707, guid: ed17b324a3ad4c049aec90302e083cae, type: 3}
+    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyWater
@@ -1630,6 +1654,14 @@ PrefabInstance:
       propertyPath: currentEnemyElementalStats
       value: 
       objectReference: {fileID: 11400000, guid: 2308395039c156b43bbd44d20d8de55a, type: 2}
+    - target: {fileID: 1460504047, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 4248648219530868171, guid: e465b5ac13d82254ea290ea7e3eeaa49, type: 3}
+    - target: {fileID: 1460504048, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3036836907716680916, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_Name
       value: EnemyWind
