@@ -1,3 +1,4 @@
+using _Project.Scripts.Managers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ namespace _Project.Scripts.UI.Menu
 	public class MainMenuUI : MonoBehaviour
 	{
 		[SerializeField] private GameObject[] panels;
+		[SerializeField] private AudioClip clickSFX;
 
 		private void Awake() => ShowPanel(MainMenuPanelType.TitleScreen);
 
@@ -42,6 +44,11 @@ namespace _Project.Scripts.UI.Menu
 		{
 			HideAllPanels();
 			panels[(int) panelType].SetActive(true);
+		}
+
+		public void PlayClickSound()
+		{
+			ServiceLocator.Audio.PlaySFX(clickSFX, 0.2f);
 		}
 	}
 }

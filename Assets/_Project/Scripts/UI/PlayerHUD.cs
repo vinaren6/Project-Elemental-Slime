@@ -8,6 +8,7 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private HealthUI       healthBar;
         [SerializeField] private ElementBarUI[] elementBars;
+        [SerializeField] private AudioClip clickSFX;
 
         public HealthUI HealthBar => healthBar;
         
@@ -27,6 +28,11 @@ namespace _Project.Scripts.UI
         public ElementBarUI ElementBar(ElementalSystemTypes type)
         {
             return elementBars[(int) type];
+        }
+        
+        public void PlayClickSound()
+        {
+            ServiceLocator.Audio.PlaySFX(clickSFX, 0.2f);
         }
     }
 }
