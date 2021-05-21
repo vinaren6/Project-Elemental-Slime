@@ -13,6 +13,7 @@ namespace _Project.Scripts.Abilities
 		
 		[SerializeField] private GameObject flamePrefab;
 		[SerializeField] private Transform  flamePoolTransform;
+		[SerializeField] private AudioClip  fireSFX;
 
 		[Header("Test Values")]
 		[SerializeField] [Range(1f, 150f)]    private float speed;
@@ -22,6 +23,7 @@ namespace _Project.Scripts.Abilities
 		private NavMeshAgent         _agent;
 		private Queue<FlameCollider> _flamePool;
 		private VisualEffect         _effect;
+		private AudioSource          _audioSource;
 
 		private int   _maxFlameColliders;
 		private float _fireRate;
@@ -39,6 +41,7 @@ namespace _Project.Scripts.Abilities
 		{
 			_agent     = GetComponentInParent<NavMeshAgent>();
 			_effect    = GetComponentInChildren<VisualEffect>();
+			_audioSource = gameObject.AddComponent<AudioSource>();
 		}
 
 		public void Initialize(string newTag, float damage, Collider selfCollider = null)
@@ -49,6 +52,10 @@ namespace _Project.Scripts.Abilities
 			_fireRate = 1f / _maxFlameColliders;
 			_canShoot = true;
 			_effect.Stop();
+			_audioSource.loop = true;
+			_audioSource.volume = 0.175f;
+			_audioSource.clip = fireSFX;
+			
 			
 			if (_flamePool != null)
 				return;
@@ -77,6 +84,10 @@ namespace _Project.Scripts.Abilities
 
 		public bool DidExecute()
 		{
+			if (!_audioSource.isPlaying)
+			{
+				_audioSource.Play();
+			}
 			if (!_canShoot)
 				return false;
 			
@@ -106,6 +117,7 @@ namespace _Project.Scripts.Abilities
 				_agent.speed = 14f;
 			
 			_effect.Stop();
+			_audioSource.Stop();
 		}
 
 		public bool IsInRange()

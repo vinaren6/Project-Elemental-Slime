@@ -14,9 +14,11 @@ namespace _Project.Scripts.Abilities
         [SerializeField] private Transform waterRayTransform;
         [SerializeField] [Range(15f, 30f)] private float maxDistance;
         [SerializeField] [Range(0.1f, 2f)] private float radius;
+        [SerializeField] private AudioClip waterSFX;
         
         private                  Transform      _transform;
         private SplashEffect _splashEffect;
+        private AudioSource _audioSource;
 
         private                  bool           _canDealDamage;
         private                  float          _damage;
@@ -45,6 +47,7 @@ namespace _Project.Scripts.Abilities
         {
             _transform = transform;
             _splashEffect = GetComponentInChildren<SplashEffect>();
+            _audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         public void Initialize(string newTag, float damage, Collider selfCollider = null)
@@ -56,6 +59,9 @@ namespace _Project.Scripts.Abilities
             _damage             = damage;
             _damageCooldownTime = 0.2f;
             _canDealDamage      = true;
+            _audioSource.loop   = true;
+            _audioSource.volume = 0.125f;
+            _audioSource.clip   = waterSFX;
 
             collisionMask = CompareTag("Player")
                 ? 1 << LayerMask.NameToLayer("Enemy")
@@ -79,6 +85,11 @@ namespace _Project.Scripts.Abilities
             Vector3 direction = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.position;
             bool didHit = Physics.CapsuleCast(origin, origin, radius, transform.parent.gameObject.transform.forward, out hit, maxDistance, collisionMask);
 
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+            }
+            
             if (didHit)
             {
               
@@ -133,6 +144,7 @@ namespace _Project.Scripts.Abilities
         {
             SetWaterRayScale(0f);
             _splashEffect.StopEffect();
+            _audioSource.Stop();
         }
 
         public bool IsInRange()

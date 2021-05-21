@@ -1,6 +1,7 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
+using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,7 +14,8 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] private Collider      selfDamageCollider;
 		[SerializeField] private AnimationCurve velocityCurve;
 		[SerializeField] private GameObject effectObject;
-		
+		[SerializeField] private AudioClip windSFX;
+
 		private NavMeshAgent _agent;
 		private BoxCollider _attackTrigger;
 		private Transform _transform;
@@ -102,6 +104,8 @@ namespace _Project.Scripts.Abilities
 				return false;
 
 			_canAttack = false;
+			
+			ServiceLocator.Audio.PlaySFX(windSFX, 0.5f);
 			
 			StartCoroutine(WindDashRoutine());
 			return true;
