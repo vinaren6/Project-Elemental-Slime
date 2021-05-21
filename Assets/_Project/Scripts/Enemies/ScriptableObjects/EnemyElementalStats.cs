@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.ElementalSystem;
 using UnityEngine;
 
@@ -21,5 +20,6 @@ namespace _Project.Scripts.Enemies.ScriptableObjects
 
         public GameObject mesh;
         public RuntimeAnimatorController animatorController;
+        public Vector3 abilityOffset;
     }
 }

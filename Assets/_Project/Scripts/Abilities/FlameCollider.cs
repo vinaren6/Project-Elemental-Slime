@@ -1,5 +1,6 @@
 using System.Collections;
 using _Project.Scripts.ElementalSystem;
+using _Project.Scripts.Enemies.AI;
 using _Project.Scripts.HealthSystem;
 using UnityEngine;
 
@@ -52,6 +53,14 @@ namespace _Project.Scripts.Abilities
                 return;
             
             health.ReceiveDamage(ElementalSystemTypes.Fire, _damage);
+
+            if (!other.CompareTag("Enemy"))
+                return;
+            
+            if (!other.TryGetComponent(out EnemyController enemy))
+                return;
+
+            enemy.StartDamageOverTime(ElementalSystemTypes.Fire, 5);
         }
 
         public void Execute(Transform spawnTransform, float newSpeed, float newSpeedMultiplier, float aliveTime)

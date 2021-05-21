@@ -1,14 +1,11 @@
-using System;
 using System.Collections;
 using _Project.Scripts.Abilities;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.UI;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Enemies.AI
 {
@@ -148,8 +145,10 @@ namespace _Project.Scripts.Enemies.AI
 			_health       = GetComponent<Health>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
 			_ui           = GetComponentInChildren<EnemyUI>();
+			
 			Instantiate(currentEnemyElementalStats.ability, transform);
 			_ability = GetComponentInChildren<IAbility>();
+			_ability.gameObject.transform.localPosition = currentEnemyElementalStats.abilityOffset;
 
 			// print($"_ability.name: {_ability.gameObject.name}");
 		}
