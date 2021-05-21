@@ -5051,7 +5051,7 @@ GameObject:
   - component: {fileID: 5622412576094577302}
   - component: {fileID: 5622412576094577301}
   - component: {fileID: 7244869055592414363}
-  - component: {fileID: 4389828319679301291}
+  - component: {fileID: 876411589499426595}
   - component: {fileID: 3471685507713538616}
   m_Layer: 6
   m_Name: Drop
@@ -5120,7 +5120,7 @@ MonoBehaviour:
   fadeSpeed: 2
   startColorShiftOnStart: 1
   meshRenderer: {fileID: 7878797890871877795}
---- !u!114 &4389828319679301291
+--- !u!114 &876411589499426595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5129,9 +5129,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5622412576094577305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4755114eb0354657aace10111db513a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 71e9a9bb2cac438fb36c8d68248236e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1949517133824906903}
+  time: 12
 --- !u!135 &3471685507713538616
 SphereCollider:
   m_ObjectHideFlags: 0
