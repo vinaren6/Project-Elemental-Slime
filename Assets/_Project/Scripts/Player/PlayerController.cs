@@ -224,7 +224,7 @@ namespace _Project.Scripts.Player
 			_animator.SetBool("IsAttacking", false);
 		}
 
-		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.Healthbar.UpdateHealthBar(remainingPercent);
+		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.HealthBar.UpdateHealthBar(remainingPercent);
 
 		public void UpdateStatsFromEditorWindow()
 		{

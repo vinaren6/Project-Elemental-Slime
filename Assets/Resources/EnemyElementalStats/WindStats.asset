@@ -16,7 +16,7 @@ MonoBehaviour:
   ability: {fileID: 4314145311622017015, guid: f79cf22bdd37df547bbe1ad5e42e6905, type: 3}
   maxHitPoints: 75
   moveSpeedMultiplier: 1.2
-  attackStrengthMultiplier: 1
+  attackStrengthMultiplier: 0.8
   attackRateMultiplier: 1
   attackRange: 10
   hasRangedAttack: 0

@@ -12,6 +12,10 @@ namespace _Project.Scripts.Audio
         {
         }
 
+        public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0)
+        {
+        }
+
         public void PlayBGM(AudioClip audioClip, float volume = 1f)
         {
         }

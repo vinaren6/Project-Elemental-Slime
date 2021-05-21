@@ -95,7 +95,7 @@ namespace _Project.Scripts.Abilities
 			StartCoroutine(nameof(SpawnDelayRoutine));
 
 			if (CompareTag("Enemy"))
-				_agent.speed = 10;
+				_agent.speed = 8f;
 
 			return true;
 		}
@@ -103,7 +103,7 @@ namespace _Project.Scripts.Abilities
 		public void Stop(bool isPlayer = true)
 		{
 			if (CompareTag("Enemy"))
-				_agent.speed = 15;
+				_agent.speed = 14f;
 			
 			_effect.Stop();
 		}

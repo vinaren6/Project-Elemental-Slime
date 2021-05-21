@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,7 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] private Transform poolParent;
 		[SerializeField] private Transform rockTransformParent;
 		[SerializeField] private BoxCollider rangeCollider;
+		[SerializeField] private AudioClip earthSFX;
 		
 		private NavMeshAgent _agent;
 		private Transform _transform;
@@ -127,6 +129,7 @@ namespace _Project.Scripts.Abilities
 				if (time >= _rockSpawnTime * rocksToSpawn && rocksToSpawn <= 3)
 				{
 					// Spawn rock(s)
+					ServiceLocator.Audio.PlaySFX(earthSFX, 0.2f);
 					for (int i = 1; i <= rocksToSpawn; i++)
 					{
 						RockWall rock = _rockPool.Dequeue();
