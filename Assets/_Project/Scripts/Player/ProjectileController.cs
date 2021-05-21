@@ -22,6 +22,9 @@ namespace _Project.Scripts.Player
 
 		private void OnCollisionEnter(Collision other)
 		{
+			if (!other.gameObject.CompareTag("Enemy"))
+				return;
+
 			if (other.collider.TryGetComponent(out IHealth health))
 				health.ReceiveDamage(type.Type, PlayerController.PlayerDamage);
 
