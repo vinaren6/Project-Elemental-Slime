@@ -93,7 +93,7 @@ namespace _Project.Scripts.Abilities
 			if (!other.TryGetComponent(out NavMeshAgent agent))
 				return;
 
-			agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+			// agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 		}
 
 		#region Methods

@@ -1525,10 +1525,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 5838099703279476833, guid: fc4b6dedd9214da4385f32f5f746e63f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6597438653992265162, guid: fc4b6dedd9214da4385f32f5f746e63f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
