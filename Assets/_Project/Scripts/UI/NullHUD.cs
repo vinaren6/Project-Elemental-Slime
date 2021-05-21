@@ -4,7 +4,8 @@ namespace _Project.Scripts.UI
 {
     public class NullHUD : IHUD
     {
-        public HealthUI Healthbar { get; }
+        public HealthUI HealthBar { get; }
+        
         public ElementBarUI ElementBar(ElementalSystemTypes type)
         {
             return null;
@@ -13,7 +14,5 @@ namespace _Project.Scripts.UI
         public void UpdateElementBar(ElementalSystemTypes type, float percent)
         {
         }
-
-        public SpecialAttackUIOLD SpecialAttack { get; }
     }
 }
