@@ -36,6 +36,7 @@ namespace _Project.Scripts.Audio
 		public void PlayBGM(AudioClip audioClip, float volume = 1f)
 		{
 			if (_audioSourceBGM.isPlaying) {
+				return;
 				//_audioSourceBGM.PlayOneShot(audioClip, volume);
 				_audioSourceBGM.PlayOneShot(audioClip);
 				return;
