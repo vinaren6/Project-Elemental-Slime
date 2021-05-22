@@ -69,7 +69,7 @@ namespace _Project.Scripts.Enemies.AI
 			if (huntPlayerOnStart) StartPlayerDetection();
 		}
 
-		private void Update() => StateMachine.CurrentState.LogicUpdate();
+		private void FixedUpdate() => StateMachine.CurrentState.LogicUpdate();
 
 		public void CheckForPlayerDetection()
 		{
