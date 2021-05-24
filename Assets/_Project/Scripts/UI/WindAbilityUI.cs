@@ -5,8 +5,6 @@ namespace _Project.Scripts.UI
 {
     public class WindAbilityUI : MonoBehaviour
     {
-        [SerializeField] private Sprite[] chargeSprites;
-
         private Image[] _chargeImages;
 
         private Transform _transform;
@@ -35,12 +33,6 @@ namespace _Project.Scripts.UI
 
                 chargesAmount--;
             }
-        }
-
-        private enum ChargeType
-        {
-            Empty,
-            Full
         }
     }
 }
