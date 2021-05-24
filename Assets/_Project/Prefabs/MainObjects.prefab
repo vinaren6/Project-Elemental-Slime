@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544382990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000005482437, y: -0.0000019073476, z: -34.009995}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1319219792}
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 725912523033194696}
   m_Lens:
-    FieldOfView: 35
+    FieldOfView: 60
     OrthographicSize: 15
     NearClipPlane: 0.01
     FarClipPlane: 1000
@@ -203,7 +203,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963147477}
-  m_LocalRotation: {x: -0, y: -0.000000059604638, z: -0.00000006705522, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0000019073486, y: 0.0000019073486, z: -25.990002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 60
+  m_CameraDistance: 26
   m_DeadZoneWidth: 0.25
   m_DeadZoneHeight: 0.3
   m_DeadZoneDepth: 0
@@ -1135,22 +1135,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8811196
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.27781588
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.36497167
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.1150751
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085988910200415382, guid: cded27a50e442504dbd493f05c92297e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 35
       objectReference: {fileID: 0}
@@ -1349,7 +1333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6049476288165510198, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8037430051ed07d4491c2c98ebc08366, type: 3}

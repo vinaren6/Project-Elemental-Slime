@@ -773,7 +773,7 @@
     },
     "m_Name": "Occlusion Strength",
     "m_DefaultReferenceName": "Vector1_37251aa1e9f848a0b9463f1bcff97d2d",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_OcclusionStrength",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
