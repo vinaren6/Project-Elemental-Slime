@@ -8,8 +8,8 @@ namespace _Project.Scripts.UI
     public class EnemyUI : MonoBehaviour
     {
         [SerializeField] private Transform targetTransform;
-        [SerializeField][Range(1f,5f)] private float visibilityTime;
-        [SerializeField][Range(0.5f, 3f)] private float fadeOutTime;
+        [SerializeField][Range(0.5f,5f)] private float visibilityTime;
+        [SerializeField][Range(0.1f, 3f)] private float fadeOutTime;
 
         private Image[]     _images;
         private HealthUI    _healthUI;
