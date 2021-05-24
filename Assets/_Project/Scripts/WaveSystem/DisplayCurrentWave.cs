@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using _Project.Scripts.UI.Score;
+using TMPro;
 using UnityEngine;
 
 namespace _Project.Scripts.WaveSystem
@@ -37,6 +38,7 @@ namespace _Project.Scripts.WaveSystem
 			else {
 				text.enabled = false;
 				enabled      = false;
+				ScoreController.IsBetweenRounds(false);
 			}
 
 			_t += Time.fixedDeltaTime;
@@ -49,6 +51,8 @@ namespace _Project.Scripts.WaveSystem
 			text.enabled = true;
 			text.text    = staticText.text = ToRoman(WaveController.Instance.wave);
 			text.color   = new Color(text.color.a, text.color.b, text.color.g, 0);
+
+			ScoreController.IsBetweenRounds(true);
 		}
 
 		private static string ToRoman(int number)
