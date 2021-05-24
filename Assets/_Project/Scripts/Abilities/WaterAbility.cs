@@ -80,7 +80,7 @@ namespace _Project.Scripts.Abilities
         
         public bool DidExecute()
         {
-            RaycastHit hit = new RaycastHit();//
+            RaycastHit hit = new RaycastHit();///
             Vector3 origin = _transform.position;
             Vector3 direction = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.position;
             bool didHit = Physics.CapsuleCast(origin, origin, radius, transform.parent.gameObject.transform.forward, out hit, maxDistance, collisionMask);
