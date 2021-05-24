@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
   m_Name: WaterStats
   m_EditorClassIdentifier: 
-  elementType: 2
+  elementType: 1
   ability: {fileID: 242483482085332295, guid: 1f7e2a8084e48aa4287077ae23127515, type: 3}
   maxHitPoints: 100
   moveSpeedMultiplier: 1

@@ -137,11 +137,14 @@ namespace _Project.Scripts.Player
 		{
 			_animator.SetBool("IsEarthAttack", false);
 			_animator.SetBool("IsSprayAttack", false);
+			_animator.SetBool("IsWindAttack", false);
 
 			switch (_elementType.Type)
 			{
 				case ElementalSystemTypes.Base:
+					return;
 				case ElementalSystemTypes.Wind:
+					_animator.SetBool("IsWindAttack", true);
 					return;
 				case ElementalSystemTypes.Earth:
 					_animator.SetBool("IsEarthAttack", true);
@@ -155,10 +158,10 @@ namespace _Project.Scripts.Player
 		private void SwitchElementalStats()
 		{
 			currentPlayerElementalStats = _elementType.Type switch {
+				ElementalSystemTypes.Fire  => elementalStats[(int)ElementalSystemTypes.Fire],
+				ElementalSystemTypes.Water => elementalStats[(int)ElementalSystemTypes.Water],
 				ElementalSystemTypes.Earth => elementalStats[(int)ElementalSystemTypes.Earth],
 				ElementalSystemTypes.Wind  => elementalStats[(int)ElementalSystemTypes.Wind],
-				ElementalSystemTypes.Water => elementalStats[(int)ElementalSystemTypes.Water],
-				ElementalSystemTypes.Fire  => elementalStats[(int)ElementalSystemTypes.Fire],
 				ElementalSystemTypes.Base  => elementalStats[(int)ElementalSystemTypes.Base],
 				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};
@@ -168,10 +171,10 @@ namespace _Project.Scripts.Player
 		{
 			_ability.gameObject.SetActive(false);
 			_ability = _elementType.Type switch {
+				ElementalSystemTypes.Fire  => abilities[(int)ElementalSystemTypes.Fire].GetComponent<IAbility>(),
+				ElementalSystemTypes.Water => abilities[(int)ElementalSystemTypes.Water].GetComponent<IAbility>(),
 				ElementalSystemTypes.Earth => abilities[(int)ElementalSystemTypes.Earth].GetComponent<IAbility>(),
 				ElementalSystemTypes.Wind  => abilities[(int)ElementalSystemTypes.Wind].GetComponent<IAbility>(),
-				ElementalSystemTypes.Water => abilities[(int)ElementalSystemTypes.Water].GetComponent<IAbility>(),
-				ElementalSystemTypes.Fire  => abilities[(int)ElementalSystemTypes.Fire].GetComponent<IAbility>(),
 				ElementalSystemTypes.Base  => abilities[(int)ElementalSystemTypes.Base].GetComponent<IAbility>(),
 				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};

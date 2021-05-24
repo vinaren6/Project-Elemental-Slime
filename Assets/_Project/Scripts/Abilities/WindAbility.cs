@@ -2,6 +2,7 @@ using System.Collections;
 using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
+using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,7 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] private AnimationCurve velocityCurve;
 		[SerializeField] private GameObject effectObject;
 		[SerializeField] private AudioClip windSFX;
+		[SerializeField] private WindAbilityUI ui;
 
 		private NavMeshAgent _agent;
 		private BoxCollider _attackTrigger;
@@ -63,9 +65,11 @@ namespace _Project.Scripts.Abilities
 			_maxCharges            = 3;
 			_currentCharges        = _maxCharges;
 			_canAttack             = true;
-			
+
 			if (selfCollider != null)
 				selfDamageCollider = selfCollider;
+			
+			ui?.UpdateUI(_currentCharges);
 		}
 
 		public void Initialize(string newTag, float damage, float distance, Collider selfCollider = null)
@@ -122,6 +126,8 @@ namespace _Project.Scripts.Abilities
 				StartCoroutine(RechargeRoutine());
 			else
 				_currentCharges--;
+			
+			// ui?.UpdateUI(_currentCharges);
 
 			ActivateAttackTrigger();
 
@@ -169,11 +175,28 @@ namespace _Project.Scripts.Abilities
 		private IEnumerator RechargeRoutine()
 		{
 			_currentCharges--;
+			// ui?.UpdateUI(_currentCharges);
+
+			float time = 0f;
+			
 			while (_currentCharges < _maxCharges)
 			{
-				yield return new WaitForSeconds(_rechargeTime);
-				_currentCharges++;
+				if (time >= _rechargeTime)
+				{
+					_currentCharges++;
+					time -= _rechargeTime;
+				}
+
+				time += Time.deltaTime;
+				
+				ui?.UpdateUI(_currentCharges + time/_rechargeTime);
+				
+				yield return null;
+				
+				// yield return new WaitForSeconds(_rechargeTime);
 			}
+			
+			ui?.UpdateUI(_currentCharges);
 		}
 		
 		public void Stop(bool isPlayer = true)
@@ -286,7 +309,8 @@ namespace _Project.Scripts.Abilities
 				selfDamageCollider.enabled = true;
 			
 			_agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-			_canAttack = true;
+			if (!CompareTag("Player"))
+				_canAttack = true;
 			effectObject.SetActive(false);
 		}
 		

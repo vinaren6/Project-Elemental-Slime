@@ -145,12 +145,10 @@ namespace _Project.Scripts.Enemies.AI
 			_health       = GetComponent<Health>();
 			_navMeshAgent = GetComponent<NavMeshAgent>();
 			_ui           = GetComponentInChildren<EnemyUI>();
-			
+
 			Instantiate(currentEnemyElementalStats.ability, transform);
 			_ability = GetComponentInChildren<IAbility>();
 			_ability.gameObject.transform.localPosition = currentEnemyElementalStats.abilityOffset;
-
-			// print($"_ability.name: {_ability.gameObject.name}");
 		}
 		
 		private void SetStats()

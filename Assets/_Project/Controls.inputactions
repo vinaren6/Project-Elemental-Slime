@@ -824,17 +824,9 @@
             "id": "2b6de286-0711-4eb5-b3d2-4af053e3f5b7",
             "actions": [
                 {
-                    "name": "Earth",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "a1367aeb-10af-4204-8df6-c00e0b18c9bf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Wind",
-                    "type": "Button",
-                    "id": "5b46b4e6-6f11-4c0c-9c6e-e23513f9540c",
+                    "id": "e8cd99ff-ea86-40df-b5a6-089d9cd14a4a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -848,9 +840,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "Earth",
                     "type": "Button",
-                    "id": "e8cd99ff-ea86-40df-b5a6-089d9cd14a4a",
+                    "id": "a1367aeb-10af-4204-8df6-c00e0b18c9bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Wind",
+                    "type": "Button",
+                    "id": "5b46b4e6-6f11-4c0c-9c6e-e23513f9540c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -868,7 +868,7 @@
                 {
                     "name": "",
                     "id": "4d794dbc-5f5f-47a9-85d4-0ad2eedbcb98",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -879,33 +879,11 @@
                 {
                     "name": "",
                     "id": "9d13b413-9789-4aa3-b82f-cf6bdb1294af",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Wind",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0bb54bb8-77be-4319-8116-ea5fea6c099f",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Water",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "40748085-3c3e-40bb-9b26-3455f9dfb4fc",
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "Wind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -917,6 +895,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Base",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40748085-3c3e-40bb-9b26-3455f9dfb4fc",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0bb54bb8-77be-4319-8116-ea5fea6c099f",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
