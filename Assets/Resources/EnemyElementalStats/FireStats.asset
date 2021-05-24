@@ -22,4 +22,4 @@ MonoBehaviour:
   hasRangedAttack: 0
   mesh: {fileID: 919132149155446097, guid: 1149554d018ead94db16dca955294701, type: 3}
   animatorController: {fileID: 9100000, guid: 9e7b0b78c6ee2774dab3a47fac68ac5d, type: 2}
-  abilityOffset: {x: 0, y: 1.2, z: 0.75}
+  abilityOffset: {x: 0, y: 1.2, z: 0.5}
