@@ -70,5 +70,5 @@ Material:
     - _OcclusionStrength: 1
     m_Colors:
     - Color_44c2fd3b45a349ba9f059698f0b0a678: {r: 0.094223276, g: 0.03172837, b: 0.21698111, a: 1}
-    - Color_deb0e3a2327e48a3a58c79ecf4588254: {r: 0, g: 0.02745098, b: 0.009150331, a: 1}
+    - Color_deb0e3a2327e48a3a58c79ecf4588254: {r: 0.005713343, g: 0, b: 0.02745098, a: 1}
   m_BuildTextureStacks: []

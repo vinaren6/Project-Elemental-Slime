@@ -30,23 +30,25 @@ namespace _Project.Scripts.Player
 		private PlayerMove                 _move;
 		private PlayerShoot                _shoot;
 		private ElementalSystemTypeCurrent _elementType;
-		private Animator _animator;
-		private Collider _collider;
+		private Animator                   _animator;
+		private Collider                   _collider;
 		private IAbility                   _ability;
 
-		public static float EnemyDamageMultiplier;
-		public static float PlayerDamage;
-		public static float PlayerDamageOverTime;
-		public static float DamageOverTimeCooldownTime;
-		public static int   DamageOverTimeTotalTicks;
-		public static bool  IsDealingDamageOverTime;
-		public static bool  IsAttacking;
-		public static bool  IsSwitching;
+		public static           float EnemyDamageMultiplier;
+		public static           float PlayerDamage;
+		public static           float PlayerDamageOverTime;
+		public static           float DamageOverTimeCooldownTime;
+		public static           int   DamageOverTimeTotalTicks;
+		public static           bool  IsDealingDamageOverTime;
+		public static           bool  IsAttacking;
+		public static           bool  IsSwitching;
+		private static readonly int   OcclusionStrength = Shader.PropertyToID("_OcclusionStrength");
 
 		private float _moveSpeed; 
 		private float _attackCooldownTime;
 		private float _projectileSpeed;
 		private float _abilityCooldownTime;
+		private bool  _isReceivingDamage;
 		
 		public float MoveSmoothing               => moveSmoothing;
 		public float MoveWhenAttackingMultiplier => moveWhenAttackingMultiplier;
@@ -76,7 +78,7 @@ namespace _Project.Scripts.Player
 		{
 			if (ServiceLocator.Game.IsPaused)
 				return;
-			
+
 			_move.Move(_input.MoveDirection);
 			_aim.Aim(_input.AimDirection);
 
@@ -207,6 +209,7 @@ namespace _Project.Scripts.Player
 			{
 				if (_ability.DidExecute())
 					_animator.SetTrigger("DoAttack");
+				
 				_animator.SetBool("IsAttacking", true);
 				return;
 			}
@@ -225,6 +228,35 @@ namespace _Project.Scripts.Player
 		}
 
 		public void UpdateHealthBar(float remainingPercent) => ServiceLocator.HUD.HealthBar.UpdateHealthBar(remainingPercent);
+
+		public void ReceiveDamageEffect()
+		{
+			if (_isReceivingDamage)
+				return;
+			
+			StartCoroutine(DamageEffectRoutine());
+		}
+
+		private IEnumerator DamageEffectRoutine()
+		{
+			float time          = 0;
+			float fadeDuration  = 0.25f;
+			float originalValue = meshRenderer.materials[0].GetFloat(OcclusionStrength);
+			float newValue      = 120f;
+			
+			_isReceivingDamage = true;
+			meshRenderer.materials[0].SetFloat(OcclusionStrength, newValue);
+
+			while (time < fadeDuration) {
+				float valueToSet = Mathf.Lerp(newValue, originalValue, time / fadeDuration);
+				meshRenderer.materials[0].SetFloat(OcclusionStrength, valueToSet);
+				time += Time.deltaTime;
+				yield return null;
+			}
+			
+			meshRenderer.materials[0].SetFloat(OcclusionStrength, originalValue);
+			_isReceivingDamage = false;
+		}
 
 		public void UpdateStatsFromEditorWindow()
 		{
