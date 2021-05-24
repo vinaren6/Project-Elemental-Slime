@@ -153,6 +153,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1531367002002788100}
+        m_TargetAssemblyTypeName: _Project.Scripts.Player.PlayerController, Assembly-CSharp
+        m_MethodName: UpdateHealthBar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1531367002002788100}
+        m_TargetAssemblyTypeName: _Project.Scripts.Player.PlayerController, Assembly-CSharp
+        m_MethodName: ReceiveDamageEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onReceiveHealth:
     m_PersistentCalls:
       m_Calls:
@@ -325,6 +349,7 @@ MonoBehaviour:
   - {fileID: 729032692578125608}
   switchFX: {fileID: 483135791343855644}
   meshRenderer: {fileID: 3050019561969418294}
+  shader: {fileID: -6465566751694194690, guid: 3589f0ecddddd754fbd8601c44924911, type: 3}
   moveSmoothing: 0.9
   moveWhenAttackingMultiplier: 0.75
   moveBackwardsMultiplier: 0.75
@@ -1066,6 +1091,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2848132212415175927, guid: b0832a46d2b70a34ca58a1727bfbfe4e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 20376a7b61292d1429c6affb96f1b17d, type: 2}
     - target: {fileID: -395599948315127847, guid: b0832a46d2b70a34ca58a1727bfbfe4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
