@@ -243,14 +243,14 @@ MonoBehaviour:
   m_text: Game Over
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
-  m_sharedMaterial: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: f26c89919dac50c4d8cd9e41273fd19f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284310502
-  m_fontColor: {r: 0.90196085, g: 0.38823533, b: 0.3647059, a: 1}
+    rgba: 4278193151
+  m_fontColor: {r: 1, g: 0.043795615, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -830,8 +830,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289247446
-  m_fontColor: {r: 0.8392157, g: 0.72156864, b: 0.65882355, a: 1}
+    rgba: 4293784575
+  m_fontColor: {r: 1, g: 0.95385563, b: 0.9292453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

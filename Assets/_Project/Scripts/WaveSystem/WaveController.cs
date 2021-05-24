@@ -11,19 +11,22 @@ namespace _Project.Scripts.WaveSystem
 	{
 		public static WaveController Instance;
 
-		[SerializeField]                      public  UnityEvent    onWaveStart;
-		[SerializeField]                      public  int           totalSpawns;
-		[SerializeField]                      private int           activeSpawns;
-		[SerializeField]                      private GameObject[]  spawnObjects;
-		[SerializeField]                      public  WaveSpawner[] spawners;
-		[SerializeField]                      private Health        player;
-		[SerializeField]                      public  int           wave;
-		[Header("Settings")] [SerializeField] private int           maxActiveSpawnsAtSameTime = 15;
-		[SerializeField]                      private float         spawnDelay                = 0.2f;
-		[SerializeField]                      private float         waveBeingDelay            = 3f;
-		[SerializeField]                      private bool          autoStart                 = true;
-		[SerializeField]                      private bool          autoplayNextWave          = true;
-		[SerializeField]                      private float         healAmountOnNewRound      = 20;
+		[SerializeField] public  UnityEvent    onWaveStart;
+		[SerializeField] public  int           totalSpawns;
+		[SerializeField] private int           activeSpawns;
+		[SerializeField] private GameObject[]  spawnObjects;
+		[SerializeField] public  WaveSpawner[] spawners;
+		[SerializeField] private Health        player;
+		[SerializeField] public  int           wave;
+		
+		[Header("Settings")] 
+		[SerializeField] private int   spawnedEnemiesInFirstWave = 3;
+		[SerializeField] private int   maxActiveSpawnsAtSameTime = 15;
+		[SerializeField] private float spawnDelay                = 0.2f;
+		[SerializeField] private float waveBeingDelay            = 3f;
+		[SerializeField] private bool  autoStart                 = true;
+		[SerializeField] private bool  autoplayNextWave          = true;
+		[SerializeField] private float healAmountOnNewRound      = 20;
 
 		#if UNITY_EDITOR
 		[HideInInspector] public string debugString = "";
@@ -57,7 +60,7 @@ namespace _Project.Scripts.WaveSystem
 			onWaveStart.Invoke();
 		}
 
-		private int GetWaveSpawnAmount(int currentWave) => (int) (3 + currentWave * 1.2f);
+		private int GetWaveSpawnAmount(int currentWave) => (int) (spawnedEnemiesInFirstWave - 1 + currentWave * 1.2f);
 
 		private IEnumerator SpawnWave(int waveSize)
 		{
