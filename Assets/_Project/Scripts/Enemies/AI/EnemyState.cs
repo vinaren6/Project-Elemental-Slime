@@ -37,12 +37,12 @@ namespace _Project.Scripts.Enemies.AI
 			
 			_direction = (EnemyController.Target.position - _transform.position).normalized;
 			_lookRotation = Quaternion.LookRotation(_direction);
-			_transform.rotation = Quaternion.Slerp(_transform.rotation, _lookRotation, _rotationSpeed * Time.deltaTime);
+			_transform.rotation = Quaternion.Slerp(_transform.rotation, _lookRotation, _rotationSpeed * Time.fixedDeltaTime);
 			
 			EnemyController.NavMeshAgent.updateRotation = false;
 			// EnemyController.NavMeshAgent.updatePosition = false;
 
-			float speed = 6f * EnemyController.CurrentEnemyElementalStats.moveSpeedMultiplier;
+			//float speed = 6f * EnemyController.CurrentEnemyElementalStats.moveSpeedMultiplier;
 			
 			// EnemyController.NavMeshAgent.Move(_transform.forward * (speed * Time.deltaTime));
 			// EnemyController.NavMeshAgent.velocity = _transform.forward * (speed * Time.deltaTime);
@@ -51,14 +51,14 @@ namespace _Project.Scripts.Enemies.AI
 				return;
 			
 			if (_nextDamageOverTime == 0) {
-				_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
+				_nextDamageOverTime = Time.fixedTime + PlayerController.DamageOverTimeCooldownTime;
 			}
 
-			if (!(Time.time > _nextDamageOverTime))
+			if (!(Time.fixedTime > _nextDamageOverTime))
 				return;
 			
 			EnemyController.Health.ReceiveDamage(ElementalSystemTypes.Fire, PlayerController.PlayerDamageOverTime);
-			_nextDamageOverTime = Time.time + PlayerController.DamageOverTimeCooldownTime;
+			_nextDamageOverTime = Time.fixedTime + PlayerController.DamageOverTimeCooldownTime;
 			_damageOverTimeTicks++;
 
 			if (!(_damageOverTimeTicks >= EnemyController.DamageOverTimeTotalTicks))

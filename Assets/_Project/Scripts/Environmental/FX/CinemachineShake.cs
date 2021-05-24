@@ -18,6 +18,8 @@ public class CinemachineShake : MonoBehaviour
 		_cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
 		_cinemachineBasicMultiChannelPerlin =
 			_cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+		_cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+		_cinemachineBasicMultiChannelPerlin.m_FrequencyGain = 0;
 	}
 
 	private void Update()

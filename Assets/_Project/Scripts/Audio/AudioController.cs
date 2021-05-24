@@ -17,6 +17,11 @@ namespace _Project.Scripts.Audio
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM.loop = true;
+
+			//loadVolume
+			_audioSourceSFX.volume = PlayerPrefs.GetFloat("audioSFX", 1f);
+			_audioSourceBGM.volume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
+			UpdateVolume(AudioType.Master, PlayerPrefs.GetFloat("audioMaster", 1f));
 		}
 
 		public void PlaySFX(AudioClip audioClip, float volume = 1f) => _audioSourceSFX.PlayOneShot(audioClip, volume);
@@ -31,12 +36,13 @@ namespace _Project.Scripts.Audio
 		public void PlayBGM(AudioClip audioClip, float volume = 1f)
 		{
 			if (_audioSourceBGM.isPlaying) {
-				_audioSourceBGM.PlayOneShot(audioClip, volume);
+				return;
+				//_audioSourceBGM.PlayOneShot(audioClip, volume);
+				_audioSourceBGM.PlayOneShot(audioClip);
 				return;
 			}
-
-			if (volume != 0)
-				_audioSourceBGM.volume = volume * _masterVolume;
+			
+			//_audioSourceBGM.volume = volume * _masterVolume;
 			_audioSourceBGM.clip   = audioClip;
 			_audioSourceBGM.Play();
 		}
