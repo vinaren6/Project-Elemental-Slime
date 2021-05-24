@@ -18,8 +18,6 @@ namespace _Project.Scripts.UI.ScriptableObjects
 
 		public List<DamageNumber> damageNumbers = new List<DamageNumber>();
 		public TMP_FontAsset      inGameFont;
-		public Material           playerDamageMaterial;
-		public Material           enemyDamageMaterial;
 		public Color              enemyDamageColor;
 		public Color              playerDamageColor;
 		
@@ -59,15 +57,5 @@ namespace _Project.Scripts.UI.ScriptableObjects
 			Debug.Log("Couldn't get damageNumber.color from InGameUI");
 			return null;
 		}
-		
-		// public Color GetDamageNumberColor(string effectiveType) 
-		// {
-		// 	DamageNumber entry = damageNumbers.Find(c => c.name == effectiveType);
-		// 	if (entry != null) {
-		// 		return entry.color;
-		// 	}
-		// 	Debug.Log("Couldn't get damageNumber.color from InGameUI");
-		// 	return Color.white;
-		// }
 	}
 }
