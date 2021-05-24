@@ -7,7 +7,7 @@ namespace _Project.Scripts.WaveSystem
 	{
 		[SerializeField] private TMP_Text text, staticText;
 
-		[SerializeField] private float fadeInTime = 1, activeTime = 2, fadeOutTime = 3;
+		[SerializeField] private float waitBeforeFadeInTime = 0.5f, fadeInTime = 1, activeTime = 2, fadeOutTime = 3;
 
 		private float _t;
 
@@ -21,6 +21,11 @@ namespace _Project.Scripts.WaveSystem
 
 		private void FixedUpdate()
 		{
+			if (_t < 0) {
+				_t += Time.fixedDeltaTime;
+				return;
+			}
+				
 			if (_t < fadeInTime)
 				text.color = new Color(text.color.a, text.color.b, text.color.g, _t / fadeInTime);
 			else if (_t < fadeInTime + activeTime)
@@ -39,7 +44,7 @@ namespace _Project.Scripts.WaveSystem
 
 		private void OnNewRound()
 		{
-			_t           = 0;
+			_t           = -waitBeforeFadeInTime;
 			enabled      = true;
 			text.enabled = true;
 			text.text    = staticText.text = ToRoman(WaveController.Instance.wave);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffce5abe6f9740f5b41d5237e5f91694, type: 3}
   m_Name: FireStats
   m_EditorClassIdentifier: 
-  elementType: 3
+  elementType: 0
   ability: {fileID: 1170913647480530244, guid: b74bd259491d4594d8cef9ec62e1824e, type: 3}
   maxHitPoints: 100
   moveSpeedMultiplier: 1

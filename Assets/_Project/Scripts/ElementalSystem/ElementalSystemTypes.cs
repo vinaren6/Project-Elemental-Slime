@@ -2,10 +2,10 @@
 {
 	public enum ElementalSystemTypes
 	{
+		Fire,
+		Water,
 		Earth,
 		Wind,
-		Water,
-		Fire,
 		Base
 	}
 }
