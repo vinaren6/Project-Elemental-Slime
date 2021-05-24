@@ -32,11 +32,12 @@ namespace _Project.Scripts.UI.Score
 		private int   _currentCombo;
 		private float _comboTimeRemaining;
 
-		private int _displayedScore;
-		private int _currentScore;
-		private int _totalScore;
-		private int _kills;
-		private int _pickups;
+		private        int  _displayedScore;
+		private        int  _currentScore;
+		private        int  _totalScore;
+		private        int  _kills;
+		private        int  _pickups;
+		private static bool _isBetweenRounds;
 
 		private void Awake()
 		{
@@ -110,8 +111,6 @@ namespace _Project.Scripts.UI.Score
 					break;
 			}
 			_totalScore += scoreDelta;
-			// print("Combo: " + _currentCombo);
-			// print("ScoreDelta: " + scoreDelta);
 
 			if (_displayedScore == _currentScore) {
 				_currentScore += scoreDelta;
@@ -156,7 +155,8 @@ namespace _Project.Scripts.UI.Score
 			_currentCombo++;
 
 			while (_comboTimeRemaining > 0) {
-				_comboTimeRemaining -= Time.deltaTime;
+				if (!_isBetweenRounds)
+					_comboTimeRemaining -= Time.deltaTime;
 				comboMeterUI.UpdateUI(_comboTimeRemaining / comboTimeLimit);
 				yield return null;
 			}
@@ -166,6 +166,8 @@ namespace _Project.Scripts.UI.Score
 			UpdateComboChainText();
 		}
 
+		public static void IsBetweenRounds(bool isTrue) => _isBetweenRounds = isTrue;
+		
 		private void UpdateComboChainText()
 		{
 			if (_currentCombo > 1) {
