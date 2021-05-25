@@ -92,7 +92,6 @@ namespace _Project.Scripts.Abilities
             
             if (didHit)
             {
-              
                 ApplyHitLogic(hit);
                 
                 SetWaterRayScale(hit.distance);

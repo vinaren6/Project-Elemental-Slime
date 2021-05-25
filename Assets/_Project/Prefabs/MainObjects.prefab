@@ -1433,6 +1433,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1978697140591382594, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -35.070805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978697140591382594, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.0000030261801
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978697140591382594, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.00000959237
+      objectReference: {fileID: 0}
     - target: {fileID: 2910220757564529307, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
       propertyPath: requiredElementsToChange
       value: 1
@@ -1460,6 +1472,22 @@ PrefabInstance:
     - target: {fileID: 4451815793777624685, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539165648769502878, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: moveSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 74009591c09550948a29d9160c736bdf, type: 3}
+    - target: {fileID: 5484069427727807656, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 81.12888
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484069427727807656, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000056100576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484069427727807656, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.00005542949
       objectReference: {fileID: 0}
     - target: {fileID: 5612823595003834537, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
       propertyPath: projectileParent
@@ -1556,6 +1584,18 @@ PrefabInstance:
     - target: {fileID: 7121659197954234025, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
       propertyPath: onReceiveDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925579483977276311, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -57.443623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925579483977276311, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000016741138
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925579483977276311, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.000021400832
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e008c2eb811bd03479a7bac96d307bb8, type: 3}

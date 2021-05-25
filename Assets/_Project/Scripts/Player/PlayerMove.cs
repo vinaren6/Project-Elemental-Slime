@@ -1,3 +1,5 @@
+using System.Collections;
+using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,17 +7,27 @@ namespace _Project.Scripts.Player
 {
 	public class PlayerMove : MonoBehaviour
 	{
+		[SerializeField] private AudioClip moveSFX;
+		
 		private PlayerController _player;
 		private NavMeshAgent     _agent;
 		private Transform        _transform;
 		private Camera           _camera;
 		private Vector3          _forward, _right;
+		private bool _canPlayMoveSound;
+		private float _soundDelay;
+		private AudioSource _audioSource;
 
 		private void Awake()
 		{
 			_player    = GetComponent<PlayerController>();
 			_agent     = GetComponent<NavMeshAgent>();
 			_transform = gameObject.transform;
+			_canPlayMoveSound = true;
+			_soundDelay = moveSFX.length + 0.35f;
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.clip = moveSFX;
+			_audioSource.volume = 0.025f;
 		}
 		
 		private void Start()
@@ -33,6 +45,21 @@ namespace _Project.Scripts.Player
 			AdjustMovementIfPlayerIsAttacking(ref movement);
 			_player.Animator.SetBool("IsMoving", movement.magnitude > 0.1f);
 			_agent.velocity = movement * (1 - _player.MoveSmoothing) + _agent.velocity * _player.MoveSmoothing;
+			
+			// Debug.Log($"speed?= {_agent.velocity.sqrMagnitude.ToString("F4")}");
+			if (_canPlayMoveSound && _agent.velocity.sqrMagnitude > 0.1f)
+				StartCoroutine(nameof(MoveSoundRoutine));
+			else if (_agent.velocity.sqrMagnitude < 0.1f)
+				_audioSource.Stop();
+		}
+
+		private IEnumerator MoveSoundRoutine()
+		{
+			// ServiceLocator.Audio.PlaySFX(moveSFX, 0.025f);
+			_audioSource.Play();
+			_canPlayMoveSound = false;
+			yield return new WaitForSeconds(_soundDelay);
+			_canPlayMoveSound = true;
 		}
 
 		#region Methods
