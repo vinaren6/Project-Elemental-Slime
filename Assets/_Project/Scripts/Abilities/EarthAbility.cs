@@ -21,6 +21,7 @@ namespace _Project.Scripts.Abilities
 		private Transform[] _rockTransforms;
 		
 		private bool _isAttacking;
+		private bool _canAttack;
 		
 		private float _damage;
 		private float _damageCooldownTime;
@@ -30,7 +31,7 @@ namespace _Project.Scripts.Abilities
 
 		private Vector3 _rockSize;
 		private Vector3 _rockMargin;
-		
+
 		public bool StopLooping => false;
 
 		private void Awake()
@@ -74,6 +75,7 @@ namespace _Project.Scripts.Abilities
 			tag = newTag;
 			_damage = damage;
 			_isAttacking = false;
+			_canAttack = true;
 			_damageCooldownTime = 1f;
 			_rockSpawnTime = 0.1f;
 			
@@ -87,7 +89,7 @@ namespace _Project.Scripts.Abilities
 
 		public bool DidExecute()
 		{
-			if (_isAttacking)
+			if (_isAttacking || !_canAttack)
 				return false;
 			
 			StartCoroutine(nameof(EarthQuakeRoutine));
@@ -97,6 +99,9 @@ namespace _Project.Scripts.Abilities
 		private IEnumerator EarthQuakeRoutine()
 		{
 			_isAttacking = true;
+
+			if (CompareTag("Player"))
+				_canAttack = false;
 
 			int maxRocks = 6;
 			int rockCount = 0;
@@ -112,15 +117,18 @@ namespace _Project.Scripts.Abilities
 			}
 
 			float time = 0f;
-			float duration = 0f;
+			float duration = 0.5f;
 
 			if (CompareTag("Enemy"))
+			{
+				time = -0.325f + _rockSpawnTime;
 				duration = 1.41f;
-				
+			}
+
 			// Have we spawned all rocks yet?
 			while (rockCount < maxRocks)
 			{
-				if (rocksToSpawn <= 1 || CompareTag("Enemy"))
+				if (rocksToSpawn <= 2 || CompareTag("Enemy"))
 				{
 					_agent.velocity = Vector3.zero;
 				}
@@ -190,7 +198,8 @@ namespace _Project.Scripts.Abilities
 
 		public void Stop(bool isPlayer = true)
 		{
-
+			if (isPlayer)
+				_canAttack = true;
 		}
 
 		public bool IsInRange()

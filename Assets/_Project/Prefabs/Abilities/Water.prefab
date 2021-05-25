@@ -50,7 +50,7 @@ MonoBehaviour:
   waterRayTransform: {fileID: 4747640672796320338}
   maxDistance: 25
   radius: 0.5
-  waterSFX: {fileID: 8300000, guid: 92fde54a414cba342a10e19c13653d30, type: 3}
+  waterSFX: {fileID: 8300000, guid: bdb2207d774dc244dacbe520ff4112ec, type: 3}
 --- !u!1 &1466377085533399948
 GameObject:
   m_ObjectHideFlags: 0

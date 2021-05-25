@@ -81,7 +81,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   effectObject: {fileID: 971502920651493081}
-  windSFX: {fileID: 8300000, guid: 902f6ec4826e12842b40b40874b9898a, type: 3}
+  windSFX: {fileID: 8300000, guid: fa55bc027c832564aa3cbc4885837f08, type: 3}
   ui: {fileID: 0}
 --- !u!65 &2810121904674866975
 BoxCollider:

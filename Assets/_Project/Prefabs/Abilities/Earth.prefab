@@ -94,7 +94,7 @@ MonoBehaviour:
   poolParent: {fileID: 5812577457379323744}
   rockTransformParent: {fileID: 5812577458411977472}
   rangeCollider: {fileID: 869282959412751206}
-  earthSFX: {fileID: 8300000, guid: d4597888d6b899842aa1d8168e64eb2a, type: 3}
+  earthSFX: {fileID: 8300000, guid: 322ecb8ff68250c4aa9ba0111434366b, type: 3}
 --- !u!1 &5812577456959370819
 GameObject:
   m_ObjectHideFlags: 0
