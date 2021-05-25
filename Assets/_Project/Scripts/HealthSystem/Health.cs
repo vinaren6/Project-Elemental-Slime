@@ -23,6 +23,9 @@ namespace _Project.Scripts.HealthSystem
 		private float _canReceiveDamageCooldownTime = 0.1f;
 		private bool  _canReceiveDamage             = true;
 		private float _maxHitPoints;
+
+		private bool _isDead;
+		
 		public float MaxHitPoints {
 			get => _maxHitPoints;
 			set => _maxHitPoints = value;
@@ -52,6 +55,8 @@ namespace _Project.Scripts.HealthSystem
 			if (deathSFX == null) throw new AggregateException("audioClip reference not set to an instance of an object");
 			ServiceLocator.Audio.PlaySFX(deathSFX);
 			EnemySpawner.EnemiesInScene--;
+			if (_isDead) return;
+			_isDead = true;
 			onDeath.Invoke();
 		}
 
@@ -92,6 +97,8 @@ namespace _Project.Scripts.HealthSystem
 
 		public void KillPlayer()
 		{
+			if (_isDead) return;
+			_isDead = true;
 			onDeath.Invoke();
 		}
 	}
