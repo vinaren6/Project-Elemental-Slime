@@ -40,22 +40,35 @@ namespace _Project.Scripts.HealthSystem
 				return;
 
 			StartCoroutine(ReceiveDamageCooldownTimeRoutine());
+			
 			float elementalMultiplier = ElementalSystemMultiplier.GetMultiplier(type.Type, damageType);
 			int   damageToReceive     = Mathf.CeilToInt(elementalMultiplier * damage);
+			
 			HitPoints -= damageToReceive;
+			
 			ServiceLocator.Pools.SpawnFromPool(
 				PoolType.DamageNumber, transform.position, damageToReceive, GetEffectiveType(elementalMultiplier), GetDamageType());
+			
 			onReceiveDamage.Invoke(NormalizedHealth);
+			
 			if (!(HitPoints <= 0))
 			{
-				if (hurtSFX == null) throw new AggregateException("audioClip reference not set to an instance of an object");
+				if (hurtSFX == null)
+					throw new AggregateException("audioClip reference not set to an instance of an object");
+				
 				ServiceLocator.Audio.PlaySFX(hurtSFX);
 				return;
 			}
-			if (deathSFX == null) throw new AggregateException("audioClip reference not set to an instance of an object");
+			
+			if (deathSFX == null)
+				throw new AggregateException("audioClip reference not set to an instance of an object");
+			
 			ServiceLocator.Audio.PlaySFX(deathSFX);
 			EnemySpawner.EnemiesInScene--;
-			if (_isDead) return;
+			
+			if (_isDead)
+				return;
+			
 			_isDead = true;
 			onDeath.Invoke();
 		}
