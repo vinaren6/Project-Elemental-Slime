@@ -8,6 +8,8 @@ namespace _Project.Scripts.Audio
 
         #region IAudio Interface
 
+        public void Mute(AudioType audioType, bool mute) => throw new System.NotImplementedException();
+
         public void PlaySFX(AudioClip audioClip, float volume = 1f)
         {
             Debug.Log($"{nameof(PlaySFX)} - {audioClip.name}");
