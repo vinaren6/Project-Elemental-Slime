@@ -2642,7 +2642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064959654549420808, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: type
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8829615923981961379, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: m_text
@@ -2662,6 +2662,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 354641911}
     m_Modifications:
+    - target: {fileID: 1298467606558558926, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298467606558558926, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298467606558558926, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1298467606631555688, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2760,7 +2772,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0272787eb9964264c95d1e817b7eb0cc, type: 3}
     - target: {fileID: 6064959654549420808, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: type
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8829615923981961379, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: m_text
@@ -2871,6 +2883,10 @@ PrefabInstance:
     - target: {fileID: 1511362639495819318, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: m_text
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064959654549420808, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
@@ -2988,7 +3004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064959654549420808, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: type
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8829615923981961379, guid: 2112ba2b7fea99045864103f58852ab9, type: 3}
       propertyPath: m_text
