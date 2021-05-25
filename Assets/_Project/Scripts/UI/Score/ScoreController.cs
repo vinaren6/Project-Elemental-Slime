@@ -65,6 +65,7 @@ namespace _Project.Scripts.UI.Score
 		public void UpdateGameOverScoreText()
 		{
 			//save score.
+			UpdateStat.AddStat("games", 1);
 			UpdateStat.SetMaxAndAddStat("maxKills", "totalKills",   _kills);
 			UpdateStat.SetMaxAndAddStat("maxPickups", "totalPickups", _pickups);
 			UpdateStat.SetMaxAndAddStat("maxScore", "totalScore",   _totalScore);
