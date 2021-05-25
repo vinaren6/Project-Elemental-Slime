@@ -8,11 +8,13 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceBGM;
 		private readonly AudioSource _audioSourceSFX;
+		private          float       _SFXVolume = 1f;
+		private          float       _BGMVolume = 1f;
 		private          float       _masterVolume = 1f;
 		private          bool        _muteBGM;
 		private          bool        _muteMaster;
 		private          bool        _muteSfx;
-
+		
 		public AudioController()
 		{
 			var audioPlayerObj = new GameObject();
@@ -23,8 +25,8 @@ namespace _Project.Scripts.Audio
 			_audioSourceBGM.loop = true;
 
 			//loadVolume
-			_audioSourceSFX.volume = PlayerPrefs.GetFloat("audioSFX", 1f);
-			_audioSourceBGM.volume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
+			_audioSourceSFX.volume = _SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
+			_audioSourceBGM.volume = _BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
 			UpdateVolume(AudioType.Master, PlayerPrefs.GetFloat("audioMaster", 1f));
 
 			//load mute
@@ -97,14 +99,16 @@ namespace _Project.Scripts.Audio
 				case AudioType.Master:
 					volume = _muteMaster ? 0f : volume;
 					float masterVolumeDelta = volume / _masterVolume;
-					_masterVolume          =  volume;
-					_audioSourceBGM.volume *= masterVolumeDelta;
-					_audioSourceSFX.volume *= masterVolumeDelta;
+					_masterVolume          = volume;
+					_audioSourceBGM.volume = _BGMVolume * masterVolumeDelta;
+					_audioSourceSFX.volume = _SFXVolume * masterVolumeDelta;
 					return;
 				case AudioType.BGM:
+					_BGMVolume             = volume;
 					_audioSourceBGM.volume = _muteBGM ? 0f : volume * _masterVolume;
 					return;
 				case AudioType.SFX:
+					_SFXVolume             = volume;
 					_audioSourceSFX.volume = _muteSfx ? 0f : volume * _masterVolume;
 					return;
 				default:
