@@ -1237,9 +1237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160d1be53bf44335985fbd90cae60406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4511309514640944464 stripped
+--- !u!114 &4511309514933080340 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4842645692433533194, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4842645692725720398, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
   m_PrefabInstance: {fileID: 9056717425374979162}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1248,9 +1248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d71fd1bfc245247869c03d57f6664d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4511309516341209010 stripped
+--- !u!114 &4511309516540697201 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4842645693863265256, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4842645694331207211, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
   m_PrefabInstance: {fileID: 9056717425374979162}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1270,9 +1270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4511309514933080340 stripped
+--- !u!114 &4511309516341209010 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4842645692725720398, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4842645693863265256, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
   m_PrefabInstance: {fileID: 9056717425374979162}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1281,9 +1281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d71fd1bfc245247869c03d57f6664d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4511309516540697201 stripped
+--- !u!114 &4511309514640944464 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4842645694331207211, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4842645692433533194, guid: 52d2e0345cb4ac34e94681472abcbd69, type: 3}
   m_PrefabInstance: {fileID: 9056717425374979162}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1708,6 +1708,10 @@ PrefabInstance:
     - target: {fileID: 5838099703279476833, guid: fc4b6dedd9214da4385f32f5f746e63f, type: 3}
       propertyPath: m_Name
       value: ControlPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838099703279476833, guid: fc4b6dedd9214da4385f32f5f746e63f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5941666257832318474, guid: fc4b6dedd9214da4385f32f5f746e63f, type: 3}
       propertyPath: m_AnchorMax.y
