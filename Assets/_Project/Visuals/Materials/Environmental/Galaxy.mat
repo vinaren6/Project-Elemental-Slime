@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Cubemap_051ecffccb604b32b0676b46880601cd:
-        m_Texture: {fileID: 8900000, guid: d8a72e06ebc5bb847bdbf4379b3c6f6e, type: 3}
+        m_Texture: {fileID: 8900000, guid: b3afa22a6a263fa4f82a547d903d20dc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_9416e9651934487b8c5c4082b98337e7:
-        m_Texture: {fileID: 8900000, guid: 9bc1059be7c73e441ad08be54ca7b04f, type: 3}
+        m_Texture: {fileID: 8900000, guid: 73b5486a0221c8946b09fb07cb929643, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
