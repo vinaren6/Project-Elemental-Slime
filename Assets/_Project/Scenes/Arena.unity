@@ -9686,19 +9686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2063394615}
     m_Modifications:
-<<<<<<< Updated upstream
-    - target: {fileID: 1850609531681133564, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2493429983516686752, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-=======
-    - target: {fileID: -8679921383154817045, guid: 50f7b6610087c4542b2cdf3454f77a67, type: 3}
-      propertyPath: m_RootOrder
-      value: 844
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50f7b6610087c4542b2cdf3454f77a67, type: 3}
       propertyPath: m_LocalScale.x
@@ -9826,15 +9813,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-    - target: {fileID: 3977058796477162838, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
-      propertyPath: requiredElementsToChange
-      value: 0
-=======
-    - target: {fileID: 919132149155446097, guid: 50f7b6610087c4542b2cdf3454f77a67, type: 3}
-      propertyPath: m_Name
-      value: Grass(Polybrush Clone)
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50f7b6610087c4542b2cdf3454f77a67, type: 3}
