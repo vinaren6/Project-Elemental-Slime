@@ -156,8 +156,11 @@ namespace _Project.Scripts.UI.Score
 			_currentCombo++;
 
 			while (_comboTimeRemaining > 0) {
-				if (!_isBetweenRounds)
+				if (_isBetweenRounds)
+					comboChainAnimator.Play("ComboChain", -1, 0f);
+				else
 					_comboTimeRemaining -= Time.deltaTime;
+				
 				comboMeterUI.UpdateUI(_comboTimeRemaining / comboTimeLimit);
 				yield return null;
 			}
