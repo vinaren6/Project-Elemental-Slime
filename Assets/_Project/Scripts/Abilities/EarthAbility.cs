@@ -137,7 +137,7 @@ namespace _Project.Scripts.Abilities
 				if (time >= _rockSpawnTime * rocksToSpawn && rocksToSpawn <= 3)
 				{
 					// Spawn rock(s)
-					ServiceLocator.Audio.PlaySFX(earthSFX, 0.1f);
+					ServiceLocator.Audio.PlaySFX(earthSFX, 1.4f);
 					for (int i = 1; i <= rocksToSpawn; i++)
 					{
 						RockWall rock = _rockPool.Dequeue();

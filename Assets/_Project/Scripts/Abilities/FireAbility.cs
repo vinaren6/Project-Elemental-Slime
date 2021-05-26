@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Player;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 using UnityEngine.VFX;
 
 namespace _Project.Scripts.Abilities
@@ -52,8 +53,9 @@ namespace _Project.Scripts.Abilities
 			_fireRate = 1f / _maxFlameColliders;
 			_canShoot = true;
 			_effect.Stop();
+			_audioSource.outputAudioMixerGroup = Resources.Load<AudioMixer>("AudioMixer").FindMatchingGroups("SFX")[0];
 			_audioSource.loop = true;
-			_audioSource.volume = 0.175f;
+			_audioSource.volume = 1.5f;
 			_audioSource.clip = fireSFX;
 			
 			

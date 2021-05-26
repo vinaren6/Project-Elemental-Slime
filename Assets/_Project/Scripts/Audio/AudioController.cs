@@ -82,8 +82,8 @@ namespace _Project.Scripts.Audio
 			if (_audioSourceBGM.isPlaying) {
 				return;
 				//_audioSourceBGM.PlayOneShot(audioClip, volume);
-				_audioSourceBGM.PlayOneShot(audioClip);
-				return;
+				// _audioSourceBGM.PlayOneShot(audioClip);
+				// return;
 			}
 
 			//_audioSourceBGM.volume = volume * _masterVolume;

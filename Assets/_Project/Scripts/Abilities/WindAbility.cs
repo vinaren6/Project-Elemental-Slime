@@ -109,7 +109,7 @@ namespace _Project.Scripts.Abilities
 
 			_canAttack = false;
 			
-			ServiceLocator.Audio.PlaySFX(windSFX, 0.5f);
+			ServiceLocator.Audio.PlaySFX(windSFX, 2.5f);
 			
 			StartCoroutine(WindDashRoutine());
 			return true;

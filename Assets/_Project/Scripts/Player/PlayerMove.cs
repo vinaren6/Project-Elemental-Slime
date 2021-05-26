@@ -27,7 +27,7 @@ namespace _Project.Scripts.Player
 			_soundDelay = moveSFX.length + 0.35f;
 			_audioSource = gameObject.AddComponent<AudioSource>();
 			_audioSource.clip = moveSFX;
-			_audioSource.volume = 0.025f;
+			_audioSource.volume = 0.005f;
 		}
 		
 		private void Start()

@@ -24,7 +24,7 @@ namespace _Project.Scripts.Player
             GameObject projectile = _projectilePool.SpawnFromPool();
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * _player.ProjectileSpeed);
             _nextAttack = Time.time + _player.AttackCooldownTime;
-            ServiceLocator.Audio.PlaySFX(shootSFX);
+            ServiceLocator.Audio.PlaySFX(shootSFX, 0.5f);
             _player.HasAttacked = true;
 
             return true;

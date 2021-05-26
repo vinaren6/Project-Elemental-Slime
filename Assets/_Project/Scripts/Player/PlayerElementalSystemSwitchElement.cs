@@ -56,7 +56,7 @@ namespace _Project.Scripts.Player
 				return;
 			}
 			
-			ServiceLocator.Audio.PlaySFX(pickUpSFX);
+			ServiceLocator.Audio.PlaySFX(pickUpSFX, 0.25f);
 
 			int typeId = (int) comp.Type;
 			if (comp is ElementalSystemTypeCurrentFullPickup)
@@ -77,7 +77,7 @@ namespace _Project.Scripts.Player
 			if (_pickups[type] < requiredElementsToChange && type != 4) return;
 			_pickups[type]   -= requiredElementsToChange;
 			elementType.Type =  (ElementalSystemTypes) type;
-			ServiceLocator.Audio.PlaySFX(switchSFX);
+			ServiceLocator.Audio.PlaySFX(switchSFX, 0.25f);
 		}
 	}
 }
