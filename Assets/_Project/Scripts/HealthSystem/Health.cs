@@ -66,10 +66,11 @@ namespace _Project.Scripts.HealthSystem
 			ServiceLocator.Audio.PlaySFX(deathSFX);
 			EnemySpawner.EnemiesInScene--;
 			
-			if (_isDead)
-				return;
-			
-			_isDead = true;
+			// if (_isDead)
+			// 	return;
+			//
+			// _isDead = true;
+			// print(Time.time);
 			onDeath.Invoke();
 		}
 
