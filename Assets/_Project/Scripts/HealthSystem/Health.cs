@@ -56,14 +56,14 @@ namespace _Project.Scripts.HealthSystem
 				if (hurtSFX == null)
 					throw new AggregateException("audioClip reference not set to an instance of an object");
 				
-				ServiceLocator.Audio.PlaySFX(hurtSFX);
+				ServiceLocator.Audio.PlaySFX(hurtSFX, 0.4f);
 				return;
 			}
 			
 			if (deathSFX == null)
 				throw new AggregateException("audioClip reference not set to an instance of an object");
 			
-			ServiceLocator.Audio.PlaySFX(deathSFX);
+			ServiceLocator.Audio.PlaySFX(deathSFX, 0.7f);
 			EnemySpawner.EnemiesInScene--;
 			
 			// if (_isDead)
