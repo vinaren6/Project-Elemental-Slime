@@ -74,9 +74,6 @@ namespace _Project.Scripts.UI.Score
 			//update UI
 			score.transform.parent.gameObject.SetActive(false);
 			gameOverScore.text = _totalScore.ToString();
-			if (waveText is null) return;
-			waveText.enabled = true;
-			waveText.color   = new Color(waveText.color.r, waveText.color.g, waveText.color.b, 1);
 		}
 
 		public void GivePickupScore() => ApplyScore(ScoreType.Pickup);
