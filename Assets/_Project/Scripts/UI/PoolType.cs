@@ -1,4 +1,9 @@
 namespace _Project.Scripts.UI
 {
-	public enum PoolType { DamageNumber, KillText, ComboText }
+	public enum PoolType
+	{
+		DamageNumber, 
+		KillText, 
+		ComboText
+	}
 }

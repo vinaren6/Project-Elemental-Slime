@@ -7,7 +7,7 @@ namespace _Project.Scripts.UI
 {
 	public class ObjectPools : MonoBehaviour
 	{
-		[System.Serializable]
+		[Serializable]
 		public class Pool
 		{
 			public PoolType   poolType;
@@ -21,7 +21,7 @@ namespace _Project.Scripts.UI
 		
 		private void Awake()
 		{
-		ServiceLocator.ProvideObjectPools(this);
+			ServiceLocator.ProvideObjectPools(this);
 		}
 
 		private void Start()
