@@ -1,6 +1,4 @@
-﻿using System;
-using _Project.Scripts.HealthSystem;
-using UnityEditor;
+﻿using _Project.Scripts.HealthSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,21 +6,18 @@ namespace _Project.Scripts.WaveSystem
 {
 	public class SafeOnDeath : MonoBehaviour
 	{
-		UnityAction   func;
-		public Health hp;
+		public  Health      hp;
+		private UnityAction _func;
 
 		public void Set(UnityAction f)
 		{
-			func       =  f;
+			_func = f;
 			hp.onDeath.AddListener(Run);
-		}
-
-		// ReSharper disable Unity.PerformanceAnalysis
+		} // ReSharper disable Unity.PerformanceAnalysis
 		private void Run()
 		{
-			func.Invoke();
+			_func.Invoke();
 			hp.onDeath.RemoveListener(Run);
 		}
-
 	}
 }
