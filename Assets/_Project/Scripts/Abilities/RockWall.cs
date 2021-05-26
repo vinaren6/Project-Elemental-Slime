@@ -36,11 +36,12 @@ namespace _Project.Scripts.Abilities
             tag = newTag;
         }
 
-        public void Execute(Vector3 spawnPosition, float damage)
+        public void Execute(Vector3 spawnPosition, float damage, ref List<IHealth> damagedEnemies)
         {
             _damage = damage;
 
-            _damagedEnemies = new List<IHealth>();
+            _damagedEnemies = damagedEnemies;
+            // _damagedEnemies = new List<IHealth>();
             
             _transform.SetParent(null);
             _transform.position = spawnPosition;
@@ -70,12 +71,23 @@ namespace _Project.Scripts.Abilities
             
             // TODO Make the RockWall MOVE up instead of SCALE...
 
+            // bool done = false;
+            
             while (time < aliveTime)
             {
                 _collider.enabled = time < upDuration;
 
+
+                // if (_collider.enabled == false && !done)
+                // {
+                //     Debug.Log($"NO MORE DAMAGE!: {Time.timeSinceLevelLoad}");
+                //     done = true;
+                // }
+
                 targetScale.y = height * _animationCurve.Evaluate(time / aliveTime);
                 _transform.localScale = targetScale;
+                
+                // _transform.localScale = Vector3.one * 10f;
                 
                 if (_particleSystem.isStopped && time >= upDuration)
                     _particleSystem.Play();

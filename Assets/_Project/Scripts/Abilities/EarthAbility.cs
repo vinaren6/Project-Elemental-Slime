@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -31,6 +32,8 @@ namespace _Project.Scripts.Abilities
 
 		private Vector3 _rockSize;
 		private Vector3 _rockMargin;
+		
+		private List<IHealth> _damagedEnemies;
 
 		public bool StopLooping => false;
 
@@ -92,6 +95,8 @@ namespace _Project.Scripts.Abilities
 			if (_isAttacking || !_canAttack)
 				return false;
 			
+			_damagedEnemies = new List<IHealth>();
+			
 			StartCoroutine(nameof(EarthQuakeRoutine));
 			return true;
 		}
@@ -99,6 +104,8 @@ namespace _Project.Scripts.Abilities
 		private IEnumerator EarthQuakeRoutine()
 		{
 			_isAttacking = true;
+			
+			// Debug.Log($"BEGIN ROCKS! {Time.timeSinceLevelLoad}");
 
 			if (CompareTag("Player"))
 				_canAttack = false;
@@ -142,7 +149,7 @@ namespace _Project.Scripts.Abilities
 					{
 						RockWall rock = _rockPool.Dequeue();
 						
-						rock.Execute(rockPositions[rockCount], GetDamage(rocksToSpawn));
+						rock.Execute(rockPositions[rockCount], GetDamage(rocksToSpawn), ref _damagedEnemies);
 						
 						// rock.Execute(GetRockPosition(startPosition, direction, rockCount, rocksToSpawn));
 						
@@ -164,6 +171,8 @@ namespace _Project.Scripts.Abilities
 
 				yield return null;
 			}
+			
+			// Debug.Log($".................END.....................? {Time.timeSinceLevelLoad}");
 
 			_isAttacking = false;
 		}
