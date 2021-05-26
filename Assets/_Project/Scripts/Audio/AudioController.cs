@@ -9,13 +9,13 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceBGM;
 		private readonly AudioSource _audioSourceSFX;
-		private  float       _BGMVolume    = 1f;
-		private  float       _masterVolume = 1f;
+		private          float       _BGMVolume    = 1f;
+		private          float       _masterVolume = 1f;
 		private readonly AudioMixer  _mixer;
 		private          bool        _muteBGM;
 		private          bool        _muteMaster;
 		private          bool        _muteSfx;
-		private  float       _SFXVolume = 1f;
+		private          float       _SFXVolume = 1f;
 
 		public AudioController()
 		{
@@ -28,18 +28,18 @@ namespace _Project.Scripts.Audio
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM.loop = true;
-			
+
 			_audioSourceSFX.outputAudioMixerGroup = _mixer.FindMatchingGroups("SFX")[0];
 			_audioSourceBGM.outputAudioMixerGroup = _mixer.FindMatchingGroups("BGM")[0];
 
 			//loadVolume
-			_SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
-			_BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
+			_SFXVolume    = PlayerPrefs.GetFloat("audioSFX",    1f);
+			_BGMVolume    = PlayerPrefs.GetFloat("audioBGM",    0.15f);
 			_masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f);
 
-			_mixer.SetFloat("SFX",    VolumeToDB(_SFXVolume));
-			_mixer.SetFloat("BGM",    VolumeToDB(_BGMVolume));
-			_mixer.SetFloat("Master", VolumeToDB(_masterVolume));
+			UpdateVolume(AudioType.SFX,    _SFXVolume);
+			UpdateVolume(AudioType.BGM,    _BGMVolume);
+			UpdateVolume(AudioType.Master, _masterVolume);
 
 			//load mute
 			_muteSfx    = PlayerPrefs.GetInt("audioMuteSFX",    0) == 1;
@@ -71,8 +71,8 @@ namespace _Project.Scripts.Audio
 
 		public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0f)
 		{
-			_audioSourceSFX.clip   = audioClip;
-			_audioSourceSFX.volume = volume;
+			_audioSourceSFX.clip = audioClip;
+			//_audioSourceSFX.volume = volume;
 			_audioSourceSFX.PlayDelayed(delay);
 		}
 
@@ -115,18 +115,18 @@ namespace _Project.Scripts.Audio
 					_mixer.SetFloat("Master", _muteMaster ? -80f : VolumeToDB(volume));
 					//volume = _muteMaster ? 0f : volume;
 					//float masterVolumeDelta = volume / _masterVolume;
-					_masterVolume          = volume;
+					_masterVolume = volume;
 					//_audioSourceBGM.volume = _BGMVolume * masterVolumeDelta;
 					//_audioSourceSFX.volume = _SFXVolume * masterVolumeDelta;
 					return;
 				case AudioType.BGM:
 					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(volume));
-					_BGMVolume             = volume;
+					_BGMVolume = volume;
 					//_audioSourceBGM.volume = _muteBGM ? 0f : volume * _masterVolume;
 					return;
 				case AudioType.SFX:
 					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(volume));
-					_SFXVolume             = volume;
+					_SFXVolume = volume;
 					//_audioSourceSFX.volume = _muteSfx ? 0f : volume * _masterVolume;
 					return;
 				default:
