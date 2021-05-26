@@ -21,6 +21,7 @@ namespace _Project.Scripts.Abilities
 		[SerializeField] [Range(1.0f, 1.20f)] private float speedMultiplier;
 		[SerializeField] [Range(0.1f, 0.5f)]  private float aliveTime;
 
+		private Transform _transform;
 		private NavMeshAgent         _agent;
 		private Queue<FlameCollider> _flamePool;
 		private VisualEffect         _effect;
@@ -40,6 +41,7 @@ namespace _Project.Scripts.Abilities
 
 		private void Awake()
 		{
+			_transform = transform;
 			_agent     = GetComponentInParent<NavMeshAgent>();
 			_effect    = GetComponentInChildren<VisualEffect>();
 			_audioSource = gameObject.AddComponent<AudioSource>();
@@ -100,7 +102,7 @@ namespace _Project.Scripts.Abilities
 			FlameCollider flameCollider = _flamePool.Dequeue();
 
 			flameCollider.gameObject.SetActive(true);
-			flameCollider.Execute(transform, speed * speedAdjustment, speedMultiplier, aliveTime);
+			flameCollider.Execute(_transform, speed * speedAdjustment, speedMultiplier, aliveTime);
 
 			_effect.playRate = speedAdjustment * 2f;
 
@@ -133,7 +135,7 @@ namespace _Project.Scripts.Abilities
 				return false;
 			}
 			Transform p = controller.transform;
-			bool IsInRange = Vector3.Distance(transform.position, p.position) < 10f;
+			bool IsInRange = Vector3.Distance(_transform.position, p.position) < 10f;
 			if (IsInRange)
 			{
 				walkTowardPlayer();
@@ -147,16 +149,16 @@ namespace _Project.Scripts.Abilities
 			// Debug.Log("walktowardPlayer");
 			
 			var turnSpeed = 10.0f;
-			var _dir = GameObject.FindObjectOfType<PlayerController>().transform.position - transform.parent.gameObject.transform.position;
+			var _dir = GameObject.FindObjectOfType<PlayerController>().transform.position - _transform.parent.gameObject.transform.position;
 			_dir.Normalize();
-			transform.parent.gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
-			if (Vector3.Distance(transform.position, p.position) > 2f)
+			_transform.parent.gameObject.transform.rotation = Quaternion.Slerp(_transform.rotation, Quaternion.LookRotation(_dir), turnSpeed * Time.deltaTime);
+			if (Vector3.Distance(_transform.position, p.position) > 2f)
             {
 				_agent.SetDestination(controller.transform.position);
             }
             else
             {
-				_agent.SetDestination(transform.parent.gameObject.transform.position);
+				_agent.SetDestination(_transform.parent.gameObject.transform.position);
 			}
         }
 		public bool IsInWalkRange()
@@ -170,10 +172,8 @@ namespace _Project.Scripts.Abilities
 				return false;
 			}
 			Transform p = controller.transform;
-			bool IsInRange = Vector3.Distance(transform.position, p.position) < 5f;
-
+			bool IsInRange = Vector3.Distance(_transform.position, p.position) < 5f;
 			
-
 			return IsInRange;
 		}
 
@@ -204,7 +204,7 @@ namespace _Project.Scripts.Abilities
 		private float GetLookDirectionSpeedAdjustment()
 		{
 			Vector3 moveDirection      = _agent.velocity;
-			float   moveLookAdjustment = (Vector3.Dot(transform.forward, moveDirection.normalized) / 2.5f);
+			float   moveLookAdjustment = (Vector3.Dot(_transform.forward, moveDirection.normalized) / 2.5f);
 			moveLookAdjustment += 1;
 			// print("MovelookAjustment:" + moveLookAdjustment);
 			return moveLookAdjustment;
