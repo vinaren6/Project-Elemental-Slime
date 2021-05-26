@@ -37,14 +37,15 @@ namespace _Project.Scripts.Audio
 			_BGMVolume    = PlayerPrefs.GetFloat("audioBGM",    0.15f);
 			_masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f);
 
-			UpdateVolume(AudioType.SFX,    _SFXVolume);
-			UpdateVolume(AudioType.BGM,    _BGMVolume);
-			UpdateVolume(AudioType.Master, _masterVolume);
-
 			//load mute
 			_muteSfx    = PlayerPrefs.GetInt("audioMuteSFX",    0) == 1;
 			_muteBGM    = PlayerPrefs.GetInt("audioMuteBGM",    0) == 1;
 			_muteMaster = PlayerPrefs.GetInt("audioMuteMaster", 0) == 1;
+
+			//apply audio
+			UpdateVolume(AudioType.SFX,    _SFXVolume);
+			UpdateVolume(AudioType.BGM,    _BGMVolume);
+			UpdateVolume(AudioType.Master, _masterVolume);
 		}
 
 		public void Mute(AudioType audioType, bool mute)
