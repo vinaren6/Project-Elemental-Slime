@@ -135,6 +135,13 @@ namespace _Project.Scripts.Audio
 			}
 		}
 
-		private float VolumeToDB(float t) => Mathf.Lerp(-80, 0, t);
+		private float VolumeToDB(float t)
+		{
+			float sliderFeel = t * 2 - 1;
+			sliderFeel *= sliderFeel;
+			sliderFeel =  1 - sliderFeel;
+			
+			return Mathf.Lerp(-80, 0, t + sliderFeel * 0.3f);
+		}
 	}
 }
