@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372a6f21d4744b709b9003a940d44c12, type: 3}
   m_Name: WindStats
   m_EditorClassIdentifier: 
-  moveSpeedMultiplier: 1.25
+  moveSpeedMultiplier: 1.2
   damageReceivedMultiplier: 1.25
   attackStrengthMultiplier: 0.4
   attackRateMultiplier: 1

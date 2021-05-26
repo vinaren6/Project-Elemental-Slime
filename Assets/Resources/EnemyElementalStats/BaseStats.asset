@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: BaseStats
   m_EditorClassIdentifier: 
   elementType: 4
+  ability: {fileID: 4540062301394433559, guid: f737c6af48e9c584ca88df762f819bd7, type: 3}
   maxHitPoints: 200
   moveSpeedMultiplier: 1
   attackStrengthMultiplier: 1
   attackRateMultiplier: 1
+  attackRange: 5
   hasRangedAttack: 0
-  mesh: {fileID: 919132149155446097, guid: 6c9456bf5a2c0b14d8c5bc9b35defdd0, type: 3}
+  mesh: {fileID: 919132149155446097, guid: 7b936f20c2f6df94197e502752b9d900, type: 3}
+  animatorController: {fileID: 9100000, guid: 5963c487d4131924991315e6c8f5a1d8, type: 2}
+  abilityOffset: {x: 0, y: 0, z: 0}

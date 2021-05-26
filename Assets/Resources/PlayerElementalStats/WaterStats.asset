@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeedMultiplier: 1
   damageReceivedMultiplier: 1
-  attackStrengthMultiplier: 0.3
+  attackStrengthMultiplier: 0.2
   attackRateMultiplier: 3
   isDealingDamageOverTime: 0
   material: {fileID: 2100000, guid: cf1bb20938904c14c983322584137339, type: 2}
