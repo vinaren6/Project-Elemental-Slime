@@ -17,9 +17,11 @@ namespace _Project.Scripts.UI
 			mute.isOn    = PlayerPrefs.GetInt("audioMute" + audioType, 0) == 1;
 		}
 
-		public void UpdateVolume() =>
-			//if (mute.isOn) return;
+		public void UpdateVolume()
+		{
+			PlayerPrefs.SetFloat("audio" + audioType, volume.value);
 			ServiceLocator.Audio.UpdateVolume(audioType, volume.value);
+		}
 
 		public void UpdateMute()
 		{
@@ -27,7 +29,7 @@ namespace _Project.Scripts.UI
 			ServiceLocator.Audio.Mute(audioType, mute.isOn);
 			//float newVolume = mute.isOn ? 0 : volume.value;
 			//PlayerPrefs.SetFloat("audio" + audioType, newVolume);
-			ServiceLocator.Audio.UpdateVolume(audioType, volume.value);
+			//ServiceLocator.Audio.UpdateVolume(audioType, volume.value);
 		}
 	}
 }

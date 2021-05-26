@@ -9,33 +9,37 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceBGM;
 		private readonly AudioSource _audioSourceSFX;
-		private          float       _SFXVolume    = 1f;
-		private          float       _BGMVolume    = 1f;
-		private          float       _masterVolume = 1f;
+		private  float       _BGMVolume    = 1f;
+		private  float       _masterVolume = 1f;
+		private readonly AudioMixer  _mixer;
 		private          bool        _muteBGM;
 		private          bool        _muteMaster;
 		private          bool        _muteSfx;
-		private          AudioMixer  _mixer;
-		
+		private  float       _SFXVolume = 1f;
+
 		public AudioController()
 		{
+			//initialize
 			_mixer = Resources.Load<AudioMixer>("AudioMixer");
-			
+
 			var audioPlayerObj = new GameObject();
 			audioPlayerObj.transform.name = "Audio Sources";
 			Object.DontDestroyOnLoad(audioPlayerObj);
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM.loop = true;
+			
+			_audioSourceSFX.outputAudioMixerGroup = _mixer.FindMatchingGroups("SFX")[0];
+			_audioSourceBGM.outputAudioMixerGroup = _mixer.FindMatchingGroups("BGM")[0];
 
 			//loadVolume
-			_audioSourceSFX.volume = _SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
-			_audioSourceBGM.volume = _BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
-			UpdateVolume(AudioType.Master, _masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f));
+			_SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
+			_BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
+			_masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f);
 
-			_mixer.SetFloat("SFX",    _SFXVolume);
-			_mixer.SetFloat("BGM",    _BGMVolume);
-			_mixer.SetFloat("Master", _masterVolume);
+			_mixer.SetFloat("SFX",    VolumeToDB(_SFXVolume));
+			_mixer.SetFloat("BGM",    VolumeToDB(_BGMVolume));
+			_mixer.SetFloat("Master", VolumeToDB(_masterVolume));
 
 			//load mute
 			_muteSfx    = PlayerPrefs.GetInt("audioMuteSFX",    0) == 1;
@@ -48,12 +52,15 @@ namespace _Project.Scripts.Audio
 			switch (audioType) {
 				case AudioType.SFX:
 					_muteSfx = mute;
+					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(_SFXVolume));
 					break;
 				case AudioType.BGM:
 					_muteBGM = mute;
+					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(_BGMVolume));
 					break;
 				case AudioType.Master:
 					_muteMaster = mute;
+					_mixer.SetFloat("Master", _muteMaster ? -80f : VolumeToDB(_masterVolume));
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(audioType), audioType, null);
@@ -105,23 +112,28 @@ namespace _Project.Scripts.Audio
 		{
 			switch (audioType) {
 				case AudioType.Master:
-					volume = _muteMaster ? 0f : volume;
-					float masterVolumeDelta = volume / _masterVolume;
+					_mixer.SetFloat("Master", _muteMaster ? -80f : VolumeToDB(volume));
+					//volume = _muteMaster ? 0f : volume;
+					//float masterVolumeDelta = volume / _masterVolume;
 					_masterVolume          = volume;
-					_audioSourceBGM.volume = _BGMVolume * masterVolumeDelta;
-					_audioSourceSFX.volume = _SFXVolume * masterVolumeDelta;
+					//_audioSourceBGM.volume = _BGMVolume * masterVolumeDelta;
+					//_audioSourceSFX.volume = _SFXVolume * masterVolumeDelta;
 					return;
 				case AudioType.BGM:
+					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(volume));
 					_BGMVolume             = volume;
-					_audioSourceBGM.volume = _muteBGM ? 0f : volume * _masterVolume;
+					//_audioSourceBGM.volume = _muteBGM ? 0f : volume * _masterVolume;
 					return;
 				case AudioType.SFX:
+					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(volume));
 					_SFXVolume             = volume;
-					_audioSourceSFX.volume = _muteSfx ? 0f : volume * _masterVolume;
+					//_audioSourceSFX.volume = _muteSfx ? 0f : volume * _masterVolume;
 					return;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(audioType), audioType, null);
 			}
 		}
+
+		private float VolumeToDB(float t) => Mathf.Lerp(-80, 0, t);
 	}
 }
