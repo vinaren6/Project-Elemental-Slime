@@ -17,6 +17,7 @@ namespace _Project.Scripts.Abilities
         private Material _material;
         
         private float _damage;
+        private float _timePercent;
         private float _aliveTime;
         private float _startSize;
         private float _targetSize;
@@ -36,6 +37,7 @@ namespace _Project.Scripts.Abilities
             _ability = ability;
             _damage = damage;
             _aliveTime = 0.25f;
+            _timePercent = 1f;
             speedMultiplier = 1.05f;
 
             _startSize = 0.1f;
@@ -52,7 +54,8 @@ namespace _Project.Scripts.Abilities
             if (!other.TryGetComponent(out IHealth health))
                 return;
             
-            health.ReceiveDamage(ElementalSystemTypes.Fire, _damage);
+            // HEJ LINUS!!!!! TA BORT _timePercent OM DU VILL!
+            health.ReceiveDamage(ElementalSystemTypes.Fire, _damage * _timePercent);
 
             if (!other.CompareTag("Enemy"))
                 return;
@@ -92,6 +95,9 @@ namespace _Project.Scripts.Abilities
 
                 // _material.color = colorGradient.Evaluate(time / _aliveTime);
                 _material.color = new Color(0f, 0f, 0f, 0f);
+
+                // HEJ LINUS!!!!! TA BORT _timePercent OM DU VILL!
+                _timePercent = Mathf.Max(0.25f, 1f - (time / _aliveTime));
 
                 time += Time.deltaTime;
 
