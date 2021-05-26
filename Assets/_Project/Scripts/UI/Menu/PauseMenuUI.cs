@@ -22,11 +22,10 @@ namespace _Project.Scripts.UI.Menu
 
 		private void OnInputActionPerformed(InputAction.CallbackContext _)
 		{
-			ServiceLocator.Game.SetPause(!ServiceLocator.Game.GetPause());
-			if (ServiceLocator.Game.GetPause())
-				ShowPanel(PauseMenuPanelType.PauseScreen);
+			if (!ServiceLocator.Game.GetPause())
+				OpenPauseMenu();
 			else
-				HideAllPanels();
+				ClosePauseMenu();
 		}
 
 		private void OnDestroy() => _inputAction.performed -= OnInputActionPerformed;
@@ -53,13 +52,13 @@ namespace _Project.Scripts.UI.Menu
 
 		public void OptionsConfirmClick() => ShowPanel(PauseMenuPanelType.PauseScreen);
 
-		public void OpenPauseMenu()
+		private void OpenPauseMenu()
 		{
 			ServiceLocator.Game.SetPause(true);
 			ShowPanel(PauseMenuPanelType.PauseScreen);
 		}
 
-		public void ClosePauseMenu()
+		private void ClosePauseMenu()
 		{
 			ServiceLocator.Game.SetPause(false);
 			HideAllPanels();
