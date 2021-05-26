@@ -237,7 +237,14 @@ namespace _Project.Scripts.Abilities
 
 		private float GetDamage(int row)
 		{
-			return _damage * row;
+			float multiplier = row switch
+			{
+				2 => 1.25f,
+				3 => 1.5f,
+				_ => 1f
+			};
+
+			return _damage * multiplier;
 		}
 		
 		public void ReturnToPool(RockWall rock)
