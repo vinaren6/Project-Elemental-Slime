@@ -53,11 +53,11 @@ namespace _Project.Scripts.Audio
 			switch (audioType) {
 				case AudioType.SFX:
 					_muteSfx = mute;
-					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(_SFXVolume));
+					_mixer.SetFloat("SFX", _muteSfx ? -80f : VolumeToDB(_SFXVolume));
 					break;
 				case AudioType.BGM:
 					_muteBGM = mute;
-					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(_BGMVolume));
+					_mixer.SetFloat("BGM", _muteBGM ? -80f : VolumeToDB(_BGMVolume));
 					break;
 				case AudioType.Master:
 					_muteMaster = mute;
@@ -121,12 +121,12 @@ namespace _Project.Scripts.Audio
 					//_audioSourceSFX.volume = _SFXVolume * masterVolumeDelta;
 					return;
 				case AudioType.BGM:
-					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(volume));
+					_mixer.SetFloat("BGM", _muteBGM ? -80f : VolumeToDB(volume));
 					_BGMVolume = volume;
 					//_audioSourceBGM.volume = _muteBGM ? 0f : volume * _masterVolume;
 					return;
 				case AudioType.SFX:
-					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(volume));
+					_mixer.SetFloat("SFX", _muteSfx ? -80f : VolumeToDB(volume));
 					_SFXVolume = volume;
 					//_audioSourceSFX.volume = _muteSfx ? 0f : volume * _masterVolume;
 					return;
