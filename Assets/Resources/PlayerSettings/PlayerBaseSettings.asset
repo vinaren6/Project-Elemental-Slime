@@ -15,7 +15,7 @@ MonoBehaviour:
   maxHitPoints: 175
   moveSpeed: 18
   attackStrength: 20
-  attackCooldownTime: 0.6
+  attackCooldownTime: 0.7
   projectileSpeed: 18
   damageOverTimeCooldownTime: 0.5
   damageOverTimeMultiplier: 0.2

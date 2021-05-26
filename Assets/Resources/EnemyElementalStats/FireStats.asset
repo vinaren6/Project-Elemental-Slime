@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   ability: {fileID: 1170913647480530244, guid: b74bd259491d4594d8cef9ec62e1824e, type: 3}
-  maxHitPoints: 100
+  maxHitPoints: 125
   moveSpeedMultiplier: 1
-  attackStrengthMultiplier: 0.2
-  attackRateMultiplier: 2
+  attackStrengthMultiplier: 0.15
+  attackRateMultiplier: 1
   attackRange: 8
   hasRangedAttack: 0
   mesh: {fileID: 919132149155446097, guid: 1149554d018ead94db16dca955294701, type: 3}

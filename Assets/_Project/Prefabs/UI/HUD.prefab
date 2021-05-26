@@ -1045,7 +1045,7 @@ MonoBehaviour:
   killScore: 20
   pickupScore: 5
   scoreAdditionPerCombo: 0.1
-  comboTimeLimit: 10
+  comboTimeLimit: 8
 --- !u!1 &7807180142563302309
 GameObject:
   m_ObjectHideFlags: 0
