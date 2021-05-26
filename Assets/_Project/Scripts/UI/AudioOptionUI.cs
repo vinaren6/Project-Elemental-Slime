@@ -27,7 +27,7 @@ namespace _Project.Scripts.UI
 			ServiceLocator.Audio.Mute(audioType, mute.isOn);
 			//float newVolume = mute.isOn ? 0 : volume.value;
 			//PlayerPrefs.SetFloat("audio" + audioType, newVolume);
-			ServiceLocator.Audio.UpdateVolume(audioType, volume.value);
+			//ServiceLocator.Audio.UpdateVolume(audioType, volume.value);
 		}
 	}
 }

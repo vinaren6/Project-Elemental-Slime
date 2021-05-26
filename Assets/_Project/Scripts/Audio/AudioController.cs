@@ -9,16 +9,17 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceBGM;
 		private readonly AudioSource _audioSourceSFX;
-		private readonly float       _BGMVolume    = 1f;
-		private readonly float       _masterVolume = 1f;
+		private  float       _BGMVolume    = 1f;
+		private  float       _masterVolume = 1f;
 		private readonly AudioMixer  _mixer;
 		private          bool        _muteBGM;
 		private          bool        _muteMaster;
 		private          bool        _muteSfx;
-		private readonly float       _SFXVolume = 1f;
+		private  float       _SFXVolume = 1f;
 
 		public AudioController()
 		{
+			//initialize
 			_mixer = Resources.Load<AudioMixer>("AudioMixer");
 
 			var audioPlayerObj = new GameObject();
@@ -27,14 +28,14 @@ namespace _Project.Scripts.Audio
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM.loop = true;
-
-			//loadVolume
-			//_audioSourceSFX.volume = _SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
-			//_audioSourceBGM.volume = _BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
-			//UpdateVolume(AudioType.Master, _masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f));
-
+			
 			_audioSourceSFX.outputAudioMixerGroup = _mixer.FindMatchingGroups("SFX")[0];
 			_audioSourceBGM.outputAudioMixerGroup = _mixer.FindMatchingGroups("BGM")[0];
+
+			//loadVolume
+			_SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
+			_BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
+			_masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f);
 
 			_mixer.SetFloat("SFX",    VolumeToDB(_SFXVolume));
 			_mixer.SetFloat("BGM",    VolumeToDB(_BGMVolume));
@@ -51,12 +52,15 @@ namespace _Project.Scripts.Audio
 			switch (audioType) {
 				case AudioType.SFX:
 					_muteSfx = mute;
+					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(_SFXVolume));
 					break;
 				case AudioType.BGM:
 					_muteBGM = mute;
+					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(_BGMVolume));
 					break;
 				case AudioType.Master:
 					_muteMaster = mute;
+					_mixer.SetFloat("Master", _muteMaster ? -80f : VolumeToDB(_masterVolume));
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(audioType), audioType, null);
@@ -108,21 +112,21 @@ namespace _Project.Scripts.Audio
 		{
 			switch (audioType) {
 				case AudioType.Master:
-					_mixer.SetFloat("Master", VolumeToDB(_muteMaster ? 0f : volume));
+					_mixer.SetFloat("Master", _muteMaster ? -80f : VolumeToDB(volume));
 					//volume = _muteMaster ? 0f : volume;
 					//float masterVolumeDelta = volume / _masterVolume;
-					//_masterVolume          = volume;
+					_masterVolume          = volume;
 					//_audioSourceBGM.volume = _BGMVolume * masterVolumeDelta;
 					//_audioSourceSFX.volume = _SFXVolume * masterVolumeDelta;
 					return;
 				case AudioType.BGM:
-					_mixer.SetFloat("BGM", VolumeToDB(_muteBGM ? 0f : volume));
-					//_BGMVolume             = volume;
+					_mixer.SetFloat("BGM", _muteMaster ? -80f : VolumeToDB(volume));
+					_BGMVolume             = volume;
 					//_audioSourceBGM.volume = _muteBGM ? 0f : volume * _masterVolume;
 					return;
 				case AudioType.SFX:
-					_mixer.SetFloat("SFX", VolumeToDB(_muteSfx ? 0f : volume));
-					//_SFXVolume             = volume;
+					_mixer.SetFloat("SFX", _muteMaster ? -80f : VolumeToDB(volume));
+					_SFXVolume             = volume;
 					//_audioSourceSFX.volume = _muteSfx ? 0f : volume * _masterVolume;
 					return;
 				default:
