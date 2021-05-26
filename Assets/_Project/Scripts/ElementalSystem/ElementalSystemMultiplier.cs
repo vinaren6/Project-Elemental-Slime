@@ -11,9 +11,9 @@
 		public static float GetMultiplier(ElementalSystemTypes baseType, ElementalSystemTypes targetType)
 		{
 			switch (baseType) {
-				case ElementalSystemTypes.Earth when targetType == ElementalSystemTypes.Fire:
+				case ElementalSystemTypes.Fire when targetType == ElementalSystemTypes.Wind:
 					return 2;
-				case ElementalSystemTypes.Fire when targetType == ElementalSystemTypes.Earth:
+				case ElementalSystemTypes.Wind when targetType == ElementalSystemTypes.Fire:
 					return .5f;
 				default: {
 					float mult = baseType == ElementalSystemTypes.Base || targetType == ElementalSystemTypes.Base
@@ -26,8 +26,8 @@
 	}
 }
 
-// 0 - Earth,
-// 1 - Wind,
-// 2 - Water,
-// 3 - Fire,
+// 0 - Fire,
+// 1 - Water,
+// 2 - Earth,
+// 3 - Wind,
 // 4 - Base
