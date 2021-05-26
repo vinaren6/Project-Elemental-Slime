@@ -24,6 +24,7 @@ namespace _Project.Scripts.Managers
 
         private void Awake()
         {
+            Screen.SetResolution(1920, 1080, true);
             ServiceLocator.Initialize(this);
         }
 
