@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using AudioType = _Project.Scripts.Audio.AudioType;
 
 namespace _Project.Scripts.Managers
 {
@@ -36,8 +37,15 @@ namespace _Project.Scripts.Managers
         {
             if (_isPaused == pause) return;
             _isPaused = pause;
-
-            Time.timeScale = pause ? 0f : 1f;
+            
+            if (pause) {
+                Time.timeScale = 0f;
+                ServiceLocator.Audio.Mute(AudioType.SFX, true);
+            }            
+            else {
+                Time.timeScale = 1f;
+                ServiceLocator.Audio.Mute(AudioType.SFX, false);
+            }
             
             if (OnVariableChange != null)
                 OnVariableChange(_isPaused);
