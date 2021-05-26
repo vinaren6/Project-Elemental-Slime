@@ -22894,7 +22894,7 @@ MonoBehaviour:
   - {fileID: 1083603306}
   player: {fileID: 796762454}
   wave: 0
-  spawnedEnemiesInFirstWave: 3
+  spawnedEnemiesInFirstWave: 2
   maxActiveSpawnsAtSameTime: 15
   spawnDelay: 1
   waveBeingDelay: 5
