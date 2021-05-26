@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Audio
@@ -8,15 +9,18 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceBGM;
 		private readonly AudioSource _audioSourceSFX;
-		private          float       _SFXVolume = 1f;
-		private          float       _BGMVolume = 1f;
+		private          float       _SFXVolume    = 1f;
+		private          float       _BGMVolume    = 1f;
 		private          float       _masterVolume = 1f;
 		private          bool        _muteBGM;
 		private          bool        _muteMaster;
 		private          bool        _muteSfx;
+		private          AudioMixer  _mixer;
 		
 		public AudioController()
 		{
+			_mixer = Resources.Load<AudioMixer>("AudioMixer");
+			
 			var audioPlayerObj = new GameObject();
 			audioPlayerObj.transform.name = "Audio Sources";
 			Object.DontDestroyOnLoad(audioPlayerObj);
@@ -27,7 +31,11 @@ namespace _Project.Scripts.Audio
 			//loadVolume
 			_audioSourceSFX.volume = _SFXVolume = PlayerPrefs.GetFloat("audioSFX", 1f);
 			_audioSourceBGM.volume = _BGMVolume = PlayerPrefs.GetFloat("audioBGM", 0.15f);
-			UpdateVolume(AudioType.Master, PlayerPrefs.GetFloat("audioMaster", 1f));
+			UpdateVolume(AudioType.Master, _masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f));
+
+			_mixer.SetFloat("SFX",    _SFXVolume);
+			_mixer.SetFloat("BGM",    _BGMVolume);
+			_mixer.SetFloat("Master", _masterVolume);
 
 			//load mute
 			_muteSfx    = PlayerPrefs.GetInt("audioMuteSFX",    0) == 1;
