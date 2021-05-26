@@ -175,7 +175,7 @@ namespace _Project.Scripts.UI.Score
 				string chainNumber = _currentCombo.ToString();
 				comboChainText.text = chainNumber + "-CHAIN";
 				comboChainAnimator.Play("ComboChain", -1, 0f);
-				ServiceLocator.Audio.PlaySFX(comboSFX, 0.5f);
+				ServiceLocator.Audio.PlaySFX(comboSFX, 0.03f);
 			} 
 			else {
 				comboChainText.text = "";

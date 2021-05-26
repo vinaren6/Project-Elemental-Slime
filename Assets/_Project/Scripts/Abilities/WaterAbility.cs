@@ -3,6 +3,7 @@ using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace _Project.Scripts.Abilities
 {
@@ -59,8 +60,9 @@ namespace _Project.Scripts.Abilities
             _damage             = damage;
             _damageCooldownTime = 0.2f;
             _canDealDamage      = true;
+            _audioSource.outputAudioMixerGroup = Resources.Load<AudioMixer>("AudioMixer").FindMatchingGroups("SFX")[0];
             _audioSource.loop   = true;
-            _audioSource.volume = 0.125f;
+            _audioSource.volume = 1.7f;
             _audioSource.clip   = waterSFX;
 
             collisionMask = CompareTag("Player")
