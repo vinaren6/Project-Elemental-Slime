@@ -21,7 +21,10 @@ namespace _Project.Scripts.WaveSystem
 			#endif
 			WaveController.Instance.totalSpawns++;
 			if (spawnedObj.TryGetComponent(out Health hp)) {
-				hp.onDeath.AddListener(EnemyDied);
+				var sod = spawnedObj.AddComponent<SafeOnDeath>();
+				sod.hp = hp;
+				sod.Set(EnemyDied);
+				//hp.onDeath.AddListener(EnemyDied);
 				#if UNITY_EDITOR
 				activeSpawns++;
 				#endif
