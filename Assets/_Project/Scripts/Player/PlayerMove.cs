@@ -1,5 +1,4 @@
 using System.Collections;
-using _Project.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -46,7 +45,6 @@ namespace _Project.Scripts.Player
 			_player.Animator.SetBool("IsMoving", movement.magnitude > 0.1f);
 			_agent.velocity = movement * (1 - _player.MoveSmoothing) + _agent.velocity * _player.MoveSmoothing;
 			
-			// Debug.Log($"speed?= {_agent.velocity.sqrMagnitude.ToString("F4")}");
 			if (_canPlayMoveSound && _agent.velocity.sqrMagnitude > 0.1f)
 				StartCoroutine(nameof(MoveSoundRoutine));
 			else if (_agent.velocity.sqrMagnitude < 0.1f)
@@ -85,15 +83,6 @@ namespace _Project.Scripts.Player
 
 			movement    *= _player.MoveWhenAttackingMultiplier;
 		}
-		
-		// private void AdjustVelocityIfPlayerHasAttacked()
-		// {
-		// 	if (!_player.HasAttacked)
-		// 		return;
-		//
-		// 	_agent.velocity     *= _player.MoveWhenAttackingMultiplier;
-		// 	_player.HasAttacked =  false;
-		// }
 
 		#endregion
 	}

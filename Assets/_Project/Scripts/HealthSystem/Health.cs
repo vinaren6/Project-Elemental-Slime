@@ -24,8 +24,6 @@ namespace _Project.Scripts.HealthSystem
 		private bool  _canReceiveDamage             = true;
 		private float _maxHitPoints;
 
-		private bool _isDead;
-		
 		public float MaxHitPoints {
 			get => _maxHitPoints;
 			set => _maxHitPoints = value;
@@ -66,11 +64,6 @@ namespace _Project.Scripts.HealthSystem
 			ServiceLocator.Audio.PlaySFX(deathSFX, 0.7f);
 			EnemySpawner.EnemiesInScene--;
 			
-			// if (_isDead)
-			// 	return;
-			//
-			// _isDead = true;
-			// print(Time.time);
 			onDeath.Invoke();
 		}
 
@@ -111,8 +104,6 @@ namespace _Project.Scripts.HealthSystem
 
 		public void KillPlayer()
 		{
-			if (_isDead) return;
-			_isDead = true;
 			onDeath.Invoke();
 		}
 	}

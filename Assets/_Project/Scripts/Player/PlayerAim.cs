@@ -26,9 +26,6 @@ namespace _Project.Scripts.Player
                 Vector3    playerPosition = _plane.ClosestPointOnPlane(_transform.position);
                 Quaternion target         = Quaternion.LookRotation(mousePosition - playerPosition);
                 transform.rotation = target;
-                
-                // Rotation with Smoothing:
-                // transform.rotation = Quaternion.Slerp(_transform.rotation, target,  Time.deltaTime * _player.RotationSmoothing);
             }
         }
     }

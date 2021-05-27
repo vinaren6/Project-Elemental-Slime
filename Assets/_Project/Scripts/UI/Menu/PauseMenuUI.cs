@@ -22,7 +22,7 @@ namespace _Project.Scripts.UI.Menu
 
 		private void OnInputActionPerformed(InputAction.CallbackContext _)
 		{
-			if (!ServiceLocator.Game.GetPause())
+			if (!ServiceLocator.Game.IsPaused)
 				OpenPauseMenu();
 			else
 				ClosePauseMenu();

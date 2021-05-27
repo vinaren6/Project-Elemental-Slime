@@ -23,8 +23,7 @@ namespace _Project.Scripts.Player
 		[SerializeField][Range(0.1f, 1.0f)] private float moveSmoothing               = 0.9f;
 		[SerializeField][Range(0.1f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
 		[SerializeField][Range(0.1f, 1.0f)] private float moveBackwardsMultiplier     = 1.0f;
-		// [SerializeField][Range(1.0f, 15.0f)] private float rotationSmoothing           = 7.0f;
-		
+
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
 		private PlayerMove                 _move;
@@ -33,8 +32,7 @@ namespace _Project.Scripts.Player
 		private Animator                   _animator;
 		private Collider                   _collider;
 		private IAbility                   _ability;
-
-		public static           float EnemyDamageMultiplier;
+		
 		public static           float PlayerDamage;
 		public static           float PlayerDamageOverTime;
 		public static           float DamageOverTimeCooldownTime;
@@ -56,11 +54,9 @@ namespace _Project.Scripts.Player
 		public float MoveSpeed                   => _moveSpeed;
 		public float AttackCooldownTime          => _attackCooldownTime;
 		public float ProjectileSpeed             => _projectileSpeed;
-		public float AbilityCooldownTime         => _abilityCooldownTime;
 		public bool  HasAttacked                 { get; set; }
 
 		public Animator Animator => _animator;
-		// public float RotationSmoothing           => rotationSmoothing;
 
 		private void Awake()
 		{
@@ -118,7 +114,6 @@ namespace _Project.Scripts.Player
 		
 		private void SetElementBasedStats()
 		{
-			EnemyDamageMultiplier   = currentPlayerElementalStats.damageReceivedMultiplier;
 			PlayerDamage            = baseSettings.attackStrength * currentPlayerElementalStats.attackStrengthMultiplier;
 			_moveSpeed              = baseSettings.moveSpeed      * currentPlayerElementalStats.moveSpeedMultiplier;
 			_attackCooldownTime     = baseSettings.attackCooldownTime / currentPlayerElementalStats.attackRateMultiplier;
@@ -133,28 +128,6 @@ namespace _Project.Scripts.Player
 			SetAnimations();
 			StartCoroutine(SwitchMaterial());
 			ServiceLocator.HUD.UpdateElementBar(_elementType.Type, 0f);
-		}
-
-		private void SetAnimations()
-		{
-			_animator.SetBool("IsEarthAttack", false);
-			_animator.SetBool("IsSprayAttack", false);
-			_animator.SetBool("IsWindAttack", false);
-
-			switch (_elementType.Type)
-			{
-				case ElementalSystemTypes.Base:
-					return;
-				case ElementalSystemTypes.Wind:
-					_animator.SetBool("IsWindAttack", true);
-					return;
-				case ElementalSystemTypes.Earth:
-					_animator.SetBool("IsEarthAttack", true);
-					return;
-				default:
-					_animator.SetBool("IsSprayAttack", true);
-					break;
-			}
 		}
 
 		private void SwitchElementalStats()
@@ -181,6 +154,28 @@ namespace _Project.Scripts.Player
 				_                          => throw new ArgumentOutOfRangeException(nameof(_elementType.Type), _elementType.Type, null)
 			};
 			InitializeAbility();
+		}
+
+		private void SetAnimations()
+		{
+			_animator.SetBool("IsEarthAttack", false);
+			_animator.SetBool("IsSprayAttack", false);
+			_animator.SetBool("IsWindAttack",  false);
+
+			switch (_elementType.Type)
+			{
+				case ElementalSystemTypes.Base:
+					return;
+				case ElementalSystemTypes.Wind:
+					_animator.SetBool("IsWindAttack", true);
+					return;
+				case ElementalSystemTypes.Earth:
+					_animator.SetBool("IsEarthAttack", true);
+					return;
+				default:
+					_animator.SetBool("IsSprayAttack", true);
+					break;
+			}
 		}
 		
 		private IEnumerator SwitchMaterial()

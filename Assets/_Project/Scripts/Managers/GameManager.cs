@@ -15,8 +15,7 @@ namespace _Project.Scripts.Managers
         #region Properties
 
         public bool IsPaused => _isPaused;
-
-
+        
         #endregion
 
         #endregion
@@ -51,8 +50,6 @@ namespace _Project.Scripts.Managers
                 OnVariableChange(_isPaused);
         }
 
-        public bool GetPause() => _isPaused;
-
-#endregion
+        #endregion
     }
 }
