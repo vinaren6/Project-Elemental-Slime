@@ -61,7 +61,7 @@ namespace _Project.Scripts.HealthSystem
 			if (deathSFX == null)
 				throw new AggregateException("audioClip reference not set to an instance of an object");
 			
-			ServiceLocator.Audio.PlaySFX(deathSFX, 0.7f);
+			ServiceLocator.Audio.PlaySFX(deathSFX, 0.3f);
 			EnemySpawner.EnemiesInScene--;
 			
 			onDeath.Invoke();

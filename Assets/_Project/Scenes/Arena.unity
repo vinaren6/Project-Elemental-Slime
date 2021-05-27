@@ -22923,9 +22923,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd16cbe67e2b4517a623a69917b5436a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 84654b709094efb4e916b9e815b3f2f1, type: 3}
+  audioClip: {fileID: 8300000, guid: b05fd277c1511254cb40a85e5b92579a, type: 3}
   audioType: 0
-  volume: 1
+  volume: 0.25
   playOnStart: 0
 --- !u!1001 &584546623
 PrefabInstance:
@@ -26581,6 +26581,38 @@ PrefabInstance:
     - target: {fileID: 8659129583857850446, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b15b0296815c10e46bb5df66ea11c44a, type: 3}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: _Project.Scripts.Events.PlayAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045269800681711972, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9046327204011600389, guid: 407273f6afd0c894aae5cd1ed3cb4b38, type: 3}
       propertyPath: m_IsActive
