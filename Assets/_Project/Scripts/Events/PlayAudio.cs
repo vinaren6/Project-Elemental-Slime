@@ -30,6 +30,9 @@ namespace _Project.Scripts.Events
 				case AudioType.BGM:
 					ServiceLocator.Audio.PlayBGM(audioClip, volume);
 					break;
+				case AudioType.Master:
+					ServiceLocator.Audio.PlayMaster(audioClip, volume);
+					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}

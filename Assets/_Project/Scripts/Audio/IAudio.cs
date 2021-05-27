@@ -6,6 +6,7 @@ namespace _Project.Scripts.Audio
 	{
 		public void Mute(AudioType         audioType, bool  mute);
 		public void PlaySFX(AudioClip      audioClip, float volume              = 1f);
+		public void PlayMaster(AudioClip   audioClip, float volume              = 1f);
 		public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0f);
 		public void PlayBGM(AudioClip      audioClip, float volume = 1f);
 		public void PauseSFX();

@@ -14,6 +14,8 @@ namespace _Project.Scripts.Audio
         {
         }
 
+        public void PlayMaster(AudioClip audioClip, float volume = 1) => throw new System.NotImplementedException();
+
         public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0)
         {
         }

@@ -9,6 +9,7 @@ namespace _Project.Scripts.Audio
 	{
 		private readonly AudioSource _audioSourceBGM;
 		private readonly AudioSource _audioSourceSFX;
+		private readonly AudioSource _audioSourceMaster;
 		private          float       _BGMVolume    = 1f;
 		private          float       _masterVolume = 1f;
 		private readonly AudioMixer  _mixer;
@@ -27,10 +28,12 @@ namespace _Project.Scripts.Audio
 			Object.DontDestroyOnLoad(audioPlayerObj);
 			_audioSourceSFX      = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM      = audioPlayerObj.AddComponent<AudioSource>();
+			_audioSourceMaster   = audioPlayerObj.AddComponent<AudioSource>();
 			_audioSourceBGM.loop = true;
 
-			_audioSourceSFX.outputAudioMixerGroup = _mixer.FindMatchingGroups("SFX")[0];
-			_audioSourceBGM.outputAudioMixerGroup = _mixer.FindMatchingGroups("BGM")[0];
+			_audioSourceSFX.outputAudioMixerGroup    = _mixer.FindMatchingGroups("SFX")[0];
+			_audioSourceBGM.outputAudioMixerGroup    = _mixer.FindMatchingGroups("BGM")[0];
+			_audioSourceMaster.outputAudioMixerGroup = _mixer.FindMatchingGroups("Master")[0];
 
 			//loadVolume
 			_SFXVolume    = PlayerPrefs.GetFloat("audioSFX",    1f);
@@ -69,7 +72,7 @@ namespace _Project.Scripts.Audio
 		}
 
 		public void PlaySFX(AudioClip audioClip, float volume = 1f) => _audioSourceSFX.PlayOneShot(audioClip, volume);
-
+		public void PlayMaster(AudioClip audioClip, float volume = 1f) => _audioSourceMaster.PlayOneShot(audioClip, volume);
 		public void PlaySFXDelay(AudioClip audioClip, float volume, float delay = 0f)
 		{
 			_audioSourceSFX.clip = audioClip;
@@ -107,6 +110,7 @@ namespace _Project.Scripts.Audio
 		{
 			StopAllSFX();
 			StopAllBGM();
+			_audioSourceMaster.Stop();
 		}
 
 		public void UpdateVolume(AudioType audioType, float volume)
