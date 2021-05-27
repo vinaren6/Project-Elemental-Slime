@@ -4,6 +4,7 @@ using _Project.Scripts.ElementalSystem;
 using _Project.Scripts.Enemies.ScriptableObjects;
 using _Project.Scripts.HealthSystem;
 using _Project.Scripts.UI;
+using _Project.Scripts.WaveSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -154,7 +155,7 @@ namespace _Project.Scripts.Enemies.AI
 		private void SetStats()
 		{
 			type.Type            = currentEnemyElementalStats.elementType;
-			_health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints;
+			_health.MaxHitPoints = currentEnemyElementalStats.maxHitPoints + WaveController.Instance.wave * 2;
 			_navMeshAgent.speed  = baseSettings.moveSpeed          * currentEnemyElementalStats.moveSpeedMultiplier;
 			_attackStrength      = baseSettings.attackStrength     * currentEnemyElementalStats.attackStrengthMultiplier;
 			_attackCooldownTime  = baseSettings.attackCooldownTime * currentEnemyElementalStats.attackRateMultiplier;
