@@ -1589,14 +1589,14 @@ MonoBehaviour:
   m_text: IIVX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: f26c89919dac50c4d8cd9e41273fd19f, type: 2}
+  m_sharedMaterial: {fileID: 6657695920324586652, guid: 3c74630f172c45e43a90806e7ecf60a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+  m_fontColor: {r: 0.9607844, g: 0.882353, b: 0.83921576, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1618,7 +1618,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 120
+  m_fontSizeMax: 130
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
