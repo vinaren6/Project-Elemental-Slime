@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: Project Elemental Slime
+  companyName: ProjectElementalSlime
+  productName: Prime Slime
   defaultCursor: {fileID: 2800000, guid: 6804d3d14f74014439a74a0db25662ed, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -150,7 +150,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.ProjectElementalSlime
+    Standalone: com.ProjectElementalSlime.PrimeSlime
   buildNumber:
     Standalone: 0
     iPhone: 0
