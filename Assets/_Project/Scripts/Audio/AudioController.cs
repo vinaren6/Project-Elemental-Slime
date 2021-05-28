@@ -37,7 +37,7 @@ namespace _Project.Scripts.Audio
 
 			//loadVolume
 			_SFXVolume    = PlayerPrefs.GetFloat("audioSFX",    1f);
-			_BGMVolume    = PlayerPrefs.GetFloat("audioBGM",    0.15f);
+			_BGMVolume    = PlayerPrefs.GetFloat("audioBGM",    0.5f);
 			_masterVolume = PlayerPrefs.GetFloat("audioMaster", 1f);
 
 			//load mute

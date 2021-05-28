@@ -13,7 +13,7 @@ namespace _Project.Scripts.UI
 
 		private void OnEnable()
 		{
-			volume.value = PlayerPrefs.GetFloat("audio" + audioType, audioType == AudioType.BGM ? 0.15f : 1f);
+			volume.value = PlayerPrefs.GetFloat("audio" + audioType, audioType == AudioType.BGM ? 0.5f : 1f);
 			mute.isOn    = PlayerPrefs.GetInt("audioMute" + audioType, 0) == 1;
 		}
 
