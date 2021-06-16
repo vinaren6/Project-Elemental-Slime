@@ -23,6 +23,8 @@ namespace _Project.Scripts.UI.Menu
 		public void ControlsButtonClick() => ShowPanel(MainMenuPanelType.Controls);
 
 		public void BackToTitleClick() => ShowPanel(MainMenuPanelType.TitleScreen);
+		
+		public void ScoreboardClick() => ShowPanel(MainMenuPanelType.Scoreboard);
 
 		public void QuitButtonClick()
 		{

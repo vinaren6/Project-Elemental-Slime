@@ -6,6 +6,7 @@ namespace _Project.Scripts.UI.Menu
 		Options,
 		Credits,
 		Stats,
-		Controls
+		Controls,
+		Scoreboard
 	}
 }
