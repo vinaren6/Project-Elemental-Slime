@@ -86,14 +86,17 @@ namespace _Project.Scripts.Enemies.AI
 		{
 			transform.rotation = Quaternion.LookRotation((_target.position - transform.position).normalized);
 			yield return new WaitForSeconds(0.4f);
-			float time = 0;
-			float duration = 0.1f;
-			while (time < duration)
-			{
-				transform.localScale = Vector3.Lerp(
-					transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), time / duration);
-				time += Time.deltaTime;
-				yield return null;
+			
+			if (baseSettings.detectAnimation) {
+				float time = 0;
+				float duration = 0.1f;
+				
+				while (time < duration) {
+					transform.localScale = Vector3.Lerp(
+						transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), time / duration);
+					time += Time.deltaTime;
+					yield return null;
+				}
 			}
 
 			transform.localScale = Vector3.one;

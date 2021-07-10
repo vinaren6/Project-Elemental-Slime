@@ -15,3 +15,4 @@ MonoBehaviour:
   moveSpeed: 14
   attackStrength: 8
   attackCooldownTime: 1
+  detectAnimation: 0
