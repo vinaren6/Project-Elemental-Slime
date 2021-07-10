@@ -6560,7 +6560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027245a68eb14e51b3df86ec900fbd05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highscoreFields:
+  highScoreFields:
   - {fileID: 7928085387033513954}
   - {fileID: 7454498857549390502}
   - {fileID: 4888791110611276501}
@@ -8200,7 +8200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2697619447551658599, guid: 36728bd3f226cb24295bedd2329a631c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddNewHighscore
+      value: AddNewHighScore
       objectReference: {fileID: 0}
     - target: {fileID: 2697619447551658599, guid: 36728bd3f226cb24295bedd2329a631c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -8208,7 +8208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2697619447551658599, guid: 36728bd3f226cb24295bedd2329a631c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _Project.Scripts.UI.Score.GlobalHighscore.Highscores, Assembly-CSharp
+      value: _Project.Scripts.UI.Score.GlobalHighScore.HighScores, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2697619447551658599, guid: 36728bd3f226cb24295bedd2329a631c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

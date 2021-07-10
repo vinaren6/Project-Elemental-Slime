@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace _Project.Scripts.UI.Score.GlobalHighscore
+namespace _Project.Scripts.UI.Score.GlobalHighScore
 {
 	public class SetUsername : MonoBehaviour
 	{
@@ -14,22 +13,17 @@ namespace _Project.Scripts.UI.Score.GlobalHighscore
 
 		public void TryNewUsername()
 		{
-			if (Highscores.IsUsernameIsTaken(inputText.text)) return;
+			if (HighScores.IsUsernameIsTaken(inputText.text)) return;
 			PlayerPrefs.SetString("Username", inputText.text);
-			Highscores.AddNewHighscore();
+			HighScores.AddNewHighScore();
 			NewUsername(false);
 		}
 
-		public void Error(int id = 0)
-		{
-			switch (id) {
-				case 0:
-					text.text = "ERROR";
-					break;
-				case 1:
-					text.text = "Username already taken.";
-					break;
-			}
-		}
+		public void Error(int id = 0) =>
+			text.text = id switch {
+				0 => "ERROR",
+				1 => "Username already taken.",
+				_ => text.text
+			};
 	}
 }
