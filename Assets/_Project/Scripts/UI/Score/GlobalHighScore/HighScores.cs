@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -51,6 +52,18 @@ namespace _Project.Scripts.UI.Score.GlobalHighScore
 
 			return false;
 		}
+		
+		public static bool IsUsingAllowedCharacters(string username) =>_instance.CheckUsingAllowedCharacters(username);
+
+		private bool CheckUsingAllowedCharacters(string username)
+		{
+			if (username.Length > 2 || username.Length < 21 || !Regex.IsMatch(username, @"^[a-zA-Z0-9]+$")) {
+				_setUsername.Error(2);
+				return true;
+			}
+			return false;
+		}
+		
 
 		private IEnumerator UploadNewHighScore(string username, int score)
 		{

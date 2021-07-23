@@ -173,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1280, y: -435.5}
-  m_SizeDelta: {x: 500, y: 500}
+  m_SizeDelta: {x: 500, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &364252975
 CanvasRenderer:
@@ -692,7 +692,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 250, y: -413.33167}
-  m_SizeDelta: {x: 460, y: 120}
+  m_SizeDelta: {x: 460, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1544017658
 CanvasRenderer:
@@ -8353,13 +8353,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6868014202589968166}
+      objectReference: {fileID: 1650438756}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -8374,7 +8378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToTitleClick
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -8382,11 +8386,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _Project.Scripts.UI.Menu.MainMenuUI, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: _Project.Scripts.UI.Menu.MainMenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5734288255641744042, guid: 67a546e7896602a4eabc0e70bff0b09d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

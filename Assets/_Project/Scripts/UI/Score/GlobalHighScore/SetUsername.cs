@@ -13,6 +13,7 @@ namespace _Project.Scripts.UI.Score.GlobalHighScore
 
 		public void TryNewUsername()
 		{
+			if (HighScores.IsUsingAllowedCharacters(inputText.text)) return;
 			if (HighScores.IsUsernameIsTaken(inputText.text)) return;
 			PlayerPrefs.SetString("Username", inputText.text);
 			HighScores.AddNewHighScore();
@@ -23,6 +24,7 @@ namespace _Project.Scripts.UI.Score.GlobalHighScore
 			text.text = id switch {
 				0 => "ERROR",
 				1 => "Username already taken.",
+				2 => "Username must be between 3 and 20 letters long and can only contain letters and numbers.",
 				_ => text.text
 			};
 	}
