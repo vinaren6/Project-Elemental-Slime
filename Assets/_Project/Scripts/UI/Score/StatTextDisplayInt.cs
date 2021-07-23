@@ -13,11 +13,11 @@ namespace _Project.Scripts.UI.Score
 
 		public static string ToString(int num)
 		{
-			if (num > 999999999 || num < -999999999)
+			if (num > 9999999999 || num < -9999999999)
 				return num.ToString("0,,,.###B", CultureInfo.InvariantCulture);
-			if (num > 999999 || num < -999999)
+			if (num > 9999999 || num < -9999999)
 				return num.ToString("0,,.##M", CultureInfo.InvariantCulture);
-			if (num > 999 || num < -999)
+			if (num > 9999 || num < -9999)
 				return num.ToString("0,.#K", CultureInfo.InvariantCulture);
 			return num.ToString(CultureInfo.InvariantCulture);
 		}
