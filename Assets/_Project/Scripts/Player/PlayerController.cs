@@ -20,9 +20,8 @@ namespace _Project.Scripts.Player
 		[SerializeField] private Renderer               meshRenderer;
 
 		[Header("ADDITIONAL MOVEMENT SETTINGS:")]
-		[SerializeField][Range(0.1f, 1.0f)] private float moveSmoothing               = 0.9f;
-		[SerializeField][Range(0.1f, 1.0f)] private float moveWhenAttackingMultiplier = 1.0f;
-		[SerializeField][Range(0.1f, 1.0f)] private float moveBackwardsMultiplier     = 1.0f;
+		[SerializeField][Range(0.1f, 1.0f)] private float moveSmoothing = 0.9f;
+		[SerializeField][Range(0.1f, 1.0f)] private float moveBackwardsMultiplier = 1.0f;
 
 		private PlayerInput                _input;
 		private PlayerAim                  _aim;
@@ -49,7 +48,7 @@ namespace _Project.Scripts.Player
 		private bool  _isReceivingDamage;
 		
 		public float MoveSmoothing               => moveSmoothing;
-		public float MoveWhenAttackingMultiplier => moveWhenAttackingMultiplier;
+		public float MoveWhenAttackingMultiplier => currentPlayerElementalStats.moveWhenAttackingMultiplier;
 		public float MoveBackwardsMultiplier     => moveBackwardsMultiplier;
 		public float MoveSpeed                   => _moveSpeed;
 		public float AttackCooldownTime          => _attackCooldownTime;
